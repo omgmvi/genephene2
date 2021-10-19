@@ -1,0 +1,46 @@
+     1	Canonical name
+     2	Alternative names
+     3	Kingdom
+     4	Phylum
+     5	Class
+     6	Order
+     7	Family
+     8	"Chemoautotroph/mixotroph:In situ"
+     9	"Chemoautotroph/mixotroph:Other"
+    10	"AOB:In situ"
+    11	"AOB:Other"
+    12	"NOB:In situ"
+    13	"NOB:Other"
+    14	"Anammox:In situ"
+    15	"Anammox:Other"
+    16	"Aerobic heterotroph:In situ"
+    17	"Aerobic heterotroph:Other"
+    18	"PAO:In situ"
+    19	"PAO:Other"
+    20	"GAO:In situ"
+    21	"GAO:Other"
+    22	"Nitrite reduction:In situ"
+    23	"Nitrite reduction:Other"
+    24	"Sulfate reduction:In situ"
+    25	"Sulfate reduction:Other"
+    26	"Fermentation:In situ"
+    27	"Fermentation:Other"
+    28	"Acetogen:In situ"
+    29	"Acetogen:Other"
+    30	"Methanogen:In situ"
+    31	"Methanogen:Other"
+    32	"Short-chain fatty acids:In situ"
+    33	"Short-chain fatty acids:Other"
+    34	"Sugars:In situ"
+    35	"Sugars:Other"
+    36	"Proteins/amino acids:In situ"
+    37	"Proteins/amino acids:Other"
+    38	"Filamentous:In situ"
+    39	"Filamentous:Other"
+    40	"Hydrophobic cell surface:In situ"
+    41	"Hydrophobic cell surface:Other"
+    42	"influent abundance"
+    43	"sludge abundance"
+    44	"mesophilic abundance"
+    45	"thermophilic abundance"
+       

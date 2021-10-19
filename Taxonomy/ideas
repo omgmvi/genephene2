@@ -1,0 +1,75 @@
+14th Aug, 2021
+I need to get the NCBI TaxID names for every bacteria.
+I did a first try to parse the NCBI taxonomy DB, not being as inmediate as I initially thought. Yet, on the online search, I've read that since 2019 there's a new format of the DB and I was using th eold one.
+
+
+NCBI Taxonomy: a comprehensive update on curation, resources and tools
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7408187/
+
+This paper describes the databases and methods to access it.
+
+In the new_taxdump, the taxonomy seems to have moved from a single database to multiple databases and focus around the idea of NameBank.
+These NameBank seems to be a list of Species names and resources to work with them
+http://ubio.org/index.php?pagename=namebank
+
+On the paper they metion that in 2018 the addition of type strain was complete (that means that the taxdump I had downloaded can't be the same)
+
+
+The TOC in me demands to see the database, I can´t focus on the text
+
+The file new_dump.tar.gz contains:
+
+citations.dmp
+delnodes.dmp
+division.dmp
+fullnamelineage.dmp
+gencode.dmp
+host.dmp
+merged.dmp
+names.dmp
+nodes.dmp
+rankedlineage.dmp
+taxdump_readme.txt
+taxidlineage.dmp
+typematerial.dmp
+typeoftype.dmp
+
+Where of our interest are
+
+names.dmp and typematerial.dmp
+
+
+names.dmp
+---------
+Taxonomy names file has these fields:
+
+	tax_id					-- the id of node associated with this name
+	name_txt				-- name itself
+	unique name				-- the unique variant of this name if name not unique
+	name class				-- (synonym, common name, ...)
+
+
+typematerial.dmp
+----------------
+Type material information file fields:
+
+	tax_id					-- node id
+	tax_name				-- organism name type material is assigned to
+	type					-- type material type (see typeoftype.dmp)
+	identifier				-- identifier in type material collection
+
+Having a look:
+
+cat names.dmp |grep "ATCC 25527"
+703613	|	Bifidobacterium animalis subsp. animalis ATCC 25527	|		|	scientific name	|
+703613	|	Bifidobacterium animalis subsp. animalis strain ATCC 25527	|		|	equivalent name	|
+703613	|	Bifidobacterium animalis subsp. animalis str. ATCC 25527	|		|	equivalent name	|
+
+
+cat typematerial.dmp |grep "ATCC 25527"
+28025	|	Bifidobacterium animalis	|	type strain	|	ATCC 25527	|
+
+
+cat typematerial.dmp |grep "R101-8"
+28025	|	Bifidobacterium animalis	|	type strain	|	personal::R101-8	|
+28025	|	Bifidobacterium animalis	|	type strain	|	strain R101-8	|

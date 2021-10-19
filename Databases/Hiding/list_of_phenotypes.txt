@@ -1,0 +1,108 @@
+acid phosphatase
+aesculin hydrolysis
+alkaline phosphatase
+alpha-galactosidase
+arylsulfatase
+catalase positive
+gelatinase
+H2S production
+indole production
+methane production
+nitrate reduction to nitrite
+oxidase positive
+pyrazinamidase
+tellurite reductase
+urease positive
+2-aminethanol
+2-ketogluconate
+2;3-butanediol
+3-hydroxybenzoate
+3-hydroxybutyrate
+4-hydroxbenzoate
+5-ketoguconate
+acetate
+adipate
+adonitol
+alaninamide
+alanine
+alpha-cyclodextrin
+alpha-ketovaleric acid
+arabinose
+arabitol
+arginine
+asparagine
+aspartic acid (aspartate)
+butanol
+caprate
+carnitine
+cellobiose
+citric acide (citrate)
+dextrin
+ethanol
+formic acid
+fructose
+fucose
+galactonic acid
+galactose
+galcturonic acid
+gamma-aminobutyric acid
+gelatin
+gluconic acid
+glucosamine
+glucose
+glucuronamide
+glutamic acid
+glycerol
+glycine
+glycogen
+histidine
+hyroxl-proline
+inosine
+itaconate
+lactate
+lactose
+leucine
+malate
+malonic acid (malonate)
+maltose
+mannitol
+mannose
+melibiose
+methyl beta-D-glucoside
+methyl pyruvate
+myo-inositol
+N-acetylgulcosamine
+ornithine
+phenethylamine
+phenylacetate
+phenylalanine
+proline
+propionic acid (propionate)
+putrescine
+pyruvic acid (pyruvate)
+pyruvic acid methyl ester
+quinic acid
+raffinose
+rhamnose
+ribose
+salicin
+serine
+sorbitol
+suberic acid
+succinic acid (succinate)
+sucrose
+threonine
+thymidine
+trehalose
+trisodium citrate
+tryptophan
+Tween 20
+Tween 40
+Tween 60
+Tween 80
+urea
+uridine
+urocanic acid
+valerate
+xylitol
+xylose

@@ -1,0 +1,120 @@
+tmp
+Cell shape	Balance : 0 %
+Gram reaction	Balance : 37.72 %
+Motility	Balance : 18.9 %
+1-butanol	Balance : 8 %
+2-butanol	Balance : 32 %
+Isobutanol	Balance : 6.67 %
+2-propanol	Balance : 16.42 %
+Acetate	Balance : 9.3 %
+Butanol	Balance : 13.16 %
+Carbon Monoxide	Balance : 9.09 %
+Cyclopentanol	Balance : 29.41 %
+Dimethylamine	Balance : 43.66 %
+Dimethyl sulfide	Balance : 31.43 %
+Ethanol	Balance : 2.7 %
+Formate collections	Balance : 47.1 %
+H2+CO2	Balance : 77.55 %
+H2+methanol	Balance : 19.23 %
+Methanol	Balance : 26.02 %
+Methylamine	Balance : 37.66 %
+Propanol	Balance : 4 %
+Propionate	Balance : 20 %
+Trimethylamine	Balance : 31.43 %
+Additional acetate	Balance : 100 %
+Additional cysteine	Balance : 100 %
+Additional Fe	Balance : 100 %
+Additional Ni	Balance : 100 %
+Additional W	Balance : 100 %
+Additional yeast extract	Balance : 100 %
+Additional vitamins	Balance : 100 %
+Additional generally organic compounds	Balance : 100 %
+Additional tungsten	Balance : 100 %
+Additional microelement solution	Balance : 100 %
+Additional casamino acids	Balance : 100 %
+Additional selenite	Balance : 100 %
+Additional tripticase	Balance : 100 %
+Additional selenate	Balance : 100 %
+Additional selenium	Balance : 100 %
+Additional pantoyllacetone	Balance : 100 %
+Additional rumen fluid	Balance : 100 %
+Additional CoM	Balance : 100 %
+Additional potasium	Balance : 100 %
+Additional peptone	Balance : 100 %
+Additional methanol+H2	Balance : 100 %
+Additional trypticase	Balance : 100 %
+Additional methylamine	Balance : 100 %
+Additional methanol	Balance : 100 %
+Additional CO/H2	Balance : 100 %
+Additional monomethylamine	Balance : 100 %
+Additional dimethylamine	Balance : 100 %
+Additional H2/C02	Balance : 100 %
+Additional trimethylamine	Balance : 100 %
+Additional methanethiol	Balance : 100 %
+Additional no supplement	Balance : 100 %
+Additional aminoacids	Balance : 100 %
+Additional biotin	Balance : 100 %
+Additional Fe2O3	Balance : 100 %
+Additional HS-coM	Balance : 100 %
+Minimum tripticase peptone/yeast extract	Balance : 100 %
+Minimum yeast extract	Balance : 100 %
+Minimum vitamin	Balance : 100 %
+Minimum acetate	Balance : 100 %
+Minimum aminoacids	Balance : 100 %
+Minimum rumen fluid	Balance : 100 %
+Minimum casamino acids	Balance : 100 %
+Minimum nutrient broth	Balance : 100 %
+Minimum trypticase	Balance : 100 %
+Minimum branched-chain	Balance : 100 %
+Minimum coenzyme M	Balance : 100 %
+Minimum tripticase peptone	Balance : 100 %
+Minimum MB medium	Balance : 100 %
+Minimum Na2S	Balance : 100 %
+Minimum NaCl	Balance : 100 %
+Minimum 2methylbutyrate	Balance : 100 %
+Minimum Ca	Balance : 100 %
+Minimum Co	Balance : 100 %
+Minimum CO2	Balance : 100 %
+Minimum Fe	Balance : 100 %
+Minimum isoleucine	Balance : 100 %
+Minimum leucine	Balance : 100 %
+Minimum Mg	Balance : 100 %
+Minimum propionate	Balance : 100 %
+Minimum SeO4	Balance : 100 %
+Minimum Ni	Balance : 100 %
+Minimum tungsten	Balance : 100 %
+Minimum casitone	Balance : 100 %
+Minimum trace element solution	Balance : 100 %
+Minimum unidentified	Balance : 100 %
+Minimum heavy metal solution	Balance : 100 %
+Minimum peptone	Balance : 100 %
+Minimum riboflavin	Balance : 100 %
+Minimum thiamine	Balance : 100 %
+Minimum vitamin B12	Balance : 100 %
+Minimum aminobenzoate	Balance : 100 %
+Minimum biotin	Balance : 100 %
+Minimum acetate/ethanol	Balance : 100 %
+Minimum H2+methanol	Balance : 100 %
+Minimum thiamin	Balance : 100 %
+Minimum tryptone	Balance : 100 %
+Other methane tiol	Balance : 0 %
+Other 1-pentanol	Balance : 0 %
+Other pyruvate	Balance : 0 %
+Other butyrate	Balance : 0 %
+Other fructose	Balance : 0 %
+Other glucose	Balance : 0 %
+Other lactate	Balance : 0 %
+Other theophyline	Balance : 0 %
+Other trimethoxybenzoate	Balance : 0 %
+Other theobromine	Balance : 0 %
+Other valerate	Balance : 0 %
+Other cyclohexanol	Balance : 0 %
+Other 2-pentanol	Balance : 0 %
+Other alanine	Balance : 0 %
+Other formaldehyde	Balance : 0 %
+Other fumarate	Balance : 0 %
+Other leucine	Balance : 0 %
+Other 2;3-butanodiol	Balance : 0 %
+Other cycloheksanol	Balance : 0 %
+Other ethyl acetate	Balance : 0 %
+Other H2+methanol	Balance : 100 %

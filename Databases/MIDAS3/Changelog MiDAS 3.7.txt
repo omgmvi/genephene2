@@ -1,0 +1,10 @@
+Previous version:	MiDAS3.6_20191030
+Current version:	MiDAS3.7_20200604
+
+Changes:
+The way assignment of species names were performed was changed. 
+
+In version MiDAS3.6_20191030 species names were assigned to the FL-ASVs based on the best hit within the species-level identity threshold (id>98.7%) in the typestrain database. However, this often resulted in wrong classification when there were more than one typestrain within the threshold. 
+
+In version MiDAS3.7_2020604 species names are provided if only a single type-stain are within the treshold. FL-ASVs that match to more than on type stain are in this case given a denovo name. ESV has been renamed to FLASV.
+

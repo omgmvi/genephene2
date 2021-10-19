@@ -1,0 +1,7 @@
+#The database come from my own hand and the original is in my own computer. I need to upload the excel file or better the exported tsv before passing from long to wide formats.
+# The data here is in wide format and follow the business rules of being tsv, unquoted and with a column Name, Strain and the Name split in Genus and Species.#Therefore the only code to run here is to extract the list of phenotypes, the list of species and the summary of coverage and balance for both datasets
+# Metabolic_features and Metabolic_traits
+
+./get_list_phenotypes.sh
+./get_list_species.sh
+Rscript summarize.R

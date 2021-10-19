@@ -1,0 +1,22 @@
+[1] "Not enough arguments provided, I carry on with presets"
+[1] "[ 2021-10-15 14:45:30 : Starting the Script ]"
+[1] "[ 2021-10-15 14:45:30 : READING CONFIGURATION FILES ... ]"
+[1] "[ 2021-10-15 14:45:30 : CONFIG FILES READ ]"
+[1] "[ 2021-10-15 14:45:30 : QUICK CHECKS ]"
+Phenotype.folder   Phenotype.file  Taxonomy.folder    Taxonomy.file 
+            TRUE             TRUE             TRUE             TRUE 
+ Metadata.folder    Metadata.file    Genome.folder      Genome.file 
+            TRUE             TRUE             TRUE             TRUE 
+[1] "[ 2021-10-15 14:45:30 : CHECKS PASSED ]"
+[1] "[ 2021-10-15 14:45:30 : COLLECTING THE DATA ]"
+[1] "[ 2021-10-15 14:46:12 : PHENOTYPE, TAXONOMY, METADATA AND GENOME DATABASES READ ]"
+[1] "[ 2021-10-15 14:46:12 : START OF DATA BASES PROCESSING ]"
+[1] "[ 2021-10-15 14:46:12 : Phenotype DB processed ]"
+[1] "[ 2021-10-15 14:46:12 : Genome DB processed ]"
+[1] "[ 2021-10-15 14:46:12 : GENERATING THE PHENO-GENO TYPE DATABAES ]"
+[1] "[ 2021-10-15 14:46:16 : DATABASE GENERATED AFTER JOIN ]"
+[1] "[ 2021-10-15 14:46:16 : FIXING MULTIPLE GENOMES ]"
+[1] "[ 2021-10-15 14:47:52 : MULTIPLE GENOMES FIXED ]"
+[1] "[ 2021-10-15 14:47:52 : START MODELLING ]"
+[1] "[ 2021-10-15 14:57:42 : END OF MODELLING STEPS ]"
+[1] "[ 2021-10-15 14:57:42 : END OF SCRIPT ]"

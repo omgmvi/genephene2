@@ -1,0 +1,10 @@
+The output of Word2Vec is not usable for our Genome to Phenotype modelling so I won't do anything with it. It is only here for the showing purpose
+
+To read the files 
+tar -xvf GenePhene2_Word2Vec.tar.gz
+
+<Python>
+import gensim
+model = gensim.models.Word2Vec.load("GenePhene2_Word2Vec_COGS.dat")
+
+and play with the index_2_key and key_2_index

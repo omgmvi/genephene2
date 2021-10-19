@@ -1,0 +1,400 @@
+GENEPHENE2:
+Number of species : 45
+Number of phenotypes: 469 (redundant)
+
+96 Phenotypic traits like aerobe, acidogenics, catalase activity, etc 
+
+Coverage
+   +-+----------+-----------+----------+----------+----------+-+
+   |  **                                                       |
+40 +                                                           +
+   |                                                           |
+   |                                                           |
+30 +    *                                                      +
+   |                                                           |
+   |    ***                                                    |
+20 +      *****                                                +
+   |          *****                                            |
+   |              ****                                         |
+10 +                  ***                                      +
+   |                    **********                             |
+   |                              **************************   |
+ 0 +-+----------+-----------+----------+----------+----------+-+
+     0         20          40         60         80         100 
+
+Balance
+
+   +-+----------+-----------+----------+----------+----------+-+
+   |  **                                                       |
+40 +                                                           +
+   |                                                           |
+   |                                                           |
+30 +    *                                                      +
+   |                                                           |
+   |    ***                                                    |
+20 +      *****                                                +
+   |          *****                                            |
+   |              ****                                         |
+10 +                  ***                                      +
+   |                    **********                             |
+   |                              **************************   |
+ 0 +-+----------+-----------+----------+----------+----------+-+
+     0         20          40         60         80         100
+
+Metabolic features, 381 phenotypes about inputs and outputs like "use glucose"
+   +--+-------------+-------------+-------------+-------------++
+   |  *                                                        |
+40 +  **                                                       +
+   |   *                                                       |
+   |   *                                                       |
+30 +   *                                                       +
+   |   ***                                                     |
+   |     **                                                    |
+20 +      ***                                                  +
+   |        **                                                 |
+10 +          ******                                           +
+   |               *************                               |
+   |                           ***********                     |
+ 0 +                                     *******************   +
+   +--+-------------+-------------+-------------+-------------++
+      0            100           200           300           400
+
+    +-+-------------+-------------+-------------+--------------+
+  1 +  **********                                              +
+    |           **                                             |
+0.8 +            ***                                           +
+    |              ****                                        |
+    |                 ***                                      |
+0.6 +                    ****                                  +
+    |                       *******                            |
+0.4 +                              ****                        +
+    |                                 ****                     |
+    |                                    ****                  |
+0.2 +                                       **                 +
+    |                                        ****              |
+  0 +                                           ************   +
+    +-+-------------+-------------+-------------+--------------+
+      0            100           200           300              
+
+
+Hiding in plain sight database:
+Number of species: 3483
+Number of phenotypes : 106
+
+
+Metabolic traits : 14
+aesculin hydrolysis; alkaline phosphatase; alpha-galactosidase; arylsulfatase; 
+catalase positive; gelatinase; H2S production; indole production; methane production; nitrate reduction to nitrite;
+oxidase positive;pyrazinamidase;tellurite reductase 
+
+     +--------------+--------------+---------------+-----------+
+4000 +  *  *  *                                                +
+     |                                                         |
+     |                                                         |
+3000 +           *                                             +
+     |                                                         |
+     |                                                         |
+2000 +              *                                          +
+     |                                                         |
+     |                 *  *  *                                 |
+1000 +                          *  *                           +
+     |                                 *                       |
+     |                                    *                    |
+   0 +                                       *  *  *  *  *  *  +
+     +--------------+--------------+---------------+-----------+
+                    5             10              15            
+
+Balance : All yes
+    +--------------+---------------+---------------+-----------+
+  1 +  *  *  *  *  *  *   *  *  *  *  *  *  *   *  *           +
+    |                                                          |
+0.8 +                                                          +
+    |                                                          |
+    |                                                          |
+0.6 +                                                          +
+    |                                                          |
+0.4 +                                                          +
+    |                                                          |
+    |                                                          |
+0.2 +                                                          +
+    |                                                          |
+  0 +                                                 *  *  *  +
+    +--------------+---------------+---------------+-----------+
+                   5              10              15            
+
+Substrates : compsumption of any product - nutritional requisites
+around 90 like : 
+malate
+malonic acid (malonate)
+maltose
+mannitol
+mannose
+melibiose
+methyl beta-D-glucoside
+methyl pyruvate
+
+
+Coverage (absolute numbers)
+
+     +-+----------+----------+----------+----------+---------+-+
+     |  **                                                     |
+4000 +                                                         +
+     |                                                         |
+     |                                                         |
+3000 +   *                                                     +
+     |                                                         |
+     |    *                                                    |
+2000 +    **                                                   +
+     |      ***                                                |
+     |         **                                              |
+1000 +          ********                                       +
+     |                 ********                                |
+   0 +                         *****************************   +
+     +-+----------+----------+----------+----------+---------+-+
+       0         20         40         60         80        100 
+
+Balance (percentage Yes/no): all yes
+    +-+----------+----------+----------+----------+----------+-+
+  1 +  ****************************************************    +
+    |                                                          |
+0.8 +                                                          +
+    |                                                          |
+    |                                                          |
+0.6 +                                                          +
+    |                                                          |
+0.4 +                                                          +
+    |                                                          |
+    |                                                          |
+0.2 +                                                          +
+    |                                                          |
+  0 +                                                     **   +
+    +-+----------+----------+----------+----------+----------+-+
+      0         20         40         60         80         100 
+
+MDB
+Number of species : 153 methanogens (Archaea)
+Number of phenotypes : 119 (mostly culture requirements - Additional, minimum and 'other'
+Cell shape
+Gram reaction
+Motility
+1-butanol
+2-butanol
+Isobutanol
+2-propanol
+Acetate
+Butanol
+Carbon Monoxide
+Cyclopentanol
+Dimethylamine
+Dimethyl sulfide
+Ethanol
+Formate collections
+H2+CO2
+H2+methanol
+Methanol
+Methylamine
+Propanol
+Propionate
+Trimethylamine
+
+coverage: around 10 over 50%
+    +-+--------+-------+--------+--------+-------+--------+----+
+150 +  ***                                                     +
+    |    *                                                     |
+    |     **                                                   |
+    |      *                                                   |
+100 +      *                                                   +
+    |                                                          |
+    |       **                                                 |
+    |        *                                                 |
+ 50 +         *                                                +
+    |         *                                                |
+    |          ***                                             |
+    |             ***                                          |
+  0 +               ****************************************   +
+    +-+--------+-------+--------+--------+-------+--------+----+
+      0       20      40       60       80      100      120    
+
+
+    +-+--------+-------+--------+--------+-------+--------+----+
+  1 +  *********************************                       +
+    |                                                          |
+0.8 +                                                          +
+    |                                   *                      |
+    |                                                          |
+0.6 +                                                          +
+    |                                   *                      |
+0.4 +                                    *                     +
+    |                                    ***                   |
+    |                                      **                  |
+0.2 +                                       **                 +
+    |                                         **               |
+  0 +                                           ************   +
+    +-+--------+-------+--------+--------+-------+--------+----+
+      0       20      40       60       80      100      120    
+
+Coverage (in proportion) vs balance
+
+    +-+----------+----------+----------+---------+----------+--+
+  1 +  ******* *** **   *     ** **         *  *  ***  *  * *  +
+    |                                                          |
+0.8 +                                                          +
+    |  *                                                       |
+    |                                                          |
+0.6 +                                                          +
+    |  *                                                       |
+0.4 +  *                                                       +
+    |  *                                                       |
+    |  *                                                       |
+0.2 +  *                                                       +
+    |  *                                                       |
+  0 +  *                                                       +
+    +-+----------+----------+----------+---------+----------+--+
+      0         0.2        0.4        0.6       0.8         1  
+
+##############################################################################
+
+Genomes available (45 species GenePhene2)
+
+(A bit of confusion from my side)
+25 species had at least a genome - but a better search on the list is possible - examples Bacteroides -> Parabacteroides
+but some have many (phenotypic distortion).
+
+  Advenella faeciporci                1
+  Advenella incenata                  1
+  Advenella kashmirensis              2
+  Alkalitalea saponilacus             2
+  Azoarcus evansii                    1
+  Bacteroides caccae                 60
+  Bifidobacterium minimum             3
+  Bifidobacterium subtile             4
+  Christensenella minuta              5
+  Cloacibacillus porcorum             2
+  Corynebacterium matruchotii         6
+  Corynebacterium testudinoris        1
+  Corynebacterium urealyticum        11
+  Dechloromonas denitrifican          1
+  Ferroplasma acidiphilum             2
+  Flavobacterium denitrificans        1
+  Paenibacillus anaericanus           1
+  Paenibacillus terrae                5
+  Sedimentibacter acidaminivorans     1
+  Sedimentibacter hydroxybenzoicus    1
+  Sedimentibacter saalensis           1
+  Synergistes jonesii                 6
+  Tamlana crocina                     1
+  Tindallia californiensis            1
+  Zhouia amylolytica                  2
+
+# I have to work on reducing those effects
+
+
+###### Logistic regression model in R (very manual code)
+	
+	# Yes/no become 1/2
+  	levels(as.factor(datos[,phenotypic_trait]))
+        as.numeric(as.factor(datos[,phenotypic_trait]))->datos[,phenotypic_trait]
+	
+	Logistic regression model seems to be possible with glm using errors as binomial (not that I know what that means)
+        glm(data=datos[-c(1:5)],I(Catalase.activity-1) ~ .,family=binomial)->model
+
+        summary(model)
+
+table 1
+
+        coef(model)[!is.na(coef(model))]
+
+table 2
+
+        predict(model,datos,type = "response")->predicted
+        cbind(datos["Catalase.activity"]-1,predicted)->compare
+        predicted.classes <- ifelse(predicted > 0.5, "pos", "neg")
+        real.classes <- ifelse(datos[[phenotypic_trait]]-1>0.5,"pos","neg")
+        table(predicted.classes,real.classes)
+        sort(summary(model)$coef[,1])
+
+
+Table 1: Summary of the model
+
+glm(formula = I(Catalase.activity - 1) ~ ., family = binomial, 
+    data = datos[-c(1:5)])
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-2.409e-06  -2.409e-06  -2.409e-06  -2.409e-06   2.409e-06  
+
+Coefficients: (5072 not defined because of singularities)
+              Estimate Std. Error z value Pr(>|z|)
+(Intercept) -1.860e+02  1.645e+09       0        1    
+K00003       5.313e+01  7.791e+08       0        1    
+K00004       1.174e-05  4.250e+08       0        1    
+K00005       5.313e+01  4.389e+08       0        1    
+K00008       1.391e-12  5.376e+06       0        1    
+K00009       1.063e+02  1.631e+09       0        1    
+K00010              NA         NA      NA       NA   
+K00012       5.792e-12  4.439e+07       0        1    
+K00013      -1.013e-11  8.675e+07       0        1    
+K00014      -7.662e-12  7.338e+07       0        1    
+K00015              NA         NA      NA       NA   
+...
+K23980              NA         NA      NA       NA
+K23983              NA         NA      NA       NA
+K23987              NA         NA      NA       NA
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 3.6740e+01  on 74  degrees of freedom
+Residual deviance: 4.3512e-10  on  9  degrees of freedom
+  (46 observations deleted due to missingness)
+AIC: 132
+
+Number of Fisher Scoring iterations: 25
+
+
+
+Table 2 : coeficients
+
+(Intercept)        K00020        K00031        K00059        K00018
+-1.859625e+02 -5.313214e+01 -5.313214e+01 -4.619275e-06 -4.418652e-06
+       K00563        K00407        K00067        K01077        K00013
+-2.547566e-11 -1.463395e-11 -1.218803e-11 -1.017660e-11 -1.012648e-11
+       K01091        K00014        K01092        K00571        K00688
+-9.521068e-12 -7.662350e-12 -7.283373e-12 -5.886058e-12 -5.667555e-12
+       K00710        K00980        K00978        K00558        K00661
+-4.098221e-12 -3.246192e-12 -3.186613e-12 -2.108579e-12 -1.951800e-12
+       K01012        K00560        K00856        K01448        K00850
+-1.343845e-12 -6.907066e-13 -5.391184e-13 -3.844828e-13 -1.466465e-13
+       K07497        K00099        K03088        K00891        K18220
+-1.430267e-13 -1.419681e-13 -8.869169e-26 -7.806257e-26 -2.364570e-26
+       K07484        K01358        K19158        K08138        K07317
+-1.424700e-26 -9.998402e-27 -8.637765e-27 -1.102476e-27 -5.817971e-28
+       K07487        K07133        K03100        K04758        K07027
+ 1.109403e-26  1.412352e-26  1.467307e-26  1.797181e-26  1.913455e-26
+       K04759        K00986        K01619        K00615        K00561
+ 9.763614e-23  2.701527e-13  3.638037e-13  6.547557e-13  6.623516e-13
+       K00133        K00104        K00008        K00826        K00992
+ 6.907066e-13  1.147641e-12  1.391386e-12  3.881095e-12  4.750605e-12
+       K00266        K00844        K00820        K00012        K00973
+ 4.776412e-12  5.738853e-12  5.768630e-12  5.792307e-12  7.196375e-12
+       K01126        K00077        K00848        K00789        K00640
+ 9.574007e-12  1.775182e-11  2.014442e-11  2.284221e-11  2.744949e-11
+       K00004        K00023        K00003        K00005        K00009
+ 1.174468e-05  3.542143e+01  5.313213e+01  5.313215e+01  1.062643e+02
+       K00024
+ 2.125286e+02
+
+
+     table(predicted.classes,real.classes)
+                 real.classes
+predicted.classes neg pos
+              neg  70   0
+              pos   0   5
+
+Still TODO -
+ cross.validation
+lasso classification (keras - tensorflow or H2O or Weka) 
+
+Find the genomes
+Melt the genomes
+
+Get FAPROTAX sorted - almost there - It seem to be around 5000 bacterial entities (no idea the intersection with Hiding, though)

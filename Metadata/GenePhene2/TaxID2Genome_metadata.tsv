@@ -1,0 +1,637 @@
+assembly_accession	taxid	species_taxid	organism_name
+GCF_003003035.1	989	989	Marinilabilia salmonicolor
+GCF_003337725.1	989	989	Marinilabilia salmonicolor
+GCF_000741645.1	1693	1693	Bifidobacterium minimum
+GCF_001757485.1	2754	2754	Synergistes jonesii
+GCF_001757415.1	2754	2754	Synergistes jonesii
+GCF_001757495.1	2754	2754	Synergistes jonesii
+GCF_001757565.1	2754	2754	Synergistes jonesii
+GCF_000712295.1	2754	2754	Synergistes jonesii
+GCF_001757465.1	2754	2754	Synergistes jonesii
+GCF_003095075.1	28025	28025	Bifidobacterium animalis
+GCF_019126655.1	28025	28025	Bifidobacterium animalis
+GCF_900157135.1	28025	28025	Bifidobacterium animalis
+GCF_000695895.1	28025	28025	Bifidobacterium animalis
+GCF_004135895.1	28025	28025	Bifidobacterium animalis
+GCF_003095055.1	28025	28025	Bifidobacterium animalis
+GCF_019052295.1	28025	28025	Bifidobacterium animalis
+GCF_002220485.1	28025	28025	Bifidobacterium animalis
+GCF_003094895.1	28025	28025	Bifidobacterium animalis
+GCF_006538285.1	28025	28025	Bifidobacterium animalis
+GCF_009077835.1	28025	28025	Bifidobacterium animalis
+GCF_019126705.1	28025	28025	Bifidobacterium animalis
+GCF_902387355.1	28025	28025	Bifidobacterium animalis
+GCF_016696725.1	28025	28025	Bifidobacterium animalis
+GCF_019126555.1	28025	28025	Bifidobacterium animalis
+GCF_910574665.1	28025	28025	Bifidobacterium animalis
+GCF_019126675.1	28025	28025	Bifidobacterium animalis
+GCF_006538265.1	28025	28025	Bifidobacterium animalis
+GCF_003438945.1	28025	28025	Bifidobacterium animalis
+GCF_003438565.1	28025	28025	Bifidobacterium animalis
+GCF_015552635.1	28025	28025	Bifidobacterium animalis
+GCF_009075805.1	28025	28025	Bifidobacterium animalis
+GCF_003095115.1	28025	28025	Bifidobacterium animalis
+GCF_900157045.1	28025	28025	Bifidobacterium animalis
+GCF_015377505.1	28025	28025	Bifidobacterium animalis
+GCF_000817045.1	28025	28025	Bifidobacterium animalis
+GCF_004167905.1	28025	28025	Bifidobacterium animalis
+GCF_003094875.1	28025	28025	Bifidobacterium animalis
+GCF_006538245.1	28025	28025	Bifidobacterium animalis
+GCF_008041995.1	28025	28025	Bifidobacterium animalis
+GCF_009075825.1	28025	28025	Bifidobacterium animalis
+GCF_005844245.1	28025	28025	Bifidobacterium animalis
+GCF_019052305.1	28025	28025	Bifidobacterium animalis
+GCF_011770105.1	28025	28025	Bifidobacterium animalis
+GCF_019052265.1	28025	28025	Bifidobacterium animalis
+GCF_008868665.1	43768	43768	Corynebacterium matruchotii
+GCF_011612265.2	43768	43768	Corynebacterium matruchotii
+GCF_900638255.1	43768	43768	Corynebacterium matruchotii
+GCF_900447555.1	43768	43768	Corynebacterium matruchotii
+GCF_900187235.1	43771	43771	Corynebacterium urealyticum
+GCF_016127975.1	43771	43771	Corynebacterium urealyticum
+GCF_008180065.1	43771	43771	Corynebacterium urealyticum
+GCF_016127095.1	43771	43771	Corynebacterium urealyticum
+GCF_001053765.1	43771	43771	Corynebacterium urealyticum
+GCF_016403265.1	43771	43771	Corynebacterium urealyticum
+GCF_008180085.1	43771	43771	Corynebacterium urealyticum
+GCF_008180045.1	43771	43771	Corynebacterium urealyticum
+GCF_008244525.1	43771	43771	Corynebacterium urealyticum
+GCF_018289315.1	46503	46503	Parabacteroides merdae
+GCF_009719915.1	46503	46503	Parabacteroides merdae
+GCF_003474345.1	46503	46503	Parabacteroides merdae
+GCF_009719555.1	46503	46503	Parabacteroides merdae
+GCF_015555255.1	46503	46503	Parabacteroides merdae
+GCF_015553045.1	46503	46503	Parabacteroides merdae
+GCF_001404575.1	46503	46503	Parabacteroides merdae
+GCF_015558865.1	46503	46503	Parabacteroides merdae
+GCF_003469635.1	46503	46503	Parabacteroides merdae
+GCF_009719945.1	46503	46503	Parabacteroides merdae
+GCF_009719635.1	46503	46503	Parabacteroides merdae
+GCF_015556685.1	46503	46503	Parabacteroides merdae
+GCF_009719865.1	46503	46503	Parabacteroides merdae
+GCF_009719685.1	46503	46503	Parabacteroides merdae
+GCF_015670365.1	46503	46503	Parabacteroides merdae
+GCF_005844535.1	46503	46503	Parabacteroides merdae
+GCF_009719605.1	46503	46503	Parabacteroides merdae
+GCF_003475825.1	46503	46503	Parabacteroides merdae
+GCF_015548105.1	46503	46503	Parabacteroides merdae
+GCF_009719585.1	46503	46503	Parabacteroides merdae
+GCF_003458945.1	46503	46503	Parabacteroides merdae
+GCF_009719625.1	46503	46503	Parabacteroides merdae
+GCF_902362625.1	46503	46503	Parabacteroides merdae
+GCF_009719875.1	46503	46503	Parabacteroides merdae
+GCF_009719905.1	46503	46503	Parabacteroides merdae
+GCF_015547825.1	46503	46503	Parabacteroides merdae
+GCF_900445495.1	46503	46503	Parabacteroides merdae
+GCF_015551905.1	46503	46503	Parabacteroides merdae
+GCF_009719965.1	46503	46503	Parabacteroides merdae
+GCF_003475305.1	46503	46503	Parabacteroides merdae
+GCF_003475265.1	46503	46503	Parabacteroides merdae
+GCF_015552245.1	46503	46503	Parabacteroides merdae
+GCF_015668095.1	46503	46503	Parabacteroides merdae
+GCF_009719725.1	46503	46503	Parabacteroides merdae
+GCF_009719805.1	46503	46503	Parabacteroides merdae
+GCF_015554975.1	46503	46503	Parabacteroides merdae
+GCF_015558445.1	46503	46503	Parabacteroides merdae
+GCF_015554045.1	46503	46503	Parabacteroides merdae
+GCF_009719705.1	46503	46503	Parabacteroides merdae
+GCF_015547975.1	46503	46503	Parabacteroides merdae
+GCF_004166975.1	46503	46503	Parabacteroides merdae
+GCF_019042155.1	46503	46503	Parabacteroides merdae
+GCF_003459525.1	46503	46503	Parabacteroides merdae
+GCF_009719515.1	46503	46503	Parabacteroides merdae
+GCF_009719815.1	46503	46503	Parabacteroides merdae
+GCF_009719765.1	46503	46503	Parabacteroides merdae
+GCF_009719785.1	46503	46503	Parabacteroides merdae
+GCF_003439005.1	46503	46503	Parabacteroides merdae
+GCF_009720005.1	46503	46503	Parabacteroides merdae
+GCF_009719975.1	46503	46503	Parabacteroides merdae
+GCF_003469115.1	46503	46503	Parabacteroides merdae
+GCF_003470675.1	46503	46503	Parabacteroides merdae
+GCF_009720045.1	46503	46503	Parabacteroides merdae
+GCF_018784105.1	46503	46503	Parabacteroides merdae
+GCF_009719645.1	46503	46503	Parabacteroides merdae
+GCF_003438825.1	46503	46503	Parabacteroides merdae
+GCF_009720015.1	46503	46503	Parabacteroides merdae
+GCF_009677855.1	46503	46503	Parabacteroides merdae
+GCF_009719715.1	46503	46503	Parabacteroides merdae
+GCF_015557205.1	46506	46506	Bacteroides stercoris
+GCF_009025175.1	46506	46506	Bacteroides stercoris
+GCF_015558045.1	46506	46506	Bacteroides stercoris
+GCF_009024915.1	46506	46506	Bacteroides stercoris
+GCF_003460185.1	46506	46506	Bacteroides stercoris
+GCF_003474945.1	46506	46506	Bacteroides stercoris
+GCF_003474995.1	46506	46506	Bacteroides stercoris
+GCF_009025135.1	46506	46506	Bacteroides stercoris
+GCF_003464965.1	46506	46506	Bacteroides stercoris
+GCF_902364555.1	46506	46506	Bacteroides stercoris
+GCF_009025105.1	46506	46506	Bacteroides stercoris
+GCF_015551965.1	46506	46506	Bacteroides stercoris
+GCF_019129175.1	46506	46506	Bacteroides stercoris
+GCF_003438025.1	46506	46506	Bacteroides stercoris
+GCF_009025185.1	46506	46506	Bacteroides stercoris
+GCF_902399825.1	46506	46506	Bacteroides stercoris
+GCF_009025065.1	46506	46506	Bacteroides stercoris
+GCF_009025075.1	46506	46506	Bacteroides stercoris
+GCF_019075805.1	46506	46506	Bacteroides stercoris
+GCF_003475165.1	46506	46506	Bacteroides stercoris
+GCF_003458365.1	46506	46506	Bacteroides stercoris
+GCF_003458395.1	46506	46506	Bacteroides stercoris
+GCF_009024865.1	46506	46506	Bacteroides stercoris
+GCF_009024805.1	46506	46506	Bacteroides stercoris
+GCF_015561065.1	46506	46506	Bacteroides stercoris
+GCF_003468685.1	46506	46506	Bacteroides stercoris
+GCF_019128945.1	46506	46506	Bacteroides stercoris
+GCF_009024895.1	46506	46506	Bacteroides stercoris
+GCF_019127635.1	46506	46506	Bacteroides stercoris
+GCF_003470305.1	46506	46506	Bacteroides stercoris
+GCF_009024775.1	46506	46506	Bacteroides stercoris
+GCF_003438545.1	46506	46506	Bacteroides stercoris
+GCF_009024785.1	46506	46506	Bacteroides stercoris
+GCF_009024815.1	46506	46506	Bacteroides stercoris
+GCF_009025145.1	46506	46506	Bacteroides stercoris
+GCF_001535605.1	46506	46506	Bacteroides stercoris
+GCF_004167795.1	46506	46506	Bacteroides stercoris
+GCF_003470005.1	46506	46506	Bacteroides stercoris
+GCF_009024935.1	46506	46506	Bacteroides stercoris
+GCF_009024945.1	46506	46506	Bacteroides stercoris
+GCF_009025025.1	46506	46506	Bacteroides stercoris
+GCF_009024985.1	46506	46506	Bacteroides stercoris
+GCF_019129755.1	46506	46506	Bacteroides stercoris
+GCF_003458275.1	46506	46506	Bacteroides stercoris
+GCF_003468175.1	46506	46506	Bacteroides stercoris
+GCF_003462745.1	46506	46506	Bacteroides stercoris
+GCF_019127955.1	46506	46506	Bacteroides stercoris
+GCF_003469855.1	46506	46506	Bacteroides stercoris
+GCF_009024855.1	46506	46506	Bacteroides stercoris
+GCF_900106605.1	46506	46506	Bacteroides stercoris
+GCF_009024975.1	46506	46506	Bacteroides stercoris
+GCF_003465625.1	46506	46506	Bacteroides stercoris
+GCF_003468355.1	46506	46506	Bacteroides stercoris
+GCF_015560345.1	46506	46506	Bacteroides stercoris
+GCF_009025035.1	46506	46506	Bacteroides stercoris
+GCF_008572595.1	47678	47678	Bacteroides caccae
+GCF_015560485.1	47678	47678	Bacteroides caccae
+GCF_008572355.1	47678	47678	Bacteroides caccae
+GCF_015560545.1	47678	47678	Bacteroides caccae
+GCF_001405515.1	47678	47678	Bacteroides caccae
+GCF_008572505.1	47678	47678	Bacteroides caccae
+GCF_003459065.1	47678	47678	Bacteroides caccae
+GCF_008572645.1	47678	47678	Bacteroides caccae
+GCF_008572305.1	47678	47678	Bacteroides caccae
+GCF_019132375.1	47678	47678	Bacteroides caccae
+GCF_015549255.1	47678	47678	Bacteroides caccae
+GCF_016889745.1	47678	47678	Bacteroides caccae
+GCF_002959715.1	47678	47678	Bacteroides caccae
+GCF_008572545.1	47678	47678	Bacteroides caccae
+GCF_008416155.1	47678	47678	Bacteroides caccae
+GCF_008572405.1	47678	47678	Bacteroides caccae
+GCF_019129035.1	47678	47678	Bacteroides caccae
+GCF_008572635.1	47678	47678	Bacteroides caccae
+GCF_003438425.1	47678	47678	Bacteroides caccae
+GCF_003463115.1	47678	47678	Bacteroides caccae
+GCF_008572585.1	47678	47678	Bacteroides caccae
+GCF_019129105.1	47678	47678	Bacteroides caccae
+GCF_002222615.2	47678	47678	Bacteroides caccae
+GCF_008572575.1	47678	47678	Bacteroides caccae
+GCF_902388185.1	47678	47678	Bacteroides caccae
+GCF_019129395.1	47678	47678	Bacteroides caccae
+GCF_019128835.1	47678	47678	Bacteroides caccae
+GCF_001405955.1	47678	47678	Bacteroides caccae
+GCF_015549345.1	47678	47678	Bacteroides caccae
+GCF_015556775.1	47678	47678	Bacteroides caccae
+GCF_008416295.1	47678	47678	Bacteroides caccae
+GCF_008572535.1	47678	47678	Bacteroides caccae
+GCF_008416235.1	47678	47678	Bacteroides caccae
+GCF_016726305.1	47678	47678	Bacteroides caccae
+GCF_005844255.1	47678	47678	Bacteroides caccae
+GCF_008572485.1	47678	47678	Bacteroides caccae
+GCF_019128635.1	47678	47678	Bacteroides caccae
+GCF_008572425.1	47678	47678	Bacteroides caccae
+GCF_008416255.1	47678	47678	Bacteroides caccae
+GCF_008416185.1	47678	47678	Bacteroides caccae
+GCF_008416115.1	47678	47678	Bacteroides caccae
+GCF_008572445.1	47678	47678	Bacteroides caccae
+GCF_008416105.1	47678	47678	Bacteroides caccae
+GCF_018786055.1	47678	47678	Bacteroides caccae
+GCF_008416195.1	47678	47678	Bacteroides caccae
+GCF_008416215.1	47678	47678	Bacteroides caccae
+GCF_008416305.1	47678	47678	Bacteroides caccae
+GCF_008572665.1	47678	47678	Bacteroides caccae
+GCF_003470705.1	47678	47678	Bacteroides caccae
+GCF_003508775.1	47678	47678	Bacteroides caccae
+GCF_008572685.1	47678	47678	Bacteroides caccae
+GCF_003463165.1	47678	47678	Bacteroides caccae
+GCF_003468785.1	47678	47678	Bacteroides caccae
+GCF_019052575.1	47678	47678	Bacteroides caccae
+GCF_015553135.1	47678	47678	Bacteroides caccae
+GCF_004167345.1	47678	47678	Bacteroides caccae
+GCF_003470465.1	47678	47678	Bacteroides caccae
+GCF_008572465.1	47678	47678	Bacteroides caccae
+GCF_015546885.1	47678	47678	Bacteroides caccae
+GCF_008416075.1	47678	47678	Bacteroides caccae
+GCF_008572365.1	47678	47678	Bacteroides caccae
+GCF_015551865.1	47678	47678	Bacteroides caccae
+GCF_019129235.1	47678	47678	Bacteroides caccae
+GCF_008416065.1	47678	47678	Bacteroides caccae
+GCF_015557245.1	47678	47678	Bacteroides caccae
+GCF_012910805.1	59406	59406	Aromatoleum evansii
+GCF_013133875.1	74969	74969	Ferroplasma acidiphilum
+GCF_002078355.1	74969	74969	Ferroplasma acidiphilum
+GCF_014898195.1	77635	77635	Bifidobacterium subtile
+GCF_000741775.1	77635	77635	Bifidobacterium subtile
+GCF_007830175.1	130788	130788	Sedimentibacter saalensis
+GCF_001021045.1	136857	136857	Corynebacterium testudinoris
+GCF_900107405.1	159292	159292	Tindallia californiensis
+GCF_008271705.1	159743	159743	Paenibacillus terrae
+GCF_005217525.1	159743	159743	Paenibacillus terrae
+GCF_000943545.1	159743	159743	Paenibacillus terrae
+GCF_003994475.1	170367	170367	Paenibacillus anaericanus
+GCF_001056295.1	225326	225326	Corynebacterium halotolerans
+GCF_004217095.1	267800	267800	Advenella incenata
+GCF_001551835.1	281362	281362	Dechloromonas denitrificans
+GCF_014645275.1	349751	349751	Corynebacterium marinum
+GCF_900116365.1	376730	376730	Zhouia amylolytica
+GCF_012037625.1	393006	393006	Tamlana crocina
+GCF_902374565.1	508460	508460	Cloacibacillus evryensis
+GCF_001652705.1	626937	626937	Christensenella minuta
+GCF_902388075.1	626937	626937	Christensenella minuta
+GCF_001571425.1	626937	626937	Christensenella minuta
+GCF_003628755.1	626937	626937	Christensenella minuta
+GCF_001678855.1	626937	626937	Christensenella minuta
+GCF_014652395.1	797535	797535	Advenella faeciporci
+GCF_900168165.1	889453	889453	Alkalitalea saponilacus
+GCF_002201795.1	889453	889453	Alkalitalea saponilacus
+GCF_017873955.1	913099	913099	Sedimentibacter acidaminivorans
+GCF_001701045.1	1197717	1197717	Cloacibacillus porcorum
+GCF_012844265.1	1197717	1197717	Cloacibacillus porcorum
+GCF_003003035.1	989	989	Marinilabilia salmonicolor
+GCF_000614895.1	1168289	989	Marinilabilia salmonicolor JCM 21150
+GCF_003337725.1	989	989	Marinilabilia salmonicolor
+GCF_000259075.1	1168289	989	Marinilabilia salmonicolor JCM 21150
+GCF_000741645.1	1693	1693	Bifidobacterium minimum
+GCF_000421685.1	1121109	1693	Bifidobacterium minimum DSM 20102
+GCF_000771245.1	1121109	1693	Bifidobacterium minimum DSM 20102
+GCF_001757495.1	2754	2754	Synergistes jonesii
+GCF_001757465.1	2754	2754	Synergistes jonesii
+GCF_001757565.1	2754	2754	Synergistes jonesii
+GCF_001757485.1	2754	2754	Synergistes jonesii
+GCF_000712295.1	2754	2754	Synergistes jonesii
+GCF_001757415.1	2754	2754	Synergistes jonesii
+GCF_000277325.1	1168290	28025	Bifidobacterium animalis subsp. lactis B420
+GCF_004154565.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_900157135.1	28025	28025	Bifidobacterium animalis
+GCF_003095115.1	28025	28025	Bifidobacterium animalis
+GCF_000817045.1	28025	28025	Bifidobacterium animalis
+GCF_000816205.1	1316911	28025	Bifidobacterium animalis subsp. lactis KLDS2.0603
+GCF_000021425.1	442563	28025	Bifidobacterium animalis subsp. lactis AD011
+GCF_003428375.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_004154545.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_004154655.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_004154525.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_003094875.1	28025	28025	Bifidobacterium animalis
+GCF_910574665.1	28025	28025	Bifidobacterium animalis
+GCF_003094915.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_006538265.1	28025	28025	Bifidobacterium animalis
+GCF_003094895.1	28025	28025	Bifidobacterium animalis
+GCF_003094835.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_003095075.1	28025	28025	Bifidobacterium animalis
+GCF_004154445.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_003438565.1	28025	28025	Bifidobacterium animalis
+GCF_015377505.1	28025	28025	Bifidobacterium animalis
+GCF_004154455.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_009834975.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_004154625.1	302912	28025	Bifidobacterium animalis subsp. animalis
+GCF_003970855.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_004154555.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_004135895.1	28025	28025	Bifidobacterium animalis
+GCF_006538285.1	28025	28025	Bifidobacterium animalis
+GCF_900157045.1	28025	28025	Bifidobacterium animalis
+GCF_003094815.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_016835115.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_004154475.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_019052265.1	28025	28025	Bifidobacterium animalis
+GCF_001263835.1	1365957	28025	Bifidobacterium animalis subsp. animalis MCC 1489
+GCF_019052305.1	28025	28025	Bifidobacterium animalis
+GCF_001263865.1	1365956	28025	Bifidobacterium animalis subsp. animalis MCC 0499
+GCF_000260715.1	703613	28025	Bifidobacterium animalis subsp. animalis ATCC 25527
+GCF_009077835.1	28025	28025	Bifidobacterium animalis
+GCF_000612705.1	1415606	28025	Bifidobacterium animalis subsp. lactis CECT 8145
+GCF_902387355.1	28025	28025	Bifidobacterium animalis
+GCF_019126555.1	28025	28025	Bifidobacterium animalis
+GCF_001688645.2	302912	28025	Bifidobacterium animalis subsp. animalis
+GCF_002914895.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_018409015.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_008868455.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_004154535.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_004154435.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_000471945.1	1167629	28025	Bifidobacterium animalis subsp. lactis ATCC 27673
+GCF_006538245.1	28025	28025	Bifidobacterium animalis
+GCF_003606305.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_001892925.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_004167905.1	28025	28025	Bifidobacterium animalis
+GCF_009075825.1	28025	28025	Bifidobacterium animalis
+GCF_009075805.1	28025	28025	Bifidobacterium animalis
+GCF_001039715.1	1402194	28025	Bifidobacterium animalis subsp. animalis IM386
+GCF_002220485.1	28025	28025	Bifidobacterium animalis
+GCF_018408975.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_019126675.1	28025	28025	Bifidobacterium animalis
+GCF_000414215.1	1281781	28025	Bifidobacterium animalis subsp. lactis Bl12
+GCF_015552635.1	28025	28025	Bifidobacterium animalis
+GCF_003095015.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_001264055.1	1365959	28025	Bifidobacterium animalis subsp. animalis ATCC 27672
+GCF_003095055.1	28025	28025	Bifidobacterium animalis
+GCF_003390755.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_000025245.2	552531	28025	Bifidobacterium animalis subsp. lactis BB-12
+GCF_003438945.1	28025	28025	Bifidobacterium animalis
+GCF_002914815.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_003094775.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_017963615.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_016696725.1	28025	28025	Bifidobacterium animalis
+GCF_004154695.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_004154645.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_000695895.1	28025	28025	Bifidobacterium animalis
+GCF_019052295.1	28025	28025	Bifidobacterium animalis
+GCF_000277345.1	742729	28025	Bifidobacterium animalis subsp. lactis Bi-07
+GCF_005844245.1	28025	28025	Bifidobacterium animalis
+GCF_002221565.2	302912	28025	Bifidobacterium animalis subsp. animalis
+GCF_001263945.1	1365955	28025	Bifidobacterium animalis subsp. animalis MCC 0483
+GCF_016835135.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_000092765.1	573236	28025	Bifidobacterium animalis subsp. lactis V9
+GCF_004154425.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_000172535.1	486409	28025	Bifidobacterium animalis subsp. lactis HN019
+GCF_000220885.1	1042403	28025	Bifidobacterium animalis subsp. lactis CNCM I-2494
+GCF_011770105.1	28025	28025	Bifidobacterium animalis
+GCF_000818055.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_000224965.2	1075106	28025	Bifidobacterium animalis subsp. lactis BLC1
+GCF_019126705.1	28025	28025	Bifidobacterium animalis
+GCF_000240765.1	911598	28025	Bifidobacterium animalis subsp. lactis BS 01
+GCF_019126655.1	28025	28025	Bifidobacterium animalis
+GCF_000741485.1	302912	28025	Bifidobacterium animalis subsp. animalis
+GCF_001264015.1	1167629	28025	Bifidobacterium animalis subsp. lactis ATCC 27673
+GCF_000022705.1	580050	28025	Bifidobacterium animalis subsp. lactis Bl-04
+GCF_001263985.1	1365954	28025	Bifidobacterium animalis subsp. lactis ATCC 27674
+GCF_001263975.1	1365953	28025	Bifidobacterium animalis subsp. lactis ATCC 27536
+GCF_018408985.1	302911	28025	Bifidobacterium animalis subsp. lactis
+GCF_003671995.1	302912	28025	Bifidobacterium animalis subsp. animalis
+GCF_008041995.1	28025	28025	Bifidobacterium animalis
+GCF_013403245.1	1123245	29345	Sedimentibacter hydroxybenzoicus DSM 7310
+GCF_000158635.1	566549	43768	Corynebacterium matruchotii ATCC 33806
+GCF_900638255.1	43768	43768	Corynebacterium matruchotii
+GCF_008868665.1	43768	43768	Corynebacterium matruchotii
+GCF_900447555.1	43768	43768	Corynebacterium matruchotii
+GCF_000175375.1	553207	43768	Corynebacterium matruchotii ATCC 14266
+GCF_011612265.2	43768	43768	Corynebacterium matruchotii
+GCF_016127095.1	43771	43771	Corynebacterium urealyticum
+GCF_900187235.1	43771	43771	Corynebacterium urealyticum
+GCF_001053765.1	43771	43771	Corynebacterium urealyticum
+GCF_008180085.1	43771	43771	Corynebacterium urealyticum
+GCF_016403265.1	43771	43771	Corynebacterium urealyticum
+GCF_008244525.1	43771	43771	Corynebacterium urealyticum
+GCF_016127975.1	43771	43771	Corynebacterium urealyticum
+GCF_000338095.1	1267754	43771	Corynebacterium urealyticum DSM 7111
+GCF_000069945.1	504474	43771	Corynebacterium urealyticum DSM 7109
+GCF_008180045.1	43771	43771	Corynebacterium urealyticum
+GCF_008180065.1	43771	43771	Corynebacterium urealyticum
+GCF_009719975.1	46503	46503	Parabacteroides merdae
+GCF_009719945.1	46503	46503	Parabacteroides merdae
+GCF_015555255.1	46503	46503	Parabacteroides merdae
+GCF_000307345.1	999420	46503	Parabacteroides merdae CL03T12C32
+GCF_015553045.1	46503	46503	Parabacteroides merdae
+GCF_015552245.1	46503	46503	Parabacteroides merdae
+GCF_003475825.1	46503	46503	Parabacteroides merdae
+GCF_009719915.1	46503	46503	Parabacteroides merdae
+GCF_003474345.1	46503	46503	Parabacteroides merdae
+GCF_009719685.1	46503	46503	Parabacteroides merdae
+GCF_009719605.1	46503	46503	Parabacteroides merdae
+GCF_015554975.1	46503	46503	Parabacteroides merdae
+GCF_015670365.1	46503	46503	Parabacteroides merdae
+GCF_003469635.1	46503	46503	Parabacteroides merdae
+GCF_009719805.1	46503	46503	Parabacteroides merdae
+GCF_003458945.1	46503	46503	Parabacteroides merdae
+GCF_009719585.1	46503	46503	Parabacteroides merdae
+GCF_009719645.1	46503	46503	Parabacteroides merdae
+GCF_015551905.1	46503	46503	Parabacteroides merdae
+GCF_018289315.1	46503	46503	Parabacteroides merdae
+GCF_015668095.1	46503	46503	Parabacteroides merdae
+GCF_009719635.1	46503	46503	Parabacteroides merdae
+GCF_009719625.1	46503	46503	Parabacteroides merdae
+GCF_000154105.1	411477	46503	Parabacteroides merdae ATCC 43184
+GCF_009719555.1	46503	46503	Parabacteroides merdae
+GCF_009719875.1	46503	46503	Parabacteroides merdae
+GCF_009719865.1	46503	46503	Parabacteroides merdae
+GCF_015547825.1	46503	46503	Parabacteroides merdae
+GCF_015558865.1	46503	46503	Parabacteroides merdae
+GCF_015548105.1	46503	46503	Parabacteroides merdae
+GCF_009719905.1	46503	46503	Parabacteroides merdae
+GCF_015556685.1	46503	46503	Parabacteroides merdae
+GCF_003470675.1	46503	46503	Parabacteroides merdae
+GCF_009719725.1	46503	46503	Parabacteroides merdae
+GCF_009719515.1	46503	46503	Parabacteroides merdae
+GCF_005844535.1	46503	46503	Parabacteroides merdae
+GCF_003475265.1	46503	46503	Parabacteroides merdae
+GCF_015554045.1	46503	46503	Parabacteroides merdae
+GCF_003475305.1	46503	46503	Parabacteroides merdae
+GCF_001404575.1	46503	46503	Parabacteroides merdae
+GCF_009719815.1	46503	46503	Parabacteroides merdae
+GCF_004166975.1	46503	46503	Parabacteroides merdae
+GCF_902362625.1	46503	46503	Parabacteroides merdae
+GCF_009719715.1	46503	46503	Parabacteroides merdae
+GCF_900445495.1	46503	46503	Parabacteroides merdae
+GCF_009719765.1	46503	46503	Parabacteroides merdae
+GCF_003438825.1	46503	46503	Parabacteroides merdae
+GCF_009719705.1	46503	46503	Parabacteroides merdae
+GCF_009719965.1	46503	46503	Parabacteroides merdae
+GCF_015547975.1	46503	46503	Parabacteroides merdae
+GCF_003459525.1	46503	46503	Parabacteroides merdae
+GCF_015558445.1	46503	46503	Parabacteroides merdae
+GCF_018784105.1	46503	46503	Parabacteroides merdae
+GCF_019042155.1	46503	46503	Parabacteroides merdae
+GCF_009720015.1	46503	46503	Parabacteroides merdae
+GCF_003469115.1	46503	46503	Parabacteroides merdae
+GCF_009719785.1	46503	46503	Parabacteroides merdae
+GCF_003439005.1	46503	46503	Parabacteroides merdae
+GCF_009677855.1	46503	46503	Parabacteroides merdae
+GCF_009720005.1	46503	46503	Parabacteroides merdae
+GCF_009720045.1	46503	46503	Parabacteroides merdae
+GCF_000307495.1	999421	46503	Parabacteroides merdae CL09T00C40
+GCF_003468355.1	46506	46506	Bacteroides stercoris
+GCF_902364555.1	46506	46506	Bacteroides stercoris
+GCF_015558045.1	46506	46506	Bacteroides stercoris
+GCF_009025145.1	46506	46506	Bacteroides stercoris
+GCF_000154525.1	449673	46506	Bacteroides stercoris ATCC 43183
+GCF_003458395.1	46506	46506	Bacteroides stercoris
+GCF_009025185.1	46506	46506	Bacteroides stercoris
+GCF_003458365.1	46506	46506	Bacteroides stercoris
+GCF_003460185.1	46506	46506	Bacteroides stercoris
+GCF_019129755.1	46506	46506	Bacteroides stercoris
+GCF_009024865.1	46506	46506	Bacteroides stercoris
+GCF_009024935.1	46506	46506	Bacteroides stercoris
+GCF_009025175.1	46506	46506	Bacteroides stercoris
+GCF_003475165.1	46506	46506	Bacteroides stercoris
+GCF_003465625.1	46506	46506	Bacteroides stercoris
+GCF_004167795.1	46506	46506	Bacteroides stercoris
+GCF_009025105.1	46506	46506	Bacteroides stercoris
+GCF_001535605.1	46506	46506	Bacteroides stercoris
+GCF_009024805.1	46506	46506	Bacteroides stercoris
+GCF_009025135.1	46506	46506	Bacteroides stercoris
+GCF_009024945.1	46506	46506	Bacteroides stercoris
+GCF_003468685.1	46506	46506	Bacteroides stercoris
+GCF_009024915.1	46506	46506	Bacteroides stercoris
+GCF_003474945.1	46506	46506	Bacteroides stercoris
+GCF_009024975.1	46506	46506	Bacteroides stercoris
+GCF_009025075.1	46506	46506	Bacteroides stercoris
+GCF_009025065.1	46506	46506	Bacteroides stercoris
+GCF_003464965.1	46506	46506	Bacteroides stercoris
+GCF_009024775.1	46506	46506	Bacteroides stercoris
+GCF_003469855.1	46506	46506	Bacteroides stercoris
+GCF_009024895.1	46506	46506	Bacteroides stercoris
+GCF_000413395.1	1073351	46506	Bacteroides stercoris CC31F
+GCF_009024815.1	46506	46506	Bacteroides stercoris
+GCF_003438545.1	46506	46506	Bacteroides stercoris
+GCF_015557205.1	46506	46506	Bacteroides stercoris
+GCF_003474995.1	46506	46506	Bacteroides stercoris
+GCF_015561065.1	46506	46506	Bacteroides stercoris
+GCF_019127955.1	46506	46506	Bacteroides stercoris
+GCF_003462745.1	46506	46506	Bacteroides stercoris
+GCF_900624775.1	449673	46506	Bacteroides stercoris ATCC 43183
+GCF_015551965.1	46506	46506	Bacteroides stercoris
+GCF_900624875.1	449673	46506	Bacteroides stercoris ATCC 43183
+GCF_003438025.1	46506	46506	Bacteroides stercoris
+GCF_009024855.1	46506	46506	Bacteroides stercoris
+GCF_019129175.1	46506	46506	Bacteroides stercoris
+GCF_009024785.1	46506	46506	Bacteroides stercoris
+GCF_019127635.1	46506	46506	Bacteroides stercoris
+GCF_902399825.1	46506	46506	Bacteroides stercoris
+GCF_003458275.1	46506	46506	Bacteroides stercoris
+GCF_009025025.1	46506	46506	Bacteroides stercoris
+GCF_900106605.1	46506	46506	Bacteroides stercoris
+GCF_009025035.1	46506	46506	Bacteroides stercoris
+GCF_019075805.1	46506	46506	Bacteroides stercoris
+GCF_009024985.1	46506	46506	Bacteroides stercoris
+GCF_003470005.1	46506	46506	Bacteroides stercoris
+GCF_003470305.1	46506	46506	Bacteroides stercoris
+GCF_003468175.1	46506	46506	Bacteroides stercoris
+GCF_015560345.1	46506	46506	Bacteroides stercoris
+GCF_019128945.1	46506	46506	Bacteroides stercoris
+GCF_016889745.1	47678	47678	Bacteroides caccae
+GCF_008572505.1	47678	47678	Bacteroides caccae
+GCF_019132375.1	47678	47678	Bacteroides caccae
+GCF_004167345.1	47678	47678	Bacteroides caccae
+GCF_008572595.1	47678	47678	Bacteroides caccae
+GCF_008572535.1	47678	47678	Bacteroides caccae
+GCF_019052575.1	47678	47678	Bacteroides caccae
+GCF_008416185.1	47678	47678	Bacteroides caccae
+GCF_008416065.1	47678	47678	Bacteroides caccae
+GCF_019129395.1	47678	47678	Bacteroides caccae
+GCF_019129105.1	47678	47678	Bacteroides caccae
+GCF_003438425.1	47678	47678	Bacteroides caccae
+GCF_015560545.1	47678	47678	Bacteroides caccae
+GCF_008416295.1	47678	47678	Bacteroides caccae
+GCF_008572485.1	47678	47678	Bacteroides caccae
+GCF_019129035.1	47678	47678	Bacteroides caccae
+GCF_008572355.1	47678	47678	Bacteroides caccae
+GCF_015560485.1	47678	47678	Bacteroides caccae
+GCF_016726305.1	47678	47678	Bacteroides caccae
+GCF_018292205.1	997873	47678	Bacteroides caccae CL03T12C61
+GCF_003508775.1	47678	47678	Bacteroides caccae
+GCF_008572585.1	47678	47678	Bacteroides caccae
+GCF_008572685.1	47678	47678	Bacteroides caccae
+GCF_008572665.1	47678	47678	Bacteroides caccae
+GCF_008572575.1	47678	47678	Bacteroides caccae
+GCF_015553135.1	47678	47678	Bacteroides caccae
+GCF_015551865.1	47678	47678	Bacteroides caccae
+GCF_003470705.1	47678	47678	Bacteroides caccae
+GCF_001405955.1	47678	47678	Bacteroides caccae
+GCF_008416155.1	47678	47678	Bacteroides caccae
+GCF_008416305.1	47678	47678	Bacteroides caccae
+GCF_008416195.1	47678	47678	Bacteroides caccae
+GCF_001405515.1	47678	47678	Bacteroides caccae
+GCF_008416235.1	47678	47678	Bacteroides caccae
+GCF_015556775.1	47678	47678	Bacteroides caccae
+GCF_015549255.1	47678	47678	Bacteroides caccae
+GCF_019128635.1	47678	47678	Bacteroides caccae
+GCF_902388185.1	47678	47678	Bacteroides caccae
+GCF_008572465.1	47678	47678	Bacteroides caccae
+GCF_005844255.1	47678	47678	Bacteroides caccae
+GCF_000169015.1	411901	47678	Bacteroides caccae ATCC 43185
+GCF_008416115.1	47678	47678	Bacteroides caccae
+GCF_008572545.1	47678	47678	Bacteroides caccae
+GCF_008416215.1	47678	47678	Bacteroides caccae
+GCF_002959715.1	47678	47678	Bacteroides caccae
+GCF_000273725.1	997873	47678	Bacteroides caccae CL03T12C61
+GCF_008572405.1	47678	47678	Bacteroides caccae
+GCF_019129235.1	47678	47678	Bacteroides caccae
+GCF_003468785.1	47678	47678	Bacteroides caccae
+GCF_003459065.1	47678	47678	Bacteroides caccae
+GCF_008572445.1	47678	47678	Bacteroides caccae
+GCF_003463115.1	47678	47678	Bacteroides caccae
+GCF_015557245.1	47678	47678	Bacteroides caccae
+GCF_015549345.1	47678	47678	Bacteroides caccae
+GCF_008572305.1	47678	47678	Bacteroides caccae
+GCF_018786055.1	47678	47678	Bacteroides caccae
+GCF_008572425.1	47678	47678	Bacteroides caccae
+GCF_008416255.1	47678	47678	Bacteroides caccae
+GCF_002222615.2	47678	47678	Bacteroides caccae
+GCF_008572635.1	47678	47678	Bacteroides caccae
+GCF_019128835.1	47678	47678	Bacteroides caccae
+GCF_015546885.1	47678	47678	Bacteroides caccae
+GCF_008572645.1	47678	47678	Bacteroides caccae
+GCF_008416105.1	47678	47678	Bacteroides caccae
+GCF_003463165.1	47678	47678	Bacteroides caccae
+GCF_003470465.1	47678	47678	Bacteroides caccae
+GCF_008416075.1	47678	47678	Bacteroides caccae
+GCF_008572365.1	47678	47678	Bacteroides caccae
+GCF_003030465.1	44139	59405	Thauera aromatica K172
+GCF_012910805.1	59406	59406	Aromatoleum evansii
+GCF_013133875.1	74969	74969	Ferroplasma acidiphilum
+GCF_002078355.1	74969	74969	Ferroplasma acidiphilum
+GCF_000426405.1	1121110	77635	Bifidobacterium subtile DSM 20096
+GCF_000771185.1	1121110	77635	Bifidobacterium subtile DSM 20096
+GCF_014898195.1	77635	77635	Bifidobacterium subtile
+GCF_000741775.1	77635	77635	Bifidobacterium subtile
+GCF_007830175.1	130788	130788	Sedimentibacter saalensis
+GCF_001021045.1	136857	136857	Corynebacterium testudinoris
+GCF_900107405.1	159292	159292	Tindallia californiensis
+GCF_005217525.1	159743	159743	Paenibacillus terrae
+GCF_000943545.1	159743	159743	Paenibacillus terrae
+GCF_008271705.1	159743	159743	Paenibacillus terrae
+GCF_000235585.1	985665	159743	Paenibacillus terrae HPL-003
+GCF_007680025.1	985665	159743	Paenibacillus terrae HPL-003
+GCF_003994475.1	170367	170367	Paenibacillus anaericanus
+GCF_000191885.1	886379	177400	Anaerophaga thermohalophila DSM 12881
+GCF_000250735.1	1144273	177400	Anaerophaga thermohalophila str. Valhall
+GCF_000688435.1	1121362	225326	Corynebacterium halotolerans YIM 70093 = DSM 44683
+GCF_000341345.1	1121362	225326	Corynebacterium halotolerans YIM 70093 = DSM 44683
+GCF_001056295.1	225326	225326	Corynebacterium halotolerans
+GCF_004217095.1	267800	267800	Advenella incenata
+GCF_000425445.1	1121888	281361	Flavobacterium denitrificans DSM 15936
+GCF_001551835.1	281362	281362	Dechloromonas denitrificans
+GCF_000517065.1	927658	286730	Alkaliflexus imshenetskii DSM 15055
+GCF_900142105.1	1122184	288966	Lutispora thermophila DSM 19022
+GCF_000521505.1	1247726	302406	Advenella mimigardefordensis DPN7
+GCF_000219915.2	1036672	310575	Advenella kashmirensis WT001
+GCF_000506985.1	1424334	310575	Advenella kashmirensis W13003
+GCF_014645275.1	349751	349751	Corynebacterium marinum
+GCF_000835165.1	1224162	349751	Corynebacterium marinum DSM 44953
+GCF_000511935.2	1286632	376730	Zhouia amylolytica AD3
+GCF_900116365.1	376730	376730	Zhouia amylolytica
+GCF_012037625.1	393006	393006	Tamlana crocina
+GCF_000974365.1	1236989	472113	Geofilum rubicundum JCM 15548
+GCF_902374565.1	508460	508460	Cloacibacillus evryensis
+GCF_000585335.1	866499	508460	Cloacibacillus evryensis DSM 19522
+GCF_001310955.1	1236979	570161	Marinifilum fragile JCM 15579
+GCF_000442645.1	1224163	575200	Corynebacterium maris DSM 45190
+GCF_902388075.1	626937	626937	Christensenella minuta
+GCF_001678855.1	626937	626937	Christensenella minuta
+GCF_001571425.1	626937	626937	Christensenella minuta
+GCF_003628755.1	626937	626937	Christensenella minuta
+GCF_001652705.1	626937	626937	Christensenella minuta
+GCF_014652395.1	797535	797535	Advenella faeciporci
+GCF_900168165.1	889453	889453	Alkalitalea saponilacus
+GCF_002201795.1	889453	889453	Alkalitalea saponilacus
+GCF_017873955.1	913099	913099	Sedimentibacter acidaminivorans
+GCF_001701045.1	1197717	1197717	Cloacibacillus porcorum
+GCF_012844265.1	1197717	1197717	Cloacibacillus porcorum
+GCF_001571025.1	1223515	1223514	Corynebacterium humireducens NBRC 106098 = DSM 45392
+GCF_000819445.1	1223515	1223514	Corynebacterium humireducens NBRC 106098 = DSM 45392

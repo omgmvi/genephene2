@@ -1,0 +1,383 @@
+Generation of Databases for Phenotype Functional Annotation
+
+13/04/2021
+
+Generation of folder structure 
+
+mkdir Databases
+cd Databases
+mkdir FAPROTAX
+mkdir MIDAS3
+cd ~
+
+Download of FAPROTAX
+wget https://pages.uoregon.edu/slouca/LoucaLab/archive/FAPROTAX/SECTION_Download/MODULE_Downloads/CLASS_Latest%20release/UNIT_FAPROTAX_1.2.4/FAPROTAX_1.2.4.zip
+mv FAPROTAX_1.2.4.zip Databases/FAPROTAX
+cd FAPROTAX
+unzip FAPROTAX_1.2.4.zip
+cd ..
+
+
+Download of MIDAS 3
+cd MIDAS3
+wget https://www.midasfieldguide.org/files/downloads/taxonomies/Changelog%20MiDAS%203.7.txt
+wget https://www.midasfieldguide.org/files/downloads/taxonomies/ARB%20File%20MiDAS%203.7.arb
+wget https://www.midasfieldguide.org/files/downloads/taxonomies/QIIME%20fa%20file%20MiDAS%203.7.fa
+wget https://www.midasfieldguide.org/files/downloads/taxonomies/QIIME%20txt%20file%20MiDAS%203.7.txt
+wget https://www.midasfieldguide.org/files/downloads/taxonomies/SINTAX%20fa%20file%20MiDAS%203.7.fa
+cd ..
+
+[updated on 14/04/2021]
+ 
+These files does not have the phenotypic annotation. I have downloaded them manually from 
+https://www.midasfieldguide.org/guide/search
+to my own computer since it is only available by clicking on the "Download all microbe data button" (Are there a way to sent a POST or equivalent message?)
+and uploaded here with
+pscp -i .\path2file\privatekeyfile file ubuntu@137.205.69.12:./
+and moved to ~/Databases/MIDAS3/
+
+[end of update]
+
+Download of MDB
+mkdir MDB
+cd MDB
+wget http://phymet2.biotech.uni.wroc.pl/index.php?ind=all_cvs
+mv index.php\?ind\=all_cvs MDB.csv
+
+14/04/2021
+Download the MIDAS3 phenotypes (update at 13/04/2021)
+
+20/04/2021
+
+Download (but not installing) Tax4Fun2
+Instructions at https://github.com/bwemheu/Tax4Fun2
+mkdir ~/Databases/Tax4Fun2
+wget https://github.com/bwemheu/Tax4Fun2/releases/download/1.1.5/Tax4Fun2_1.1.5.tar.gz
+
+in the newly created folder Tax4Fun2/R there are few scripts to build the libray. I am interested in buildReferenceData.R
+that contain the function with the same name that test and download the databases
+
+The useful bits are 
+
+  path_to_reference_data = file.path(path_to_working_directory, "Tax4Fun2_ReferenceData_v2")
+
+  list_file = file.path(path_to_reference_data, "fileList.txt")
+  download.file(url = "https://cloudstor.aarnet.edu.au/plus/s/EpS8jMFeLlbueyM/download", destfile = list_file, method = "auto", mode = "wb", quiet = T)
+
+#KEGG
+      dwl_file = file.path(path_to_reference_data, "KEGG.zip")
+      download.file(url = "https://cloudstor.aarnet.edu.au/plus/s/MbE1nNcBwka0Y71/download", destfile = dwl_file, method = "auto", mode = "wb")
+      unzip(zipfile = dwl_file, exdir = path_to_reference_data, overwrite = T)
+      file.remove(dwl_file)
+
+#Ref99NR
+      dwl_file = file.path(path_to_reference_data, "Ref99NR.zip")
+      download.file(url = "https://cloudstor.aarnet.edu.au/plus/s/DkoZIyZpMNbrzSw/download", destfile = dwl_file, method = "auto", mode = "wb")
+      unzip(zipfile = dwl_file, exdir = path_to_reference_data, overwrite = T)
+      file.remove(dwl_file)
+
+#Ref100NR
+      dwl_file = file.path(path_to_reference_data, "Ref100NR.zip")
+      download.file(url = "https://cloudstor.aarnet.edu.au/plus/s/jIByczak9ZAFUB4/download", destfile = dwl_file, method = "auto", mode = "wb")
+      unzip(zipfile = dwl_file, exdir = path_to_reference_data, overwrite = T)
+      file.remove(dwl_file)
+
+#SILVA
+      dwl_file = file.path(path_to_reference_data, "SILVA.zip")
+      download.file(url = "https://cloudstor.aarnet.edu.au/plus/s/EieEdRT8gEm49Ed/download", destfile = dwl_file, method = "auto", mode = "wb")
+      unzip(zipfile = dwl_file, exdir = path_to_reference_data, overwrite = T)
+      file.remove(dwl_file)
+
+#TOOLS
+      dwl_file = file.path(path_to_reference_data, "TOOLS.zip")
+      download.file(url = "https://cloudstor.aarnet.edu.au/plus/s/5QRas9TTIogiSvo/download", destfile = dwl_file, method = "auto", mode = "wb")
+      unzip(zipfile = dwl_file, exdir = path_to_reference_data, overwrite = T)
+      file.remove(dwl_file)
+
+I think I just want to see the files contained in KEGG.zip
+
+so
+
+wget "https://cloudstor.aarnet.edu.au/plus/s/MbE1nNcBwka0Y71/download"
+mv download KEGG.zip
+unzip KEGG.zip
+
+There are 4 files ko.txt with KEGG orthologs identifiers, ptw.txt with KEGG pathways identifiers and  a ko2ptw.txt file that seems to link ko with pathway but don't (at least not clearly)
+ptw.txt link a pathway ID to  to  three other columns (level 1, level 2 and level 3 KEGG pathways categories). The fourth file prokaryotes.dmnd is binary and I do not know what is can be for.
+I am not installing the whole package (it would take long to fullfill the dependencies)
+So I will delete all but the zip files after undertanding the logic
+
+A working example of Tax4Fun2 can be found at https://rstudio-pubs-static.s3.amazonaws.com/568098_aa34721da29642668a466332dee48c3f.html which is some sort of online course in Spanish.
+Good thing is that it returns the output 
+pathway	X5622_P10_R1_MS515F	X5622_P10_R2_MS515F	level1	level2	level3
+ko00010	0.012261197	0.011472961	Glycolysis/Gluconeogenesis	metabolism	Metabolism
+
+The same author of the package has upload in research gate a final version or the ko2ptw.txt that actually act as a relation table.
+https://www.researchgate.net/publication/313807420_KEGG_ortholog_to_KEGG_pathway_table_for_data_conversion/link/58a7011d92851cf0e3b96902/download
+
+it has to be downloaded "by clicking so I upload it with scp from my own computer" and moved to Databases/Tax4Fun2 folder
+the header is now
+ko ptw Level1   Level2  Level3
+K00001 ko00010  Metabolism      Carbohydrate metabolism Glycolysis / Gluconeogenesis
+K00170 ko00010  Metabolism      Carbohydrate metabolism Glycolysis / Gluconeogenesis
+K01803 ko00010  Metabolism      Carbohydrate metabolism Glycolysis / Gluconeogenesis
+K00927 ko00010  Metabolism      Carbohydrate metabolism Glycolysis / Gluconeogenesis
+K15916 ko00010  Metabolism      Carbohydrate metabolism Glycolysis / Gluconeogenesis
+K11645 ko00010  Metabolism      Carbohydrate metabolism Glycolysis / Gluconeogenesis
+K00161 ko00010  Metabolism      Carbohydrate metabolism Glycolysis / Gluconeogenesis
+K16305 ko00010  Metabolism      Carbohydrate metabolism Glycolysis / Gluconeogenesis
+K01222 ko00010  Metabolism      Carbohydrate metabolism Glycolysis / Gluconeogenesis
+
+
+
+30/06/2021
+Hiding in Plain Sight Database.
+Some weeks ago I did some wrangling in a database that provide most data for the other data base called BacDive.
+In this case Hiding in Plain Sight is just a text file with around 5000 species and few metabolic tratits represented as NA or positive. As database is quite sparse but has data from a big number of species.
+
+The paper is cited as 
+Barberán A, Caceres Velazquez H, Jones S, Fierer N. Hiding in Plain Sight: Mining Bacterial Species Records for Phenotypic Trait Information. mSphere. 2017 Aug 2;2(4):e00237-17. doi: 10.1128/mSphere.00237-17. PMID: 28776041; PMCID: PMC5541158.
+
+and the file can be downloaded manually from there (link in the abstract) or as
+wget https://ndownloader.figshare.com/files/6994457
+wget https://ndownloader.figshare.com/files/6994454
+mv 6994454 README.txt
+mv 6994457 IJSEM_pheno_db_v1.0.txt
+
+Since I had to perform many changes in the file, I add here the instructions file where I described what I did to correct the database and the code of a R script that clean up the mistakes in the original database. 
+As result of the script three versions of the database are produced.
+ijsem.csv contain the hopefully error-free version of the database but keeping the authors format. For our purposes I need more usable version of the DB since the interesting traits are 'collaped' (I mean they are put with no respect for the 1 data per cell rule) in the columns MetabAssays and CarbonSource.
+Therefore, I have forced the database to fullfill at least that a cell contain a valid retrievably entry by separating those two columns with phenotypes into multiple rows (Entity-atribute like)
+and the columns with ranges converted in means (that may be changed to put two columns with mean and max.
+
+Then the database is split in two subdatabases but this time passed from long to wide so every metabolic assay is a colums and in the other every substrate is a colums
+
+File instruction as in July, 12th 2021
+
+Instructions
+
+wget https://ndownloader.figshare.com/files/6994457
+wget https://ndownloader.figshare.com/files/6994454
+mv 6994454 README.txt
+mv 6994457 IJSEM_pheno_db_v1.0.txt
+
+# There´s a couple of problems with the file
+# On one hand the end of line character is \r instead of \n
+# On the other hand there are some unicode caracters that brings troubles when using columns and other tools
+
+#The first is solved using translate
+# But the second I can only solve by hand using VIM and changing the entry with UNKNOWN
+# I will solve first the Unicode issue and then the EOL
+
+cp IJSEM_pheno_db_v1.0.txt IJSEM_pheno_db_v1.0_NO_UNICHAR.txt
+#manual change using VIM at what should be line 9 of four characters ä<8a>æ4 to UNKNOW
+# To find the characters I have to make us in vim of the command :set list
+
+cat IJSEM_pheno_db_v1.0_NO_UNICHAR.txt |tr "\r" "\n" > HidingPlainSightDB.txt
+rm IJSEM_pheno_db_v1.0_NO_UNICHAR.txt 
+#Now there´s no issue in doing
+cat HidingPlainSightDB.txt |column -s -t|less -#2 -N -S
+
+#As in the other databases, the command goes into an script see_csv.sh
+# The reason for columns -s -t |less -#2 -N -S can be seen at :https://stackoverflow.com/questions/1875305/view-tabular-file-such-as-csv-from-command-line 
+
+# There are many modifications to the original database to clean mistakes like UNICODE wrong characters, excel substitution of ranges like 01-02 to 01-Feb and alike
+# Also, the columns for GC, pH optimum etc have ranges and it will better to have them either averaged or splitting as min - max.
+#Running the R script called extract_phenotypes.R make four new csv files called
+# ijsem.csv | the original file but with the temperature, pH and other ranges averaged to make a single number and some errors in the tabs and also all the various aliases for 
+# not available recoded as NA.
+
+#Therefore is better idea to delete HidingPlainSightDB.txt and keep just the ijsem.csv and link the see_csv.sh script to this.
+
+write.table(ijsem, file = "ijsem.csv",row.names = F,sep = ",")#Almost the same than the original one but with some mistakes corrected ijsem.csv
+#Substrates.csv wide format phenotypes related with carbon substrates used 
+#Metabolic.csv  wide format phenotypes related with metabolic reactions 
+#The percentage of bacterias phenotyped for a given metabolism summary metabolic
+#same for carbon substrates
+
+And the script to fix the data base
+# Odin Moron-Garcia June 2021
+# Code to clean up the Hiding in Plain Sight database following the recomendations from the README.txt plus some extra considerations
+
+setwd("/home/ubuntu/Databases/Hiding")
+
+####FUNCTIONS #####
+
+#Some columns contain a range of temperature or pH as 5-7 that need to be converted in a single number or two colums. Here I choose the average 
+# modified from the authors:
+
+range2average <- function(col){
+	col<-as.character(col)
+#this step splits the range values and takes the mean value
+#values that are not numeric are transformed to NAs
+	col<-sapply(col, simplify=T, function(x){mean(as.numeric(unlist(strsplit(x, split="-", fixed=T))))})
+	col
+}
+
+
+
+##### Read the data into a data.frame
+# Authors had used lots of differentn strings as NA data that have to be sanitized - note also the check.names=F that brings column names with dots instead of spaces
+ijsem<-read.delim("HidingPlainSightDB.txt", sep="\t", header=T, check.names=F, fill=T,
+                  na.strings=c("NA", "", "Not indicated", " Not indicated","not indicated", "Not Indicated", "n/a", "N/A", "Na", "Not given", "not given","Not given for yeasts", "not indicated, available in the online version", "Not indicated for yeasts", "Not Stated", "Not described for yeasts", "Not determined", "Not determined for yeasts"))
+
+
+### This error is platform dependant??? I keep it here just in case commented with 4#
+#First column name is wrong due to a tab.
+#### names(ijsem)<- names(ijsem)[-1]
+#### ijsem$'NA' <- NULL
+
+#FROM README
+
+#simplify column names
+colnames(ijsem)<-c("Habitat", "Year", "DOI", "rRNA16S", "GC", "Oxygen","Length", "Width", "Motility", "Spore", "MetabAssays", "Genus", "Species", "Strain", "pH_optimum", "pH_range", "Temp_optimum", "Temp_range", "Salt_optimum", "Salt_range", "Pigment", "Shape", "Aggregation", "FirstPage", "CultureCollection", "CarbonSubstrate", "Genome", "Gram", "Subhabitat", "Biolog")
+
+#clean Habitat column
+ijsem$Habitat <- as.factor(ijsem$Habitat)
+levels(ijsem$Habitat)[levels(ijsem$Habitat)=="freshwater (river, lake, pond)"]<-"freshwater"
+levels(ijsem$Habitat)[levels(ijsem$Habitat)=="freshwater sediment (river, lake, pond"]<-"freshwater sediment"
+
+#clean Oxygen column
+ijsem$Oxygen <- as.factor(ijsem$Oxygen)
+levels(ijsem$Oxygen)[levels(ijsem$Oxygen)=="aerobic"]<-"obligate aerobe"
+levels(ijsem$Oxygen)[levels(ijsem$Oxygen)=="anerobic"]<-"obligate anerobe"
+levels(ijsem$Oxygen)[levels(ijsem$Oxygen)=="microerophile"]<-"microaerophile"
+
+#clean pH_optimum column
+ijsem$pH_optimum<-range2average(ijsem$pH_optimum)
+
+#remove pH values <0 and >10
+ijsem$pH_optimum[ijsem$pH_optimum<0 | ijsem$pH_optimum>10]<-NA
+
+#clean Temp_optimum column
+ijsem$Temp_optimum<-range2average(ijsem$Temp_optimum)
+
+#clean Salt_optimum column
+ijsem$Salt_optimum<-range2average(ijsem$Salt_optimum)
+
+
+#there are some formatting issues that should be solved
+as.character(ijsem$rRNA16S)->ijsem$rRNA16S
+as.character(ijsem$Subhabitat)->ijsem$Subhabitat
+
+ijsem$GC <- as.character(ijsem$GC)
+which(ijsem$GC=="DQ987877")->error
+ijsem[error,"GC"] <- ijsem[error,"rRNA16S"]
+ijsem[error,"rRNA16S"] <- "DQ987877"
+rm(error) 
+
+which(ijsem$GC == "BAOL01000001")->error
+ijsem[error,"rRNA16S"]<- paste(ijsem[error,"rRNA16S"],ijsem[error,"GC"])
+ijsem[error,"GC"] <- NA
+
+which(ijsem$GC == "GU323338")->error
+ijsem[error,"rRNA16S"]<- paste(ijsem[error,"rRNA16S"],ijsem[error,"GC"])
+ijsem[error,"GC"] <- NA
+
+which(ijsem$GC == "marine organism")->error
+ijsem[error,"Subhabitat"]<- ijsem[error,"GC"]
+ijsem[error,"GC"] <- NA
+rm(error) 
+
+
+ijsem$GC <- as.factor(ijsem$GC)
+gsub(x=levels(ijsem$GC),pattern = "(\xe4\xf3\xf1)",replacement="-")->levels(ijsem$GC)
+gsub(x=levels(ijsem$GC),pattern = "(\x8c\xb1.*)",replacement="")->levels(ijsem$GC)
+
+# I take advantage of the range2average function to clean up the other variable that where not cleaned by the authors
+ijsem$GC <- range2average(ijsem$GC)
+ijsem$Length <- range2average(ijsem$Length)
+ijsem$Width <- range2average(ijsem$Width)
+#The next few variable may have no sense to get the average but to get them split in minimum and maximum - TO DO
+ijsem$pH_range <- range2average(ijsem$pH_range)
+ijsem$Temp_range <- range2average(ijsem$Temp_range)
+ijsem$Salt_range <- range2average(ijsem$Salt_range)
+
+# There´s an specific problem with some compounds 2,3- ... as in 2,3 hydroxy something. Luckily, it only happen with the 2 prefix and is easyly clean up by substituting it 
+# The issue will be soon covered, we want to split the string in CarbonSubstrate that is of the kind "Glucose,Fructose" in a vector and add every compound as a row (since it would break
+# database normalization by having many NULL columns in some rows")
+
+gsub(x=ijsem$CarbonSubstrate,pattern="(.*2),(.*)",replacement="\\1;\\2")->ijsem$CarbonSubstrate
+
+# To make the vector and then the "long" format data.frame (also Entity-Atribute-Value format) I need to use the same technique than to make anti-joins in R without packages
+# that is to make a column with indexes (may well be the row names), split the column entry with the carbon sources in vectors per 
+
+# A function to make a colum of consecutive numeric ID's as primary key based on unique values of several colums
+makeIDs <- function(df,cols){
+	KeyPrim<-unique(subset(df,select=cols))
+	ID <- 1:nrow(KeyPrim)
+	cbind(ID,KeyPrim)
+}
+
+# A function to get a column whose values are a string that is itself a collection of strings separated by comma (hard coded at the moment). It does the split and transpose, giving
+# a new row for each value in the string. That is, if a row with id 11 has "Glucose, Fructose, aminoacids" it will return 3 rows with id 11 and a column phenotrait with values Glucose then Gructose and then aminacids. 
+# The function return the same data frame used to find the phenotypes and the IDs but now after a inner join on the phenotypes
+split_phenolist<-function(df,pheno,ID){#browser()
+	as.character(df[[pheno]])->df[[pheno]]
+	transform(do.call(rbind,mapply(function(x,y){(cbind(cbind(phenoTrait=x),ID=y))},strsplit(subset(df,select=pheno,drop=T),split=","),subset(df,select=ID,drop=T))),ID=ID)->pheno_db
+	na.omit(pheno_db)->pheno_db
+	#print(paste("dim :",dim(pheno_db)))
+	gsub(pattern="^ | $",x=pheno_db$phenoTrait,replacement="")->pheno_db$phenoTrait
+	unique(pheno_db)->pheno_db
+	#print(paste("dim :",dim(pheno_db)))
+	merge(pheno_db,unique(df[,!names(df) %in% pheno]),all.y =F,all.x = F)->pheno_db
+	#print(paste("dim :",dim(pheno_db)))
+}
+
+#### Application of the phenotypic list splitting to the metabolic assays column
+# Using as Primary Key colums the Genus Species and Strain
+KeyCols <- c("Genus","Species","Strain")
+phenotype_Col <- "MetabAssays"
+
+# Generate ID´s
+SpeciesDimensionTable<-makeIDs(ijsem,KeyCols)
+MetabAssays<-merge(subset(ijsem,select=c(phenotype_Col,KeyCols)),SpeciesDimensionTable)
+
+# Get phenotypes by splitting the strings
+MetabolicTraits<-split_phenolist(MetabAssays,phenotype_Col,KeyCols)
+# And in order to make it usable I put it back to wide format
+MetabolicTraits<-(reshape2::dcast(data=MetabolicTraits,formula= Genus + Species + Strain + ID ~ phenoTrait,value.var="ID" ))
+#To visualize the 'density' of every phenotype and give it a thought of how useful it might be
+summary_metabolic <- apply(MetabolicTraits[,-c(1:4)],2,function(x){sum(as.numeric(x)>-1,na.rm=T)/NROW(x)*100})
+
+
+###########
+# Almost the same code for the column Carbon Substrate
+
+phenotype_Col <- "CarbonSubstrate"
+
+Carbon<-merge(subset(ijsem,select=c(phenotype_Col,KeyCols)),SpeciesDimensionTable)
+
+CarbonSubstrates<-split_phenolist(Carbon,phenotype_Col,KeyCols)
+CarbonSubstrates<-(reshape2::dcast(data=CarbonSubstrates,formula= Genus + Species + Strain + ID ~ phenoTrait,value.var="ID" ))
+
+summary_carbonsubstrates <- apply(CarbonSubstrates[,-c(1:4)],2,function(x){sum(as.numeric(x)>-1,na.rm=T)/NROW(x)*100})
+
+
+#subset(summary_carbonsubstrates,summary_carbonsubstrates>30)
+#subset(summary_metabolic,summary_metabolic>30)
+
+############### OUTPUT #########
+
+# Export all files out to csv formats
+write.table(ijsem, file = "ijsem.csv",row.names = F,sep = ",")#Almost the same than the original one but with some mistakes corrected
+write.table(CarbonSubstrates, file = "Substrates.csv",row.names = F,sep = ",")#wide format phenotypes related with substrates used
+write.table(MetabolicTraits, file = "Metabolic.csv",row.names = F,sep = ",")# wide format phenotypes related with metabolic reactions
+write.table(summary_metabolic, file = "summary_metabolic.csv",row.names = T,sep = ",") #The percentage of bacterias phenotyped for a given metabolism
+write.table(summary_carbonsubstrates, file = "summary_carbonsource.csv",row.names = T,sep = ",")#same for carbon substrates
+
+
+July, 13th 2021
+I am getting the list of species for every database so far obtained
+Genephene2
+MDB
+MIDAS3
+FAPROTAX
+
+in each, I put an script get_list_species.sh with the particulars to get the list of species and make a file list_of_species.txt
+Finally I will make a total list of species (plus strains) in the Databases directories
+
+
+There are some complications with the species list in every database since they are far from complete
+MDB, Hiding in Plain Sight and Genephene2 (my own) seems to have Species names complete, yet the MIDAS3 database has mostly "midas taxa names" or genus names.
+

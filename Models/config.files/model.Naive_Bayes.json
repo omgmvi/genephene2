@@ -1,0 +1,7 @@
+{ "model" : {
+    "package" : "caret",
+    "model" : "Naive_Bayes",
+    "PCA" : "None",
+    "train_CV_method": "LOOCV"
+    }
+}

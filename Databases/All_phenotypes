@@ -1,0 +1,1281 @@
+==> FAPROTAX_phenotypes.txt <==
+     1	# LICENSE AGREEMENT
+     2	# Instructions for editing this database
+     3	methanotrophy	elements:C,H; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:no
+     4	acetoclastic_methanogenesis		elements:C,H; main_element:C; electron_donor:none; electron_acceptor:none; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+     5	methanogenesis_by_disproportionation_of_methyl_groups		elements:C,H; main_element:C; electron_donor:none; electron_acceptor:none; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+     6	# formate is split internally into CO2 and H2, from which methaner is subsequently formed [DOI:10.1038/nrmicro1931]
+     7	methanogenesis_by_CO2_reduction_with_H2		elements:C,H; main_element:C; electron_donor:H; electron_acceptor:C; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+     8	# Typical case, H2 + methanol(CH3OH) -> CH4 + H2O
+     9	hydrogenotrophic_methanogenesis		elements:C,H; main_element:C; electron_donor:H; electron_acceptor:C; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+    10	methanogenesis	elements:C,H; main_element:C; electron_donor:variable; electron_acceptor:variable; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+    11	methanol_oxidation	elements:C,H; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    12	methylotrophy	elements:C,H; main_element:C; electron_donor:variable; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    13	aerobic_ammonia_oxidation	elements:N,O; main_element:N; electron_donor:N; electron_acceptor:O; aerobic:yes; exclusively_prokaryotic:yes; light_dependent:no
+    14	aerobic_nitrite_oxidation	elements:N,O; main_element:N; electron_donor:N; electron_acceptor:O; aerobic:yes; exclusively_prokaryotic:yes; light_dependent:no
+    15	nitrification		elements:N,O; main_element:N; electron_donor:N; electron_acceptor:O; aerobic:yes; exclusively_prokaryotic:yes; light_dependent:no
+    16	sulfate_respiration	elements:S; main_element:S; electron_donor:variable; electron_acceptor:S; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+    17	# dissimilatory reduction of elementar sulfur
+    18	# for energy
+    19	# dissimilatory sulfite reduction
+    20	thiosulfate_respiration			elements:S; main_element:S; electron_donor:variable; electron_acceptor:S; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+    21	respiration_of_sulfur_compounds		elements:S; main_element:S; electron_donor:variable; electron_acceptor:S; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+    22	# dissimilatory reduction of arsenate for detoxification
+    23	# dissimilatory reduction of arsenate under anaerobic conditions (as electron acceptor)
+    24	# detoxification or respiration
+    25	arsenite_oxidation_detoxification		elements:As; main_element:As; electron_donor:As; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:no
+    26	# dissimilatory oxidation of arsenite for energy, not for photosynthesis
+    27	dissimilatory_arsenite_oxidation		elements:As; main_element:As; electron_donor:As; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:no
+    28	anammox		elements:N; main_element:N; electron_donor:N; electron_acceptor:N; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+    29	# dissimilatory reduction of NO3 to N2
+    30	nitrite_denitrification			elements:N; main_element:N; electron_donor:variable; electron_acceptor:N; aerobic:no; exclusively_prokaryotic:no; light_dependent:no
+    31	nitrous_oxide_denitrification			elements:N; main_element:N; electron_donor:variable; electron_acceptor:N; aerobic:no; exclusively_prokaryotic:no; light_dependent:no
+    32	# dissimilatory reduction of fixed nitrogen compounds (NO3, NO2, N2O ...) to dinitrogen
+    33	chitinolysis			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    34	knallgas_bacteria			elements:H,O; main_element:H; electron_donor:H; electron_acceptor:O; aerobic:yes; exclusively_prokaryotic:yes; light_dependent:no
+    35	# autotrophic or heterotrophic, H2 oxidation as energy or electron source, but not for photosynthesis
+    36	nitrogen_fixation			elements:N; main_element:N; electron_donor:variable; electron_acceptor:N; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:no
+    37	# dissimilatory reduction of nitrate to ammonium (DNRA)
+    38	nitrite_ammonification			elements:N; main_element:N; electron_donor:variable; electron_acceptor:N; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+    39	nitrite_respiration			elements:N; main_element:N; electron_donor:variable; electron_acceptor:N; aerobic:no; exclusively_prokaryotic:no; light_dependent:no
+    40	cellulolysis			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    41	xylanolysis			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    42	dark_sulfide_oxidation			elements:S; main_element:S; electron_donor:S; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:no
+    43	# (dissimilatory, for energy)
+    44	# (dissimilatory, for energy)
+    45	# (dissimilatory, for energy)
+    46	manganese_oxidation			elements:Mn; main_element:Mn; electron_donor:Mn; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:no
+    47	manganese_respiration			elements:Mn; main_element:Mn; electron_donor:variable; electron_acceptor:Mn; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+    48	ligninolysis			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    49	fermentation			elements:C; main_element:C; electron_donor:C; electron_acceptor:none; aerobic:no; exclusively_prokaryotic:no; light_dependent:no
+    50	# other than lignin, chitin, xylan, cellulose, methanol, methane, aromatic hydrocarbons
+    51	#(incomplete list)
+    52	# Note: Any existing strain-level resolution was omitted.
+    53	# Note: Any existing strain-level resolution was omitted.
+    54	# Note: Any existing strain-level resolution was omitted.
+    55	# Note: Any existing strain-level resolution was omitted.
+    56	# Note: Any existing strain-level resolution was omitted.
+    57	# Note: Any existing strain-level resolution was omitted.
+    58	human_pathogens_all			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    59	# (incomplete list)
+    60	human_gut			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    61	human_associated			elements:variable; main_element:variable; electron_donor:variable; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    62	mammal_gut			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    63	# (incomplete list)
+    64	plant_pathogen			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    65	# oil, crude oil, kerosene
+    66	aromatic_hydrocarbon_degradation			elements:C,H; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    67	# non-lignin, non-xylan
+    68	aliphatic_non_methane_hydrocarbon_degradation			elements:C,H; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    69	hydrocarbon_degradation			elements:C,H; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    70	# dissimilatory Fe oxidation, lithotrophically or heterotrophically, not for photosynthesis
+    71	iron_respiration			elements:Fe; main_element:Fe; electron_donor:variable; electron_acceptor:Fe; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+    72	# dissimilatory nitrate respiration
+    73	# assimilatory or dissimilatory
+    74	# dissimilatory reduction of nitrogen compounds
+    75	fumarate_respiration			elements:C; main_element:C; electron_donor:variable; electron_acceptor:C; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+    76	intracellular_parasites			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    77	chlorate_reducers			elements:C; main_element:C; electron_donor:variable; electron_acceptor:Cl; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    78	predatory_or_exoparasitic			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    79	chloroplasts			elements:C,O; main_element:C; electron_donor:O; electron_acceptor:C; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:yes
+    80	# non-chloroplasts
+    81	# non-chloroplasts
+    82	anoxygenic_photoautotrophy_H2_oxidizing			elements:H,C; main_element:H; electron_donor:H; electron_acceptor:C; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:yes
+    83	# anoxygenic photoautotrophy using reduced sulfur compounds for electrons
+    84	anoxygenic_photoautotrophy_Fe_oxidizing			elements:Fe,C; main_element:Fe; electron_donor:Fe; electron_acceptor:C; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:yes
+    85	anoxygenic_photoautotrophy			elements:C,variable; main_element:variable; electron_donor:variable; electron_acceptor:C; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:yes
+    86	oxygenic_photoautotrophy			elements:C,O; main_element:C; electron_donor:O; electron_acceptor:C; aerobic:yes; exclusively_prokaryotic:no; light_dependent:yes
+    87	photoautotrophy			elements:C,variable; main_element:C; electron_donor:variable; electron_acceptor:C; aerobic:variable; exclusively_prokaryotic:no; light_dependent:yes
+    88	# a type of photoheterotrophy
+    89	photoheterotrophy			elements:C; main_element:C; electron_donor:C; electron_acceptor:C; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:yes
+    90	phototrophy			elements:variable; main_element:variable; electron_donor:variable; electron_acceptor:C; aerobic:variable; exclusively_prokaryotic:no; light_dependent:yes
+    91	# phthalate isomers and esters, dimethyl phthalate, terephthalate, polyurethane
+    92	# (urease positive, urea hydrolysis, urea utilization for nitrogen or energy)
+    93	# (acetate generation via CO2 or CO respiration)
+    94	chemoheterotrophy			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+
+==> GenePhene2_phenotypes.txt <==
+     1	Digest_gelatine
+     2	Digest_organic compound
+     3	Grow_acetic acid
+     4	Grow_aesculine
+     5	Grow_alanine
+     6	Grow_amino acid
+     7	Grow_arabinose
+     8	Grow_arginine
+     9	Grow_aromatic compound
+    10	Grow_asparagine
+    11	Grow_aspartic acid
+    12	Grow_ASW
+    13	Grow_benzoic acid
+    14	Grow_butyric acid
+    15	Grow_carbohydrate
+    16	Grow_casamino acid
+    17	Grow_casein
+    18	Grow_cellobiose
+    19	Grow_cetrimide
+    20	Grow_crotonic acid
+    21	Grow_cysteine
+    22	Grow_disaccharide
+    23	Grow_ethanol
+    24	Grow_ferulic acid
+    25	Grow_formic acid
+    26	Grow_fumaric acid
+    27	Grow_gelatine
+    28	Grow_glucose
+    29	Grow_glucoside
+    30	Grow_glutamic acid
+    31	Grow_glycerol
+    32	Grow_glycine
+    33	Grow_H2/CO2 + acetate
+    34	Grow_histidine
+    35	Grow_inorganic compound
+    36	Grow_isoleucine
+    37	Grow_L-alanine
+    38	Grow_L-arabinose
+    39	Grow_lactic acid
+    40	Grow_lactose
+    41	Grow_leucine
+    42	Grow_lysine
+    43	Grow_maltose
+    44	Grow_mannitol
+    45	Grow_mannose
+    46	Grow_media
+    47	Grow_melezitose
+    48	Grow_methionine
+    49	Grow_mixture
+    50	Grow_monosaccharide
+    51	Grow_nitrate
+    52	Grow_nitrite
+    53	Grow_oligosacharide
+    54	Grow_organic acid
+    55	Grow_organic compound
+    56	Grow_peptone
+    57	Grow_phenylalanine
+    58	Grow_proline
+    59	Grow_propionic acid
+    60	Grow_protein
+    61	Grow_pyruvic acid
+    62	Grow_raffinose
+    63	Grow_rhamnose
+    64	Grow_salicin
+    65	Grow_serine
+    66	Grow_sorbitol
+    67	Grow_sucrose
+    68	Grow_sugar
+    69	Grow_syringic acid
+    70	Grow_threonine
+    71	Grow_trehalose
+    72	Grow_trimethoxybenzol
+    73	Grow_tryptone
+    74	Grow_tryptophan
+    75	Grow_tyrosine
+    76	Grow_valine
+    77	Grow_vanillic acid
+    78	Grow_VFA
+    79	Grow_xylose
+    80	Grow_yeast extract
+    81	Hydrolyses_aesculine
+    82	Hydrolyses_agar
+    83	Hydrolyses_amino acid
+    84	Hydrolyses_amylase
+    85	Hydrolyses_carbohydrate
+    86	Hydrolyses_casein
+    87	Hydrolyses_DL-tyrosine
+    88	Hydrolyses_gelatine
+    89	Hydrolyses_glucoside
+    90	Hydrolyses_mixture
+    91	Hydrolyses_mucin
+    92	Hydrolyses_onpg
+    93	Hydrolyses_organic acid
+    94	Hydrolyses_organic compound
+    95	Hydrolyses_polysaccharide
+    96	Hydrolyses_protein
+    97	Hydrolyses_starch
+    98	Hydrolyses_tween 20
+    99	Hydrolyses_tween 40
+   100	Hydrolyses_tween 80
+   101	Hydrolyses_tyrosine
+   102	Hydrolyses_urea
+   103	Input_1-butanol
+   104	Input_1-propanol
+   105	Input_2-aminobenzoic acid
+   106	Input_2-aminoethanol
+   107	Input_2-fluorobenzoic acid
+   108	Input_2-hydroxybenzoic acid
+   109	Input_2-ketogluconic acid
+   110	Input_2-oxoglutaric acid
+   111	Input_2-oxovaleric acid
+   112	Input_2,3-butanediol
+   113	Input_3-hydroxybenzoic acid
+   114	Input_3,5-dihydroxybenzoic acid
+   115	Input_4-aminobenzoic acid
+   116	Input_4-hydroxy-L-proline
+   117	Input_4-hydroxybenzoic acid
+   118	Input_4-hydroxyphenylacetic acid
+   119	Input_5-ketogluconic acid
+   120	Input_acetic acid
+   121	Input_adipic acid
+   122	Input_adonitol
+   123	Input_aesculine
+   124	Input_agar
+   125	Input_agarose
+   126	Input_alaninamide
+   127	Input_alanine
+   128	Input_alanyl glycine
+   129	Input_alginic acid
+   130	Input_amino acid
+   131	Input_amino acid amide
+   132	Input_amino sugar
+   133	Input_aminobutyric acid
+   134	Input_amygdaline
+   135	Input_amylase
+   136	Input_anthraquinone 2,6-disulfonate
+   137	Input_antibiotic
+   138	Input_arabinose
+   139	Input_arabitol
+   140	Input_arbutine
+   141	Input_arginine
+   142	Input_aromatic compound
+   143	Input_asparagine
+   144	Input_aspartic acid
+   145	Input_ASW
+   146	Input_benzaldehyde
+   147	Input_benzoic acid
+   148	Input_benzyl alcohol
+   149	Input_BHI
+   150	Input_bromo succinic acid
+   151	Input_butyric acid
+   152	Input_capric acid
+   153	Input_carbohydrate
+   154	Input_carnitine
+   155	Input_casamino acid
+   156	Input_casein
+   157	Input_cellobiose
+   158	Input_cellulose
+   159	Input_cetrimide
+   160	Input_chitin
+   161	Input_chitosan
+   162	Input_chlorate
+   163	Input_chondroitin sulfate sodium salt
+   164	Input_cis-aconitic acid
+   165	Input_citric acid
+   166	Input_crotonic acid
+   167	Input_cyclohexanecarboxylic acid
+   168	Input_cysteine
+   169	Input_D-adonitol
+   170	Input_D-alanine
+   171	Input_D-arabinose
+   172	Input_D-arabitol
+   173	Input_D-cellobiose
+   174	Input_D-cellulose
+   175	Input_D-fructose
+   176	Input_D-fucose
+   177	Input_D-galactonic acid
+   178	Input_D-galactonic acid lactone
+   179	Input_D-galactose
+   180	Input_D-galacturonic acid
+   181	Input_D-gluconic acid
+   182	Input_D-glucosaminic acid
+   183	Input_D-glucose
+   184	Input_D-glucose 6-Phosphate
+   185	Input_D-glucuronic acid
+   186	Input_D-lactic acid
+   187	Input_D-lactose
+   188	Input_D-maltose
+   189	Input_D-mannitol
+   190	Input_D-mannose
+   191	Input_D-melibiose
+   192	Input_D-psicose
+   193	Input_D-raffinose
+   194	Input_D-ribose
+   195	Input_D-saccharic acid
+   196	Input_D-serine
+   197	Input_D-sorbitol
+   198	Input_D-tagatose
+   199	Input_D-tartaric acid
+   200	Input_D-trehalose
+   201	Input_D-Trehalose
+   202	Input_D-tryptophan
+   203	Input_D-xylose
+   204	Input_dextran
+   205	Input_dextrin
+   206	Input_dipeptide
+   207	Input_disaccharide
+   208	Input_DL-carnitine
+   209	Input_DL-lactic acid
+   210	Input_DL-tyrosine
+   211	Input_DL-α-glycerol phosphate
+   212	Input_dulcitol
+   213	Input_elemental sulfur
+   214	Input_erythritol
+   215	Input_ethanol
+   216	Input_ethanolamine
+   217	Input_FAME
+   218	Input_Fe2S
+   219	Input_ferulic acid
+   220	Input_formic acid
+   221	Input_fructose
+   222	Input_fucose
+   223	Input_fumaric acid
+   224	Input_galactitol
+   225	Input_galactonic acid
+   226	Input_galactonic acid lactone
+   227	Input_galactose
+   228	Input_galacturonic acid
+   229	Input_gelatine
+   230	Input_gentiobiose
+   231	Input_gentisic acid
+   232	Input_gluconic acid
+   233	Input_glucosaminic acid
+   234	Input_glucose
+   235	Input_glucose 1-phosphate
+   236	Input_glucose 6-phosphate
+   237	Input_glucoside
+   238	Input_glucuronamide
+   239	Input_glucuronic acid
+   240	Input_glutamic acid
+   241	Input_glutamine
+   242	Input_glutaric acid
+   243	Input_glycerol
+   244	Input_glycerol phosphate
+   245	Input_glycerophosphate
+   246	Input_glycine
+   247	Input_glycogen
+   248	Input_glycolic acid
+   249	Input_glycyl L-aspartic acid
+   250	Input_glycyl L-glutamic acid
+   251	Input_gum arabic
+   252	Input_H2
+   253	Input_H2/CO2 + acetate
+   254	Input_histidine
+   255	Input_hyaluronan biotin sodium salt
+   256	Input_hydroxy-L-proline
+   257	Input_hydroxybutyric acid
+   258	Input_indole
+   259	Input_indolylacetic acid
+   260	Input_inorganic compound
+   261	Input_inosine
+   262	Input_inositol
+   263	Input_inulin
+   264	Input_inurin
+   265	Input_iron(II)
+   266	Input_iron(III)
+   267	Input_isobutyric acid
+   268	Input_isoerythritol
+   269	Input_isoleucine
+   270	Input_isovaleric acid
+   271	Input_itaconic acid
+   272	Input_ketobutytic acid
+   273	Input_ketoglutaric acid
+   274	Input_L-alaninamide
+   275	Input_L-alanine
+   276	Input_L-alanyl glycine
+   277	Input_L-arabinose
+   278	Input_L-arabitol
+   279	Input_L-arginine
+   280	Input_L-asparagine
+   281	Input_L-aspartic acid
+   282	Input_L-cysteine
+   283	Input_L-fucose
+   284	Input_L-glucose 1-phosphate
+   285	Input_L-glucose 6-phosphate
+   286	Input_L-glutamic acid
+   287	Input_L-glutamine
+   288	Input_L-histidine
+   289	Input_L-isoleucine
+   290	Input_L-lactic acid
+   291	Input_L-leucine
+   292	Input_L-lysine
+   293	Input_L-malic acid
+   294	Input_L-methionine
+   295	Input_L-ornithine
+   296	Input_L-phenylalanine
+   297	Input_L-proline
+   298	Input_L-pyroglutamic acid
+   299	Input_L-rhamnose
+   300	Input_L-serine
+   301	Input_L-sorbose
+   302	Input_L-tartaric acid
+   303	Input_L-threonine
+   304	Input_L-tryptophan
+   305	Input_L-tyrosine
+   306	Input_L-valine
+   307	Input_L-xylose
+   308	Input_lactic acid
+   309	Input_lactose
+   310	Input_lactulose
+   311	Input_larch arabinogalactan
+   312	Input_leucine
+   313	Input_lysine
+   314	Input_m-cresol
+   315	Input_m-tartaric acid
+   316	Input_malic acid
+   317	Input_malonic acid
+   318	Input_maltose
+   319	Input_mannitol
+   320	Input_mannose
+   321	Input_media
+   322	Input_melezitose
+   323	Input_melibiose
+   324	Input_methanol
+   325	Input_methionine
+   326	Input_methyl ester
+   327	Input_methyl α-D-glucopyranoside
+   328	Input_methyl α-D-mannopyranoside
+   329	Input_methyl β-D-glucoside
+   330	Input_methyl β-D-xylopiranoside
+   331	Input_methylglucoside
+   332	Input_methylmannoside
+   333	Input_methylxyloside
+   334	Input_mixture
+   335	Input_Mn2+
+   336	Input_MnO2
+   337	Input_monomethyl ester
+   338	Input_monosaccharide
+   339	Input_mucin
+   340	Input_myo-inositol
+   341	Input_N-acetyl-D-galactosamine
+   342	Input_N-acetyl-D-glucosamine
+   343	Input_N-acetylgalactosamine
+   344	Input_N-acetylglucosamine
+   345	Input_N-acetylneuraminic acid
+   346	Input_nitrate
+   347	Input_nitrite
+   348	Input_nitrous oxide
+   349	Input_nucleoside
+   350	Input_o-cresol
+   351	Input_o-phtalate
+   352	Input_O2
+   353	Input_oligosaccharide
+   354	Input_oligosacharide
+   355	Input_onpg
+   356	Input_organic acid
+   357	Input_organic compound
+   358	Input_ornithine
+   359	Input_oxalic acid
+   360	Input_oxaloacetic acid
+   361	Input_p-cresol
+   362	Input_p-hydroxyphenylacetic acid
+   363	Input_pectin
+   364	Input_pentose
+   365	Input_peptone
+   366	Input_perchlorate
+   367	Input_phenol
+   368	Input_phenylacetic acid
+   369	Input_phenylalanine
+   370	Input_phenylethylamine
+   371	Input_phenylglyoxilic acid
+   372	Input_pimelic acid
+   373	Input_polysaccharide
+   374	Input_proline
+   375	Input_propanol
+   376	Input_propionic acid
+   377	Input_protein
+   378	Input_protocatechuate
+   379	Input_psicose
+   380	Input_pullulan
+   381	Input_putrescine
+   382	Input_pyroglutamic acid
+   383	Input_pyruvic acid
+   384	Input_pyruvic acid methyl ester
+   385	Input_quinic acid
+   386	Input_raffinose
+   387	Input_rhamnose
+   388	Input_ribose
+   389	Input_saccharic acid
+   390	Input_saccharose
+   391	Input_salicin
+   392	Input_sebacic acid
+   393	Input_serine
+   394	Input_sodium L-glutamate
+   395	Input_sorbitol
+   396	Input_sorbose
+   397	Input_starch
+   398	Input_succinamic acid
+   399	Input_succinic acid
+   400	Input_succinic acid monomethyl ester
+   401	Input_sucrose
+   402	Input_sugar
+   403	Input_sulfate
+   404	Input_sulfide
+   405	Input_sulfite
+   406	Input_syringic acid
+   407	Input_tagatose
+   408	Input_tartaric acid
+   409	Input_Tetrazolium
+   410	Input_thiosulfate
+   411	Input_threonine
+   412	Input_thymidine
+   413	Input_toluene
+   414	Input_trehalose
+   415	Input_trimethoxybenzol
+   416	Input_tryptone
+   417	Input_tryptophan
+   418	Input_turanose
+   419	Input_tween 20
+   420	Input_tween 40
+   421	Input_tween 80
+   422	Input_tyrosine
+   423	Input_urea
+   424	Input_uridine
+   425	Input_urocanic acid
+   426	Input_valine
+   427	Input_vanillic acid
+   428	Input_VFA
+   429	Input_xanthan
+   430	Input_xylan
+   431	Input_xylitol
+   432	Input_xylose
+   433	Input_yeast extract
+   434	Input_α-cyclodextrin
+   435	Input_α-D-glucose
+   436	Input_α-D-glucose 1-phosphate
+   437	Input_α-D-glucose 6-phosphate
+   438	Input_α-D-lactose
+   439	Input_α-hydroxybutyric acid
+   440	Input_α-ketobutyric acid
+   441	Input_α-ketoglutaric acid
+   442	Input_α-ketovaleric acid
+   443	Input_α-lactose
+   444	Input_β-alanine
+   445	Input_β-hydroxybutyric acid
+   446	Input_γ-aminobutyric acid
+   447	Input_γ-hydroxybutyric acid
+   448	Output_1,2,4-trihydroxybenzene
+   449	Output_2,3-butanediol
+   450	Output_acetic acid
+   451	Output_acetylmethylcarbinol
+   452	Output_amino acid
+   453	Output_ammonia
+   454	Output_aromatic compound
+   455	Output_butyric acid
+   456	Output_CO2
+   457	Output_ethanol
+   458	Output_formic acid
+   459	Output_gluconic acid
+   460	Output_H2
+   461	Output_indole
+   462	Output_inorganic compound
+   463	Output_iron(II)
+   464	Output_isobutyric acid
+   465	Output_isovaleric acid
+   466	Output_L-lactic acid
+   467	Output_lactic acid
+   468	Output_N2
+   469	Output_nitrite
+   470	Output_nitrous oxide
+   471	Output_organic acid
+   472	Output_organic compound
+   473	Output_ornithine
+   474	Output_propionic acid
+   475	Output_succinic acid
+   476	Output_sulfide
+   477	Output_threonine
+   478	Output_valeric acid
+   479	Output_VFA
+   480	Product_1,2,4-trihydroxybenzene
+   481	Product_2,3-butanediol
+   482	Product_acetic acid
+   483	Product_acetylmethylcarbinol
+   484	Product_amino acid
+   485	Product_ammonia
+   486	Product_aromatic compound
+   487	Product_butyric acid
+   488	Product_CO2
+   489	Product_ethanol
+   490	Product_formic acid
+   491	Product_gluconic acid
+   492	Product_H2
+   493	Product_indole
+   494	Product_inorganic compound
+   495	Product_iron(II)
+   496	Product_isobutyric acid
+   497	Product_isovaleric acid
+   498	Product_L-lactic acid
+   499	Product_lactic acid
+   500	Product_N2
+   501	Product_nitrite
+   502	Product_nitrous oxide
+   503	Product_organic acid
+   504	Product_organic compound
+   505	Product_ornithine
+   506	Product_propionic acid
+   507	Product_succinic acid
+   508	Product_sulfide
+   509	Product_threonine
+   510	Product_valeric acid
+   511	Product_VFA
+   512	Reduce_anthraquinone 2,6-disulfonate
+   513	Reduce_antibiotic
+   514	Reduce_aromatic compound
+   515	Reduce_chlorate
+   516	Reduce_elemental sulfur
+   517	Reduce_fumaric acid
+   518	Reduce_inorganic compound
+   519	Reduce_iron(III)
+   520	Reduce_mixture
+   521	Reduce_MnO2
+   522	Reduce_nitrate
+   523	Reduce_nitrite
+   524	Reduce_O2
+   525	Reduce_organic compound
+   526	Reduce_perchlorate
+   527	Reduce_sulfate
+   528	Reduce_sulfite
+   529	Reduce_Tetrazolium
+   530	Reduce_thiosulfate
+   531	Reduce_tryptone
+   532	Reduce_VFA
+   533	Stickland acceptor_amino acid
+   534	Stickland acceptor_glycine
+   535	Stickland acceptor_methionine
+   536	Stickland acceptor_organic acid
+   537	Stickland acceptor_organic compound
+   538	Stickland acceptor_proline
+   539	Stickland donor_amino acid
+   540	Stickland donor_arginine
+   541	Stickland donor_glutamic acid
+   542	Stickland donor_leucine
+   543	Stickland donor_lysine
+   544	Stickland donor_organic acid
+   545	Stickland donor_organic compound
+   546	Stickland donor_phenylalanine
+   547	Sustrate_1-butanol
+   548	Sustrate_1-propanol
+   549	Sustrate_2-aminobenzoic acid
+   550	Sustrate_2-aminoethanol
+   551	Sustrate_2-fluorobenzoic acid
+   552	Sustrate_2-hydroxybenzoic acid
+   553	Sustrate_2-ketogluconic acid
+   554	Sustrate_2-oxoglutaric acid
+   555	Sustrate_2-oxovaleric acid
+   556	Sustrate_2,3-butanediol
+   557	Sustrate_3-hydroxybenzoic acid
+   558	Sustrate_3,5-dihydroxybenzoic acid
+   559	Sustrate_4-aminobenzoic acid
+   560	Sustrate_4-hydroxy-L-proline
+   561	Sustrate_4-hydroxybenzoic acid
+   562	Sustrate_4-hydroxyphenylacetic acid
+   563	Sustrate_5-ketogluconic acid
+   564	Sustrate_acetic acid
+   565	Sustrate_adipic acid
+   566	Sustrate_adonitol
+   567	Sustrate_aesculine
+   568	Sustrate_agar
+   569	Sustrate_agarose
+   570	Sustrate_alaninamide
+   571	Sustrate_alanine
+   572	Sustrate_alanyl glycine
+   573	Sustrate_alginic acid
+   574	Sustrate_amino acid
+   575	Sustrate_amino acid amide
+   576	Sustrate_amino sugar
+   577	Sustrate_aminobutyric acid
+   578	Sustrate_amygdaline
+   579	Sustrate_arabinose
+   580	Sustrate_arabitol
+   581	Sustrate_arbutine
+   582	Sustrate_arginine
+   583	Sustrate_aromatic compound
+   584	Sustrate_asparagine
+   585	Sustrate_aspartic acid
+   586	Sustrate_benzaldehyde
+   587	Sustrate_benzoic acid
+   588	Sustrate_benzyl alcohol
+   589	Sustrate_BHI
+   590	Sustrate_bromo succinic acid
+   591	Sustrate_butyric acid
+   592	Sustrate_capric acid
+   593	Sustrate_carbohydrate
+   594	Sustrate_carnitine
+   595	Sustrate_casamino acid
+   596	Sustrate_casein
+   597	Sustrate_cellobiose
+   598	Sustrate_cellulose
+   599	Sustrate_chitin
+   600	Sustrate_chitosan
+   601	Sustrate_chondroitin sulfate sodium salt
+   602	Sustrate_cis-aconitic acid
+   603	Sustrate_citric acid
+   604	Sustrate_crotonic acid
+   605	Sustrate_cyclohexanecarboxylic acid
+   606	Sustrate_cysteine
+   607	Sustrate_D-adonitol
+   608	Sustrate_D-alanine
+   609	Sustrate_D-arabinose
+   610	Sustrate_D-arabitol
+   611	Sustrate_D-cellobiose
+   612	Sustrate_D-cellulose
+   613	Sustrate_D-fructose
+   614	Sustrate_D-fucose
+   615	Sustrate_D-galactonic acid
+   616	Sustrate_D-galactonic acid lactone
+   617	Sustrate_D-galactose
+   618	Sustrate_D-galacturonic acid
+   619	Sustrate_D-gluconic acid
+   620	Sustrate_D-glucosaminic acid
+   621	Sustrate_D-glucose
+   622	Sustrate_D-glucose 6-Phosphate
+   623	Sustrate_D-glucuronic acid
+   624	Sustrate_D-lactic acid
+   625	Sustrate_D-lactose
+   626	Sustrate_D-maltose
+   627	Sustrate_D-mannitol
+   628	Sustrate_D-mannose
+   629	Sustrate_D-melibiose
+   630	Sustrate_D-psicose
+   631	Sustrate_D-raffinose
+   632	Sustrate_D-ribose
+   633	Sustrate_D-saccharic acid
+   634	Sustrate_D-serine
+   635	Sustrate_D-sorbitol
+   636	Sustrate_D-tagatose
+   637	Sustrate_D-tartaric acid
+   638	Sustrate_D-trehalose
+   639	Sustrate_D-Trehalose
+   640	Sustrate_D-tryptophan
+   641	Sustrate_D-xylose
+   642	Sustrate_dextran
+   643	Sustrate_dextrin
+   644	Sustrate_dipeptide
+   645	Sustrate_disaccharide
+   646	Sustrate_DL-carnitine
+   647	Sustrate_DL-lactic acid
+   648	Sustrate_DL-α-glycerol phosphate
+   649	Sustrate_dulcitol
+   650	Sustrate_elemental sulfur
+   651	Sustrate_erythritol
+   652	Sustrate_ethanol
+   653	Sustrate_ethanolamine
+   654	Sustrate_FAME
+   655	Sustrate_Fe2S
+   656	Sustrate_formic acid
+   657	Sustrate_fructose
+   658	Sustrate_fucose
+   659	Sustrate_fumaric acid
+   660	Sustrate_galactitol
+   661	Sustrate_galactonic acid
+   662	Sustrate_galactonic acid lactone
+   663	Sustrate_galactose
+   664	Sustrate_galacturonic acid
+   665	Sustrate_gelatine
+   666	Sustrate_gentiobiose
+   667	Sustrate_gentisic acid
+   668	Sustrate_gluconic acid
+   669	Sustrate_glucosaminic acid
+   670	Sustrate_glucose
+   671	Sustrate_glucose 1-phosphate
+   672	Sustrate_glucose 6-phosphate
+   673	Sustrate_glucoside
+   674	Sustrate_glucuronamide
+   675	Sustrate_glucuronic acid
+   676	Sustrate_glutamic acid
+   677	Sustrate_glutamine
+   678	Sustrate_glutaric acid
+   679	Sustrate_glycerol
+   680	Sustrate_glycerol phosphate
+   681	Sustrate_glycerophosphate
+   682	Sustrate_glycine
+   683	Sustrate_glycogen
+   684	Sustrate_glycolic acid
+   685	Sustrate_glycyl L-aspartic acid
+   686	Sustrate_glycyl L-glutamic acid
+   687	Sustrate_gum arabic
+   688	Sustrate_H2
+   689	Sustrate_H2/CO2 + acetate
+   690	Sustrate_histidine
+   691	Sustrate_hyaluronan biotin sodium salt
+   692	Sustrate_hydroxy-L-proline
+   693	Sustrate_hydroxybutyric acid
+   694	Sustrate_indole
+   695	Sustrate_indolylacetic acid
+   696	Sustrate_inorganic compound
+   697	Sustrate_inosine
+   698	Sustrate_inositol
+   699	Sustrate_inulin
+   700	Sustrate_inurin
+   701	Sustrate_iron(II)
+   702	Sustrate_isobutyric acid
+   703	Sustrate_isoerythritol
+   704	Sustrate_isoleucine
+   705	Sustrate_isovaleric acid
+   706	Sustrate_itaconic acid
+   707	Sustrate_ketobutytic acid
+   708	Sustrate_ketoglutaric acid
+   709	Sustrate_L-alaninamide
+   710	Sustrate_L-alanine
+   711	Sustrate_L-alanyl glycine
+   712	Sustrate_L-arabinose
+   713	Sustrate_L-arabitol
+   714	Sustrate_L-arginine
+   715	Sustrate_L-asparagine
+   716	Sustrate_L-aspartic acid
+   717	Sustrate_L-cysteine
+   718	Sustrate_L-fucose
+   719	Sustrate_L-glucose 1-phosphate
+   720	Sustrate_L-glucose 6-phosphate
+   721	Sustrate_L-glutamic acid
+   722	Sustrate_L-glutamine
+   723	Sustrate_L-histidine
+   724	Sustrate_L-isoleucine
+   725	Sustrate_L-lactic acid
+   726	Sustrate_L-leucine
+   727	Sustrate_L-lysine
+   728	Sustrate_L-malic acid
+   729	Sustrate_L-methionine
+   730	Sustrate_L-ornithine
+   731	Sustrate_L-phenylalanine
+   732	Sustrate_L-proline
+   733	Sustrate_L-pyroglutamic acid
+   734	Sustrate_L-rhamnose
+   735	Sustrate_L-serine
+   736	Sustrate_L-sorbose
+   737	Sustrate_L-tartaric acid
+   738	Sustrate_L-threonine
+   739	Sustrate_L-tryptophan
+   740	Sustrate_L-tyrosine
+   741	Sustrate_L-valine
+   742	Sustrate_L-xylose
+   743	Sustrate_lactic acid
+   744	Sustrate_lactose
+   745	Sustrate_lactulose
+   746	Sustrate_larch arabinogalactan
+   747	Sustrate_leucine
+   748	Sustrate_lysine
+   749	Sustrate_m-cresol
+   750	Sustrate_m-tartaric acid
+   751	Sustrate_malic acid
+   752	Sustrate_malonic acid
+   753	Sustrate_maltose
+   754	Sustrate_mannitol
+   755	Sustrate_mannose
+   756	Sustrate_media
+   757	Sustrate_melezitose
+   758	Sustrate_melibiose
+   759	Sustrate_methanol
+   760	Sustrate_methionine
+   761	Sustrate_methyl ester
+   762	Sustrate_methyl α-D-glucopyranoside
+   763	Sustrate_methyl α-D-mannopyranoside
+   764	Sustrate_methyl β-D-glucoside
+   765	Sustrate_methyl β-D-xylopiranoside
+   766	Sustrate_methylglucoside
+   767	Sustrate_methylmannoside
+   768	Sustrate_methylxyloside
+   769	Sustrate_mixture
+   770	Sustrate_Mn2+
+   771	Sustrate_monomethyl ester
+   772	Sustrate_monosaccharide
+   773	Sustrate_myo-inositol
+   774	Sustrate_N-acetyl-D-galactosamine
+   775	Sustrate_N-acetyl-D-glucosamine
+   776	Sustrate_N-acetylgalactosamine
+   777	Sustrate_N-acetylglucosamine
+   778	Sustrate_N-acetylneuraminic acid
+   779	Sustrate_nitrate
+   780	Sustrate_nitrite
+   781	Sustrate_nitrous oxide
+   782	Sustrate_nucleoside
+   783	Sustrate_o-cresol
+   784	Sustrate_o-phtalate
+   785	Sustrate_oligosaccharide
+   786	Sustrate_oligosacharide
+   787	Sustrate_organic acid
+   788	Sustrate_organic compound
+   789	Sustrate_ornithine
+   790	Sustrate_oxalic acid
+   791	Sustrate_oxaloacetic acid
+   792	Sustrate_p-cresol
+   793	Sustrate_p-hydroxyphenylacetic acid
+   794	Sustrate_pectin
+   795	Sustrate_pentose
+   796	Sustrate_peptone
+   797	Sustrate_phenol
+   798	Sustrate_phenylacetic acid
+   799	Sustrate_phenylalanine
+   800	Sustrate_phenylethylamine
+   801	Sustrate_phenylglyoxilic acid
+   802	Sustrate_pimelic acid
+   803	Sustrate_polysaccharide
+   804	Sustrate_proline
+   805	Sustrate_propanol
+   806	Sustrate_propionic acid
+   807	Sustrate_protein
+   808	Sustrate_protocatechuate
+   809	Sustrate_psicose
+   810	Sustrate_pullulan
+   811	Sustrate_putrescine
+   812	Sustrate_pyroglutamic acid
+   813	Sustrate_pyruvic acid
+   814	Sustrate_pyruvic acid methyl ester
+   815	Sustrate_quinic acid
+   816	Sustrate_raffinose
+   817	Sustrate_rhamnose
+   818	Sustrate_ribose
+   819	Sustrate_saccharic acid
+   820	Sustrate_saccharose
+   821	Sustrate_salicin
+   822	Sustrate_sebacic acid
+   823	Sustrate_serine
+   824	Sustrate_sodium L-glutamate
+   825	Sustrate_sorbitol
+   826	Sustrate_sorbose
+   827	Sustrate_starch
+   828	Sustrate_succinamic acid
+   829	Sustrate_succinic acid
+   830	Sustrate_succinic acid monomethyl ester
+   831	Sustrate_sucrose
+   832	Sustrate_sugar
+   833	Sustrate_sulfate
+   834	Sustrate_sulfide
+   835	Sustrate_sulfite
+   836	Sustrate_tagatose
+   837	Sustrate_tartaric acid
+   838	Sustrate_thiosulfate
+   839	Sustrate_threonine
+   840	Sustrate_thymidine
+   841	Sustrate_toluene
+   842	Sustrate_trehalose
+   843	Sustrate_tryptone
+   844	Sustrate_tryptophan
+   845	Sustrate_turanose
+   846	Sustrate_tween 40
+   847	Sustrate_tween 80
+   848	Sustrate_tyrosine
+   849	Sustrate_uridine
+   850	Sustrate_urocanic acid
+   851	Sustrate_valine
+   852	Sustrate_vanillic acid
+   853	Sustrate_VFA
+   854	Sustrate_xanthan
+   855	Sustrate_xylan
+   856	Sustrate_xylitol
+   857	Sustrate_xylose
+   858	Sustrate_yeast extract
+   859	Sustrate_α-cyclodextrin
+   860	Sustrate_α-D-glucose
+   861	Sustrate_α-D-glucose 1-phosphate
+   862	Sustrate_α-D-glucose 6-phosphate
+   863	Sustrate_α-D-lactose
+   864	Sustrate_α-hydroxybutyric acid
+   865	Sustrate_α-ketobutyric acid
+   866	Sustrate_α-ketoglutaric acid
+   867	Sustrate_α-ketovaleric acid
+   868	Sustrate_α-lactose
+   869	Sustrate_β-alanine
+   870	Sustrate_β-hydroxybutyric acid
+   871	Sustrate_γ-aminobutyric acid
+   872	Sustrate_γ-hydroxybutyric acid 
+   873	6-phosphate-β-galactosidase activity
+   874	Acid Phosphatase activity
+   875	acidogenic
+   876	aerobe
+   877	agarase activity
+   878	alanine arylamidase activity
+   879	Alkaline Phosphatase activity
+   880	amylase activity
+   881	anaerobic
+   882	arginase
+   883	arginine aminopeptidase activity
+   884	arginine arylamidase activity
+   885	arginine dihydrolase activity
+   886	biogeochemical cycling of sulfur and sulfide metals
+   887	caseinase activity
+   888	Catalase activity
+   889	cellulase activity
+   890	chemolitotrophic
+   891	chitinase activity
+   892	chymotrypsin activity
+   893	cystine arylamidase activity
+   894	cytochrome oxidase activity
+   895	degrading chitin derivatives
+   896	denitrification and oxidation of organic acids
+   897	Denitrification nitrate to N2
+   898	Denitrification nitrite to N2O
+   899	Denitrifies nitrate
+   900	Denitrifies nitrite
+   901	Dnase activity
+   902	esterase C4 activity
+   903	esterase lipase C8 activity
+   904	facultatively anaerobic
+   905	fermentative
+   906	gelatinase activity
+   907	glicine aminopeptidase activity
+   908	glutamate decarboxylase activity
+   909	glutamyl glutamate arylamidase activity
+   910	glycin arylamidase activity
+   911	Gram negative
+   912	Gram positive
+   913	histidine arylamidase activity
+   914	L-arginine arylamidase activity
+   915	lack cell wall
+   916	lectinase activity
+   917	leucine arylamidase activity
+   918	Leucylglycin arylamidase activity
+   919	lipase C14 activity
+   920	N-acetyl-β-glucosaminidase activity
+   921	naphthol-AS-BI-phosphohydrolase activity
+   922	Oxidase activity
+   923	oxidizing ferrous-iron
+   924	phenylalanine aminopeptidase activity
+   925	phenylalanine arylamidase activity
+   926	proline aminopeptidase activity
+   927	proline arylamydase activity
+   928	protease activity
+   929	Proteolytic
+   930	pyrazinamidase activity
+   931	pyroglutamate arylamidase
+   932	pyrrolidone aminopeptidase activity
+   933	pyrrolidonyl arylamidase activity
+   934	reduce humic acid
+   935	Reduce N2O to N2
+   936	Reduces nitrate to nitrite
+   937	reduces sulfate to sulfide
+   938	reducing nitrate and nitrite
+   939	serine aminopeptidase activity
+   940	serine arylamidase activity
+   941	spore-forming
+   942	Strictly aerobic
+   943	Strictly anaerobe
+   944	Susceptible to Chloramphenicol
+   945	Susceptible to Clindamycin
+   946	Susceptible to Penicilin G
+   947	Susceptible to Tetracycline
+   948	trypsin activity
+   949	tyrosine arylamidase activity
+   950	Urease activity
+   951	valine arylamidase activity
+   952	xylanase activity
+   953	α-arabinosidase activity
+   954	α-chymotrypsine activity
+   955	α-fucosidase activity
+   956	α-galactosidase activity
+   957	α-glucosidase activity
+   958	α-mannosidase activity
+   959	β-galactosidase 6-phosphate activity
+   960	β-galactosidase activity
+   961	β-glucosaminidase activity
+   962	β-glucosidase activity
+   963	β-glucuronidase activity
+   964	β-N-acetyl-β-glucosaminidase activity 
+
+==> Hiding_phenotypes.txt <==
+     1	"acid phosphatase"
+     2	"aesculin hydrolysis"
+     3	"alkaline phosphatase"
+     4	"alpha-galactosidase"
+     5	"arylsulfatase"
+     6	"catalase positive"
+     7	"gelatinase"
+     8	"H2S production"
+     9	"indole production"
+    10	"methane production"
+    11	"nitrate reduction to nitrite"
+    12	"oxidase positive"
+    13	"pyrazinamidase"
+    14	"tellurite reductase"
+    15	"urease positive"
+    16	"2-aminethanol"
+    17	"2-ketogluconate"
+    18	"2;3-butanediol"
+    19	"3-hydroxybenzoate"
+    20	"3-hydroxybutyrate"
+    21	"4-hydroxbenzoate"
+    22	"5-ketoguconate"
+    23	"acetate"
+    24	"adipate"
+    25	"adonitol"
+    26	"alaninamide"
+    27	"alanine"
+    28	"alpha-cyclodextrin"
+    29	"alpha-ketovaleric acid"
+    30	"arabinose"
+    31	"arabitol"
+    32	"arginine"
+    33	"asparagine"
+    34	"aspartic acid (aspartate)"
+    35	"butanol"
+    36	"caprate"
+    37	"carnitine"
+    38	"cellobiose"
+    39	"citric acide (citrate)"
+    40	"dextrin"
+    41	"ethanol"
+    42	"formic acid"
+    43	"fructose"
+    44	"fucose"
+    45	"galactonic acid"
+    46	"galactose"
+    47	"galcturonic acid"
+    48	"gamma-aminobutyric acid"
+    49	"gelatin"
+    50	"gluconic acid"
+    51	"glucosamine"
+    52	"glucose"
+    53	"glucuronamide"
+    54	"glutamic acid"
+    55	"glycerol"
+    56	"glycine"
+    57	"glycogen"
+    58	"histidine"
+    59	"hyroxl-proline"
+    60	"inosine"
+    61	"itaconate"
+    62	"lactate"
+    63	"lactose"
+    64	"leucine"
+    65	"malate"
+    66	"malonic acid (malonate)"
+    67	"maltose"
+    68	"mannitol"
+    69	"mannose"
+    70	"melibiose"
+    71	"methyl beta-D-glucoside"
+    72	"methyl pyruvate"
+    73	"myo-inositol"
+    74	"N-acetylgulcosamine"
+    75	"ornithine"
+    76	"phenethylamine"
+    77	"phenylacetate"
+    78	"phenylalanine"
+    79	"proline"
+    80	"propionic acid (propionate)"
+    81	"putrescine"
+    82	"pyruvic acid (pyruvate)"
+    83	"pyruvic acid methyl ester"
+    84	"quinic acid"
+    85	"raffinose"
+    86	"rhamnose"
+    87	"ribose"
+    88	"salicin"
+    89	"serine"
+    90	"sorbitol"
+    91	"suberic acid"
+    92	"succinic acid (succinate)"
+    93	"sucrose"
+    94	"threonine"
+    95	"thymidine"
+    96	"trehalose"
+    97	"trisodium citrate"
+    98	"tryptophan"
+    99	"Tween 20"
+   100	"Tween 40"
+   101	"Tween 60"
+   102	"Tween 80"
+   103	"urea"
+   104	"uridine"
+   105	"urocanic acid"
+   106	"valerate"
+   107	"xylitol"
+   108	"xylose"
+
+==> MDB_phenotypes.txt <==
+     1	"Name"
+     2	"Main publication"
+     3	"Cell shape"
+     4	"Gram reaction"
+     5	"Other publication"
+     6	"Motility"
+     7	"Type strain"
+     8	"DSM strain number"
+     9	"ATTC strain number"
+    10	"Other collections"
+    11	"Growth doubling time [h]"
+    12	"Growth rate"
+    13	"Min. growth temp."
+    14	"Max. growth temp."
+    15	"Min. optimal growth temp."
+    16	"Max. optimal growth temp."
+    17	"Min. cell GC content"
+    18	"Max. cell GC content"
+    19	"Min. cell length"
+    20	"Max. cell length"
+    21	"Min. cell width"
+    22	"Max. cell width"
+    23	"Min. growth NaCl"
+    24	"Max. growth NaCl"
+    25	"Min. optimal growth NaCl"
+    26	"Max. optimal growth NaCl"
+    27	"Min. growth pH"
+    28	"Max. growth pH"
+    29	"Min. optimal growth pH"
+    30	"Max. optimal growth pH"
+    31	"Min. growth requierments"
+    32	"1-butanol"
+    33	"2-butanol"
+    34	"Isobutanol"
+    35	"2-propanol"
+    36	"Acetate"
+    37	"Additional growth requierments"
+    38	"Butanol"
+    39	"Carbon Monoxide"
+    40	"Cyclopentanol"
+    41	"Dimethylamine"
+    42	"Dimethyl sulfide"
+    43	"Ethanol"
+    44	"Formate collections"
+    45	"H2+CO2"
+    46	"H2+methanol"
+    47	"Methanol"
+    48	"Methylamine"
+    49	"Other substrate"
+    50	"Propanol"
+    51	"Propionate"
+    52	"Trimethylamine"
+    53	"Description"
+    54	"Intestinal tracks"
+    55	"Other environment"
+    56	"Reactor environment"
+    57	"Soil environment"
+    58	"Volcanic environment"
+    59	"Water environment"
+    60	"Link"
+
+==> MIDAS3_phenotypes.txt <==
+     1	Canonical name
+     2	Alternative names
+     3	Kingdom
+     4	Phylum
+     5	Class
+     6	Order
+     7	Family
+     8	"Chemoautotroph/mixotroph:In situ"
+     9	"Chemoautotroph/mixotroph:Other"
+    10	"AOB:In situ"
+    11	"AOB:Other"
+    12	"NOB:In situ"
+    13	"NOB:Other"
+    14	"Anammox:In situ"
+    15	"Anammox:Other"
+    16	"Aerobic heterotroph:In situ"
+    17	"Aerobic heterotroph:Other"
+    18	"PAO:In situ"
+    19	"PAO:Other"
+    20	"GAO:In situ"
+    21	"GAO:Other"
+    22	"Nitrite reduction:In situ"
+    23	"Nitrite reduction:Other"
+    24	"Sulfate reduction:In situ"
+    25	"Sulfate reduction:Other"
+    26	"Fermentation:In situ"
+    27	"Fermentation:Other"
+    28	"Acetogen:In situ"
+    29	"Acetogen:Other"
+    30	"Methanogen:In situ"
+    31	"Methanogen:Other"
+    32	"Short-chain fatty acids:In situ"
+    33	"Short-chain fatty acids:Other"
+    34	"Sugars:In situ"
+    35	"Sugars:Other"
+    36	"Proteins/amino acids:In situ"
+    37	"Proteins/amino acids:Other"
+    38	"Filamentous:In situ"
+    39	"Filamentous:Other"
+    40	"Hydrophobic cell surface:In situ"
+    41	"Hydrophobic cell surface:Other"
+    42	"influent abundance"
+    43	"sludge abundance"
+    44	"mesophilic abundance"
+    45	"thermophilic abundance"
+       

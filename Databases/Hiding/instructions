@@ -1,0 +1,50 @@
+# Odin Moron-Garcia
+# instructions to obtain usable database from Hiding in Plain Sight paper database
+# Last modified July, 13th 2021
+
+
+wget https://ndownloader.figshare.com/files/6994457
+wget https://ndownloader.figshare.com/files/6994454
+mv 6994454 README.txt
+mv 6994457 IJSEM_pheno_db_v1.0.txt
+
+# There´s a couple of problems with the file
+# On one hand the end of line character is \r instead of \n
+# On the other hand there are some unicode caracters that brings troubles when using columns and other tools
+
+#The first is solved using translate
+# But the second I can only solve by hand using VIM and changing the entry with UNKNOWN
+# I will solve first the Unicode issue and then the EOL
+
+cp IJSEM_pheno_db_v1.0.txt IJSEM_pheno_db_v1.0_NO_UNICHAR.txt
+#manual change using VIM at what should be line 9 of four characters ä<8a>æ4 to UNKNOW
+# To find the characters I have to make us in vim of the command :set list
+
+cat IJSEM_pheno_db_v1.0_NO_UNICHAR.txt |tr "\r" "\n" > HidingPlainSightDB.txt
+rm IJSEM_pheno_db_v1.0_NO_UNICHAR.txt 
+#Now there´s no issue in doing
+cat HidingPlainSightDB.txt |column -s -t|less -#2 -N -S
+
+#As in the other databases, the command goes into an script see_tsv.sh
+# The reason for columns -s -t |less -#2 -N -S can be seen at :https://stackoverflow.com/questions/1875305/view-tabular-file-such-as-csv-from-command-line 
+
+# There are many modifications to the original database to clean mistakes like UNICODE wrong characters, excel substitution of ranges like 01-02 to 01-Feb and alike
+# Also, the columns for GC, pH optimum etc have ranges and it will better to have them either averaged or splitting as min - max.
+#Running the R script called extract_phenotypes.R make four new tsv files called
+# ijsem.tsv | the original file but with the temperature, pH and other ranges averaged to make a single number and some errors in the tabs and also all the various aliases for 
+# not available recoded as NA.
+
+#Therefore is better idea to delete HidingPlainSightDB.txt and keep just the ijsem.tsv and link the see_tsv.sh script to this.
+
+# The script 
+Rscript ./get_phenotypes.R
+# splits the file ijsem.tsv in other two files with the phenotypes related with carbonsubstrates and metabolic traits
+
+#write.table(ijsem, file = "ijsem.tsv",row.names = F,sep = ",")#Almost the same than the original one but with some mistakes corrected ijsem.tsv
+#Substrates.tsv wide format phenotypes related with carbon substrates used 
+#Metabolic.tsv  wide format phenotypes related with metabolic reactions 
+#The percentage of bacterias phenotyped for a given metabolism summary metabolic
+#same for carbon substrates
+
+# The script see_tsv is refered to the ijsem.tsv
+# Also all script has been modified to comply with some rulels like all file being tsv and unquoted (except the species list)

@@ -1,0 +1,964 @@
+Digest_gelatine
+Digest_organic compound
+Grow_acetic acid
+Grow_aesculine
+Grow_alanine
+Grow_amino acid
+Grow_arabinose
+Grow_arginine
+Grow_aromatic compound
+Grow_asparagine
+Grow_aspartic acid
+Grow_ASW
+Grow_benzoic acid
+Grow_butyric acid
+Grow_carbohydrate
+Grow_casamino acid
+Grow_casein
+Grow_cellobiose
+Grow_cetrimide
+Grow_crotonic acid
+Grow_cysteine
+Grow_disaccharide
+Grow_ethanol
+Grow_ferulic acid
+Grow_formic acid
+Grow_fumaric acid
+Grow_gelatine
+Grow_glucose
+Grow_glucoside
+Grow_glutamic acid
+Grow_glycerol
+Grow_glycine
+Grow_H2/CO2 + acetate
+Grow_histidine
+Grow_inorganic compound
+Grow_isoleucine
+Grow_L-alanine
+Grow_L-arabinose
+Grow_lactic acid
+Grow_lactose
+Grow_leucine
+Grow_lysine
+Grow_maltose
+Grow_mannitol
+Grow_mannose
+Grow_media
+Grow_melezitose
+Grow_methionine
+Grow_mixture
+Grow_monosaccharide
+Grow_nitrate
+Grow_nitrite
+Grow_oligosacharide
+Grow_organic acid
+Grow_organic compound
+Grow_peptone
+Grow_phenylalanine
+Grow_proline
+Grow_propionic acid
+Grow_protein
+Grow_pyruvic acid
+Grow_raffinose
+Grow_rhamnose
+Grow_salicin
+Grow_serine
+Grow_sorbitol
+Grow_sucrose
+Grow_sugar
+Grow_syringic acid
+Grow_threonine
+Grow_trehalose
+Grow_trimethoxybenzol
+Grow_tryptone
+Grow_tryptophan
+Grow_tyrosine
+Grow_valine
+Grow_vanillic acid
+Grow_VFA
+Grow_xylose
+Grow_yeast extract
+Hydrolyses_aesculine
+Hydrolyses_agar
+Hydrolyses_amino acid
+Hydrolyses_amylase
+Hydrolyses_carbohydrate
+Hydrolyses_casein
+Hydrolyses_DL-tyrosine
+Hydrolyses_gelatine
+Hydrolyses_glucoside
+Hydrolyses_mixture
+Hydrolyses_mucin
+Hydrolyses_onpg
+Hydrolyses_organic acid
+Hydrolyses_organic compound
+Hydrolyses_polysaccharide
+Hydrolyses_protein
+Hydrolyses_starch
+Hydrolyses_tween 20
+Hydrolyses_tween 40
+Hydrolyses_tween 80
+Hydrolyses_tyrosine
+Hydrolyses_urea
+Input_1-butanol
+Input_1-propanol
+Input_2-aminobenzoic acid
+Input_2-aminoethanol
+Input_2-fluorobenzoic acid
+Input_2-hydroxybenzoic acid
+Input_2-ketogluconic acid
+Input_2-oxoglutaric acid
+Input_2-oxovaleric acid
+Input_2,3-butanediol
+Input_3-hydroxybenzoic acid
+Input_3,5-dihydroxybenzoic acid
+Input_4-aminobenzoic acid
+Input_4-hydroxy-L-proline
+Input_4-hydroxybenzoic acid
+Input_4-hydroxyphenylacetic acid
+Input_5-ketogluconic acid
+Input_acetic acid
+Input_adipic acid
+Input_adonitol
+Input_aesculine
+Input_agar
+Input_agarose
+Input_alaninamide
+Input_alanine
+Input_alanyl glycine
+Input_alginic acid
+Input_amino acid
+Input_amino acid amide
+Input_amino sugar
+Input_aminobutyric acid
+Input_amygdaline
+Input_amylase
+Input_anthraquinone 2,6-disulfonate
+Input_antibiotic
+Input_arabinose
+Input_arabitol
+Input_arbutine
+Input_arginine
+Input_aromatic compound
+Input_asparagine
+Input_aspartic acid
+Input_ASW
+Input_benzaldehyde
+Input_benzoic acid
+Input_benzyl alcohol
+Input_BHI
+Input_bromo succinic acid
+Input_butyric acid
+Input_capric acid
+Input_carbohydrate
+Input_carnitine
+Input_casamino acid
+Input_casein
+Input_cellobiose
+Input_cellulose
+Input_cetrimide
+Input_chitin
+Input_chitosan
+Input_chlorate
+Input_chondroitin sulfate sodium salt
+Input_cis-aconitic acid
+Input_citric acid
+Input_crotonic acid
+Input_cyclohexanecarboxylic acid
+Input_cysteine
+Input_D-adonitol
+Input_D-alanine
+Input_D-arabinose
+Input_D-arabitol
+Input_D-cellobiose
+Input_D-cellulose
+Input_D-fructose
+Input_D-fucose
+Input_D-galactonic acid
+Input_D-galactonic acid lactone
+Input_D-galactose
+Input_D-galacturonic acid
+Input_D-gluconic acid
+Input_D-glucosaminic acid
+Input_D-glucose
+Input_D-glucose 6-Phosphate
+Input_D-glucuronic acid
+Input_D-lactic acid
+Input_D-lactose
+Input_D-maltose
+Input_D-mannitol
+Input_D-mannose
+Input_D-melibiose
+Input_D-psicose
+Input_D-raffinose
+Input_D-ribose
+Input_D-saccharic acid
+Input_D-serine
+Input_D-sorbitol
+Input_D-tagatose
+Input_D-tartaric acid
+Input_D-trehalose
+Input_D-Trehalose
+Input_D-tryptophan
+Input_D-xylose
+Input_dextran
+Input_dextrin
+Input_dipeptide
+Input_disaccharide
+Input_DL-carnitine
+Input_DL-lactic acid
+Input_DL-tyrosine
+Input_DL-α-glycerol phosphate
+Input_dulcitol
+Input_elemental sulfur
+Input_erythritol
+Input_ethanol
+Input_ethanolamine
+Input_FAME
+Input_Fe2S
+Input_ferulic acid
+Input_formic acid
+Input_fructose
+Input_fucose
+Input_fumaric acid
+Input_galactitol
+Input_galactonic acid
+Input_galactonic acid lactone
+Input_galactose
+Input_galacturonic acid
+Input_gelatine
+Input_gentiobiose
+Input_gentisic acid
+Input_gluconic acid
+Input_glucosaminic acid
+Input_glucose
+Input_glucose 1-phosphate
+Input_glucose 6-phosphate
+Input_glucoside
+Input_glucuronamide
+Input_glucuronic acid
+Input_glutamic acid
+Input_glutamine
+Input_glutaric acid
+Input_glycerol
+Input_glycerol phosphate
+Input_glycerophosphate
+Input_glycine
+Input_glycogen
+Input_glycolic acid
+Input_glycyl L-aspartic acid
+Input_glycyl L-glutamic acid
+Input_gum arabic
+Input_H2
+Input_H2/CO2 + acetate
+Input_histidine
+Input_hyaluronan biotin sodium salt
+Input_hydroxy-L-proline
+Input_hydroxybutyric acid
+Input_indole
+Input_indolylacetic acid
+Input_inorganic compound
+Input_inosine
+Input_inositol
+Input_inulin
+Input_inurin
+Input_iron(II)
+Input_iron(III)
+Input_isobutyric acid
+Input_isoerythritol
+Input_isoleucine
+Input_isovaleric acid
+Input_itaconic acid
+Input_ketobutytic acid
+Input_ketoglutaric acid
+Input_L-alaninamide
+Input_L-alanine
+Input_L-alanyl glycine
+Input_L-arabinose
+Input_L-arabitol
+Input_L-arginine
+Input_L-asparagine
+Input_L-aspartic acid
+Input_L-cysteine
+Input_L-fucose
+Input_L-glucose 1-phosphate
+Input_L-glucose 6-phosphate
+Input_L-glutamic acid
+Input_L-glutamine
+Input_L-histidine
+Input_L-isoleucine
+Input_L-lactic acid
+Input_L-leucine
+Input_L-lysine
+Input_L-malic acid
+Input_L-methionine
+Input_L-ornithine
+Input_L-phenylalanine
+Input_L-proline
+Input_L-pyroglutamic acid
+Input_L-rhamnose
+Input_L-serine
+Input_L-sorbose
+Input_L-tartaric acid
+Input_L-threonine
+Input_L-tryptophan
+Input_L-tyrosine
+Input_L-valine
+Input_L-xylose
+Input_lactic acid
+Input_lactose
+Input_lactulose
+Input_larch arabinogalactan
+Input_leucine
+Input_lysine
+Input_m-cresol
+Input_m-tartaric acid
+Input_malic acid
+Input_malonic acid
+Input_maltose
+Input_mannitol
+Input_mannose
+Input_media
+Input_melezitose
+Input_melibiose
+Input_methanol
+Input_methionine
+Input_methyl ester
+Input_methyl α-D-glucopyranoside
+Input_methyl α-D-mannopyranoside
+Input_methyl β-D-glucoside
+Input_methyl β-D-xylopiranoside
+Input_methylglucoside
+Input_methylmannoside
+Input_methylxyloside
+Input_mixture
+Input_Mn2+
+Input_MnO2
+Input_monomethyl ester
+Input_monosaccharide
+Input_mucin
+Input_myo-inositol
+Input_N-acetyl-D-galactosamine
+Input_N-acetyl-D-glucosamine
+Input_N-acetylgalactosamine
+Input_N-acetylglucosamine
+Input_N-acetylneuraminic acid
+Input_nitrate
+Input_nitrite
+Input_nitrous oxide
+Input_nucleoside
+Input_o-cresol
+Input_o-phtalate
+Input_O2
+Input_oligosaccharide
+Input_oligosacharide
+Input_onpg
+Input_organic acid
+Input_organic compound
+Input_ornithine
+Input_oxalic acid
+Input_oxaloacetic acid
+Input_p-cresol
+Input_p-hydroxyphenylacetic acid
+Input_pectin
+Input_pentose
+Input_peptone
+Input_perchlorate
+Input_phenol
+Input_phenylacetic acid
+Input_phenylalanine
+Input_phenylethylamine
+Input_phenylglyoxilic acid
+Input_pimelic acid
+Input_polysaccharide
+Input_proline
+Input_propanol
+Input_propionic acid
+Input_protein
+Input_protocatechuate
+Input_psicose
+Input_pullulan
+Input_putrescine
+Input_pyroglutamic acid
+Input_pyruvic acid
+Input_pyruvic acid methyl ester
+Input_quinic acid
+Input_raffinose
+Input_rhamnose
+Input_ribose
+Input_saccharic acid
+Input_saccharose
+Input_salicin
+Input_sebacic acid
+Input_serine
+Input_sodium L-glutamate
+Input_sorbitol
+Input_sorbose
+Input_starch
+Input_succinamic acid
+Input_succinic acid
+Input_succinic acid monomethyl ester
+Input_sucrose
+Input_sugar
+Input_sulfate
+Input_sulfide
+Input_sulfite
+Input_syringic acid
+Input_tagatose
+Input_tartaric acid
+Input_Tetrazolium
+Input_thiosulfate
+Input_threonine
+Input_thymidine
+Input_toluene
+Input_trehalose
+Input_trimethoxybenzol
+Input_tryptone
+Input_tryptophan
+Input_turanose
+Input_tween 20
+Input_tween 40
+Input_tween 80
+Input_tyrosine
+Input_urea
+Input_uridine
+Input_urocanic acid
+Input_valine
+Input_vanillic acid
+Input_VFA
+Input_xanthan
+Input_xylan
+Input_xylitol
+Input_xylose
+Input_yeast extract
+Input_α-cyclodextrin
+Input_α-D-glucose
+Input_α-D-glucose 1-phosphate
+Input_α-D-glucose 6-phosphate
+Input_α-D-lactose
+Input_α-hydroxybutyric acid
+Input_α-ketobutyric acid
+Input_α-ketoglutaric acid
+Input_α-ketovaleric acid
+Input_α-lactose
+Input_β-alanine
+Input_β-hydroxybutyric acid
+Input_γ-aminobutyric acid
+Input_γ-hydroxybutyric acid
+Output_1,2,4-trihydroxybenzene
+Output_2,3-butanediol
+Output_acetic acid
+Output_acetylmethylcarbinol
+Output_amino acid
+Output_ammonia
+Output_aromatic compound
+Output_butyric acid
+Output_CO2
+Output_ethanol
+Output_formic acid
+Output_gluconic acid
+Output_H2
+Output_indole
+Output_inorganic compound
+Output_iron(II)
+Output_isobutyric acid
+Output_isovaleric acid
+Output_L-lactic acid
+Output_lactic acid
+Output_N2
+Output_nitrite
+Output_nitrous oxide
+Output_organic acid
+Output_organic compound
+Output_ornithine
+Output_propionic acid
+Output_succinic acid
+Output_sulfide
+Output_threonine
+Output_valeric acid
+Output_VFA
+Product_1,2,4-trihydroxybenzene
+Product_2,3-butanediol
+Product_acetic acid
+Product_acetylmethylcarbinol
+Product_amino acid
+Product_ammonia
+Product_aromatic compound
+Product_butyric acid
+Product_CO2
+Product_ethanol
+Product_formic acid
+Product_gluconic acid
+Product_H2
+Product_indole
+Product_inorganic compound
+Product_iron(II)
+Product_isobutyric acid
+Product_isovaleric acid
+Product_L-lactic acid
+Product_lactic acid
+Product_N2
+Product_nitrite
+Product_nitrous oxide
+Product_organic acid
+Product_organic compound
+Product_ornithine
+Product_propionic acid
+Product_succinic acid
+Product_sulfide
+Product_threonine
+Product_valeric acid
+Product_VFA
+Reduce_anthraquinone 2,6-disulfonate
+Reduce_antibiotic
+Reduce_aromatic compound
+Reduce_chlorate
+Reduce_elemental sulfur
+Reduce_fumaric acid
+Reduce_inorganic compound
+Reduce_iron(III)
+Reduce_mixture
+Reduce_MnO2
+Reduce_nitrate
+Reduce_nitrite
+Reduce_O2
+Reduce_organic compound
+Reduce_perchlorate
+Reduce_sulfate
+Reduce_sulfite
+Reduce_Tetrazolium
+Reduce_thiosulfate
+Reduce_tryptone
+Reduce_VFA
+Stickland acceptor_amino acid
+Stickland acceptor_glycine
+Stickland acceptor_methionine
+Stickland acceptor_organic acid
+Stickland acceptor_organic compound
+Stickland acceptor_proline
+Stickland donor_amino acid
+Stickland donor_arginine
+Stickland donor_glutamic acid
+Stickland donor_leucine
+Stickland donor_lysine
+Stickland donor_organic acid
+Stickland donor_organic compound
+Stickland donor_phenylalanine
+Sustrate_1-butanol
+Sustrate_1-propanol
+Sustrate_2-aminobenzoic acid
+Sustrate_2-aminoethanol
+Sustrate_2-fluorobenzoic acid
+Sustrate_2-hydroxybenzoic acid
+Sustrate_2-ketogluconic acid
+Sustrate_2-oxoglutaric acid
+Sustrate_2-oxovaleric acid
+Sustrate_2,3-butanediol
+Sustrate_3-hydroxybenzoic acid
+Sustrate_3,5-dihydroxybenzoic acid
+Sustrate_4-aminobenzoic acid
+Sustrate_4-hydroxy-L-proline
+Sustrate_4-hydroxybenzoic acid
+Sustrate_4-hydroxyphenylacetic acid
+Sustrate_5-ketogluconic acid
+Sustrate_acetic acid
+Sustrate_adipic acid
+Sustrate_adonitol
+Sustrate_aesculine
+Sustrate_agar
+Sustrate_agarose
+Sustrate_alaninamide
+Sustrate_alanine
+Sustrate_alanyl glycine
+Sustrate_alginic acid
+Sustrate_amino acid
+Sustrate_amino acid amide
+Sustrate_amino sugar
+Sustrate_aminobutyric acid
+Sustrate_amygdaline
+Sustrate_arabinose
+Sustrate_arabitol
+Sustrate_arbutine
+Sustrate_arginine
+Sustrate_aromatic compound
+Sustrate_asparagine
+Sustrate_aspartic acid
+Sustrate_benzaldehyde
+Sustrate_benzoic acid
+Sustrate_benzyl alcohol
+Sustrate_BHI
+Sustrate_bromo succinic acid
+Sustrate_butyric acid
+Sustrate_capric acid
+Sustrate_carbohydrate
+Sustrate_carnitine
+Sustrate_casamino acid
+Sustrate_casein
+Sustrate_cellobiose
+Sustrate_cellulose
+Sustrate_chitin
+Sustrate_chitosan
+Sustrate_chondroitin sulfate sodium salt
+Sustrate_cis-aconitic acid
+Sustrate_citric acid
+Sustrate_crotonic acid
+Sustrate_cyclohexanecarboxylic acid
+Sustrate_cysteine
+Sustrate_D-adonitol
+Sustrate_D-alanine
+Sustrate_D-arabinose
+Sustrate_D-arabitol
+Sustrate_D-cellobiose
+Sustrate_D-cellulose
+Sustrate_D-fructose
+Sustrate_D-fucose
+Sustrate_D-galactonic acid
+Sustrate_D-galactonic acid lactone
+Sustrate_D-galactose
+Sustrate_D-galacturonic acid
+Sustrate_D-gluconic acid
+Sustrate_D-glucosaminic acid
+Sustrate_D-glucose
+Sustrate_D-glucose 6-Phosphate
+Sustrate_D-glucuronic acid
+Sustrate_D-lactic acid
+Sustrate_D-lactose
+Sustrate_D-maltose
+Sustrate_D-mannitol
+Sustrate_D-mannose
+Sustrate_D-melibiose
+Sustrate_D-psicose
+Sustrate_D-raffinose
+Sustrate_D-ribose
+Sustrate_D-saccharic acid
+Sustrate_D-serine
+Sustrate_D-sorbitol
+Sustrate_D-tagatose
+Sustrate_D-tartaric acid
+Sustrate_D-trehalose
+Sustrate_D-Trehalose
+Sustrate_D-tryptophan
+Sustrate_D-xylose
+Sustrate_dextran
+Sustrate_dextrin
+Sustrate_dipeptide
+Sustrate_disaccharide
+Sustrate_DL-carnitine
+Sustrate_DL-lactic acid
+Sustrate_DL-α-glycerol phosphate
+Sustrate_dulcitol
+Sustrate_elemental sulfur
+Sustrate_erythritol
+Sustrate_ethanol
+Sustrate_ethanolamine
+Sustrate_FAME
+Sustrate_Fe2S
+Sustrate_formic acid
+Sustrate_fructose
+Sustrate_fucose
+Sustrate_fumaric acid
+Sustrate_galactitol
+Sustrate_galactonic acid
+Sustrate_galactonic acid lactone
+Sustrate_galactose
+Sustrate_galacturonic acid
+Sustrate_gelatine
+Sustrate_gentiobiose
+Sustrate_gentisic acid
+Sustrate_gluconic acid
+Sustrate_glucosaminic acid
+Sustrate_glucose
+Sustrate_glucose 1-phosphate
+Sustrate_glucose 6-phosphate
+Sustrate_glucoside
+Sustrate_glucuronamide
+Sustrate_glucuronic acid
+Sustrate_glutamic acid
+Sustrate_glutamine
+Sustrate_glutaric acid
+Sustrate_glycerol
+Sustrate_glycerol phosphate
+Sustrate_glycerophosphate
+Sustrate_glycine
+Sustrate_glycogen
+Sustrate_glycolic acid
+Sustrate_glycyl L-aspartic acid
+Sustrate_glycyl L-glutamic acid
+Sustrate_gum arabic
+Sustrate_H2
+Sustrate_H2/CO2 + acetate
+Sustrate_histidine
+Sustrate_hyaluronan biotin sodium salt
+Sustrate_hydroxy-L-proline
+Sustrate_hydroxybutyric acid
+Sustrate_indole
+Sustrate_indolylacetic acid
+Sustrate_inorganic compound
+Sustrate_inosine
+Sustrate_inositol
+Sustrate_inulin
+Sustrate_inurin
+Sustrate_iron(II)
+Sustrate_isobutyric acid
+Sustrate_isoerythritol
+Sustrate_isoleucine
+Sustrate_isovaleric acid
+Sustrate_itaconic acid
+Sustrate_ketobutytic acid
+Sustrate_ketoglutaric acid
+Sustrate_L-alaninamide
+Sustrate_L-alanine
+Sustrate_L-alanyl glycine
+Sustrate_L-arabinose
+Sustrate_L-arabitol
+Sustrate_L-arginine
+Sustrate_L-asparagine
+Sustrate_L-aspartic acid
+Sustrate_L-cysteine
+Sustrate_L-fucose
+Sustrate_L-glucose 1-phosphate
+Sustrate_L-glucose 6-phosphate
+Sustrate_L-glutamic acid
+Sustrate_L-glutamine
+Sustrate_L-histidine
+Sustrate_L-isoleucine
+Sustrate_L-lactic acid
+Sustrate_L-leucine
+Sustrate_L-lysine
+Sustrate_L-malic acid
+Sustrate_L-methionine
+Sustrate_L-ornithine
+Sustrate_L-phenylalanine
+Sustrate_L-proline
+Sustrate_L-pyroglutamic acid
+Sustrate_L-rhamnose
+Sustrate_L-serine
+Sustrate_L-sorbose
+Sustrate_L-tartaric acid
+Sustrate_L-threonine
+Sustrate_L-tryptophan
+Sustrate_L-tyrosine
+Sustrate_L-valine
+Sustrate_L-xylose
+Sustrate_lactic acid
+Sustrate_lactose
+Sustrate_lactulose
+Sustrate_larch arabinogalactan
+Sustrate_leucine
+Sustrate_lysine
+Sustrate_m-cresol
+Sustrate_m-tartaric acid
+Sustrate_malic acid
+Sustrate_malonic acid
+Sustrate_maltose
+Sustrate_mannitol
+Sustrate_mannose
+Sustrate_media
+Sustrate_melezitose
+Sustrate_melibiose
+Sustrate_methanol
+Sustrate_methionine
+Sustrate_methyl ester
+Sustrate_methyl α-D-glucopyranoside
+Sustrate_methyl α-D-mannopyranoside
+Sustrate_methyl β-D-glucoside
+Sustrate_methyl β-D-xylopiranoside
+Sustrate_methylglucoside
+Sustrate_methylmannoside
+Sustrate_methylxyloside
+Sustrate_mixture
+Sustrate_Mn2+
+Sustrate_monomethyl ester
+Sustrate_monosaccharide
+Sustrate_myo-inositol
+Sustrate_N-acetyl-D-galactosamine
+Sustrate_N-acetyl-D-glucosamine
+Sustrate_N-acetylgalactosamine
+Sustrate_N-acetylglucosamine
+Sustrate_N-acetylneuraminic acid
+Sustrate_nitrate
+Sustrate_nitrite
+Sustrate_nitrous oxide
+Sustrate_nucleoside
+Sustrate_o-cresol
+Sustrate_o-phtalate
+Sustrate_oligosaccharide
+Sustrate_oligosacharide
+Sustrate_organic acid
+Sustrate_organic compound
+Sustrate_ornithine
+Sustrate_oxalic acid
+Sustrate_oxaloacetic acid
+Sustrate_p-cresol
+Sustrate_p-hydroxyphenylacetic acid
+Sustrate_pectin
+Sustrate_pentose
+Sustrate_peptone
+Sustrate_phenol
+Sustrate_phenylacetic acid
+Sustrate_phenylalanine
+Sustrate_phenylethylamine
+Sustrate_phenylglyoxilic acid
+Sustrate_pimelic acid
+Sustrate_polysaccharide
+Sustrate_proline
+Sustrate_propanol
+Sustrate_propionic acid
+Sustrate_protein
+Sustrate_protocatechuate
+Sustrate_psicose
+Sustrate_pullulan
+Sustrate_putrescine
+Sustrate_pyroglutamic acid
+Sustrate_pyruvic acid
+Sustrate_pyruvic acid methyl ester
+Sustrate_quinic acid
+Sustrate_raffinose
+Sustrate_rhamnose
+Sustrate_ribose
+Sustrate_saccharic acid
+Sustrate_saccharose
+Sustrate_salicin
+Sustrate_sebacic acid
+Sustrate_serine
+Sustrate_sodium L-glutamate
+Sustrate_sorbitol
+Sustrate_sorbose
+Sustrate_starch
+Sustrate_succinamic acid
+Sustrate_succinic acid
+Sustrate_succinic acid monomethyl ester
+Sustrate_sucrose
+Sustrate_sugar
+Sustrate_sulfate
+Sustrate_sulfide
+Sustrate_sulfite
+Sustrate_tagatose
+Sustrate_tartaric acid
+Sustrate_thiosulfate
+Sustrate_threonine
+Sustrate_thymidine
+Sustrate_toluene
+Sustrate_trehalose
+Sustrate_tryptone
+Sustrate_tryptophan
+Sustrate_turanose
+Sustrate_tween 40
+Sustrate_tween 80
+Sustrate_tyrosine
+Sustrate_uridine
+Sustrate_urocanic acid
+Sustrate_valine
+Sustrate_vanillic acid
+Sustrate_VFA
+Sustrate_xanthan
+Sustrate_xylan
+Sustrate_xylitol
+Sustrate_xylose
+Sustrate_yeast extract
+Sustrate_α-cyclodextrin
+Sustrate_α-D-glucose
+Sustrate_α-D-glucose 1-phosphate
+Sustrate_α-D-glucose 6-phosphate
+Sustrate_α-D-lactose
+Sustrate_α-hydroxybutyric acid
+Sustrate_α-ketobutyric acid
+Sustrate_α-ketoglutaric acid
+Sustrate_α-ketovaleric acid
+Sustrate_α-lactose
+Sustrate_β-alanine
+Sustrate_β-hydroxybutyric acid
+Sustrate_γ-aminobutyric acid
+Sustrate_γ-hydroxybutyric acid 
+6-phosphate-β-galactosidase activity
+Acid Phosphatase activity
+acidogenic
+aerobe
+agarase activity
+alanine arylamidase activity
+Alkaline Phosphatase activity
+amylase activity
+anaerobic
+arginase
+arginine aminopeptidase activity
+arginine arylamidase activity
+arginine dihydrolase activity
+biogeochemical cycling of sulfur and sulfide metals
+caseinase activity
+Catalase activity
+cellulase activity
+chemolitotrophic
+chitinase activity
+chymotrypsin activity
+cystine arylamidase activity
+cytochrome oxidase activity
+degrading chitin derivatives
+denitrification and oxidation of organic acids
+Denitrification nitrate to N2
+Denitrification nitrite to N2O
+Denitrifies nitrate
+Denitrifies nitrite
+Dnase activity
+esterase C4 activity
+esterase lipase C8 activity
+facultatively anaerobic
+fermentative
+gelatinase activity
+glicine aminopeptidase activity
+glutamate decarboxylase activity
+glutamyl glutamate arylamidase activity
+glycin arylamidase activity
+Gram negative
+Gram positive
+histidine arylamidase activity
+L-arginine arylamidase activity
+lack cell wall
+lectinase activity
+leucine arylamidase activity
+Leucylglycin arylamidase activity
+lipase C14 activity
+N-acetyl-β-glucosaminidase activity
+naphthol-AS-BI-phosphohydrolase activity
+Oxidase activity
+oxidizing ferrous-iron
+phenylalanine aminopeptidase activity
+phenylalanine arylamidase activity
+proline aminopeptidase activity
+proline arylamydase activity
+protease activity
+Proteolytic
+pyrazinamidase activity
+pyroglutamate arylamidase
+pyrrolidone aminopeptidase activity
+pyrrolidonyl arylamidase activity
+reduce humic acid
+Reduce N2O to N2
+Reduces nitrate to nitrite
+reduces sulfate to sulfide
+reducing nitrate and nitrite
+serine aminopeptidase activity
+serine arylamidase activity
+spore-forming
+Strictly aerobic
+Strictly anaerobe
+Susceptible to Chloramphenicol
+Susceptible to Clindamycin
+Susceptible to Penicilin G
+Susceptible to Tetracycline
+trypsin activity
+tyrosine arylamidase activity
+Urease activity
+valine arylamidase activity
+xylanase activity
+α-arabinosidase activity
+α-chymotrypsine activity
+α-fucosidase activity
+α-galactosidase activity
+α-glucosidase activity
+α-mannosidase activity
+β-galactosidase 6-phosphate activity
+β-galactosidase activity
+β-glucosaminidase activity
+β-glucosidase activity
+β-glucuronidase activity
+β-N-acetyl-β-glucosaminidase activity 

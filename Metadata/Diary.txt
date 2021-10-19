@@ -1,0 +1,266 @@
+14th July 2021
+
+Downloading the refseq file (as told by Seb)
+Seb has done already the search of the species but I want to have a look to the file
+
+wget https://ftp.ncbi.nlm.nih.gov/genomes/refseq/assembly_summary_refseq.txt
+
+instruction file as on 14th July 2021
+
+# Downloading the ncbi database summary
+
+wget https://ftp.ncbi.nlm.nih.gov/genomes/refseq/assembly_summary_refseq.txt
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/README_assembly_summary.txt
+
+# Reading the columns of the assembly_symmary_refseq.txt file
+head assembly_summary_refseq.txt -n 2|tail -n +2 |cut -d ' ' -f 1 --complement|tr '\t' '\n'
+
+# To retrieve the name of available species
+tail assembly_summary_refseq.txt -n +3|head -n 10  |cut -f 8,5
+
+# To see a single record (obviosly, better to write an script)
+head assembly_summary_refseq.txt -n 10|tail -n +10|tr '\t' '\n'
+
+Let´s have a look to the file that Seb has generated from the bacteria taxa I sent him.
+In his mail he says that was unable to find the Taxa:
+
+"[...] I then used that info to download the maximum number of genomes related to theses species. 
+That amount to 348 genomes. Well, out of the 44 species we're missing the 3 following : 
+'Caldicoprobacter oshimai'
+'Clostridium ganghwense'
+'Lutaonella thermophila' [...]"
+
+
+Let´'s upload the file from my computer (file was sent by mail)
+from my own work laptop
+
+scp -i Computing/private.pem ./odin_data.tar  ubuntu@137.205.69.12:./temp/
+
+
+This creates a folder odin_data with few files:
+
+KEGG_summary.tsv
+cogs_summary.tsv
+download_annotate.snake
+genomes_metadata.tsv
+name_to_taxid.tsv
+pfamA_summary.tsv
+reduced_assembly_summary.tsv
+
+Those with name summary.tsv are the desired inputs for the model.
+They contain tables were columns are the KEGG orthologs ID, COGs orthologs ID or PFAM ID
+Their rows are the ID for the bacteria and the records seems to contain the number of orthologs of each type
+for each genome. This number made me start thinking whether the presence of several time the same ortholog
+may indicate stronger wether a pathway is important or not. On one hand, if a gene for glucolisis is present
+in several versions, one could argue that the pathway is important and reduncancy contribute to robustness.
+On the other hand, they may have different roles in different pathways and being activated in different pathways or by
+different signals or to different substrates. 
+
+name_to_taxid.tsv is the original name and the Strains (sparse) columns to help Seb looking in the assembly summary we looked before.
+
+
+15th July
+I carry on looking to what is in the files. I want to know what info are in the assembly file
+head assembly_summary_refseq.txt -n 2|tail -n 1 |tr -d '#'> temp
+cat assembly_summary_refseq.txt |grep "Bacteroides caccae" -P >> temp
+cat temp|column -s , -t |less -#2 -N -S
+
+
+The assembly file has as columns
+head assembly_summary_refseq.txt -n 2|tail -n 1 |tr -d '#'|tr '\t' '\n'|tr -d ' '|nl
+     1  assembly_accession
+     2  bioproject
+     3  biosample
+     4  wgs_master
+     5  refseq_category
+     6  taxid
+     7  species_taxid
+     8  organism_name
+     9  infraspecific_name
+    10  isolate
+    11  version_status
+    12  assembly_level
+    13  release_type
+    14  genome_rep
+    15  seq_rel_date
+    16  asm_name
+    17  submitter
+    18  gbrs_paired_asm
+    19  paired_asm_comp
+    20  ftp_path
+    21  excluded_from_refseq
+    22  relation_to_type_material
+    23  asm_not_live_date
+
+where 1. assembly_accession is used at the moment to identify every phenotype in the files KEGG, cogs and pFamA (not sure the reason)
+7. species_taxid that is the one that link with Seb's extra column at name_to_taxid.tsv file
+8. Organism_name is the name as it should be canonically (not sure how well it is since it seems some strains has the type code attached.
+9. infraspecific_name seems to contain the string Strain=______ with the strain name 
+10. the ftp_path is the link to the reference genome and the one that Seb seems to be using for the ORF finding.
+
+For example 
+head KEGG_summary.tsv -n 3 |cut -f 1-5
+/       K00003  K00004  K00005  K00008
+GCF_000021425.1 1       0       0       0
+GCF_000022705.1 1       0       0       0
+
+show that KEGG summary file needs to be using the column assembly accession.
+
+Same for the other two:
+
+head cogs_summary.tsv -n 3 |cut -f 1-5
+/       COG0001 COG0002 COG0003 COG0004
+GCF_000021425.1 0       1       0       1
+GCF_000022705.1 0       1       0       1
+ubuntu@odinvm:~/Genomes/odin_data$ head pfamA_summary.tsv -n 3 |cut -f 1-5
+/       PF00004.28      PF00005.26      PF00006.24      PF00009.26
+GCF_000021425.1 1       47      2       6
+GCF_000022705.1 1       47      2       6
+
+How many COGS do we have?
+KEGG KO´s
+head KEGG_summary.tsv -n 1|grep "K\d{1,}" -P -o |wc -l
+5137
+head cogs_summary.tsv -n 1|grep "COG\d{1,}" -P -o |wc -l
+3753
+head pfamA_summary.tsv -n 1|grep "PF\d{1,}" -P -o |wc -l
+5774
+
+The view-like database table that Seb seems to be using is the genome_metadata.tsv
+head genomes_metadata.tsv -n 3
+GCF_011612265.2 43768   ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/011/612/265/GCF_011612265.2_ASM1161226v2
+GCF_000259075.1 989     ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/259/075/GCF_000259075.1_ASM25907v1
+GCF_004167905.1 28025   ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/004/167/905/GCF_004167905.1_ASM416790v1
+
+
+which the facto is a subset in rows and colums of reduced_assembly 
+cat reduced_assembly_summary_refseq.txt |grep "\b989|\b43768|\b28025" -P|cut -f 1,7,20|shuf -n 10
+GCF_018408985.1 28025   ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/018/408/985/GCF_018408985.1_ASM1840898v1
+GCF_001263835.1 28025   ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/001/263/835/GCF_001263835.1_ASM126383v1
+GCF_004154695.1 28025   ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/004/154/695/GCF_004154695.1_ASM415469v1
+GCF_000817045.1 28025   ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/817/045/GCF_000817045.1_ASM81704v1
+GCF_003003035.1 989     ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/003/035/GCF_003003035.1_ASM300303v1
+GCF_003671995.1 28025   ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/671/995/GCF_003671995.1_ASM367199v1
+GCF_016835115.1 28025   ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/016/835/115/GCF_016835115.1_ASM1683511v1
+GCF_003337725.1 989     ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/337/725/GCF_003337725.1_ASM333772v1
+GCF_003438565.1 28025   ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/438/565/GCF_003438565.1_ASM343856v1
+GCF_003428375.1 28025   ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/428/375/GCF_003428375.1_ASM342837v1
+
+The last file is a snakemake config file that I still do not manage to fully understand.
+
+
+so,what is the next step?
+If I want to make models I need to join the table for KEGG or COG or pFam with my phenotypes and it should not be repeated since the number of columns will give troubles.
+So, tomorrow I will start working on the model codes.
+The idea will be to generate N configuration files with the address of phenotype and genome files, a phenotype to model variable, KO, COGS or pFams variable names to create the formula
+and then, an script that will take the configuration file, join the data and perform any simple model (before turn to harder ones)
+
+
+16th July 2021
+I've wasted most of the morning with mails. So let's try to build simple models.
+I will build a general pipeline that read the phenotypes, select the columns of interest and release the rest out of memory
+Then join theh Bacterial name with Sebs name_to_taxid.txt, this one with the genome data (too long for a single column, isn't it?)
+better, I will prepare the metadata file as single operation Taxa_name -> asembly_accession.
+Then read the KO, COG, pFam file and perform a quick model (linear regression)
+OK, hands on the computer
+
+1.Merge of genome_metadata.tsv and names_to_taxid.tsv at $PROJECT/Genomes/scripts/TaxaName2TaxaID.R
+2. I've notice that there´s a lot of names_to_taxid.tsv not found at genomes_metadata: It seems that there are ID's taken at the first column and some others at the second column (taxaid and species taxa Id) of the assembly_summary_refseq (or maybe just the genome_metadata has been created with the wrong column)
+
+Well, I need to test the columns but the assembly file resist to be read with R
+ cat assembly_summary_refseq.txt |cut -f 1,6,7,8,9,20|tail -n +3|tr "\'" '*' > assembly_headerless.tsv 
+and also in the R code I have to deactivate the comment char since there are many # to separate things within the texts
+
+21 July 2021
+I've been busy with the ALIFE 2021 and lost a bit of track. 
+It seems that I have to communicate better wit Seb and to share data I will upload everything to a private respositoire in GitHub.
+
+So, last time I though he was getting the tax ids directly from the assembly_summary_refseq files but not, it turns out that the genome_metadata.csv is made manually by
+looking for the taxids in BacDive and NCBI Taxonomy. It seems he had a bad experience doing it automatically in the past? Not sure if I understood him well.
+
+So, at the moment, I will assume these files are fine and will build the model creator with the idea of making the complete scaffold and later fix all troubles.
+
+
+Plan:
+1. Finish the code to build a file with the table to convert the taxid given by Seb on the assembly_accession used on the genomes he provided.
+2. Generate a set of R structures (lists) with fields for phenotype, phenotype file to retrieve, Orthologs file (KO, COGs or pFam).Each structure goes into a file and will be run in a model.
+3. Generate an script to read the R lists as configuration file, run a model and write a file with the model output to analyse later.
+
+
+July 30th 2021
+Last week I have done the effort of clean and prepare properly the Hiding on Plain Sight, Methanogenes MDB and my own manual DB (still only acidogenics) as it seems to me that would work better with Seb (according to the files he sent me).
+All data is now in tsv, with strings unquoted. Every database has 1 or 2 files in tsv with the metabolisms but also 4 columns for Genus, Species, Name and Strain being Name the concatenation of Genus and Species. In every folder there's a couple of files list_of_phenotypes (not quoted, not header) and list_of_species (quoted and with header)
+
+MDB in particular has been painful to correct (but Hiding was the same a month ago)
+
+So, now I can come back to the problem I was solving. Last time I had finished an script (/home/ubuntu/Genomes/scripts/TaxaName2TaxaID.R) that merge the current files genomes_metadata.tsv with name_to_taxid.tsv and produce a file (the script allow for changing the name)  TaxaID2assembly_accssion.table.tsv
+That file is meant to be be used for linkint the species_taxid to the assembly accession that will link itself with the (COG|KEGG|pFAm)_summary. What is missing is the way to link the phenotypic data to the tax_id using Bacterial Names and Strains (in fact this will make all this unuseful, I reckon)
+
+head genomes_metadata.tsv 
+GCF_011612265.2 43768   ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/011/612/265/GCF_011612265.2_ASM1161226v2
+GCF_000259075.1 989     ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/259/075/GCF_000259075.1_ASM25907v1 
+
+head name_to_taxid.tsv 
+Taxa Name       TaxaID  Strain1 Strain2 Paper Strain
+Advenella faeciporci    797535   JCM 17746T     KCTC 23732T     M-07T
+Alkalitalea saponilacus 889453   ATCC BAA-2172T  DSM 24412T     SC/BZ-SP2T
+Bacteroides caccae      47678   ATCC 43185
+
+head TaxaID2assembly_accession.table.tsv -n 3
+species_taxid   assembly_accession      ftp_path        TaxaName
+1693    GCF_000741645.1 ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/741/645/GCF_000741645.1_Bifmin   Bifidobacterium minimum
+1693    GCF_000421685.1 ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/421/685/GCF_000421685.1_ASM42168v1       Bifidobacterium minimum
+
+
+Today, I want to build a simple model to recognize the elements missing and how to automatize the creation and application of the models
+
+When I left it, I had manage to get the taxa_id joins for the GenePhene2 (Acidogenics) so that every bacteria is now linked to its genome. Still had to complete the COG/KEGG/Pfam Join
+2nd Aug 2021 - still with the model
+3rd Aug 2021 - I've run few models and the news are mixed
+
+I need more bacterials - the models has way more columns than rows and that make the matrices with low rank
+I need less genomes per bacteria - some bact has lots of genomes in the database and some others just 1, that make unbalance the number of yes/no
+I've notice that the gene fro Catalaase rarely can be determined but it may be related with the colinearity with previous variables
+table(datos$Catalase.activity,datos$K03781)
+     
+       0  1  3  4
+  no  70  0  0  0
+  yes  3  2  0  0
+
+lm model
+(Intercept)        K00003        K00004        K00005        K00008 
+-2.000000e+00  1.000000e+00 -8.564812e-13  1.000000e+00 -1.600319e-14 
+       K00009        K00010        K00012        K00013        K00014 
+ 2.000000e+00            NA -9.234012e-14  1.724446e-13  1.346871e-13 
+       K00015        K00016        K00018        K00019        K00020 
+           NA            NA  4.307538e-13            NA -1.000000e+00 
+       K00021        K00023        K00024        K00027        K00029 
+           NA  6.666667e-01  4.000000e+00            NA            NA 
+       K00030        K00031        K00033        K00034        K00036 
+           NA -1.000000e+00            NA            NA            NA 
+       K00038        K00041        K00042        K00043        K00045 
+           NA            NA            NA            NA            NA 
+       K00046        K00048        K00052        K00053        K00054 
+           NA            NA            NA            NA            NA 
+       K00055        K00057        K00058        K00059        K00060 
+           NA            NA            NA  5.136526e-14            NA 
+       K00065        K00066        K00067        K00068        K00073 
+           NA            NA  1.966854e-13            NA            NA 
+       K00074        K00075        K00076        K00077        K00078 
+           NA            NA            NA -2.935736e-13            NA 
+       K00088        K00090        K00091        K00096        K00097 
+           NA            NA            NA            NA            NA 
+       K00099        K00100        K00101        K00102        K00104 
+ 2.858855e-15            NA            NA            NA -2.014437e-14 
+
+
+So, I am trying glm classification and lasso to get the code done but the model won´t work with so many variables and being some of them repeated.
+
+4th August, 2021
+
+I had a meeting with Seb and Chris. They go for holidays.
+If I want Seb to run the KEGGs in a way so I get the .BED files have to do before Friday.
+I have the feeling all this is being slow on my side and not very practical in communication, so looks like nothing is finished.
+
+I download ncbi taxdum from https://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz
+which should be most of the taxonomy database with old and new names of every bacteria (and other taxa). My point here is to see wether I can find the Taxid of bacterias whose name has change since the publication of its type.

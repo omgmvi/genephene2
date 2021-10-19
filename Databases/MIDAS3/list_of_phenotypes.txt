@@ -1,0 +1,46 @@
+Canonical name
+Alternative names
+Kingdom
+Phylum
+Class
+Order
+Family
+Chemoautotroph/mixotroph:In situ
+Chemoautotroph/mixotroph:Other
+AOB:In situ
+AOB:Other
+NOB:In situ
+NOB:Other
+Anammox:In situ
+Anammox:Other
+Aerobic heterotroph:In situ
+Aerobic heterotroph:Other
+PAO:In situ
+PAO:Other
+GAO:In situ
+GAO:Other
+Nitrite reduction:In situ
+Nitrite reduction:Other
+Sulfate reduction:In situ
+Sulfate reduction:Other
+Fermentation:In situ
+Fermentation:Other
+Acetogen:In situ
+Acetogen:Other
+Methanogen:In situ
+Methanogen:Other
+Short-chain fatty acids:In situ
+Short-chain fatty acids:Other
+Sugars:In situ
+Sugars:Other
+Proteins/amino acids:In situ
+Proteins/amino acids:Other
+Filamentous:In situ
+Filamentous:Other
+Hydrophobic cell surface:In situ
+Hydrophobic cell surface:Other
+influent abundance
+sludge abundance
+mesophilic abundance
+thermophilic abundance
+

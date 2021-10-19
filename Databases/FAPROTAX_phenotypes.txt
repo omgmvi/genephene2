@@ -1,0 +1,94 @@
+     1	# LICENSE AGREEMENT
+     2	# Instructions for editing this database
+     3	methanotrophy	elements:C,H; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:no
+     4	acetoclastic_methanogenesis		elements:C,H; main_element:C; electron_donor:none; electron_acceptor:none; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+     5	methanogenesis_by_disproportionation_of_methyl_groups		elements:C,H; main_element:C; electron_donor:none; electron_acceptor:none; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+     6	# formate is split internally into CO2 and H2, from which methaner is subsequently formed [DOI:10.1038/nrmicro1931]
+     7	methanogenesis_by_CO2_reduction_with_H2		elements:C,H; main_element:C; electron_donor:H; electron_acceptor:C; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+     8	# Typical case, H2 + methanol(CH3OH) -> CH4 + H2O
+     9	hydrogenotrophic_methanogenesis		elements:C,H; main_element:C; electron_donor:H; electron_acceptor:C; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+    10	methanogenesis	elements:C,H; main_element:C; electron_donor:variable; electron_acceptor:variable; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+    11	methanol_oxidation	elements:C,H; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    12	methylotrophy	elements:C,H; main_element:C; electron_donor:variable; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    13	aerobic_ammonia_oxidation	elements:N,O; main_element:N; electron_donor:N; electron_acceptor:O; aerobic:yes; exclusively_prokaryotic:yes; light_dependent:no
+    14	aerobic_nitrite_oxidation	elements:N,O; main_element:N; electron_donor:N; electron_acceptor:O; aerobic:yes; exclusively_prokaryotic:yes; light_dependent:no
+    15	nitrification		elements:N,O; main_element:N; electron_donor:N; electron_acceptor:O; aerobic:yes; exclusively_prokaryotic:yes; light_dependent:no
+    16	sulfate_respiration	elements:S; main_element:S; electron_donor:variable; electron_acceptor:S; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+    17	# dissimilatory reduction of elementar sulfur
+    18	# for energy
+    19	# dissimilatory sulfite reduction
+    20	thiosulfate_respiration			elements:S; main_element:S; electron_donor:variable; electron_acceptor:S; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+    21	respiration_of_sulfur_compounds		elements:S; main_element:S; electron_donor:variable; electron_acceptor:S; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+    22	# dissimilatory reduction of arsenate for detoxification
+    23	# dissimilatory reduction of arsenate under anaerobic conditions (as electron acceptor)
+    24	# detoxification or respiration
+    25	arsenite_oxidation_detoxification		elements:As; main_element:As; electron_donor:As; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:no
+    26	# dissimilatory oxidation of arsenite for energy, not for photosynthesis
+    27	dissimilatory_arsenite_oxidation		elements:As; main_element:As; electron_donor:As; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:no
+    28	anammox		elements:N; main_element:N; electron_donor:N; electron_acceptor:N; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+    29	# dissimilatory reduction of NO3 to N2
+    30	nitrite_denitrification			elements:N; main_element:N; electron_donor:variable; electron_acceptor:N; aerobic:no; exclusively_prokaryotic:no; light_dependent:no
+    31	nitrous_oxide_denitrification			elements:N; main_element:N; electron_donor:variable; electron_acceptor:N; aerobic:no; exclusively_prokaryotic:no; light_dependent:no
+    32	# dissimilatory reduction of fixed nitrogen compounds (NO3, NO2, N2O ...) to dinitrogen
+    33	chitinolysis			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    34	knallgas_bacteria			elements:H,O; main_element:H; electron_donor:H; electron_acceptor:O; aerobic:yes; exclusively_prokaryotic:yes; light_dependent:no
+    35	# autotrophic or heterotrophic, H2 oxidation as energy or electron source, but not for photosynthesis
+    36	nitrogen_fixation			elements:N; main_element:N; electron_donor:variable; electron_acceptor:N; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:no
+    37	# dissimilatory reduction of nitrate to ammonium (DNRA)
+    38	nitrite_ammonification			elements:N; main_element:N; electron_donor:variable; electron_acceptor:N; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+    39	nitrite_respiration			elements:N; main_element:N; electron_donor:variable; electron_acceptor:N; aerobic:no; exclusively_prokaryotic:no; light_dependent:no
+    40	cellulolysis			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    41	xylanolysis			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    42	dark_sulfide_oxidation			elements:S; main_element:S; electron_donor:S; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:no
+    43	# (dissimilatory, for energy)
+    44	# (dissimilatory, for energy)
+    45	# (dissimilatory, for energy)
+    46	manganese_oxidation			elements:Mn; main_element:Mn; electron_donor:Mn; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:no
+    47	manganese_respiration			elements:Mn; main_element:Mn; electron_donor:variable; electron_acceptor:Mn; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+    48	ligninolysis			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    49	fermentation			elements:C; main_element:C; electron_donor:C; electron_acceptor:none; aerobic:no; exclusively_prokaryotic:no; light_dependent:no
+    50	# other than lignin, chitin, xylan, cellulose, methanol, methane, aromatic hydrocarbons
+    51	#(incomplete list)
+    52	# Note: Any existing strain-level resolution was omitted.
+    53	# Note: Any existing strain-level resolution was omitted.
+    54	# Note: Any existing strain-level resolution was omitted.
+    55	# Note: Any existing strain-level resolution was omitted.
+    56	# Note: Any existing strain-level resolution was omitted.
+    57	# Note: Any existing strain-level resolution was omitted.
+    58	human_pathogens_all			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    59	# (incomplete list)
+    60	human_gut			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    61	human_associated			elements:variable; main_element:variable; electron_donor:variable; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    62	mammal_gut			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    63	# (incomplete list)
+    64	plant_pathogen			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    65	# oil, crude oil, kerosene
+    66	aromatic_hydrocarbon_degradation			elements:C,H; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    67	# non-lignin, non-xylan
+    68	aliphatic_non_methane_hydrocarbon_degradation			elements:C,H; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    69	hydrocarbon_degradation			elements:C,H; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    70	# dissimilatory Fe oxidation, lithotrophically or heterotrophically, not for photosynthesis
+    71	iron_respiration			elements:Fe; main_element:Fe; electron_donor:variable; electron_acceptor:Fe; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+    72	# dissimilatory nitrate respiration
+    73	# assimilatory or dissimilatory
+    74	# dissimilatory reduction of nitrogen compounds
+    75	fumarate_respiration			elements:C; main_element:C; electron_donor:variable; electron_acceptor:C; aerobic:no; exclusively_prokaryotic:yes; light_dependent:no
+    76	intracellular_parasites			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    77	chlorate_reducers			elements:C; main_element:C; electron_donor:variable; electron_acceptor:Cl; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    78	predatory_or_exoparasitic			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no
+    79	chloroplasts			elements:C,O; main_element:C; electron_donor:O; electron_acceptor:C; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:yes
+    80	# non-chloroplasts
+    81	# non-chloroplasts
+    82	anoxygenic_photoautotrophy_H2_oxidizing			elements:H,C; main_element:H; electron_donor:H; electron_acceptor:C; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:yes
+    83	# anoxygenic photoautotrophy using reduced sulfur compounds for electrons
+    84	anoxygenic_photoautotrophy_Fe_oxidizing			elements:Fe,C; main_element:Fe; electron_donor:Fe; electron_acceptor:C; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:yes
+    85	anoxygenic_photoautotrophy			elements:C,variable; main_element:variable; electron_donor:variable; electron_acceptor:C; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:yes
+    86	oxygenic_photoautotrophy			elements:C,O; main_element:C; electron_donor:O; electron_acceptor:C; aerobic:yes; exclusively_prokaryotic:no; light_dependent:yes
+    87	photoautotrophy			elements:C,variable; main_element:C; electron_donor:variable; electron_acceptor:C; aerobic:variable; exclusively_prokaryotic:no; light_dependent:yes
+    88	# a type of photoheterotrophy
+    89	photoheterotrophy			elements:C; main_element:C; electron_donor:C; electron_acceptor:C; aerobic:variable; exclusively_prokaryotic:yes; light_dependent:yes
+    90	phototrophy			elements:variable; main_element:variable; electron_donor:variable; electron_acceptor:C; aerobic:variable; exclusively_prokaryotic:no; light_dependent:yes
+    91	# phthalate isomers and esters, dimethyl phthalate, terephthalate, polyurethane
+    92	# (urease positive, urea hydrolysis, urea utilization for nitrogen or energy)
+    93	# (acetate generation via CO2 or CO respiration)
+    94	chemoheterotrophy			elements:C; main_element:C; electron_donor:C; electron_acceptor:variable; aerobic:variable; exclusively_prokaryotic:no; light_dependent:no

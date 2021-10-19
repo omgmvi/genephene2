@@ -1,0 +1,7 @@
+{ "model" : {
+    "package" : "caret",
+    "model" : "glmnet",
+    "PCA" : "None",
+    "train_CV_method": "cv"
+    }
+}

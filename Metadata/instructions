@@ -1,0 +1,24 @@
+# Downloading the ncbi database summary
+
+wget https://ftp.ncbi.nlm.nih.gov/genomes/refseq/assembly_summary_refseq.txt
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/README_assembly_summary.txt
+
+# Reading the columns of the assembly_symmary_refseq.txt file
+head assembly_summary_refseq.txt -n 2|tail -n +2 |cut -d ' ' -f 1 --complement|tr '\t' '\n'
+
+# To retrieve the name of available species
+tail assembly_summary_refseq.txt -n +3|head -n 10  |cut -f 8,5
+
+# To see a single record (obviosly, better to write an script)
+head assembly_summary_refseq.txt -n 10|tail -n +10|tr '\t' '\n'
+
+# to untar Sebs data file
+mkdir odin_data/
+tar -xvf odin_data.tar -C odin_data/
+#To have a look to the column of assembly
+head assembly_summary_refseq.txt -n 2|tail -n 1 |tr -d '#'> temp
+cat assembly_summary_refseq.txt |grep "Bacteroides caccae" -P >> temp
+cat temp|column -s , -t |less -#2 -N -S
+rm temp
+
+

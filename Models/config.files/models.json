@@ -1,0 +1,16 @@
+{ "models" :[
+    { "model" : {
+        "package" : "caret",
+        "model" : "glmnet",
+        "PCA" : "None",
+        "train_CV_method": "LOOCV"
+            }
+    },
+    { "model" : {
+        "package" : "caret",
+        "model" : "Naive_Bayes",
+        "PCA" : "None",
+        "train_CV_method": "LOOCV"
+        }
+    }
+]}

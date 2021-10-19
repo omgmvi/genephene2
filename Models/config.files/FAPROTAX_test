@@ -1,0 +1,33 @@
+{
+    "Database" : "FAPROTAX",
+
+    "Phenotype" :
+    {
+        "Folder_Phenotype" : "/home/ubuntu/Databases/FAPROTAX",
+        "Phenotypes" : [
+                            {"PhenotypeDB":"FAPROTAX.tsv",
+                            "Phenotypes" :["methanotrophy","acetoclastic_methanogenesis","methanogenesis_using_formate","methanogenesis_by_CO2_reduction_with_H2",
+                            "photoautotrophy","aerobic_anoxygenic_phototrophy","photoheterotrophy","phototrophy","plastic_degradation","ureolysis","reductive_acetogenesis","chemoheterotrophy"]}
+                        ],
+        "Bacterial_metadata_columns" : ["Name","Genus","Species","Strain"],
+        "NA_substitution" : "NA2level",
+        "NA_substitution_value" : "Unknown"
+    },
+    "Taxonomy" :
+    {
+        "Folder_Taxonomy": "/home/ubuntu/Taxonomy/FAPROTAX/",
+        "TaxonomyDB":"SpeciesTaxID.tsv"
+    },
+
+    "Metadata":{"Folder_Metadata" : "/home/ubuntu/Metadata/FAPROTAX",
+                "Taxa2assemblyDB" : "TaxID2Genome_metadata.tsv"},
+
+    "Genomes": [
+        {
+            "Genome":"KEGG",
+            "Folder_Genome" : "/home/ubuntu/Genomes/FAPROTAX/BagOfWords_Genome",
+            "GenomeDB" : "KEGG_genome.tsv",
+            "Pattern_gene_columns" : "K\\d+",
+            "Pattern_genomic_table_columns" : "K\\d+|GenomeID"}
+    ]
+}

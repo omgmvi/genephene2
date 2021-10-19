@@ -1,0 +1,120 @@
+tmp
+Cell shape	Coverage:  100 %
+Gram reaction	Coverage:  75 %
+Motility	Coverage:  83.55 %
+1-butanol	Coverage:  16.45 %
+2-butanol	Coverage:  32.89 %
+Isobutanol	Coverage:  19.74 %
+2-propanol	Coverage:  44.08 %
+Acetate	Coverage:  84.87 %
+Butanol	Coverage:  25 %
+Carbon Monoxide	Coverage:  7.24 %
+Cyclopentanol	Coverage:  11.18 %
+Dimethylamine	Coverage:  46.71 %
+Dimethyl sulfide	Coverage:  23.03 %
+Ethanol	Coverage:  48.68 %
+Formate collections	Coverage:  90.79 %
+H2+CO2	Coverage:  96.71 %
+H2+methanol	Coverage:  17.11 %
+Methanol	Coverage:  80.92 %
+Methylamine	Coverage:  50.66 %
+Propanol	Coverage:  16.45 %
+Propionate	Coverage:  16.45 %
+Trimethylamine	Coverage:  69.08 %
+Additional acetate	Coverage:  7.89 %
+Additional cysteine	Coverage:  1.32 %
+Additional Fe	Coverage:  0.66 %
+Additional Ni	Coverage:  0.66 %
+Additional W	Coverage:  0.66 %
+Additional yeast extract	Coverage:  13.16 %
+Additional vitamins	Coverage:  0.66 %
+Additional generally organic compounds	Coverage:  0.66 %
+Additional tungsten	Coverage:  8.55 %
+Additional microelement solution	Coverage:  0.66 %
+Additional casamino acids	Coverage:  0.66 %
+Additional selenite	Coverage:  0.66 %
+Additional tripticase	Coverage:  0.66 %
+Additional selenate	Coverage:  2.63 %
+Additional selenium	Coverage:  2.63 %
+Additional pantoyllacetone	Coverage:  0.66 %
+Additional rumen fluid	Coverage:  1.32 %
+Additional CoM	Coverage:  0.66 %
+Additional potasium	Coverage:  0.66 %
+Additional peptone	Coverage:  1.97 %
+Additional methanol+H2	Coverage:  0.66 %
+Additional trypticase	Coverage:  0.66 %
+Additional methylamine	Coverage:  0.66 %
+Additional methanol	Coverage:  1.32 %
+Additional CO/H2	Coverage:  0.66 %
+Additional monomethylamine	Coverage:  0.66 %
+Additional dimethylamine	Coverage:  0.66 %
+Additional H2/C02	Coverage:  0.66 %
+Additional trimethylamine	Coverage:  0.66 %
+Additional methanethiol	Coverage:  0.66 %
+Additional no supplement	Coverage:  0.66 %
+Additional aminoacids	Coverage:  0.66 %
+Additional biotin	Coverage:  0.66 %
+Additional Fe2O3	Coverage:  0.66 %
+Additional HS-coM	Coverage:  0.66 %
+Minimum tripticase peptone/yeast extract	Coverage:  0.66 %
+Minimum yeast extract	Coverage:  18.42 %
+Minimum vitamin	Coverage:  3.95 %
+Minimum acetate	Coverage:  26.32 %
+Minimum aminoacids	Coverage:  0.66 %
+Minimum rumen fluid	Coverage:  3.29 %
+Minimum casamino acids	Coverage:  1.32 %
+Minimum nutrient broth	Coverage:  0.66 %
+Minimum trypticase	Coverage:  2.63 %
+Minimum branched-chain	Coverage:  1.32 %
+Minimum coenzyme M	Coverage:  3.29 %
+Minimum tripticase peptone	Coverage:  3.29 %
+Minimum MB medium	Coverage:  0.66 %
+Minimum Na2S	Coverage:  1.32 %
+Minimum NaCl	Coverage:  1.32 %
+Minimum 2methylbutyrate	Coverage:  0.66 %
+Minimum Ca	Coverage:  0.66 %
+Minimum Co	Coverage:  0.66 %
+Minimum CO2	Coverage:  1.32 %
+Minimum Fe	Coverage:  0.66 %
+Minimum isoleucine	Coverage:  0.66 %
+Minimum leucine	Coverage:  0.66 %
+Minimum Mg	Coverage:  0.66 %
+Minimum propionate	Coverage:  0.66 %
+Minimum SeO4	Coverage:  0.66 %
+Minimum Ni	Coverage:  0.66 %
+Minimum tungsten	Coverage:  1.97 %
+Minimum casitone	Coverage:  0.66 %
+Minimum trace element solution	Coverage:  0.66 %
+Minimum unidentified	Coverage:  0.66 %
+Minimum heavy metal solution	Coverage:  0.66 %
+Minimum peptone	Coverage:  1.32 %
+Minimum riboflavin	Coverage:  0.66 %
+Minimum thiamine	Coverage:  1.32 %
+Minimum vitamin B12	Coverage:  1.32 %
+Minimum aminobenzoate	Coverage:  0.66 %
+Minimum biotin	Coverage:  4.61 %
+Minimum acetate/ethanol	Coverage:  0.66 %
+Minimum H2+methanol	Coverage:  1.32 %
+Minimum thiamin	Coverage:  0.66 %
+Minimum tryptone	Coverage:  0.66 %
+Other methane tiol	Coverage:  0.66 %
+Other 1-pentanol	Coverage:  0.66 %
+Other pyruvate	Coverage:  8.55 %
+Other butyrate	Coverage:  2.63 %
+Other fructose	Coverage:  0.66 %
+Other glucose	Coverage:  4.61 %
+Other lactate	Coverage:  6.58 %
+Other theophyline	Coverage:  1.97 %
+Other trimethoxybenzoate	Coverage:  1.97 %
+Other theobromine	Coverage:  1.97 %
+Other valerate	Coverage:  0.66 %
+Other cyclohexanol	Coverage:  1.32 %
+Other 2-pentanol	Coverage:  1.97 %
+Other alanine	Coverage:  0.66 %
+Other formaldehyde	Coverage:  0.66 %
+Other fumarate	Coverage:  0.66 %
+Other leucine	Coverage:  0.66 %
+Other 2;3-butanodiol	Coverage:  0.66 %
+Other cycloheksanol	Coverage:  0.66 %
+Other ethyl acetate	Coverage:  0.66 %
+Other H2+methanol	Coverage:  0.66 %

@@ -1,0 +1,421 @@
+assembly_accession	taxid	species_taxid	organism_name
+GCF_002287175.1	2161	2161	Methanobacterium bryantii
+GCF_001458655.1	2162	2162	Methanobacterium formicicum
+GCF_000762265.1	2162	2162	Methanobacterium formicicum
+GCF_002252585.1	2173	2173	Methanobrevibacter smithii
+GCF_901111125.1	2173	2173	Methanobrevibacter smithii
+GCF_002813085.1	2173	2173	Methanobrevibacter smithii
+GCF_900650605.1	2173	2173	Methanobrevibacter smithii
+GCF_902384055.1	2173	2173	Methanobrevibacter smithii
+GCF_000824705.1	2173	2173	Methanobrevibacter smithii
+GCF_900654205.1	2173	2173	Methanobrevibacter smithii
+GCF_018784305.1	2173	2173	Methanobrevibacter smithii
+GCF_902387325.1	2173	2173	Methanobrevibacter smithii
+GCF_003722055.1	2177	2177	Methanohalophilus halophilus
+GCF_001889405.1	2177	2177	Methanohalophilus halophilus
+GCF_900106905.1	2177	2177	Methanohalophilus halophilus
+GCF_017875395.1	2188	2188	Methanococcus voltae
+GCF_017875565.1	2188	2188	Methanococcus voltae
+GCF_017875625.1	2188	2188	Methanococcus voltae
+GCF_001571405.1	2200	2200	Methanoculleus thermophilus
+GCF_900101055.1	2200	2200	Methanoculleus thermophilus
+GCF_000979205.1	2209	2209	Methanosarcina mazei
+GCF_000979825.1	2209	2209	Methanosarcina mazei
+GCF_000979275.1	2209	2209	Methanosarcina mazei
+GCF_000979845.1	2209	2209	Methanosarcina mazei
+GCF_000978965.1	2209	2209	Methanosarcina mazei
+GCF_000979125.1	2209	2209	Methanosarcina mazei
+GCF_000978945.1	2209	2209	Methanosarcina mazei
+GCF_000979915.1	2209	2209	Methanosarcina mazei
+GCF_000979555.1	2209	2209	Methanosarcina mazei
+GCF_000979015.1	2209	2209	Methanosarcina mazei
+GCF_000979105.1	2209	2209	Methanosarcina mazei
+GCF_000980005.1	2209	2209	Methanosarcina mazei
+GCF_000979755.1	2209	2209	Methanosarcina mazei
+GCF_000979925.1	2209	2209	Methanosarcina mazei
+GCF_000979025.1	2209	2209	Methanosarcina mazei
+GCF_000980085.1	2209	2209	Methanosarcina mazei
+GCF_000980075.1	2209	2209	Methanosarcina mazei
+GCF_000979675.1	2209	2209	Methanosarcina mazei
+GCF_000979115.1	2209	2209	Methanosarcina mazei
+GCF_000979095.1	2209	2209	Methanosarcina mazei
+GCF_000979895.1	2209	2209	Methanosarcina mazei
+GCF_000979195.1	2209	2209	Methanosarcina mazei
+GCF_000979265.1	2209	2209	Methanosarcina mazei
+GCF_000979255.1	2209	2209	Methanosarcina mazei
+GCF_000978955.1	2209	2209	Methanosarcina mazei
+GCF_000979495.1	2209	2209	Methanosarcina mazei
+GCF_000979585.1	2209	2209	Methanosarcina mazei
+GCF_000979035.1	2209	2209	Methanosarcina mazei
+GCF_000979765.1	2209	2209	Methanosarcina mazei
+GCF_000979345.1	2209	2209	Methanosarcina mazei
+GCF_000979855.1	2209	2209	Methanosarcina mazei
+GCF_000979175.1	2209	2209	Methanosarcina mazei
+GCF_000979375.1	2209	2209	Methanosarcina mazei
+GCF_000980055.1	2209	2209	Methanosarcina mazei
+GCF_005485005.1	2209	2209	Methanosarcina mazei
+GCF_010706455.1	2209	2209	Methanosarcina mazei
+GCF_000979515.1	2209	2209	Methanosarcina mazei
+GCF_000979505.1	2209	2209	Methanosarcina mazei
+GCF_000979045.1	2209	2209	Methanosarcina mazei
+GCF_000980135.1	2209	2209	Methanosarcina mazei
+GCF_000979575.1	2209	2209	Methanosarcina mazei
+GCF_000979935.1	2209	2209	Methanosarcina mazei
+GCF_000979685.1	2209	2209	Methanosarcina mazei
+GCF_000979185.1	2209	2209	Methanosarcina mazei
+GCF_000980175.1	2209	2209	Methanosarcina mazei
+GCF_000980025.1	2209	2209	Methanosarcina mazei
+GCF_000980155.1	2209	2209	Methanosarcina mazei
+GCF_000979335.1	2209	2209	Methanosarcina mazei
+GCF_000979735.1	2209	2209	Methanosarcina mazei
+GCF_000979815.1	2209	2209	Methanosarcina mazei
+GCF_000978935.1	2209	2209	Methanosarcina mazei
+GCF_000979665.1	2209	2209	Methanosarcina mazei
+GCF_000979745.1	2209	2209	Methanosarcina mazei
+GCF_000979635.1	2209	2209	Methanosarcina mazei
+GCF_000979595.1	2209	2209	Methanosarcina mazei
+GCF_000979995.1	2209	2209	Methanosarcina mazei
+GCF_000979655.1	2209	2209	Methanosarcina mazei
+GCF_000980105.1	2209	2209	Methanosarcina mazei
+GCF_900116525.1	2210	2210	Methanosarcina thermophila
+GCF_900773915.1	2226	2226	Methanococcoides methylutens
+GCF_000765475.1	2226	2226	Methanococcoides methylutens
+GCF_003265405.1	2317	2317	Methanosphaera stadtmanae
+GCF_902384015.1	2317	2317	Methanosphaera stadtmanae
+GCF_017873415.1	38023	38023	Methanolobus bombayensis
+GCF_900100715.1	38026	38026	Methanolobus vulcani
+GCF_006546655.1	38026	38026	Methanolobus vulcani
+GCF_013760955.1	39152	39152	Methanococcus maripaludis
+GCF_017875815.1	39152	39152	Methanococcus maripaludis
+GCF_013761165.1	39152	39152	Methanococcus maripaludis
+GCF_013761135.1	39152	39152	Methanococcus maripaludis
+GCF_013761105.1	39152	39152	Methanococcus maripaludis
+GCF_013761085.1	39152	39152	Methanococcus maripaludis
+GCF_016907005.1	39152	39152	Methanococcus maripaludis
+GCF_014207325.1	39152	39152	Methanococcus maripaludis
+GCF_013761225.1	39152	39152	Methanococcus maripaludis
+GCF_013761205.1	39152	39152	Methanococcus maripaludis
+GCF_014203295.1	39152	39152	Methanococcus maripaludis
+GCF_013761055.1	39152	39152	Methanococcus maripaludis
+GCF_002945325.1	39152	39152	Methanococcus maripaludis
+GCF_013761045.1	39152	39152	Methanococcus maripaludis
+GCF_003052125.1	39152	39152	Methanococcus maripaludis
+GCF_014207315.1	39152	39152	Methanococcus maripaludis
+GCF_002761295.1	39664	39664	Methanohalophilus portucalensis
+GCF_001639285.1	47311	47311	Methanobrevibacter cuticularis
+GCF_003385755.1	49339	49339	Methanothermobacter defluvii
+GCF_001639295.1	49547	49547	Methanobrevibacter curvatus
+GCF_003722155.1	51203	51203	Methanohalophilus euhalobius
+GCF_002973515.1	51203	51203	Methanohalophilus euhalobius
+GCF_900215215.1	51203	51203	Methanohalophilus euhalobius
+GCF_004340645.1	51203	51203	Methanohalophilus euhalobius
+GCF_001639265.1	55758	55758	Methanobrevibacter filiformis
+GCF_012933645.1	59277	59277	Methanobacterium subterraneum
+GCF_002813695.1	59277	59277	Methanobacterium subterraneum
+GCF_002813655.1	59277	59277	Methanobacterium subterraneum
+GCF_001639275.1	66851	66851	Methanobrevibacter oralis
+GCF_902384065.1	66851	66851	Methanobrevibacter oralis
+GCF_900289035.1	66851	66851	Methanobrevibacter oralis
+GCF_013377755.1	81417	81417	Methanofollis tationis
+GCF_018495055.1	83986	83986	Methanoculleus bourgensis
+GCF_900036045.1	83986	83986	Methanoculleus bourgensis
+GCF_004363215.1	91560	91560	Methanimicrococcus blatticola
+GCF_900095295.1	118062	118062	Methanobacterium congolense
+GCF_900095385.1	118126	118126	Methanoculleus chikugoensis
+GCF_014889545.1	145262	145262	Methanothermobacter thermautotrophicus
+GCF_018132105.1	156457	156457	Methanocalculus chunghsingensis
+GCF_900109595.1	190974	190974	Methanobrevibacter gottschalkii
+GCF_003111625.1	190975	190975	Methanobrevibacter thaueri
+GCF_003111605.1	190976	190976	Methanobrevibacter woesei
+GCF_000784355.1	230356	230356	Methanolacinia paynteri
+GCF_001477655.1	230361	230361	Methanobrevibacter millerae
+GCF_900103415.1	230361	230361	Methanobrevibacter millerae
+GCF_900114585.1	294671	294671	Methanobrevibacter olleyae
+GCF_001563245.1	294671	294671	Methanobrevibacter olleyae
+GCF_000746075.1	386456	386456	Methanobacterium arcticum
+GCF_000745485.1	408577	408577	Methanobacterium veterum
+GCF_900114835.1	487685	487685	Methanolobus profundi
+GCF_001571385.1	488124	488124	Methanofollis ethanolicus
+GCF_001602375.1	528314	528314	Methanoculleus horonobensis
+GCF_013388255.1	536044	536044	Methanolobus zinderi
+GCF_017873855.1	547055	547055	Methanolinea mesophila
+GCF_017874195.1	648796	648796	Methanoculleus hydrogenitrophicus
+GCF_003173355.1	668570	668570	Methanospirillum lacunae
+GCF_003264935.1	680118	680118	Methanothermobacter tenebrarum
+GCF_017873625.1	710190	710190	Methanobacterium petrolearium
+GCF_000191585.1	877455	877455	Methanobacterium lacus
+GCF_000744315.1	1036677	1036677	Methanosarcina soligelidi
+GCF_002287235.1	1036679	1036679	Methanosarcina spelaei
+GCF_003149675.1	1077256	1077256	Methanosphaera cuniculi
+GCF_002287195.1	1077256	1077256	Methanosphaera cuniculi
+GCF_902383895.1	1080712	1080712	Methanomassiliicoccus luminyensis
+GCF_902810565.1	1175444	1175444	Methanocella conradii
+GCF_003173335.1	1277351	1277351	Methanospirillum stamsii
+GCF_900111645.1	1353158	1353158	Methanococcoides vulcani
+GCF_900773955.1	1353158	1353158	Methanococcoides vulcani
+GCF_017874375.1	1431282	1431282	Methanohalophilus levihalophilus
+GCF_001017125.1	1550566	1550566	Methanoculleus sediminis
+GCF_002287175.1	2161	2161	Methanobacterium bryantii
+GCF_001458655.1	2162	2162	Methanobacterium formicicum
+GCF_000762265.1	2162	2162	Methanobacterium formicicum
+GCF_000302455.1	1204725	2162	Methanobacterium formicicum DSM 3637
+GCF_000190175.1	911135	2173	Methanobrevibacter smithii TS96C
+GCF_000189855.1	911119	2173	Methanobrevibacter smithii TS146B
+GCF_000189955.1	911124	2173	Methanobrevibacter smithii TS147B
+GCF_900650605.1	2173	2173	Methanobrevibacter smithii
+GCF_900654205.1	2173	2173	Methanobrevibacter smithii
+GCF_002252585.1	2173	2173	Methanobrevibacter smithii
+GCF_000016525.1	420247	2173	Methanobrevibacter smithii ATCC 35061
+GCF_000189915.1	911122	2173	Methanobrevibacter smithii TS146E
+GCF_000189835.1	911118	2173	Methanobrevibacter smithii TS146A
+GCF_002813085.1	2173	2173	Methanobrevibacter smithii
+GCF_000189935.1	911123	2173	Methanobrevibacter smithii TS147A
+GCF_000190155.1	911134	2173	Methanobrevibacter smithii TS96B
+GCF_000189895.1	911121	2173	Methanobrevibacter smithii TS146D
+GCF_902387325.1	2173	2173	Methanobrevibacter smithii
+GCF_901111125.1	2173	2173	Methanobrevibacter smithii
+GCF_000190035.1	911128	2173	Methanobrevibacter smithii TS94C
+GCF_000151245.1	483214	2173	Methanobrevibacter smithii DSM 2375
+GCF_000151225.1	521002	2173	Methanobrevibacter smithii DSM 2374
+GCF_000190115.1	911132	2173	Methanobrevibacter smithii TS95D
+GCF_000189815.1	911117	2173	Methanobrevibacter smithii TS145B
+GCF_000824705.1	2173	2173	Methanobrevibacter smithii
+GCF_000189995.1	911126	2173	Methanobrevibacter smithii TS94A
+GCF_000189975.1	911125	2173	Methanobrevibacter smithii TS147C
+GCF_902384055.1	2173	2173	Methanobrevibacter smithii
+GCF_000190135.1	911133	2173	Methanobrevibacter smithii TS96A
+GCF_000190075.1	911130	2173	Methanobrevibacter smithii TS95B
+GCF_000189795.1	911116	2173	Methanobrevibacter smithii TS145A
+GCF_000190015.1	911127	2173	Methanobrevibacter smithii TS94B
+GCF_000190055.1	911129	2173	Methanobrevibacter smithii TS95A
+GCF_000190095.1	911131	2173	Methanobrevibacter smithii TS95C
+GCF_018784305.1	2173	2173	Methanobrevibacter smithii
+GCF_000025865.1	547558	2176	Methanohalophilus mahii DSM 5219
+GCF_001889405.1	2177	2177	Methanohalophilus halophilus
+GCF_003722055.1	2177	2177	Methanohalophilus halophilus
+GCF_900106905.1	2177	2177	Methanohalophilus halophilus
+GCF_000166095.1	523846	2180	Methanothermus fervidus DSM 2088
+GCF_000376965.1	523845	2186	Methanothermococcus thermolithotrophicus DSM 2095
+GCF_000017165.1	406327	2187	Methanococcus vannielii SB
+GCF_000006175.1	456320	2188	Methanococcus voltae A3
+GCF_017875625.1	2188	2188	Methanococcus voltae
+GCF_017875565.1	2188	2188	Methanococcus voltae
+GCF_017875395.1	2188	2188	Methanococcus voltae
+GCF_000214415.1	880724	2189	Methanotorris igneus Kol 5
+GCF_000091665.1	243232	2190	Methanocaldococcus jannaschii DSM 2661
+GCF_001315945.1	1293041	2197	Methanogenium cariaci JCM 10550
+GCF_000015825.1	368407	2198	Methanoculleus marisnigri JR1
+GCF_900101055.1	2200	2200	Methanoculleus thermophilus
+GCF_001571405.1	2200	2200	Methanoculleus thermophilus
+GCF_000275865.1	28892	2201	Methanofollis liminatans DSM 4140
+GCF_000013445.1	323259	2203	Methanospirillum hungatei JF-1
+GCF_000711215.1	694440	2205	Methanomicrobium mobile BP
+GCF_001027005.1	796385	2208	Methanosarcina barkeri CM1
+GCF_000970065.1	1434106	2208	Methanosarcina barkeri 227
+GCF_000195895.1	269797	2208	Methanosarcina barkeri str. Fusaro
+GCF_000970305.1	1434107	2208	Methanosarcina barkeri 3
+GCF_000970025.1	1434108	2208	Methanosarcina barkeri MS
+GCF_000969985.1	1434109	2208	Methanosarcina barkeri str. Wiesmoor
+GCF_000979595.1	2209	2209	Methanosarcina mazei
+GCF_000970245.1	1434113	2209	Methanosarcina mazei C16
+GCF_000970185.1	1434115	2209	Methanosarcina mazei SarPi
+GCF_000979025.1	2209	2209	Methanosarcina mazei
+GCF_000979275.1	2209	2209	Methanosarcina mazei
+GCF_000979825.1	2209	2209	Methanosarcina mazei
+GCF_000980085.1	2209	2209	Methanosarcina mazei
+GCF_000979265.1	2209	2209	Methanosarcina mazei
+GCF_000970205.1	213585	2209	Methanosarcina mazei S-6
+GCF_000979095.1	2209	2209	Methanosarcina mazei
+GCF_000979555.1	2209	2209	Methanosarcina mazei
+GCF_000980155.1	2209	2209	Methanosarcina mazei
+GCF_000970165.1	1434117	2209	Methanosarcina mazei WWM610
+GCF_000979255.1	2209	2209	Methanosarcina mazei
+GCF_000979205.1	2209	2209	Methanosarcina mazei
+GCF_000979575.1	2209	2209	Methanosarcina mazei
+GCF_000979585.1	2209	2209	Methanosarcina mazei
+GCF_000979515.1	2209	2209	Methanosarcina mazei
+GCF_000980025.1	2209	2209	Methanosarcina mazei
+GCF_000979755.1	2209	2209	Methanosarcina mazei
+GCF_000980075.1	2209	2209	Methanosarcina mazei
+GCF_000979815.1	2209	2209	Methanosarcina mazei
+GCF_000978965.1	2209	2209	Methanosarcina mazei
+GCF_000979635.1	2209	2209	Methanosarcina mazei
+GCF_000979015.1	2209	2209	Methanosarcina mazei
+GCF_000979505.1	2209	2209	Methanosarcina mazei
+GCF_000979125.1	2209	2209	Methanosarcina mazei
+GCF_000979105.1	2209	2209	Methanosarcina mazei
+GCF_010706455.1	2209	2209	Methanosarcina mazei
+GCF_000979375.1	2209	2209	Methanosarcina mazei
+GCF_000980005.1	2209	2209	Methanosarcina mazei
+GCF_000979195.1	2209	2209	Methanosarcina mazei
+GCF_000978945.1	2209	2209	Methanosarcina mazei
+GCF_000980055.1	2209	2209	Methanosarcina mazei
+GCF_000979745.1	2209	2209	Methanosarcina mazei
+GCF_000979335.1	2209	2209	Methanosarcina mazei
+GCF_000979765.1	2209	2209	Methanosarcina mazei
+GCF_000007065.1	192952	2209	Methanosarcina mazei Go1
+GCF_000980175.1	2209	2209	Methanosarcina mazei
+GCF_000978935.1	2209	2209	Methanosarcina mazei
+GCF_000979115.1	2209	2209	Methanosarcina mazei
+GCF_000979035.1	2209	2209	Methanosarcina mazei
+GCF_000979665.1	2209	2209	Methanosarcina mazei
+GCF_000979845.1	2209	2209	Methanosarcina mazei
+GCF_000979995.1	2209	2209	Methanosarcina mazei
+GCF_000979915.1	2209	2209	Methanosarcina mazei
+GCF_000970225.1	1434114	2209	Methanosarcina mazei LYC
+GCF_000979675.1	2209	2209	Methanosarcina mazei
+GCF_000979345.1	2209	2209	Methanosarcina mazei
+GCF_000979185.1	2209	2209	Methanosarcina mazei
+GCF_000979935.1	2209	2209	Methanosarcina mazei
+GCF_000979855.1	2209	2209	Methanosarcina mazei
+GCF_000979655.1	2209	2209	Methanosarcina mazei
+GCF_000979045.1	2209	2209	Methanosarcina mazei
+GCF_000979495.1	2209	2209	Methanosarcina mazei
+GCF_005485005.1	2209	2209	Methanosarcina mazei
+GCF_000980135.1	2209	2209	Methanosarcina mazei
+GCF_000978955.1	2209	2209	Methanosarcina mazei
+GCF_000979925.1	2209	2209	Methanosarcina mazei
+GCF_000979685.1	2209	2209	Methanosarcina mazei
+GCF_000979895.1	2209	2209	Methanosarcina mazei
+GCF_000980105.1	2209	2209	Methanosarcina mazei
+GCF_000979175.1	2209	2209	Methanosarcina mazei
+GCF_000979735.1	2209	2209	Methanosarcina mazei
+GCF_900116525.1	2210	2210	Methanosarcina thermophila
+GCF_000969885.1	523844	2210	Methanosarcina thermophila TM-1
+GCF_000969925.1	1434121	2210	Methanosarcina thermophila CHTI-55
+GCF_000007345.1	188937	2214	Methanosarcina acetivorans C2A
+GCF_000969905.1	1434123	2215	Methanosarcina vacuolata Z-761
+GCF_000504205.1	1090322	2221	Methanolobus tindarius DSM 2278
+GCF_000204415.1	990316	2223	Methanothrix soehngenii GP6
+GCF_000014945.1	349307	2224	Methanothrix thermoacetophila PT
+GCF_000765475.1	2226	2226	Methanococcoides methylutens
+GCF_000970325.1	1434104	2226	Methanococcoides methylutens MM1
+GCF_900773915.1	2226	2226	Methanococcoides methylutens
+GCF_000243255.1	937775	2315	Methanoplanus limicola DSM 2279
+GCF_902384015.1	2317	2317	Methanosphaera stadtmanae
+GCF_000012545.1	339860	2317	Methanosphaera stadtmanae DSM 3091
+GCF_003265405.1	2317	2317	Methanosphaera stadtmanae
+GCF_000007185.1	190192	2320	Methanopyrus kandleri AV19
+GCF_000196655.1	644295	2322	Methanohalobium evestigatum Z-7303
+GCF_000013725.1	259564	29291	Methanococcoides burtonii DSM 6242
+GCF_017873415.1	38023	38023	Methanolobus bombayensis
+GCF_006546655.1	38026	38026	Methanolobus vulcani
+GCF_900100715.1	38026	38026	Methanolobus vulcani
+GCF_000970145.1	1434118	38027	Methanosarcina siciliae C2J
+GCF_000970125.1	1434119	38027	Methanosarcina siciliae HI350
+GCF_000970085.1	1434120	38027	Methanosarcina siciliae T4/M
+GCF_000828535.1	637914	39152	Methanococcus maripaludis KA1
+GCF_013760955.1	39152	39152	Methanococcus maripaludis
+GCF_017875815.1	39152	39152	Methanococcus maripaludis
+GCF_014207325.1	39152	39152	Methanococcus maripaludis
+GCF_002945325.1	39152	39152	Methanococcus maripaludis
+GCF_013761085.1	39152	39152	Methanococcus maripaludis
+GCF_000016125.1	402880	39152	Methanococcus maripaludis C5
+GCF_014203295.1	39152	39152	Methanococcus maripaludis
+GCF_013761165.1	39152	39152	Methanococcus maripaludis
+GCF_000017225.1	426368	39152	Methanococcus maripaludis C7
+GCF_013761225.1	39152	39152	Methanococcus maripaludis
+GCF_013761055.1	39152	39152	Methanococcus maripaludis
+GCF_013761205.1	39152	39152	Methanococcus maripaludis
+GCF_000828555.1	637915	39152	Methanococcus maripaludis OS7
+GCF_014207315.1	39152	39152	Methanococcus maripaludis
+GCF_003052125.1	39152	39152	Methanococcus maripaludis
+GCF_000011585.1	267377	39152	Methanococcus maripaludis S2
+GCF_013761135.1	39152	39152	Methanococcus maripaludis
+GCF_000018485.1	444158	39152	Methanococcus maripaludis C6
+GCF_013761045.1	39152	39152	Methanococcus maripaludis
+GCF_000220645.1	1053692	39152	Methanococcus maripaludis X1
+GCF_013761105.1	39152	39152	Methanococcus maripaludis
+GCF_016907005.1	39152	39152	Methanococcus maripaludis
+GCF_000513315.1	1401244	39441	Methanobrevibacter arboriphilus ANOR1
+GCF_002072215.1	1300164	39441	Methanobrevibacter arboriphilus JCM 13429 = DSM 1125
+GCF_001315885.1	1293039	39441	Methanobrevibacter arboriphilus JCM 9315
+GCF_900177455.1	523843	39664	Methanohalophilus portucalensis FDF-1
+GCF_003722115.1	523843	39664	Methanohalophilus portucalensis FDF-1
+GCF_002761295.1	39664	39664	Methanohalophilus portucalensis
+GCF_001888095.1	523843	39664	Methanohalophilus portucalensis FDF-1
+GCF_000217995.1	679901	39669	Methanosalsum zhilinae DSM 4017
+GCF_000017185.1	419665	42879	Methanococcus aeolicus Nankai-3
+GCF_001639285.1	47311	47311	Methanobrevibacter cuticularis
+GCF_003385755.1	49339	49339	Methanothermobacter defluvii
+GCF_001639295.1	49547	49547	Methanobrevibacter curvatus
+GCF_002973515.1	51203	51203	Methanohalophilus euhalobius
+GCF_003722155.1	51203	51203	Methanohalophilus euhalobius
+GCF_004340645.1	51203	51203	Methanohalophilus euhalobius
+GCF_900215215.1	51203	51203	Methanohalophilus euhalobius
+GCF_000147875.1	679926	54120	Methanolacinia petrolearia DSM 11571
+GCF_001639265.1	55758	55758	Methanobrevibacter filiformis
+GCF_002813695.1	59277	59277	Methanobacterium subterraneum
+GCF_012933645.1	59277	59277	Methanobacterium subterraneum
+GCF_002813655.1	59277	59277	Methanobacterium subterraneum
+GCF_000529525.1	1415626	66851	Methanobrevibacter oralis JMR01
+GCF_001639275.1	66851	66851	Methanobrevibacter oralis
+GCF_900289035.1	66851	66851	Methanobrevibacter oralis
+GCF_902384065.1	66851	66851	Methanobrevibacter oralis
+GCF_000092305.1	573063	67760	Methanocaldococcus infernus ME
+GCF_000430905.1	1122230	71518	Methanocorpusculum bavaricum DSM 4179
+GCF_000024625.1	579137	73913	Methanocaldococcus vulcanius M7
+GCF_013377755.1	81417	81417	Methanofollis tationis
+GCF_000023985.1	573064	83171	Methanocaldococcus fervens AG86
+GCF_000024185.1	634498	83816	Methanobrevibacter ruminantium M1
+GCF_000015765.1	410358	83984	Methanocorpusculum labreanum Z
+GCF_018495055.1	83986	83986	Methanoculleus bourgensis
+GCF_900036045.1	83986	83986	Methanoculleus bourgensis
+GCF_000304355.2	1201294	83986	Methanoculleus bourgensis MS2
+GCF_004363215.1	91560	91560	Methanimicrococcus blatticola
+GCF_000328665.1	867904	101192	Methanomethylovorans hollandica DSM 15978
+GCF_900095295.1	118062	118062	Methanobacterium congolense
+GCF_900095385.1	118126	118126	Methanoculleus chikugoensis
+GCF_000008645.1	187420	145262	Methanothermobacter thermautotrophicus str. Delta H
+GCF_014889545.1	145262	145262	Methanothermobacter thermautotrophicus
+GCF_000145295.1	79929	145263	Methanothermobacter marburgensis str. Marburg
+GCF_000179575.2	647113	155863	Methanothermococcus okinawensis IH1
+GCF_018132105.1	156457	156457	Methanocalculus chunghsingensis
+GCF_000970265.1	1434111	170861	Methanosarcina lacustris Z-7289
+GCF_900109595.1	190974	190974	Methanobrevibacter gottschalkii
+GCF_003814835.1	1122229	190974	Methanobrevibacter gottschalkii DSM 11977
+GCF_003111625.1	190975	190975	Methanobrevibacter thaueri
+GCF_003111605.1	190976	190976	Methanobrevibacter woesei
+GCF_000621965.1	1410664	190977	Methanobrevibacter wolinii SH
+GCF_000243455.1	647171	213185	Methanotorris formicicus Mc-S-70
+GCF_000784355.1	230356	230356	Methanolacinia paynteri
+GCF_900103415.1	230361	230361	Methanobrevibacter millerae
+GCF_001477655.1	230361	230361	Methanobrevibacter millerae
+GCF_900114585.1	294671	294671	Methanobrevibacter olleyae
+GCF_001563245.1	294671	294671	Methanobrevibacter olleyae
+GCF_000235565.1	1110509	301375	Methanosaeta harundinacea 6Ac
+GCF_000017625.1	456442	358766	Methanoregula boonei 6A8
+GCF_000746075.1	386456	386456	Methanobacterium arcticum
+GCF_000745485.1	408577	408577	Methanobacterium veterum
+GCF_000970285.1	1434110	418008	Methanosarcina horonobensis HB-1 = JCM 15518
+GCF_000021965.1	521011	475088	Methanosphaerula palustris E1-9c
+GCF_900114835.1	487685	487685	Methanolobus profundi
+GCF_001571385.1	488124	488124	Methanofollis ethanolicus
+GCF_001602375.1	528314	528314	Methanoculleus horonobensis
+GCF_013388255.1	536044	536044	Methanolobus zinderi
+GCF_017873855.1	547055	547055	Methanolinea mesophila
+GCF_000011005.1	304371	570267	Methanocella paludicola SANAE
+GCF_017874195.1	648796	648796	Methanoculleus hydrogenitrophicus
+GCF_000711905.1	1122233	660064	Methermicoccus shengliensis DSM 18856
+GCF_000363885.1	1069083	667126	Methanocaldococcus villosus KIN24-T80
+GCF_000371805.1	1069083	667126	Methanocaldococcus villosus KIN24-T80
+GCF_003173355.1	668570	668570	Methanospirillum lacunae
+GCF_003264935.1	680118	680118	Methanothermobacter tenebrarum
+GCF_017873625.1	710190	710190	Methanobacterium petrolearium
+GCF_000191585.1	877455	877455	Methanobacterium lacus
+GCF_000327485.1	593750	882104	Methanoregula formicica SMSP
+GCF_000744315.1	1036677	1036677	Methanosarcina soligelidi
+GCF_002287235.1	1036679	1036679	Methanosarcina spelaei
+GCF_002287195.1	1077256	1077256	Methanosphaera cuniculi
+GCF_003149675.1	1077256	1077256	Methanosphaera cuniculi
+GCF_902383895.1	1080712	1080712	Methanomassiliicoccus luminyensis
+GCF_000308215.1	1175296	1080712	Methanomassiliicoccus luminyensis B10
+GCF_902810565.1	1175444	1175444	Methanocella conradii
+GCF_000251105.1	1041930	1175444	Methanocella conradii HZ254
+GCF_000063445.1	351160	1175445	Methanocella arvoryzae MRE50
+GCF_003173335.1	1277351	1277351	Methanospirillum stamsii
+GCF_000320505.1	1214066	1348249	Methanobrevibacter boviskoreani JH1
+GCF_900111645.1	1353158	1353158	Methanococcoides vulcani
+GCF_900773955.1	1353158	1353158	Methanococcoides vulcani
+GCF_017874375.1	1431282	1431282	Methanohalophilus levihalophilus
+GCF_001017125.1	1550566	1550566	Methanoculleus sediminis

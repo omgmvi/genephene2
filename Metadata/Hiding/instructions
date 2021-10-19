@@ -1,0 +1,9 @@
+#This folder contain two files generate with the script TaxID2Refseq.R located in the base folder Genomes/scripts 
+# It is a common script to generate the files for FAPROTAX, GenePhene2 and soon Hiding in Plain Sight 
+
+# The two files are translation tables (to join) for linking the Phenotype Database "Name" columns to the NCBI TaxID (in the folder Taxonomy) and the TaxID with the Reference Genome - Finally 
+# The Genome links to columns containing the number of copies for a given ortholog.
+
+# That last version of the genomes are made by Seb and he needs a file that merely contain the ftp address to the genome, the genome ID and the TaxID (for linking to the DB)
+
+Rscript ../scripts/TaxID2Refseq.R

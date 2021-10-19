@@ -1,0 +1,11 @@
+#This genome is downloaded from the first version of GenePhene from 
+#https://github.com/chrisquince/genephene/blob/master/datafiles/taxid_ko_matrix_all_full.csv.gz
+
+# and then adapted to the structure of the other Genomes by
+
+cat taxid_ko_matrix_all_full.csv |tr ',' '\t' > KEGG_genome.tsv
+echo 'GenomeID' $(head KEGG_genome.tsv -n 1|sed 's/ko://g'|cut -f 2-) |tr ' ' '\t' > Genome_Header.txt 
+tail KEGG_genome.tsv -n +2 >> Genome_Header.txt
+mv Genome_Header.txt KEGG_genome.tsv
+cat KEGG_genome.tsv |cut -f 2 --complement >KEGG2
+mv KEGG2 KEGG_genome.tsv

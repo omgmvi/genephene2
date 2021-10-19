@@ -1,0 +1,119 @@
+Cell shape
+Gram reaction
+Motility
+1-butanol
+2-butanol
+Isobutanol
+2-propanol
+Acetate
+Butanol
+Carbon Monoxide
+Cyclopentanol
+Dimethylamine
+Dimethyl sulfide
+Ethanol
+Formate collections
+H2+CO2
+H2+methanol
+Methanol
+Methylamine
+Propanol
+Propionate
+Trimethylamine
+Additional acetate
+Additional cysteine
+Additional Fe
+Additional Ni
+Additional W
+Additional yeast extract
+Additional vitamins
+Additional generally organic compounds
+Additional tungsten
+Additional microelement solution
+Additional casamino acids
+Additional selenite
+Additional tripticase
+Additional selenate
+Additional selenium
+Additional pantoyllacetone
+Additional rumen fluid
+Additional CoM
+Additional potasium
+Additional peptone
+Additional methanol+H2
+Additional trypticase
+Additional methylamine
+Additional methanol
+Additional CO/H2
+Additional monomethylamine
+Additional dimethylamine
+Additional H2/C02
+Additional trimethylamine
+Additional methanethiol
+Additional no supplement
+Additional aminoacids
+Additional biotin
+Additional Fe2O3
+Additional HS-coM
+Minimum tripticase peptone/yeast extract
+Minimum yeast extract
+Minimum vitamin
+Minimum acetate
+Minimum aminoacids
+Minimum rumen fluid
+Minimum casamino acids
+Minimum nutrient broth
+Minimum trypticase
+Minimum branched-chain
+Minimum coenzyme M
+Minimum tripticase peptone
+Minimum MB medium
+Minimum Na2S
+Minimum NaCl
+Minimum 2methylbutyrate
+Minimum Ca
+Minimum Co
+Minimum CO2
+Minimum Fe
+Minimum isoleucine
+Minimum leucine
+Minimum Mg
+Minimum propionate
+Minimum SeO4
+Minimum Ni
+Minimum tungsten
+Minimum casitone
+Minimum trace element solution
+Minimum unidentified
+Minimum heavy metal solution
+Minimum peptone
+Minimum riboflavin
+Minimum thiamine
+Minimum vitamin B12
+Minimum aminobenzoate
+Minimum biotin
+Minimum acetate/ethanol
+Minimum H2+methanol
+Minimum thiamin
+Minimum tryptone
+Other methane tiol
+Other 1-pentanol
+Other pyruvate
+Other butyrate
+Other fructose
+Other glucose
+Other lactate
+Other theophyline
+Other trimethoxybenzoate
+Other theobromine
+Other valerate
+Other cyclohexanol
+Other 2-pentanol
+Other alanine
+Other formaldehyde
+Other fumarate
+Other leucine
+Other 2;3-butanodiol
+Other cycloheksanol
+Other ethyl acetate
+Other H2+methanol

@@ -1,0 +1,8 @@
+#The database comes as a csv files with quoted fields plus several types of NA and lacking yes/no FLAGs
+wget http://phymet2.biotech.uni.wroc.pl/index.php?ind=all_cvs
+mv index.php\?ind\=all_cvs MDB.csv
+#make a tsv file unquoted with species name separated in Genus species and strain in the first three columns. With the strains put in a single column
+# I have made an R script that fix all mistakes in MDB plus split the columns with several substrate per field into several columns.
+# In addition the script calculate the list_of_phenotypes.txt and list_of_species.txt plus calculate the Coverage of yes/no values per column
+# and the balance between yes' and noes
+Rscript MDBcsv2tsv.R

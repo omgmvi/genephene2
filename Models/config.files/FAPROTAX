@@ -1,0 +1,47 @@
+{
+    "Database" : "FAPROTAX",
+
+    "Phenotype" :
+    {
+        "Folder_Phenotype" : "/home/ubuntu/Databases/FAPROTAX/FAPROTAX_1.2.4/",
+        "Phenotypes" : [
+                            {"PhenotypeDB":"FAPROTAX.tsv",
+                            "Phenotypes" :["methanotrophy","acetoclastic_methanogenesis","methanogenesis_using_formate","methanogenesis_by_CO2_reduction_with_H2",
+                            "methanogenesis_by_reduction_of_methyl_compounds_with_H2","hydrogenotrophic_methanogenesis","methanogenesis","methanol_oxidation","methylotrophy",
+                            "aerobic_ammonia_oxidation","aerobic_nitrite_oxidation","nitrification","sulfate_respiration","sulfur_respiration","dark_sulfite_oxidation",
+                            "sulfite_respiration","thiosulfate_respiration","respiration_of_sulfur_compounds","arsenate_detoxification","arsenate_respiration",
+                            "dissimilatory_arsenate_reduction","arsenite_oxidation_detoxification","arsenite_oxidation_energy_yielding","dissimilatory_arsenite_oxidation",
+                            "anammox","nitrate_denitrification","nitrite_denitrification","nitrous_oxide_denitrification","denitrification","chitinolysis","knallgas_bacteria",
+                            "dark_hydrogen_oxidation","nitrogen_fixation","nitrate_ammonification","nitrite_ammonification","nitrite_respiration","cellulolysis","xylanolysis",
+                            "dark_sulfide_oxidation","dark_sulfur_oxidation","dark_thiosulfate_oxidation","dark_oxidation_of_sulfur_compounds","manganese_oxidation",
+                            "manganese_respiration","ligninolysis","fermentation","aerobic_chemoheterotrophy","invertebrate_parasites","human_pathogens_septicemia",
+                            "human_pathogens_pneumonia","human_pathogens_nosocomia","human_pathogens_meningitis","human_pathogens_gastroenteritis","human_pathogens_diarrhea",
+                            "human_pathogens_all","fish_parasites","human_gut","human_associated","mammal_gut","animal_parasites_or_symbionts","plant_pathogen",
+                            "oil_bioremediation","aromatic_hydrocarbon_degradation","aromatic_compound_degradation","aliphatic_non_methane_hydrocarbon_degradation",
+                            "hydrocarbon_degradation","dark_iron_oxidation","iron_respiration","nitrate_respiration","nitrate_reduction","nitrogen_respiration",
+                            "fumarate_respiration","chlorate_reducers","photosynthetic_cyanobacteria","anoxygenic_photoautotrophy_H2_oxidizing",
+                            "anoxygenic_photoautotrophy_S_oxidizing","anoxygenic_photoautotrophy_Fe_oxidizing","anoxygenic_photoautotrophy","oxygenic_photoautotrophy",
+                            "photoautotrophy","aerobic_anoxygenic_phototrophy","photoheterotrophy","phototrophy","plastic_degradation","ureolysis","reductive_acetogenesis","chemoheterotrophy"]},
+                        ],
+        "Bacterial_metadata_columns" : ["Name","Genus","Species","Strain"],
+        "NA_substitution" : "NA2level",
+        "NA_substitution_value" : "Unknown"
+    },
+    "Taxonomy" :
+    {
+        "Folder_Taxonomy": "/home/ubuntu/Taxonomy/FAPROTAX/",
+        "TaxonomyDB":"SpeciesTaxID.tsv"
+    },
+
+    "Metadata":{"Folder_Metadata" : "/home/ubuntu/Metadata/FAPROTAX",
+    "Taxa2assemblyDB" : "TaxID2Genome_metadata.tsv"},
+
+    "Genomes": [
+        {
+            "Genome":"KEGG",
+            "Folder_Genome" : "/home/ubuntu/Genomes/FAPROTAX/BagOfWords_Genome",
+            "GenomeDB" : "KEGG_genome.tsv",
+            "Pattern_gene_columns" : "K\\d+",
+            "Pattern_genomic_table_columns" : "K\\d+|GenomeID"},
+    ]
+}
