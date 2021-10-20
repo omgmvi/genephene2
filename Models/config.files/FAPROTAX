@@ -3,7 +3,7 @@
 
     "Phenotype" :
     {
-        "Folder_Phenotype" : "/home/ubuntu/Databases/FAPROTAX/FAPROTAX_1.2.4/",
+        "Folder_Phenotype" : "/home/ubuntu/GenePhene2/Databases/FAPROTAX/FAPROTAX_1.2.4/",
         "Phenotypes" : [
                             {"PhenotypeDB":"FAPROTAX.tsv",
                             "Phenotypes" :["methanotrophy","acetoclastic_methanogenesis","methanogenesis_using_formate","methanogenesis_by_CO2_reduction_with_H2",
@@ -29,17 +29,17 @@
     },
     "Taxonomy" :
     {
-        "Folder_Taxonomy": "/home/ubuntu/Taxonomy/FAPROTAX/",
+        "Folder_Taxonomy": "/home/ubuntu/GenePhene2/Taxonomy/FAPROTAX/",
         "TaxonomyDB":"SpeciesTaxID.tsv"
     },
 
-    "Metadata":{"Folder_Metadata" : "/home/ubuntu/Metadata/FAPROTAX",
+    "Metadata":{"Folder_Metadata" : "/home/ubuntu/GenePhene2/Metadata/FAPROTAX",
     "Taxa2assemblyDB" : "TaxID2Genome_metadata.tsv"},
 
     "Genomes": [
         {
             "Genome":"KEGG",
-            "Folder_Genome" : "/home/ubuntu/Genomes/FAPROTAX/BagOfWords_Genome",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/FAPROTAX/BagOfWords_Genome",
             "GenomeDB" : "KEGG_genome.tsv",
             "Pattern_gene_columns" : "K\\d+",
             "Pattern_genomic_table_columns" : "K\\d+|GenomeID"},

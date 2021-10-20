@@ -3,7 +3,7 @@
 
     "Phenotype" :
     {
-        "Folder_Phenotype" : "/home/ubuntu/Databases/GenePhene2/",
+        "Folder_Phenotype" : "/home/ubuntu/GenePhene2/Databases/GenePhene2/",
         "Phenotypes" : [
                             {"PhenotypeDB":"Metabolic_traits.tsv","Phenotypes" :[
                                 "6-phosphate-β-galactosidase activity",
@@ -142,29 +142,48 @@
     },
     "Taxonomy" :
     {
-        "Folder_Taxonomy": "/home/ubuntu/Genomes/Taxonomy/GenePhene2/",
+        "Folder_Taxonomy": "/home/ubuntu/GenePhene2/Taxonomy/GenePhene2/"","
         "TaxonomyDB":"SpeciesTaxID.tsv"
     },
 
-    "Metadata":{"Folder_Metadata" : "/home/ubuntu/Genomes/GenePhene2",
+    "Metadata":{"Folder_Metadata" : "/home/ubuntu/GenePhene2/Metadata/GenePhene2/",
     "Taxa2assemblyDB" : "TaxID2Genome_metadata.tsv"},
 
     "Genomes": [
         {
             "Genome":"KEGG",
-            "Folder_Genome" : "/home/ubuntu/Genomes/GenePhene2/odin_data",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
             "GenomeDB" : "KEGG_summary.tsv",
             "Pattern_gene_columns" : "K\\d+",
             "Pattern_genomic_table_columns" : "K\\d+|\/"},
         {
             "Genome":"COG",
-            "Folder_Genome" : "/home/ubuntu/Genomes/GenePhene2/odin_data",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
             "GenomeDB" : "cogs_summary.tsv",
             "Pattern_gene_columns" : "COG\\d+",
             "Pattern_genomic_table_columns" : "COG\\d+|\/"},
         {
             "Genome" :"pFam",
-            "Folder_Genome" : "/home/ubuntu/Genomes/GenePhene2/odin_data",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
+            "GenomeDB" : "pfamA_summary.tsv",
+            "Pattern_gene_columns" : "PF\\d+\\.\\d+",
+            "Pattern_genomic_table_columns" : "PF\\d+\\.\\d+|\/"
+        },
+        {
+            "Genome":"D2V_KEGG",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
+            "GenomeDB" : "KEGG_summary.tsv",
+            "Pattern_gene_columns" : "K\\d+",
+            "Pattern_genomic_table_columns" : "K\\d+|\/"},
+        {
+            "Genome":"D2V_COG",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
+            "GenomeDB" : "cogs_summary.tsv",
+            "Pattern_gene_columns" : "COG\\d+",
+            "Pattern_genomic_table_columns" : "COG\\d+|\/"},
+        {
+            "Genome" :"D2VpFam",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
             "GenomeDB" : "pfamA_summary.tsv",
             "Pattern_gene_columns" : "PF\\d+\\.\\d+",
             "Pattern_genomic_table_columns" : "PF\\d+\\.\\d+|\/"

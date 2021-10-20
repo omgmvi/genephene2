@@ -3,7 +3,7 @@
 
     "Phenotype" :
     {
-        "Folder_Phenotype" : "/home/ubuntu/Databases/GenePhene2/",
+        "Folder_Phenotype" : "/home/ubuntu/GenePhene2/Databases/GenePhene2/",
         "Phenotypes" : [
                             {"PhenotypeDB":"Metabolic_traits.tsv","Phenotypes" :[
                                 "acidogenic","aerobe","anaerobic", "Catalase activity","chemolitotrophic","fermentative"
@@ -18,23 +18,23 @@
     },
     "Taxonomy" :
     {
-        "Folder_Taxonomy": "/home/ubuntu/Taxonomy/GenePhene2/",
+        "Folder_Taxonomy": "/home/ubuntu/GenePhene2/Taxonomy/GenePhene2/",
         "TaxonomyDB":"SpeciesTaxID.tsv"
     },
 
-    "Metadata":{"Folder_Metadata" : "/home/ubuntu/Metadata/GenePhene2",
+    "Metadata":{"Folder_Metadata" : "/home/ubuntu/GenePhene2/Metadata/GenePhene2/",
     "Taxa2assemblyDB" : "TaxID2Genome_metadata.tsv"},
 
     "Genomes": [
         {
             "Genome":"KEGG",
-            "Folder_Genome" : "/home/ubuntu/Genomes/GenePhene2/BagOfWords_Genome",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
             "GenomeDB" : "KEGG_summary.tsv",
             "Pattern_gene_columns" : "K\\d+",
             "Pattern_genomic_table_columns" : "K\\d+|\/"},
         {
             "Genome":"D2V_KEGG",
-            "Folder_Genome" : "/home/ubuntu/Genomes/GenePhene2/Doc2Vec_Genome",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
             "GenomeDB" : "GenePhene2_Doc2Vec_KEGG.tsv",
             "Pattern_gene_columns" : "D2V\\d+",
             "Pattern_genomic_table_columns" : "D2V\\d+|GenomeID"}
