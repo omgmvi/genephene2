@@ -299,11 +299,11 @@ args = commandArgs(trailingOnly=TRUE)
 
 if(length(args)  != 5){
     print("Not enough arguments provided, I carry on with presets")
-    folder_config_file <- "/home/ubuntu/Models/GenePhene2/test.files"
-    config_file <- "GenePhene2_Catalase activity_D2V_KEGG.dat"
-    folder_model_config_file <-   "/home/ubuntu/Models/config.files"
-    model_config_file <- "model.glmnet_elasticnet.json"
-    folder_output <-  "/home/ubuntu/Models/GenePhene2/test.results"
+    folder_config_file          <-  "/home/ubuntu/Models/GenePhene2/test.files"
+    config_file                 <-  "GenePhene2_Catalase activity_D2V_KEGG.dat"
+    folder_model_config_file    <-  "/home/ubuntu/GenePhene2/Models/config.files"
+    model_config_file           <-  "model.glmnet_elasticnet.json"
+    folder_output               <-  "/home/ubuntu/Models/GenePhene2/test.results"
 
     #folder_config_file <- "/home/ubuntu/Models/GenePhene2/test.files"
     #config_file <- "GenePhene2_Input_1-propanol_COG.dat"
@@ -311,11 +311,11 @@ if(length(args)  != 5){
     #model_config_file <- "model.Naive_Bayes.json"
     #folder_output <-  "/home/ubuntu/Models/GenePhene2/test.results"
     
-    folder_config_file <- "/home/ubuntu/Models/FAPROTAX/test.files"
-    config_file <- "FAPROTAX_photoautotrophy_KEGG.dat"
-    folder_model_config_file <- "/home/ubuntu/Models/config.files/"
-    model_config_file <- "model.glmnet_elasticnet.json"
-    folder_output <- "/home/ubuntu/Models/FAPROTAX/test.results/"
+    #folder_config_file <- "/home/ubuntu/Models/FAPROTAX/test.files"
+    #config_file <- "FAPROTAX_photoautotrophy_KEGG.dat"
+    #folder_model_config_file <- "/home/ubuntu/Models/config.files/"
+    #model_config_file <- "model.glmnet_elasticnet.json"
+    #folder_output <- "/home/ubuntu/Models/FAPROTAX/test.results/"
 
 }else{ 
 
