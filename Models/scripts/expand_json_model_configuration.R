@@ -142,18 +142,18 @@ write_files <- function(Full_list,file,folder){
 
 ## GENEPHENE2
     # Where the original multi-phenotype multi-genome list is?
-folder_input <- "../config.files/"
-file_input <-"GenePhene2_test"
+#folder_input <- "../config.files/"
+#file_input <-"GenePhene2_test"
 #file_input <-"GenePhene2"
     #Where do you want to put the full list of single-phenotypeDB, single-phenotypic trait,  single-genome experiment document?
-folder_output <- "home/ubuntu/Models/GenePhene2/test.files/"
+#folder_output <- "/home/ubuntu/Models/GenePhene2/test.files/"
 #folder_output <- "../GenePhene2/data.files/"
 
 
 #FAPROTAX
-#folder_input <- "../config.files/"
-#file_input <-"FAPROTAX_test"
-#folder_output <- "../FAPROTAX/test.files/"
+folder_input <- "../config.files/"
+file_input <-"FAPROTAX_test"
+folder_output <- "/home/ubuntu/Models/FAPROTAX/test.files/"
 
 ##########
 # SCRIPT #

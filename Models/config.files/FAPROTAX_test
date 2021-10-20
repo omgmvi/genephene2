@@ -19,13 +19,13 @@
         "TaxonomyDB":"SpeciesTaxID.tsv"
     },
 
-    "Metadata":{"Folder_Metadata" : "/home/ubuntu/GenePhene/2Metadata/FAPROTAX",
+    "Metadata":{"Folder_Metadata" : "/home/ubuntu/GenePhene2/Metadata/FAPROTAX",
                 "Taxa2assemblyDB" : "TaxID2Genome_metadata.tsv"},
 
     "Genomes": [
         {
             "Genome":"KEGG",
-            "Folder_Genome" : "/home/ubuntu/GenePhene/Genomes/FAPROTAX/BagOfWords_Genome",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/FAPROTAX/BagOfWords_Genome",
             "GenomeDB" : "KEGG_genome.tsv",
             "Pattern_gene_columns" : "K\\d+",
             "Pattern_genomic_table_columns" : "K\\d+|GenomeID"}
