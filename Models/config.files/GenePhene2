@@ -177,7 +177,7 @@
         {
             "Genome":"D2V_KEGG",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
-            "GenomeDB" : "KEGG_summary.tsv",
+            "GenomeDB" : "GenePhene2_Doc2Vec_KEGG.tsv",
             "Pattern_gene_columns" : "K\\d+",
             "Pattern_genomic_table_columns" : "K\\d+|\/",
             "Fix_multiple_genomes" : "median"
@@ -185,7 +185,7 @@
         {
             "Genome":"D2V_COG",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
-            "GenomeDB" : "cogs_summary.tsv",
+            "GenomeDB" : "GenePhene2_Doc2Vec_COGS.tsv",
             "Pattern_gene_columns" : "COG\\d+",
             "Pattern_genomic_table_columns" : "COG\\d+|\/",
             "Fix_multiple_genomes" : "median"
@@ -193,7 +193,7 @@
         {
             "Genome" :"D2V_pFam",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
-            "GenomeDB" : "pfamA_summary.tsv",
+            "GenomeDB" : "GenePhene2_Doc2Vec_pFam.tsv",
             "Pattern_gene_columns" : "PF\\d+\\.\\d+",
             "Pattern_genomic_table_columns" : "PF\\d+\\.\\d+|\/",
             "Fix_multiple_genomes" : "median"
