@@ -163,6 +163,7 @@ fix_Phenotype_NA <- function(datos,phenotypic_trait,method = "NA2level",level = 
 # particularly because is the slowest piece of code after the model itself.
 
 process_GenomeDB <- function(datos,config){
+
     # Remove 'genes' (as in KO, COG or Pfam entries) that are not really genes but other info in the database
     datos$Genome<-datos$Genome[,Gene_names(names(datos$Genome),config$Genome$Pattern_genomic_table_columns)]
     # Here is a potentiall source of problems - I should not assume that the GenomeID is gonna be always a "/" - it maybe another symbol
@@ -252,27 +253,37 @@ exec_model<-function(model_data,model_config,data_config){
 
     stopifnot(model_config$model %in% c("glmnet","Naive_Bayes"))
     if(model_config$model == "glmnet"){
-        try({
+        log(" Fitting a Glmnet Caret model")
+        tryCatch({
             train(  x =model_data[,Gene_names(names(model_data),data_config$Genome$Pattern_gene_columns)],
                     y = model_data[,data_config$Phenotype$Phenotypic_trait],
                     method = "glmnet",
                     trControl=trainControl(method = model_config$train_CV_method))->model_glmnet
+            
             file_output <-gsub(x= config_file,pattern= "\\.dat",replacement = "\\.model.elasticnet.dat")
+
+            log("Glmnet fitted")
+            log(paste("Saving results in ",file.path(folder_output,file_output)))
+            
             save(list = c("configuration","Documents","model_glmnet"),file = file.path(folder_output,file_output),ascii = F)
             model_glmnet
-        },silent = T)->result
+        },error = function(e){log("ERROR in Glmnet fit - no results saved");print(e)},silent = T)->result
     }
     if(model_config$model == "Naive_Bayes"){
-    
-        try({ 
+        log(" Fitting a Naive Bayes Caret model")
+        tryCatch({ 
                 train(  x = model_data[,Gene_names(names(model_data),configuration$Genome$Pattern_gene_columns)],
                         y = model_data[,configuration$Phenotype$Phenotypic_trait],
                         method = "nb",
                         trControl=trainControl(method = model_config$train_CV_method))->model_naiveBayes
-
+                        
                 file_output <-gsub(x= config_file,pattern= "\\.dat",replacement = "\\.model.naiveBayes.dat")
+
+                log("Naive Bayes fitted")
+                log(paste("Saving results in ",file.path(folder_output,file_output)))
+
                 save(list = c("configuration","Documents","model_naiveBayes"),file = file.path(folder_output,file_output),ascii = F)
-        },silent = T)->result
+        },error = function(e){log("ERROR in Naive Bayes fit - no results saved");print(e)},silent = T)->result
     
     }
     result
@@ -312,11 +323,11 @@ if(length(args)  != 5){
     model_config_file           <-  "models.json"#"model.glmnet_elasticnet.json"
     folder_output               <-  "/home/ubuntu/Models/GenePhene2/test.results"
 
-    #folder_config_file <- "/home/ubuntu/Models/GenePhene2/test.files"
-    #config_file <- "GenePhene2_chemolitotrophic_KEGG.dat"
-    #folder_model_config_file <-   "/home/ubuntu/GenePhene2/Models/config.files"
-    #model_config_file <- "model.Naive_Bayes.json"
-    #folder_output <-  "/home/ubuntu/Models/GenePhene2/test.results"
+    folder_config_file <- "/home/ubuntu/Models/GenePhene2/data.files"
+    config_file <- "GenePhene2_Output_1,2,4-trihydroxybenzene_D2V_COG.dat"
+    folder_model_config_file <-   "/home/ubuntu/GenePhene2/Models/config.files"
+    model_config_file <- "model.glmnet_elasticnet.json"
+    folder_output <-  "/home/ubuntu/Models/GenePhene2/model.results"
     
     #folder_config_file <- "/home/ubuntu/Models/FAPROTAX/test.files"
     #config_file <- "FAPROTAX_photoautotrophy_KEGG.dat"
