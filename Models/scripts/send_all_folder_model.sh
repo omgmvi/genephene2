@@ -7,7 +7,7 @@ folder_output="/home/ubuntu/Models/GenePhene2/model.results"
 folder_model="/home/ubuntu/GenePhene2/Models/config.files"
 file_model="model.glmnet_elasticnet.json"
 
-files="${folder_input}/GenePhene2_*"
+files="${folder_input}/GenePhene2_Output*.dat"
 for file in ${files}
 do
 
