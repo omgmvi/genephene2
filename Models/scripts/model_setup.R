@@ -302,6 +302,7 @@ log <- function(txt){
 ######## VARIABLES ########################
 
 args = commandArgs(trailingOnly=TRUE)
+print(args)
 
 if(length(args)  != 5){
     print("Not enough arguments provided, I carry on with presets")

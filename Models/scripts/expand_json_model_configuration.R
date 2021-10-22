@@ -122,7 +122,7 @@ substitute_Genome <- function(Full_list){
 
 create_output_filenames <- function(x){
     # Assumming x as a instance of a experiment document containing the elements Database, Phenotypic trait and Genome type build an underscored separate name with .dat extension
-    paste(paste(x$Database,x$Phenotype$Phenotypic_trait,x$Genome$Genome,sep = "_"),".dat",sep = "")
+    gsub(x = paste(paste(x$Database,x$Phenotype$Phenotypic_trait,x$Genome$Genome,sep = "_"),".dat",sep = ""),pattern="\\s",replacement = "_")
 }
 
 ## Small function that handle the export of single experiment documents to JSON and then to a file - it contain an print for confirming the export but lacks any test or error handling
