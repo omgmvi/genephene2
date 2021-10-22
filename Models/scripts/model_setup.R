@@ -1,4 +1,4 @@
-
+#!/usr/bin/env Rscript
 
 # Odin Moron-Garcia 23 July 2021 - continuation on 20-30 August
 # 30 Sept. 2021 : Update documentation 
@@ -88,7 +88,8 @@ extract_specific_config <- function(config_list){
                             NA_substitution_value       = config_list$Phenotype$NA_substitution_value
                         ),
             Genome    = list(Pattern_gene_columns       = config_list$Genome$Pattern_gene_columns,
-                        Pattern_genomic_table_columns   = config_list$Genome$Pattern_genomic_table_columns)
+                        Pattern_genomic_table_columns   = config_list$Genome$Pattern_genomic_table_columns,
+                        Fix_multiple_genomes            = config_list$Genome$Fix_multiple_genomes)
     )
 }
 
@@ -171,25 +172,30 @@ process_GenomeDB <- function(datos,config){
     datos
 }
 
-fix_multiple_Genomes <-function(datos,config,option){
+fix_multiple_Genomes <-function(datos,config){
     ### Solve the issue of multiple genomes per individual
     ## NOTE: The split is done base on TaxID - so this function needs to be used only after the Big-join
-    if(option){
-        PK_metadata <- unique(datos[,!Gene_names(names(datos),config$Genome$Pattern_gene_columns)])
-        PK_genome <- datos[,Gene_names(names(datos),config$Genome$Pattern_gene_columns)]
-        row.names(unique(PK_metadata[,c("TaxID",config$Phenotype$Phenotypic_trait)]))->r.n
-        aggregate(PK_genome,by=list(TaxID = datos$TaxID),max)->out
-        merge(PK_metadata[row.names(PK_metadata) %in% r.n,],out,by = "TaxID")
-    }else{
+    
+    operation <- config$Fix_multiple_genomes
+    operation <- match.arg(arg = operation,choices = c("median","mean","var","sum","identity"),several.ok=F)
+    operation <- Filter(is.function,ifelse(sapply(c("median","mean","var","sum","identity"),function(x,y){x == y},y = operation),c(median,mean,var,sum,identity),NA))[[1]]
+        
+    PK_metadata <- unique(datos[,!Gene_names(names(datos),config$Genome$Pattern_gene_columns)])
+    PK_genome <- datos[,Gene_names(names(datos),config$Genome$Pattern_gene_columns)]
+    row.names(unique(PK_metadata[,c("TaxID",config$Phenotype$Phenotypic_trait)]))->r.n
+    aggregate(PK_genome,by=list(TaxID = datos$TaxID),operation)->out
+    merge(PK_metadata[row.names(PK_metadata) %in% r.n,],out,by = "TaxID")
+    
+    # slow code - delete when clear
     # Add and index to "find their row" and split the dataset in two types of columns for metdata only and genes only
     # Then split - apply - aggregate - put back
-        tmp1<-cbind(tempIndex =c(1:nrow(datos)),datos[,!Gene_names(names(datos),configuration$Genome$Pattern_gene_columns)])    
-        tmp2<-cbind(tempIndex =c(1:nrow(datos)),datos[, Gene_names(names(datos),configuration$Genome$Pattern_gene_columns)])
-        tmp2 <- do.call(rbind,lapply(split(x = tmp2,f = tmp1$TaxID),function(x){data.frame(t(c(tempIndex = x[1,"tempIndex"],sapply(x[which(!names(x) %in% "tempIndex")],max,na.rm =T,simplify=T))))}))
-        tmp2<- merge(tmp1,tmp2,by = "tempIndex",all = F)
-        tmp2['tempIndex']<- NULL
-        tmp2
-     }
+    #    tmp1<-cbind(tempIndex =c(1:nrow(datos)),datos[,!Gene_names(names(datos),configuration$Genome$Pattern_gene_columns)])    
+    #    tmp2<-cbind(tempIndex =c(1:nrow(datos)),datos[, Gene_names(names(datos),configuration$Genome$Pattern_gene_columns)])
+    #    tmp2 <- do.call(rbind,lapply(split(x = tmp2,f = tmp1$TaxID),function(x){data.frame(t(c(tempIndex = x[1,"tempIndex"],sapply(x[which(!names(x) %in% "tempIndex")],max,na.rm =T,simplify=T))))}))
+    #    tmp2<- merge(tmp1,tmp2,by = "tempIndex",all = F)
+    #    tmp2['tempIndex']<- NULL
+    #    tmp2
+
     # the next code seems to be simpler but slower and create difficulties with the phenotypic names
     
     # I need a decision on what to do with the multiple genomes 
@@ -299,11 +305,11 @@ args = commandArgs(trailingOnly=TRUE)
 
 if(length(args)  != 5){
     print("Not enough arguments provided, I carry on with presets")
-    #folder_config_file          <-  "/home/ubuntu/Models/GenePhene2/test.files"
-    #config_file                 <-  "GenePhene2_Catalase activity_D2V_KEGG.dat"
-    #folder_model_config_file    <-  "/home/ubuntu/GenePhene2/Models/config.files"
-    #model_config_file           <-  "model.glmnet_elasticnet.json"
-    #folder_output               <-  "/home/ubuntu/Models/GenePhene2/test.results"
+    folder_config_file          <-  "/home/ubuntu/Models/GenePhene2/test.files"
+    config_file                 <-  "GenePhene2_Catalase activity_D2V_KEGG.dat"
+    folder_model_config_file    <-  "/home/ubuntu/GenePhene2/Models/config.files"
+    model_config_file           <-  "models.json"#"model.glmnet_elasticnet.json"
+    folder_output               <-  "/home/ubuntu/Models/GenePhene2/test.results"
 
     #folder_config_file <- "/home/ubuntu/Models/GenePhene2/test.files"
     #config_file <- "GenePhene2_chemolitotrophic_KEGG.dat"
@@ -311,11 +317,11 @@ if(length(args)  != 5){
     #model_config_file <- "model.Naive_Bayes.json"
     #folder_output <-  "/home/ubuntu/Models/GenePhene2/test.results"
     
-    folder_config_file <- "/home/ubuntu/Models/FAPROTAX/test.files"
-    config_file <- "FAPROTAX_photoautotrophy_KEGG.dat"
-    folder_model_config_file <- "/home/ubuntu/GenePhene2/Models/config.files/"
-    model_config_file <- "model.glmnet_elasticnet.json"
-    folder_output <- "/home/ubuntu/Models/FAPROTAX/test.results/"
+    #folder_config_file <- "/home/ubuntu/Models/FAPROTAX/test.files"
+    #config_file <- "FAPROTAX_photoautotrophy_KEGG.dat"
+    #folder_model_config_file <- "/home/ubuntu/GenePhene2/Models/config.files/"
+    #model_config_file <- "model.glmnet_elasticnet.json"
+    #folder_output <- "/home/ubuntu/Models/FAPROTAX/test.results/"
 
 }else{ 
 
@@ -362,17 +368,20 @@ log("DATABASE GENERATED AFTER JOIN")
 
 #Now that I have joined the Taxonomy Indentifiers and the Genomes, I can trim down the number of genomes per bacteria
 log("FIXING MULTIPLE GENOMES")
-datos <-fix_multiple_Genomes(datos,configuration,T)## This function needs improving
+datos <-fix_multiple_Genomes(datos,configuration)
 log("MULTIPLE GENOMES FIXED")
 # NOTE: From here onwards, the variable datos does not contain a list but a data frame just with the bacterial name metadata, the column with the phenotype and all columns with genes
 
 #### Tier 3. Modelling ###
 log("START MODELLING")
 
-datos[c(7,9:20)]->datos
-datos[configuration$Phenotype$Phenotypic_trait]<- as.factor(sample(x = c("yes","no"),size = nrow(datos),replace = T))
+#Few modifications to accelerate and to reduce errors
+
+#datos[c(7,9:20)]->datos
+#datos[configuration$Phenotype$Phenotypic_trait]<- as.factor(sample(x = c("yes","no"),size = nrow(datos),replace = T))
 
 send2models(model_data = datos,model_config = model_configuration,data_config = configuration)-> res
+
 log("END OF MODELLING STEPS")
 log("END OF SCRIPT")
 

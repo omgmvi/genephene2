@@ -155,38 +155,48 @@
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
             "GenomeDB" : "KEGG_summary.tsv",
             "Pattern_gene_columns" : "K\\d+",
-            "Pattern_genomic_table_columns" : "K\\d+|\/"},
+            "Pattern_genomic_table_columns" : "K\\d+|\/",
+            "Fix_multiple_genomes" : "median"
+        },
         {
             "Genome":"COG",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
             "GenomeDB" : "cogs_summary.tsv",
             "Pattern_gene_columns" : "COG\\d+",
-            "Pattern_genomic_table_columns" : "COG\\d+|\/"},
+            "Pattern_genomic_table_columns" : "COG\\d+|\/",
+            "Fix_multiple_genomes" : "median"
+        },
         {
             "Genome" :"pFam",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
             "GenomeDB" : "pfamA_summary.tsv",
             "Pattern_gene_columns" : "PF\\d+\\.\\d+",
-            "Pattern_genomic_table_columns" : "PF\\d+\\.\\d+|\/"
+            "Pattern_genomic_table_columns" : "PF\\d+\\.\\d+|\/,
+            "Fix_multiple_genomes" : "median""
         },
         {
             "Genome":"D2V_KEGG",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
             "GenomeDB" : "KEGG_summary.tsv",
             "Pattern_gene_columns" : "K\\d+",
-            "Pattern_genomic_table_columns" : "K\\d+|\/"},
+            "Pattern_genomic_table_columns" : "K\\d+|\/",
+            "Fix_multiple_genomes" : "median"
+        },
         {
             "Genome":"D2V_COG",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
             "GenomeDB" : "cogs_summary.tsv",
             "Pattern_gene_columns" : "COG\\d+",
-            "Pattern_genomic_table_columns" : "COG\\d+|\/"},
+            "Pattern_genomic_table_columns" : "COG\\d+|\/",
+            "Fix_multiple_genomes" : "median"
+        },
         {
             "Genome" :"D2VpFam",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
             "GenomeDB" : "pfamA_summary.tsv",
             "Pattern_gene_columns" : "PF\\d+\\.\\d+",
-            "Pattern_genomic_table_columns" : "PF\\d+\\.\\d+|\/"
+            "Pattern_genomic_table_columns" : "PF\\d+\\.\\d+|\/",
+            "Fix_multiple_genomes" : "median"
         }
     ]
 }

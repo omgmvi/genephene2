@@ -1,3 +1,4 @@
+#!/usr/bin/env Rscript
 ### Odin Moron-Garcia 
 
 ## Script to expand a general JSON file containing the folders, file address and some parameter of phenotypic traits and genomic database
@@ -139,22 +140,29 @@ write_files <- function(Full_list,file,folder){
 #########
 
 # Variables that should be inputed
+args <- commandArgs(trailingOnly=T)
 
-## GENEPHENE2
+if(length(args) != 3){
+    ## GENEPHENE2
     # Where the original multi-phenotype multi-genome list is?
-#folder_input <- "../config.files/"
-#file_input <-"GenePhene2_test"
-#file_input <-"GenePhene2"
+    folder_input <- "../config.files/"
+    file_input <-"GenePhene2_test"
+    #file_input <-"GenePhene2"
     #Where do you want to put the full list of single-phenotypeDB, single-phenotypic trait,  single-genome experiment document?
-#folder_output <- "/home/ubuntu/Models/GenePhene2/test.files/"
-#folder_output <- "../GenePhene2/data.files/"
+    folder_output <- "/home/ubuntu/Models/GenePhene2/test.files/"
+    #folder_output <- "../GenePhene2/data.files/"
 
 
-#FAPROTAX
-folder_input <- "../config.files/"
-file_input <-"FAPROTAX_test"
-folder_output <- "/home/ubuntu/Models/FAPROTAX/test.files/"
+    #FAPROTAX
+    #folder_input <- "../config.files/"
+    #file_input <-"FAPROTAX_test"
+    #folder_output <- "/home/ubuntu/Models/FAPROTAX/test.files/"
+}else{
+    folder_input  <- args[1]
+    file_input    <- args[2]
+    folder_output <- args[3]
 
+}
 ##########
 # SCRIPT #
 ##########
