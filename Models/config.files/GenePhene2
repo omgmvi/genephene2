@@ -142,7 +142,7 @@
     },
     "Taxonomy" :
     {
-        "Folder_Taxonomy": "/home/ubuntu/GenePhene2/Taxonomy/GenePhene2/"","
+        "Folder_Taxonomy": "/home/ubuntu/GenePhene2/Taxonomy/GenePhene2/",
         "TaxonomyDB":"SpeciesTaxID.tsv"
     },
 
@@ -171,8 +171,8 @@
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
             "GenomeDB" : "pfamA_summary.tsv",
             "Pattern_gene_columns" : "PF\\d+\\.\\d+",
-            "Pattern_genomic_table_columns" : "PF\\d+\\.\\d+|\/,
-            "Fix_multiple_genomes" : "median""
+            "Pattern_genomic_table_columns" : "PF\\d+\\.\\d+|\/",
+            "Fix_multiple_genomes" : "median"
         },
         {
             "Genome":"D2V_KEGG",
@@ -191,7 +191,7 @@
             "Fix_multiple_genomes" : "median"
         },
         {
-            "Genome" :"D2VpFam",
+            "Genome" :"D2V_pFam",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
             "GenomeDB" : "pfamA_summary.tsv",
             "Pattern_gene_columns" : "PF\\d+\\.\\d+",
