@@ -255,8 +255,13 @@ exec_model<-function(model_data,model_config,data_config){
     if(model_config$model == "glmnet"){
         log(" Fitting a Glmnet Caret model")
         tryCatch({
-            train(  x =model_data[,Gene_names(names(model_data),data_config$Genome$Pattern_gene_columns)],
-                    y = model_data[,data_config$Phenotype$Phenotypic_trait],
+            tryCatch(expr = {model_data[,Gene_names(names(model_data),data_config$Genome$Pattern_gene_columns)]},error = function(e){stop("The x column of the model is empty",call. =F)})
+            train(  #x =model_data[,Gene_names(names(model_data),data_config$Genome$Pattern_gene_columns)],
+                    #y = model_data[,data_config$Phenotype$Phenotypic_trait],
+                    tryCatch(expr = {ret <- model_data[,Gene_names(names(model_data),data_config$Genome$Pattern_gene_columns)];stopifnot(min(nrow(ret),ncol(ret))!=0);ret},
+                    error = function(e){stop("The x column of the model is empty",call. =F)}),
+                    tryCatch(expr = {ret <- model_data[,data_config$Phenotype$Phenotypic_trait];stopifnot(min(nrow(ret),ncol(ret))!=0);ret},
+                    error = function(e){stop("The y columns of the model is empty",call. =F)}),
                     method = "glmnet",
                     trControl=trainControl(method = model_config$train_CV_method))->model_glmnet
             
@@ -334,6 +339,13 @@ if(length(args)  != 5){
     #folder_model_config_file <- "/home/ubuntu/GenePhene2/Models/config.files/"
     #model_config_file <- "model.glmnet_elasticnet.json"
     #folder_output <- "/home/ubuntu/Models/FAPROTAX/test.results/"
+
+    folder_config_file <- "~/Models/GenePhene2/data.files/"
+    config_file <- "GenePhene2_Input_amino_acid_D2V_pFam.dat"
+    folder_model_config_file <- "../config.files/"
+    model_config_file <- "model.glmnet_elasticnet.json"
+    folder_output <- "~/Models/GenePhene2/model.results/"
+
 
 }else{ 
 
