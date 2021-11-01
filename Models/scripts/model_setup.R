@@ -176,10 +176,17 @@ process_GenomeDB <- function(datos,config){
 fix_multiple_Genomes <-function(datos,config){
     ### Solve the issue of multiple genomes per individual
     ## NOTE: The split is done base on TaxID - so this function needs to be used only after the Big-join
-    
-    operation <- config$Fix_multiple_genomes
-    operation <- match.arg(arg = operation,choices = c("median","mean","var","sum","identity"),several.ok=F)
-    operation <- Filter(is.function,ifelse(sapply(c("median","mean","var","sum","identity"),function(x,y){x == y},y = operation),c(median,mean,var,sum,identity),NA))[[1]]
+    # helper functions
+    pickone <-function(x,na.rm = F){
+        #This function just take one of the repeated genomes - Aggregate is an efficient way to apply columnwise and group wise a function
+        # but in this case it has an issue - it does not permit for a constant passing through the groups and columns - so how do I pick a random
+        #genome? - get the first
+        na.omit(x)[1]
+    }
+    operation <- config$Genome$Fix_multiple_genomes
+    operation <- match.arg(arg = operation,choices = c("median","mean","var","sum","identity","pickone"),several.ok=F)
+    operation <- Filter(is.function,ifelse(sapply(c("median","mean","var","sum","identity","pickone"),function(x,y){x == y},y = operation),
+                                           c(median,mean,var,sum,identity,pickone),NA))[[1]]
         
     PK_metadata <- unique(datos[,!Gene_names(names(datos),config$Genome$Pattern_gene_columns)])
     PK_genome <- datos[,Gene_names(names(datos),config$Genome$Pattern_gene_columns)]
@@ -322,17 +329,19 @@ print(args)
 
 if(length(args)  != 5){
     print("Not enough arguments provided, I carry on with presets")
+
     folder_config_file          <-  "/home/ubuntu/Models/GenePhene2/test.files"
-    config_file                 <-  "GenePhene2_Catalase activity_D2V_KEGG.dat"
+    config_file                 <-  "GenePhene2_Catalase_activity_D2V_KEGG.dat"
     folder_model_config_file    <-  "/home/ubuntu/GenePhene2/Models/config.files"
-    model_config_file           <-  "models.json"#"model.glmnet_elasticnet.json"
+    model_config_file           <-  #"models.json"#
+                                    "model.glmnet_elasticnet.json"
     folder_output               <-  "/home/ubuntu/Models/GenePhene2/test.results"
 
-    folder_config_file <- "/home/ubuntu/Models/GenePhene2/data.files"
-    config_file <- "GenePhene2_Output_1,2,4-trihydroxybenzene_D2V_COG.dat"
-    folder_model_config_file <-   "/home/ubuntu/GenePhene2/Models/config.files"
-    model_config_file <- "model.glmnet_elasticnet.json"
-    folder_output <-  "/home/ubuntu/Models/GenePhene2/model.results"
+#    folder_config_file <- "/home/ubuntu/Models/GenePhene2/data.files"
+#    config_file <- "GenePhene2_Output_1,2,4-trihydroxybenzene_D2V_COG.dat"
+#    folder_model_config_file <-   "/home/ubuntu/GenePhene2/Models/config.files"
+#    model_config_file <- "model.glmnet_elasticnet.json"
+#    folder_output <-  "/home/ubuntu/Models/GenePhene2/model.results"
     
     #folder_config_file <- "/home/ubuntu/Models/FAPROTAX/test.files"
     #config_file <- "FAPROTAX_photoautotrophy_KEGG.dat"
@@ -340,11 +349,11 @@ if(length(args)  != 5){
     #model_config_file <- "model.glmnet_elasticnet.json"
     #folder_output <- "/home/ubuntu/Models/FAPROTAX/test.results/"
 
-    folder_config_file <- "~/Models/GenePhene2/data.files/"
-    config_file <- "GenePhene2_Input_amino_acid_D2V_pFam.dat"
-    folder_model_config_file <- "../config.files/"
-    model_config_file <- "model.glmnet_elasticnet.json"
-    folder_output <- "~/Models/GenePhene2/model.results/"
+#    folder_config_file <- "~/Models/GenePhene2/data.files/"
+#    config_file <- "GenePhene2_Input_amino_acid_D2V_pFam.dat"
+#    folder_model_config_file <- "../config.files/"
+#    model_config_file <- "model.glmnet_elasticnet.json"
+#    folder_output <- "~/Models/GenePhene2/model.results/"
 
 
 }else{ 
