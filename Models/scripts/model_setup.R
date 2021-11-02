@@ -262,25 +262,35 @@ exec_model<-function(model_data,model_config,data_config){
     if(model_config$model == "glmnet"){
         log(" Fitting a Glmnet Caret model")
         tryCatch({
-            tryCatch(expr = {model_data[,Gene_names(names(model_data),data_config$Genome$Pattern_gene_columns)]},error = function(e){stop("The x column of the model is empty",call. =F)})
-            train(  #x =model_data[,Gene_names(names(model_data),data_config$Genome$Pattern_gene_columns)],
-                    #y = model_data[,data_config$Phenotype$Phenotypic_trait],
-                    tryCatch(expr = {ret <- model_data[,Gene_names(names(model_data),data_config$Genome$Pattern_gene_columns)];stopifnot(min(nrow(ret),ncol(ret))!=0);ret},
-                    error = function(e){stop("The x column of the model is empty",call. =F)}),
-                    tryCatch(expr = {ret <- model_data[,data_config$Phenotype$Phenotypic_trait];stopifnot(min(nrow(ret),ncol(ret))!=0);ret},
-                    error = function(e){stop("The y columns of the model is empty",call. =F)}),
-                    method = "glmnet",
-                    trControl=trainControl(method = model_config$train_CV_method))->model_glmnet
-            
+                createDataPartition(model_data$TaxID,p=.5,list = F)->trainData
+
+                validation_dataset <- model_data[-trainData,]
+                model_data <- model_data[trainData,]
+
+                tryCatch(expr = {Predictor <- model_data[,Gene_names(names(model_data),data_config$Genome$Pattern_gene_columns)];
+                                 stopifnot(min(nrow(Predictor),ncol(Predictor))!=0);Predictor},
+                        error = function(e){stop("The x columns of the model are empty",call. =F)})
+
+                tryCatch(expr = {Response <- model_data[,data_config$Phenotype$Phenotypic_trait];
+                                  stopifnot(length(Response)!=0);Response},
+                          error = function(e){stop("The y columns of the model is empty",call. =F)})
+                
+                train(x = Predictor,
+                      y = Response,
+                      method = "glmnet",
+                      trControl=trainControl(method = model_config$train_CV_method))->model
+
             file_output <-gsub(x= config_file,pattern= "\\.dat",replacement = "\\.model.elasticnet.dat")
 
             log("Glmnet fitted")
             log(paste("Saving results in ",file.path(folder_output,file_output)))
             
-            save(list = c("configuration","Documents","model_glmnet"),file = file.path(folder_output,file_output),ascii = F)
-            model_glmnet
+            save(list = c("configuration","Documents","model"),file = file.path(folder_output,file_output),ascii = F)
+            list(validation_dataset,model)
         },error = function(e){log("ERROR in Glmnet fit - no results saved");print(e)},silent = T)->result
     }
+
+
     if(model_config$model == "Naive_Bayes"){
         log(" Fitting a Naive Bayes Caret model")
         tryCatch({ 
@@ -414,6 +424,8 @@ log("START MODELLING")
 #datos[configuration$Phenotype$Phenotypic_trait]<- as.factor(sample(x = c("yes","no"),size = nrow(datos),replace = T))
 
 send2models(model_data = datos,model_config = model_configuration,data_config = configuration)-> res
+#margin.table(table(predict(res[[2]],res[[1]]),res[[1]][[7]]),c(1,2))
+#confusionMatrix(predict(res[[2]],res[[1]]),res[[1]][[7]])
 
 log("END OF MODELLING STEPS")
 log("END OF SCRIPT")
