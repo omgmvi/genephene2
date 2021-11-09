@@ -32,7 +32,7 @@
             "GenomeDB" : "KEGG_summary.tsv",
             "Pattern_gene_columns" : "K\\d+",
             "Pattern_genomic_table_columns" : "K\\d+|\/",
-            "Fix_multiple_genomes" : "median"
+            "Fix_multiple_genomes" : "pickone"
         },
         {
             "Genome":"D2V_KEGG",
@@ -40,7 +40,7 @@
             "GenomeDB" : "GenePhene2_Doc2Vec_KEGG.tsv",
             "Pattern_gene_columns" : "D2V\\d+",
             "Pattern_genomic_table_columns" : "D2V\\d+|GenomeID",
-            "Fix_multiple_genomes" : "median"
+            "Fix_multiple_genomes" : "pickone"
         }
     ]
 }

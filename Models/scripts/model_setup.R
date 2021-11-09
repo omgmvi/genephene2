@@ -93,7 +93,34 @@ extract_specific_config <- function(config_list){
     )
 }
 
+check_model_config <- function(config){
+  # An individual check of every type of model - here class would work perfectly - to assert that all the models for options are available and with correct values - 
+    #Check that the root of the list is called "model" and it contains an element called "model" (as well) with values glmnet or nb - then I can do the checkings according to the type of model
+    #helper function
+    checker <- function(object,existance,available_options){
+        if(!exists(x=existance,where=object)){stop(simpleError("existance"))}
+        
+        if(!is.null(available_options)){
+            if(!object[[existance]] %in%  available_options){stop(simpleError("content"))}
+        }
+    }
 
+    # Top  'node' is "model"
+    checker(config,"model",NULL)
+    # It exist a node 'model' - I do not check if valid one - but help the user telling the options
+    checker(config$model,"model",c("glmnet","nb"))
+    if(config$model$model == "glmnet"){
+        checker(config$model,'package',c("caret"))
+        checker(config$model,'PCA',c("None"))
+        checker(config$model,'train_CV_method',c("cv","LOOCV"))
+        checker(config$model,"train_test_split",NULL)
+        tryCatch(stopifnot(is.numeric(config$model$train_test_split)),error = function(e){stop(simpleError(paste("parameter train_test_split from glmnet model is not a number but",config$model$train_test_split)))})
+        tryCatch(stopifnot(config$model$train_test_split>=0 && config$model$train_test_split<=1),error = function(e){stop(simpleError(paste("Value must be between 0 and 1 and is",config$model$train_test_split)))})
+
+    }
+   TRUE 
+
+}
 
 ##############################################
 # Tier 1b: actual data loading - functions   #
@@ -386,13 +413,20 @@ Documents <- extract_DB_from_config_files(setup)
 configuration <-extract_specific_config(setup)
 
 read_config_file(folder_model_config_file,model_config_file)->model_configuration
+
 log("CONFIG FILES READ")
 #### Tier 1b : Read all data
 log("QUICK CHECKS")
 ##Check all exists
+
 print(check_exist(Documents))
 stopifnot(all(check_exist(Documents)))
+
+check_model_config(model_configuration)
+
+
 log("CHECKS PASSED")
+
 log("COLLECTING THE DATA")
 ## Collect the data
 collect_data(Documents)->datos

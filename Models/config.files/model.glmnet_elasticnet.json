@@ -2,6 +2,7 @@
     "package" : "caret",
     "model" : "glmnet",
     "PCA" : "None",
-    "train_CV_method": "cv"
+    "train_CV_method": "cv",
+    "train_test_split": 0.8
     }
 }
