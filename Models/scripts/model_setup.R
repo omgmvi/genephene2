@@ -105,19 +105,33 @@ check_model_config <- function(config){
         }
     }
 
-    # Top  'node' is "model"
-    checker(config,"model",NULL)
-    # It exist a node 'model' - I do not check if valid one - but help the user telling the options
-    checker(config$model,"model",c("glmnet","nb"))
-    if(config$model$model == "glmnet"){
-        checker(config$model,'package',c("caret"))
-        checker(config$model,'PCA',c("None"))
-        checker(config$model,'train_CV_method',c("cv","LOOCV"))
-        checker(config$model,"train_test_split",NULL)
-        tryCatch(stopifnot(is.numeric(config$model$train_test_split)),error = function(e){stop(simpleError(paste("parameter train_test_split from glmnet model is not a number but",config$model$train_test_split)))})
-        tryCatch(stopifnot(config$model$train_test_split>=0 && config$model$train_test_split<=1),error = function(e){stop(simpleError(paste("Value must be between 0 and 1 and is",config$model$train_test_split)))})
+    check_model <- function(config){
+        
+        # Top  'node' is "model"
+        checker(config,"model",NULL)
 
+        # It exist a node 'model' - I do not check if valid one - but help the user telling the options
+        checker(config$model,"model",c("glmnet","Naive_Bayes"))
+
+        if(config$model$model %in% c("glmnet","Naive_Bayes")){
+            checker(config$model,'package',c("caret"))
+            checker(config$model,'PCA',c("None"))
+            checker(config$model,'train_CV_method',c("CV","LOOCV"))
+            checker(config$model,"train_test_split",NULL)
+            tryCatch(stopifnot(is.numeric(config$model$train_test_split)),error = function(e){stop(simpleError(paste("parameter train_test_split from glmnet model is not a number but",config$model$train_test_split)))})
+            tryCatch(stopifnot(config$model$train_test_split>=0 && config$model$train_test_split<=1),error = function(e){stop(simpleError(paste("Value must be between 0 and 1 and is",config$model$train_test_split)))})
+        }
     }
+
+
+    if(exists("model",where = model_configuration)){
+        check_model(config)
+    }else if(exists("models",where = model_configuration)){
+        lapply(config$models,check_model)
+    }else{
+        stop("the model configuration does not have neither a single model nor multiple - need to be a list element named either model or models")
+    }
+
    TRUE 
 
 }
@@ -176,7 +190,7 @@ fix_Phenotype_NA <- function(datos,phenotypic_trait,method = "NA2level",level = 
     if(method != "None"){
         if(method == "NA2level"){
             id.na <- which(is.na(datos$Phenotype[,phenotypic_trait]))
-            levels(datos$Phenotype[,phenotypic_trait]) <- c(levels(datos$Phenotype[,phenotypic_trait]),"Unknown")
+            levels(datos$Phenotype[,phenotypic_trait]) <- c(levels(datos$Phenotype[,phenotypic_trait]),level)
             datos$Phenotype[id.na,phenotypic_trait] <- level
         }
     }
@@ -278,84 +292,150 @@ Big_Join <- function(datos){
 # Tier 3: Execute the models - functions  #
 #####################################################
 
-exec_model<-function(model_data,model_config,data_config){
+exec_model<-function(Predictor,Response,model_config){
     # Fit a model according to a model configuration file and some extra parameters
         #At the moment I am  using only functions at the caret package for modelling but some  changes would be needed if we resort to different machine learning wrapping packages
         # Therefore, I leave a "per model" kind of stream so it is easier to expand to other packages or functions
     
+                tryCatch(expr = stopifnot(min(nrow(Predictor),ncol(Predictor))!=0),
+                        error = function(e){stop("The x columns of the model are empty",call. =F)})
+
+                tryCatch(expr = stopifnot(length(Response)!=0),
+                          error = function(e){stop("The y columns of the model is empty",call. =F)})
+
     model_config <- model_config$model
 
     stopifnot(model_config$model %in% c("glmnet","Naive_Bayes"))
+    
     if(model_config$model == "glmnet"){
         log(" Fitting a Glmnet Caret model")
         tryCatch({
-                createDataPartition(model_data$TaxID,p=.5,list = F)->trainData
-
-                validation_dataset <- model_data[-trainData,]
-                model_data <- model_data[trainData,]
-
-                tryCatch(expr = {Predictor <- model_data[,Gene_names(names(model_data),data_config$Genome$Pattern_gene_columns)];
-                                 stopifnot(min(nrow(Predictor),ncol(Predictor))!=0);Predictor},
-                        error = function(e){stop("The x columns of the model are empty",call. =F)})
-
-                tryCatch(expr = {Response <- model_data[,data_config$Phenotype$Phenotypic_trait];
-                                  stopifnot(length(Response)!=0);Response},
-                          error = function(e){stop("The y columns of the model is empty",call. =F)})
                 
                 train(x = Predictor,
                       y = Response,
                       method = "glmnet",
                       trControl=trainControl(method = model_config$train_CV_method))->model
-
-            file_output <-gsub(x= config_file,pattern= "\\.dat",replacement = "\\.model.elasticnet.dat")
-
-            log("Glmnet fitted")
-            log(paste("Saving results in ",file.path(folder_output,file_output)))
-            
-            save(list = c("configuration","Documents","model"),file = file.path(folder_output,file_output),ascii = F)
-            list(validation_dataset,model)
-        },error = function(e){log("ERROR in Glmnet fit - no results saved");print(e)},silent = T)->result
+                log("Glmnet fitted")
+                model
+        },error = function(e){log("ERROR in Glmnet fit");print(e)},silent = T)->result
     }
 
 
     if(model_config$model == "Naive_Bayes"){
         log(" Fitting a Naive Bayes Caret model")
         tryCatch({ 
-                train(  x = model_data[,Gene_names(names(model_data),configuration$Genome$Pattern_gene_columns)],
-                        y = model_data[,configuration$Phenotype$Phenotypic_trait],
+                train(  x = Predictor,
+                        y = Response,
                         method = "nb",
-                        trControl=trainControl(method = model_config$train_CV_method))->model_naiveBayes
+                        trControl=trainControl(method = model_config$train_CV_method))->model
                         
-                file_output <-gsub(x= config_file,pattern= "\\.dat",replacement = "\\.model.naiveBayes.dat")
-
                 log("Naive Bayes fitted")
-                log(paste("Saving results in ",file.path(folder_output,file_output)))
-
-                save(list = c("configuration","Documents","model_naiveBayes"),file = file.path(folder_output,file_output),ascii = F)
-        },error = function(e){log("ERROR in Naive Bayes fit - no results saved");print(e)},silent = T)->result
+                model
+        },error = function(e){log("ERROR in Naive Bayes fit");print(e)},silent = T)->result
     
     }
     result
 }
 
 
-send2models <- function(model_data,model_config,data_config){
+send2modelling <- function(model_data,model_config,data_config){
+    # Function to wrap the activities needed to perform the modelling according to the SOLID principles (sort of)
+    # This function will : a) Split data in validation and train sets; b) perform modelling on the validation set (through the function exec_model)
+    # c)Measure the performance of the model using the confusion matrix and associated metrics
+    # d)Quantify some quality metrics of the phenotypic data - Density and Balance
+    # e) Export the output values
+
+    # Input: 
+        #   model_data: data.frame (if an object would be a pheno-geno object) 8 columns for TaxID,GenomeID,Name, Genus, species, Strain, <Phenotype>, organism_name, <Gene 1>, <Gene 2>, ...,<Gene N>
+        #   model_config: a list of values for the models - it must contain an element "model" with one of the available models, the rest are associate with the model
+        #   data_config:  a list of values for organizing the data - these are object-like structures (for future conversion into classes)
+
+        # Split data in validation - training - using caret
+        log("DATA SPLIT")
+
     if(names(model_config) == "model"){
-        exec_model(model_data = model_data,model_config = model_config,data_config = data_config)-> result
+                
+            createDataPartition(model_data$TaxID,p=model_config$model$train_test_split,list = F)->trainData
+
+            validation_dataset <- model_data[-trainData,]
+            model_data <- model_data[trainData,] # Reusing the name (may) serve to do not keep memory busy, at least too long (data struct. like hashes and B-trees may be of help here)
+
+            
+            exec_model(Predictor = model_data[,Gene_names(names(model_data),data_config$Genome$Pattern_gene_columns)],
+                        Response = model_data[,data_config$Phenotype$Phenotypic_trait],
+                        model_config = model_config)-> model
+
+            list( trainedModel = model,validation = validation_dataset)
+
     }else if(names(model_config) == "models"){
-        lapply(model_config$models,function(model_config,model_data,data_config){
-            exec_model(model_data = model_data,model_config = model_config,data_config = data_config)},
-            model_data = model_data,data_config = data_config) ->result
+                        #UNTESTED FOR LONG
+                        
+        createDataPartition(model_data$TaxID,p=model_config$models[[1]]$model$train_test_split,list = F)->trainData
+
+        validation_dataset <- model_data[-trainData,]
+        model_data <- model_data[trainData,] # Reusing the name (may) serve to do not keep memory busy, at least too long (data struct. like hashes and B-trees may be of help here)
+        lapply(model_config$models,
+                function(model_config,Predictor,Response){
+                    exec_model(Predictor,Response,model_config)},
+                            Predictor = model_data[,Gene_names(names(model_data),data_config$Genome$Pattern_gene_columns)],
+                            Response = model_data[,data_config$Phenotype$Phenotypic_trait]) ->model
+
+                    list(trainedModels = model,validation = validation_dataset)
     }
-    result
 }
 
+
+
+save_models <- function(config_file,folder_output,config_data,config_model,model){
+       individual_model_case <- function(config_model,model){         
+            stopifnot(config_model$model$model %in% c("glmnet","Naive_Bayes"))
+            
+            if(config_model$model$model == "glmnet"){
+                file_output <-gsub(x= config_file,pattern= "\\.dat",replacement = "\\.model.elasticnet.dat")
+                log(paste("Saving results in ",file.path(folder_output,file_output)))
+               #save(list = c("configuration","Documents","model"),file = file.path(folder_output,file_output),ascii = F)
+            }
+            if(config_model$model$model == "Naive_Bayes"){
+                file_output <-gsub(x= config_file,pattern= "\\.dat",replacement = "\\.model.naiveBayes.dat")
+                log(paste("Saving results in ",file.path(folder_output,file_output)))
+                #save(list = c("configuration","Documents","model_naiveBayes"),file = file.path(folder_output,file_output),ascii = F)
+            }
+        }
+    if(exists("model",config_model)){
+        individual_model_case(config_model,model)
+    }else if(exists("models",config_model)){
+        mapply(FUN=individual_model_case,config_model$models,model$trainedModels)
+    }
+
+}
 ### Extras ###
 
 #Little logging
 log <- function(txt){
     print(paste("[",Sys.time(),":",txt,"]"))
 }
+
+get_genome_columns_function <- function(pattern_gene){
+    function(model_data){
+       model_data[,Gene_names(names(model_data),pattern_gene)] 
+    }
+}
+get_metadata_columns_function <- function(pattern_gene){
+    function(model_data){
+        model_data[,!Gene_names(names(model_data),pattern_gene)] 
+    }
+}
+get_phenotype_function <- function(phenotype){
+    function(model_data){
+        model_data[[phenotype]]
+    }
+}
+Phenotype_stats <- function(phenotype){
+    list(Density = round(table(phenotype,useNA ="always")/length(phenotype)*100,digits =2),
+         Balance = round(table(phenotype)/margin.table(table(phenotype))*100,digits = 2))
+
+}
+
 ###################################################################
 
 
@@ -370,8 +450,9 @@ if(length(args)  != 5){
     folder_config_file          <-  "/home/ubuntu/Models/GenePhene2/test.files"
     config_file                 <-  "GenePhene2_Catalase_activity_D2V_KEGG.dat"
     folder_model_config_file    <-  "/home/ubuntu/GenePhene2/Models/config.files"
-    model_config_file           <-  #"models.json"#
-                                    "model.glmnet_elasticnet.json"
+    model_config_file           <-  "models.json"#
+                                    #"model.glmnet_elasticnet.json"
+                                    #"model.Naive_Bayes.json"
     folder_output               <-  "/home/ubuntu/Models/GenePhene2/test.results"
 
 #    folder_config_file <- "/home/ubuntu/Models/GenePhene2/data.files"
@@ -415,6 +496,11 @@ configuration <-extract_specific_config(setup)
 read_config_file(folder_model_config_file,model_config_file)->model_configuration
 
 log("CONFIG FILES READ")
+log("Preparing some helper functions")
+get_genome_columns <- get_genome_columns_function(configuration$Genome$Pattern_gene_columns)
+get_metadata_columns <- get_metadata_columns_function(configuration$Genome$Pattern_gene_columns)
+get_phenotype <- get_phenotype_function(configuration$Phenotype$Phenotypic_trait)
+
 #### Tier 1b : Read all data
 log("QUICK CHECKS")
 ##Check all exists
@@ -456,10 +542,12 @@ log("START MODELLING")
 
 #datos[c(7,9:20)]->datos
 #datos[configuration$Phenotype$Phenotypic_trait]<- as.factor(sample(x = c("yes","no"),size = nrow(datos),replace = T))
-
-send2models(model_data = datos,model_config = model_configuration,data_config = configuration)-> res
+Phenotype_stats(get_phenotype(datos)) -> Stats_1
+send2modelling(model_data = datos,model_config = model_configuration,data_config = configuration)-> model
 #margin.table(table(predict(res[[2]],res[[1]]),res[[1]][[7]]),c(1,2))
 #confusionMatrix(predict(res[[2]],res[[1]]),res[[1]][[7]])
+save_models(config_file,folder_output,configuration,model_configuration,model)
+
 
 log("END OF MODELLING STEPS")
 log("END OF SCRIPT")
