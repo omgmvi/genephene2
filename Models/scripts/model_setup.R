@@ -379,7 +379,7 @@ send2modelling <- function(model_data,model_config,data_config){
                     exec_model(Predictor,Response,model_config)},
                             Predictor = model_data[,Gene_names(names(model_data),data_config$Genome$Pattern_gene_columns)],
                             Response = model_data[,data_config$Phenotype$Phenotypic_trait]) ->model
-
+                            class(model) <- "multiple_train"
                     list(trainedModels = model,validation = validation_dataset)
     }
 }
@@ -520,9 +520,9 @@ log("PHENOTYPE, TAXONOMY, METADATA AND GENOME DATABASES READ")
 ##### Tier 2a:  Process databases ####
 log("START OF DATA BASES PROCESSING")
 datos <- process_PhenotypeDB(datos,configuration)
-log("Phenotype DB processed")
+log("PHENOTYPE DB PROCESSED")
 datos <- process_GenomeDB(datos,configuration)
-log("Genome DB processed")
+log("GENOME DB PROCESSED")
 
 ##### Tier 2b:  create the working database ####
 log("GENERATING THE PHENO-GENO TYPE DATABAES")
@@ -544,6 +544,22 @@ log("START MODELLING")
 #datos[configuration$Phenotype$Phenotypic_trait]<- as.factor(sample(x = c("yes","no"),size = nrow(datos),replace = T))
 Phenotype_stats(get_phenotype(datos)) -> Stats_1
 send2modelling(model_data = datos,model_config = model_configuration,data_config = configuration)-> model
+evaluate_model <- function(model,model_config,data_config){
+    individual_model <- function(themodel,theconfig,thedata){
+    
+        if(theconfig$model$model %in% c("glmnet","Naive_Bayes")){
+            predict(themodel,thedata)->theprediction
+            #confusionMatrix(theprediction,as.factor(thedata[,data_config$Phenotype$Phenotypic_trait]))->CF
+            confusionMatrix(theprediction,as.factor(get_phenotype(thedata)))
+        }
+    }
+
+    if(class(model[[1]]) == "multiple_train"){
+        mapply(FUN = individual_model,model[[1]],model_config[[1]],MoreArgs = list(thedata = model[[2]]),SIMPLIFY = F)
+    
+    }else{individual_model(model[[1]])}
+}
+evaluate_model(model,model_configuration,configuration)->model_evaluation
 #margin.table(table(predict(res[[2]],res[[1]]),res[[1]][[7]]),c(1,2))
 #confusionMatrix(predict(res[[2]],res[[1]]),res[[1]][[7]])
 save_models(config_file,folder_output,configuration,model_configuration,model)
@@ -558,11 +574,6 @@ stop("END OF SCRIPT")
         #datos<- data.frame(datos[,phenotypic_trait],data.frame(PCA$x))   
         #names(datos)[1] <- phenotypic_trait
         #pattern_gene_columns <- "PC\\d+"
-    # Being careless of the balancing data set
-
-    #K_fold <- 0.8
-    #Nresamp <- choose(nrow(datos),floor(K_fold*nrow(datos)))
-    #createDataPartition(y = datos[,phenotypic_trait], times = Nresamp, p = K_fold, list = F)->res
 
 
 
