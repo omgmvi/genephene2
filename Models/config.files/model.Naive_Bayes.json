@@ -2,6 +2,7 @@
     "package" : "caret",
     "model" : "Naive_Bayes",
     "PCA" : "None",
-    "train_CV_method": "LOOCV"
+    "train_CV_method": "CV",
+    "train_test_split": 0.8
     }
 }
