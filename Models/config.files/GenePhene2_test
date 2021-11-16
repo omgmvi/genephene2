@@ -28,6 +28,7 @@
     "Genomes": [
         {
             "Genome":"KEGG",
+            "Genome_Type" :"BoW",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
             "GenomeDB" : "KEGG_summary.tsv",
             "Pattern_gene_columns" : "K\\d+",
@@ -36,6 +37,7 @@
         },
         {
             "Genome":"D2V_KEGG",
+            "Genome_Type" :"D2V",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
             "GenomeDB" : "GenePhene2_Doc2Vec_KEGG.tsv",
             "Pattern_gene_columns" : "D2V\\d+",
