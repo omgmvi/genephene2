@@ -153,6 +153,7 @@
         {
             "Genome":"KEGG",
             "Genome_type" :"BoW",
+            "file_ending" : "",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
             "GenomeDB" : "KEGG_summary.tsv",
             "Pattern_gene_columns" : "K\\d+",
@@ -162,6 +163,7 @@
         {
             "Genome":"COG",
             "Genome_type" :"BoW",
+            "file_ending" : "",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
             "GenomeDB" : "cogs_summary.tsv",
@@ -172,6 +174,7 @@
         {
             "Genome" :"pFam",
             "Genome_type" :"BoW",
+            "file_ending" : "",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
             "GenomeDB" : "pfamA_summary.tsv",
@@ -180,8 +183,9 @@
             "Fix_multiple_genomes" : "median"
         },
         {
-            "Genome":"D2V_KEGG",
-            "Genome_type" :"D2V",
+            "Genome":"KEGG",
+            "Genome_type" :"D2V50",
+            "file_ending" : "",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
             "GenomeDB" : "GenePhene2_Doc2Vec_KEGG.tsv",
@@ -190,8 +194,9 @@
             "Fix_multiple_genomes" : "median"
         },
         {
-            "Genome":"D2V_COG",
-            "Genome_type" :"D2V",
+            "Genome":"COG",
+            "Genome_type" :"D2V50",
+            "file_ending" : "",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
             "GenomeDB" : "GenePhene2_Doc2Vec_COGS.tsv",
             "Pattern_gene_columns" : "D2V\\d+",
@@ -199,8 +204,9 @@
             "Fix_multiple_genomes" : "median"
         },
         {
-            "Genome" :"D2V_pFam",
-            "Genome_type" :"D2V",
+            "Genome" :"pFam",
+            "Genome_type" :"D2V50",
+            "file_ending" : "",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
             "GenomeDB" : "GenePhene2_Doc2Vec_pFam.tsv",
             "Pattern_gene_columns" : "D2V\\d+",
