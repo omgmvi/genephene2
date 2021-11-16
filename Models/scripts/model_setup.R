@@ -44,8 +44,13 @@
 # Class Phenotype_config : list with 4 elements (Phenotypic_trait, Bacterial_metadata_columns, NA_substitution, NA_substitution_value)    
 # Class Genome_config : list of 4 elements (Pattern_gene_columns, Pattern_genomic_table_columns, Fix,multiple_genomes, Genome_type)
 
-##
 
+# Class model_setup
+    #subclases (or 2nd classes) glmnet and Naive_Bayes
+    # Both types are a list containing package,model, train_CV_method <CV|LOOCV>, train_test_split <positive numeric>
+## Class multi_model_setup
+    # A list of many model_setup objects
+# Class multi_train a list of several train objects (train class is from caret package see methods(class = "train")
 ##### LIBRARIES #####
 require(rjson)
 require(plyr) # use of dlply and ddply to summarize values
@@ -80,12 +85,12 @@ extract_DB_from_config_files<- function(config_list){
     # Notice that the name of every list must be folder and file - they are used later!
     # This list facilitate to read in series all the files at once - and upload them in memory at once as well.
 
-    list(
-        Phenotype = list(folder = config_list$Phenotype$Folder_Phenotype,   file = config_list$Phenotype$PhenotypeDB),
-        Taxonomy  = list(folder = config_list$Taxonomy$Folder_Taxonomy,     file = config_list$Taxonomy$TaxonomyDB),
-        Metadata  = list(folder = config_list$Metadata$Folder_Metadata,     file = config_list$Metadata$Taxa2assemblyDB),
-        Genome    = list(folder = config_list$Genome$Folder_Genome,         file = config_list$Genome$GenomeDB)
-    )
+    structure(list(
+        Phenotype = structure(list(folder = config_list$Phenotype$Folder_Phenotype,   file = config_list$Phenotype$PhenotypeDB),class = "Document"),
+        Taxonomy  = structure(list(folder = config_list$Taxonomy$Folder_Taxonomy,     file = config_list$Taxonomy$TaxonomyDB),class = "Document"),
+        Metadata  = structure(list(folder = config_list$Metadata$Folder_Metadata,     file = config_list$Metadata$Taxa2assemblyDB),class = "Document"),
+        Genome    = structure(list(folder = config_list$Genome$Folder_Genome,         file = config_list$Genome$GenomeDB),class = "Document")
+    ),class = "Documents")
 }
 
 
@@ -134,16 +139,17 @@ check_model_config <- function(config){
             tryCatch(stopifnot(config$model$train_test_split>=0 && config$model$train_test_split<=1),error = function(e){stop(simpleError(paste("Value must be between 0 and 1 and is",config$model$train_test_split)))})
             #it has pass all the checks -> granted the class
             class(config$model) <- c("model_setup", config$model$model) # Either glmnet or Naive_Bayes thinking of subclass and inheritance - to read about
+            config$model
         }
     }
 
 
     if(exists("model",where = model_configuration)){
-        check_model(config)
+        check_model(config)->config
     }else if(exists("models",where = model_configuration)){
-        lapply(config$models,check_model)
+        lapply(config$models,check_model)->config
         # It has passed all the checks, we can give it the multi_model class
-        class(config$models) <- "multi_model setup"
+        class(config) <- "multi_model_setup"
     }else{
         stop("the model configuration does not have neither a single model nor multiple - need to be a list element named either model or models")
     }
@@ -191,7 +197,7 @@ collect_data <- function(list_of_documents){
 
 ## Phenotype DB: 
 # Select the colum of interest (microorganism names and the Phenotypic trait) and get rid of everything else.
-# Choose what to do with the NA at the phenotypic trait - enconded in the NA_substitution and NA_substitution_value parameters of Phenotype structure
+# Choose what to do with the NA at the phenotypic trait - enconded in the NA_substitution <NA2level|NonNA2level|None> and NA_substitution_value parameters of Phenotype structure
 
 process_PhenotypeDB <- function(datos,config){
             # Remove the Phenotype columns we are not using here
@@ -319,11 +325,10 @@ exec_model<-function(Predictor,Response,model_config){
                 tryCatch(expr = stopifnot(length(Response)!=0),
                           error = function(e){stop("The y columns of the model is empty",call. =F)})
 
-    model_config <- model_config$model
 
-    stopifnot(model_config$model %in% c("glmnet","Naive_Bayes"))
+    stopifnot(any(class(model_config) %in% c("glmnet","Naive_Bayes")))
     
-    if(model_config$model == "glmnet"){
+    if(any(class(model_config) == "glmnet")){
         log(" Fitting a Glmnet Caret model")
         tryCatch({
                 
@@ -337,7 +342,7 @@ exec_model<-function(Predictor,Response,model_config){
     }
 
 
-    if(model_config$model == "Naive_Bayes"){
+    if(any(class(model_config) == "Naive_Bayes")){
         log(" Fitting a Naive Bayes Caret model")
         tryCatch({ 
                 train(  x = Predictor,
@@ -369,9 +374,9 @@ send2modelling <- function(model_data,model_config,data_config){
         # Split data in validation - training - using caret
         log("DATA SPLIT")
 
-    if(names(model_config) == "model"){
+    if(any(class(model_config) == "model_setup")){
                 
-            createDataPartition(model_data$TaxID,p=model_config$model$train_test_split,list = F)->trainData
+            createDataPartition(model_data$TaxID,p=model_config$train_test_split,list = F)->trainData
 
             validation_dataset <- model_data[-trainData,]
             model_data <- model_data[trainData,] # Reusing the name (may) serve to do not keep memory busy, at least too long (data struct. like hashes and B-trees may be of help here)
@@ -383,14 +388,14 @@ send2modelling <- function(model_data,model_config,data_config){
 
             list( trainedModel = model,validation = validation_dataset)
 
-    }else if(names(model_config) == "models"){
-                        #UNTESTED FOR LONG
+    }else if(any(class(model_config) == "multi_model_setup")){
+                        #The data partition is the same for all the models (done on purpose for outcome comparison
                         
-        createDataPartition(model_data$TaxID,p=model_config$models[[1]]$model$train_test_split,list = F)->trainData
+        createDataPartition(model_data$TaxID,p=model_config[[1]]$train_test_split,list = F)->trainData
 
         validation_dataset <- model_data[-trainData,]
         model_data <- model_data[trainData,] # Reusing the name (may) serve to do not keep memory busy, at least too long (data struct. like hashes and B-trees may be of help here)
-        lapply(model_config$models,
+        lapply(model_config,
                 function(model_config,Predictor,Response){
                     exec_model(Predictor,Response,model_config)},
                             Predictor = model_data[,Gene_names(names(model_data),data_config$Genome$Pattern_gene_columns)],
@@ -408,38 +413,38 @@ send2modelling <- function(model_data,model_config,data_config){
 evaluate_model <- function(model,model_config,data_config){
     individual_model <- function(themodel,theconfig,thedata){
     
-        if(theconfig$model$model %in% c("glmnet","Naive_Bayes")){
+        if(any(class(theconfig) %in% c("glmnet","Naive_Bayes"))){
             predict(themodel,thedata)->theprediction
             #confusionMatrix(theprediction,as.factor(thedata[,data_config$Phenotype$Phenotypic_trait]))->CF
-            confusionMatrix(theprediction,as.factor(get_phenotype(thedata)))
+               confusionMatrix(theprediction,as.factor(get_phenotype(thedata)))
         }
     }
 
     if(class(model[[1]]) == "multiple_train"){
-        mapply(FUN = individual_model,model[[1]],model_config[[1]],MoreArgs = list(thedata = model[[2]]),SIMPLIFY = F)
+        mapply(FUN = individual_model,model[[1]],model_config,MoreArgs = list(thedata = model[[2]]),SIMPLIFY = F)
     
-    }else{individual_model(model[[1]])}
+    }else{individual_model(model[[1]],model_config,model[[2]])}
 }
 
 save_models <- function(config_file,folder_output,config_data,config_model,model){
        individual_model_case <- function(config_model,model){         
-            stopifnot(config_model$model$model %in% c("glmnet","Naive_Bayes"))
+            stopifnot(any(class(config_model) %in% c("glmnet","Naive_Bayes")))
             
-            if(config_model$model$model == "glmnet"){
+            if(config_model$model == "glmnet"){
                 file_output <-gsub(x= config_file,pattern= "\\.dat",replacement = "\\.model.elasticnet.dat")
                 log(paste("Saving results in ",file.path(folder_output,file_output)))
                #save(list = c("configuration","Documents","model"),file = file.path(folder_output,file_output),ascii = F)
             }
-            if(config_model$model$model == "Naive_Bayes"){
+            if(config_model$model == "Naive_Bayes"){
                 file_output <-gsub(x= config_file,pattern= "\\.dat",replacement = "\\.model.naiveBayes.dat")
                 log(paste("Saving results in ",file.path(folder_output,file_output)))
                 #save(list = c("configuration","Documents","model_naiveBayes"),file = file.path(folder_output,file_output),ascii = F)
             }
         }
-    if(exists("model",config_model)){
+    if(any(class(config_model) %in% "model_setup")){
         individual_model_case(config_model,model)
-    }else if(exists("models",config_model)){
-        mapply(FUN=individual_model_case,config_model$models,model$trainedModels)
+    }else if(any(class(config_model)== "multi_model_setup")){
+        mapply(FUN=individual_model_case,config_model,model$trainedModels)
     }
 
 }
@@ -467,9 +472,11 @@ get_phenotype_function <- function(phenotype){
     }
 }
 Phenotype_stats <- function(phenotype){
-    list(Density = round(table(phenotype,useNA ="always")/length(phenotype)*100,digits =2),
-         Balance = round(table(phenotype)/margin.table(table(phenotype))*100,digits = 2))
-
+    Density <- round(table(phenotype,useNA ="always")/length(phenotype)*100,digits =2)
+    Balance <- round(table(phenotype)/margin.table(table(phenotype))*100,digits = 2)
+    Density_agg = sum(Density[!is.na(names(Density))])
+    Balance_agg <- (range(Balance) %*% c(-1,1))/Density_agg * 100
+    list(Denisty = Density,Density_agg = Density_agg,Balance = Balance,Balance_agg = Balance_agg)
 }
 
 ###################################################################
@@ -484,7 +491,7 @@ if(length(args)  != 5){
     print("Not enough arguments provided, I carry on with presets")
 
     folder_config_file          <-  "/home/ubuntu/Models/GenePhene2/test.files"
-    config_file                 <-  "GenePhene2_Catalase_activity_D2V_KEGG.dat"
+    config_file                 <-  "GenePhene2_Catalase_activity_KEGG_D2V50_pickone_genome.dat"
     folder_model_config_file    <-  "/home/ubuntu/GenePhene2/Models/config.files"
     model_config_file           <-  "models.json"#
                                     #"model.glmnet_elasticnet.json"
@@ -543,7 +550,7 @@ log("QUICK CHECKS")
 
 print(check_exist(Documents))
 stopifnot(all(check_exist(Documents)))
-class(Documents) <- "Data_Setup"
+
 model_configuration <- check_model_config(model_configuration)
 
 
@@ -581,8 +588,6 @@ log("START MODELLING")
 Phenotype_stats(get_phenotype(datos)) -> Stats_1
 send2modelling(model_data = datos,model_config = model_configuration,data_config = configuration)-> model
 evaluate_model(model,model_configuration,configuration)->model_evaluation
-#margin.table(table(predict(res[[2]],res[[1]]),res[[1]][[7]]),c(1,2))
-#confusionMatrix(predict(res[[2]],res[[1]]),res[[1]][[7]])
 save_models(config_file,folder_output,configuration,model_configuration,model)
 
 
