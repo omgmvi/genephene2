@@ -22,16 +22,16 @@
 # Each phase of this join is coded in a function
 
 ## NOTES:
-# Currently, there is the possibility that a microorganisms have more than one genome rows, wich expand the phenotypes - there's here function to either leave as is or aggregate them
+# Currently, there is the possibility that a microorganisms have more than one genome rows, wich expand the phenotypes - there's here function to either leave as is or aggregate them or pick the first
+
+# At the moment I uses S3 classes to take advantage of the type system in R, that is, I am using class(object) <- "type" to tag wether a variables is of certain type or other (for example if it is a ssingle model or multiple models)
 
 #TODO: 
     ## Make a model document
-    ## Make a proper modelling function to choose between models
-    ## Manage a precomputed genome (fixed duplicates)
-    ## If not - be able to choose wether perform it or not
-    ## put options to allow the aggregation of multiple genomes being, max, median, min, 1 or 0, or nothing
     ## Test the DB has the expected structure
     ## the fix_multiple_genomes needs inspection - also needs an argument for the column to use and/or check that it exists
+    ## Define the output
+    ## Define what to do with the errors.
 
 ###################### SETUP ###################
 
@@ -385,6 +385,25 @@ send2modelling <- function(model_data,model_config,data_config){
 }
 
 
+#####################################################
+# Tier 4: interpret and save the models - functions #
+#####################################################
+
+evaluate_model <- function(model,model_config,data_config){
+    individual_model <- function(themodel,theconfig,thedata){
+    
+        if(theconfig$model$model %in% c("glmnet","Naive_Bayes")){
+            predict(themodel,thedata)->theprediction
+            #confusionMatrix(theprediction,as.factor(thedata[,data_config$Phenotype$Phenotypic_trait]))->CF
+            confusionMatrix(theprediction,as.factor(get_phenotype(thedata)))
+        }
+    }
+
+    if(class(model[[1]]) == "multiple_train"){
+        mapply(FUN = individual_model,model[[1]],model_config[[1]],MoreArgs = list(thedata = model[[2]]),SIMPLIFY = F)
+    
+    }else{individual_model(model[[1]])}
+}
 
 save_models <- function(config_file,folder_output,config_data,config_model,model){
        individual_model_case <- function(config_model,model){         
@@ -408,6 +427,7 @@ save_models <- function(config_file,folder_output,config_data,config_model,model
     }
 
 }
+
 ### Extras ###
 
 #Little logging
@@ -544,21 +564,6 @@ log("START MODELLING")
 #datos[configuration$Phenotype$Phenotypic_trait]<- as.factor(sample(x = c("yes","no"),size = nrow(datos),replace = T))
 Phenotype_stats(get_phenotype(datos)) -> Stats_1
 send2modelling(model_data = datos,model_config = model_configuration,data_config = configuration)-> model
-evaluate_model <- function(model,model_config,data_config){
-    individual_model <- function(themodel,theconfig,thedata){
-    
-        if(theconfig$model$model %in% c("glmnet","Naive_Bayes")){
-            predict(themodel,thedata)->theprediction
-            #confusionMatrix(theprediction,as.factor(thedata[,data_config$Phenotype$Phenotypic_trait]))->CF
-            confusionMatrix(theprediction,as.factor(get_phenotype(thedata)))
-        }
-    }
-
-    if(class(model[[1]]) == "multiple_train"){
-        mapply(FUN = individual_model,model[[1]],model_config[[1]],MoreArgs = list(thedata = model[[2]]),SIMPLIFY = F)
-    
-    }else{individual_model(model[[1]])}
-}
 evaluate_model(model,model_configuration,configuration)->model_evaluation
 #margin.table(table(predict(res[[2]],res[[1]]),res[[1]][[7]]),c(1,2))
 #confusionMatrix(predict(res[[2]],res[[1]]),res[[1]][[7]])
