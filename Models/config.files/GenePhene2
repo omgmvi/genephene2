@@ -152,7 +152,7 @@
     "Genomes": [
         {
             "Genome":"KEGG",
-            "Genome_Type" :"BoW",
+            "Genome_type" :"BoW",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
             "GenomeDB" : "KEGG_summary.tsv",
             "Pattern_gene_columns" : "K\\d+",
@@ -161,7 +161,7 @@
         },
         {
             "Genome":"COG",
-            "Genome_Type" :"BoW",
+            "Genome_type" :"BoW",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
             "GenomeDB" : "cogs_summary.tsv",
@@ -171,7 +171,7 @@
         },
         {
             "Genome" :"pFam",
-            "Genome_Type" :"BoW",
+            "Genome_type" :"BoW",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
             "GenomeDB" : "pfamA_summary.tsv",
@@ -181,7 +181,7 @@
         },
         {
             "Genome":"D2V_KEGG",
-            "Genome_Type" :"D2V",
+            "Genome_type" :"D2V",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
             "GenomeDB" : "GenePhene2_Doc2Vec_KEGG.tsv",
@@ -191,7 +191,7 @@
         },
         {
             "Genome":"D2V_COG",
-            "Genome_Type" :"D2V",
+            "Genome_type" :"D2V",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
             "GenomeDB" : "GenePhene2_Doc2Vec_COGS.tsv",
             "Pattern_gene_columns" : "D2V\\d+",
@@ -200,7 +200,7 @@
         },
         {
             "Genome" :"D2V_pFam",
-            "Genome_Type" :"D2V",
+            "Genome_type" :"D2V",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
             "GenomeDB" : "GenePhene2_Doc2Vec_pFam.tsv",
             "Pattern_gene_columns" : "D2V\\d+",
