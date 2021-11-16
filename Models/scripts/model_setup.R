@@ -35,6 +35,17 @@
 
 ###################### SETUP ###################
 
+## S3 classes definitions
+# Class Documents:
+    # list of 4 Document for Phenotype, Taxonomy, Metadata and Genome
+# Class Document : list of pairs (folder,file) with the address of a DB in the hard drive
+
+# Class Data_Setup: a list of two objects Phenotype_config and Genome_Config
+# Class Phenotype_config : list with 4 elements (Phenotypic_trait, Bacterial_metadata_columns, NA_substitution, NA_substitution_value)    
+# Class Genome_config : list of 4 elements (Pattern_gene_columns, Pattern_genomic_table_columns, Fix,multiple_genomes, Genome_type)
+
+##
+
 ##### LIBRARIES #####
 require(rjson)
 require(plyr) # use of dlply and ddply to summarize values
@@ -81,16 +92,17 @@ extract_DB_from_config_files<- function(config_list){
 extract_specific_config <- function(config_list){
 # This function serve the purpose of check that the configuration file conforms, at least by names, with the expected nested structure 
 # That is, the contents are to checked
-    list(
-            Phenotype = list(Phenotypic_trait           = config_list$Phenotype$Phenotypic_trait,
-                            Bacterial_metadata_columns  = config_list$Phenotype$Bacterial_metadata_columns,
-                            NA_substitution             = config_list$Phenotype$NA_substitution,
-                            NA_substitution_value       = config_list$Phenotype$NA_substitution_value
-                        ),
-            Genome    = list(Pattern_gene_columns       = config_list$Genome$Pattern_gene_columns,
-                        Pattern_genomic_table_columns   = config_list$Genome$Pattern_genomic_table_columns,
-                        Fix_multiple_genomes            = config_list$Genome$Fix_multiple_genomes)
-    )
+    structure(list(
+            Phenotype = structure(list( Phenotypic_trait            = config_list$Phenotype$Phenotypic_trait,
+                                        Bacterial_metadata_columns  = config_list$Phenotype$Bacterial_metadata_columns,
+                                        NA_substitution             = config_list$Phenotype$NA_substitution,
+                                        NA_substitution_value       = config_list$Phenotype$NA_substitution_value),class = "Phenotype_config"),
+
+            Genome    = structure(list( Pattern_gene_columns            = config_list$Genome$Pattern_gene_columns,
+                                        Pattern_genomic_table_columns   = config_list$Genome$Pattern_genomic_table_columns,
+                                        Fix_multiple_genomes            = config_list$Genome$Fix_multiple_genomes,
+                                        Genome_type                     = config_list$Genome$Genome_type),class = "Genome_config")
+    ),class = "Data_setup")
 }
 
 check_model_config <- function(config){
@@ -120,6 +132,8 @@ check_model_config <- function(config){
             checker(config$model,"train_test_split",NULL)
             tryCatch(stopifnot(is.numeric(config$model$train_test_split)),error = function(e){stop(simpleError(paste("parameter train_test_split from glmnet model is not a number but",config$model$train_test_split)))})
             tryCatch(stopifnot(config$model$train_test_split>=0 && config$model$train_test_split<=1),error = function(e){stop(simpleError(paste("Value must be between 0 and 1 and is",config$model$train_test_split)))})
+            #it has pass all the checks -> granted the class
+            class(config$model) <- c("model_setup", config$model$model) # Either glmnet or Naive_Bayes thinking of subclass and inheritance - to read about
         }
     }
 
@@ -128,11 +142,13 @@ check_model_config <- function(config){
         check_model(config)
     }else if(exists("models",where = model_configuration)){
         lapply(config$models,check_model)
+        # It has passed all the checks, we can give it the multi_model class
+        class(config$models) <- "multi_model setup"
     }else{
         stop("the model configuration does not have neither a single model nor multiple - need to be a list element named either model or models")
     }
 
-   TRUE 
+   config 
 
 }
 
@@ -527,8 +543,8 @@ log("QUICK CHECKS")
 
 print(check_exist(Documents))
 stopifnot(all(check_exist(Documents)))
-
-check_model_config(model_configuration)
+class(Documents) <- "Data_Setup"
+model_configuration <- check_model_config(model_configuration)
 
 
 log("CHECKS PASSED")
