@@ -35,6 +35,8 @@
 #       "Genomes": [                                                                    # Note: Our Genomes come in 3 types of orthologs and will be soon as Doc2Vec embbedings. 
 #                                                                                       #       We put here all the available genomes in a list of tuples
 #               {   "Genome" : <Ortholog type>,                                         # e.g. "KEGG"|"COG"|"pFam"|"D2V_KEGG"|"D2V_COG"|"D2V_pFam"
+#                   "Genome_type" : <a string for the type of  genome>                  # e.g. "BoW"|"D2V"|"D2V50"|"D2V100"
+#                   "file_ending" : <an open field to make distinction between files>
 #                   "Folder_Genome" : <Folder to locate the Genomic DB>,                # e.g. "/home/ubuntu/Genomes/GenePhene2/odin_data",
 #                   "GenomeDB" : <File containing the genome>,                          # e.g. "KEGG_summary.tsv"|"COGS_summary.tsv"|"pFam_summary.tsv"
 #                   "Pattern_gene_columns" : <Perl like regexp>,                        # Note: How to find the name of the gene columns "K\\d+"|"COG\\d+"|"PF\\d+\\.\\d+"
@@ -122,7 +124,7 @@ substitute_Genome <- function(Full_list){
 
 create_output_filenames <- function(x){
     # Assumming x as a instance of a experiment document containing the elements Database, Phenotypic trait and Genome type build an underscored separate name with .dat extension
-    gsub(x = paste(paste(x$Database,x$Phenotype$Phenotypic_trait,x$Genome$Genome,sep = "_"),".dat",sep = ""),pattern="\\s",replacement = "_")
+    gsub(x = paste(paste(x$Database,x$Phenotype$Phenotypic_trait,x$Genome$Genome,x$Genome$Genome_type,x$Genome$file_ending,sep = "_"),".dat",sep = ""),pattern="\\s",replacement = "_")
 }
 
 ## Small function that handle the export of single experiment documents to JSON and then to a file - it contain an print for confirming the export but lacks any test or error handling
