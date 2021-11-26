@@ -53,6 +53,7 @@
 # Class multi_train a list of several train objects (train class is from caret package see methods(class = "train")
 ##### LIBRARIES #####
 require(rjson)
+#require(RJSONIO)
 require(plyr) # use of dlply and ddply to summarize values
 require(caret) # For models, in particular partition of data
 
@@ -63,7 +64,7 @@ require(caret) # For models, in particular partition of data
 # Assuming each configuration file is in proper format (JSON and with the corresponding structure)
 read_config_file <- function(folder,file){
     fil<- file.path(folder,file)
-    fromJSON(file = fil)
+    rjson::fromJSON(file = fil)
 }
 
 
@@ -106,6 +107,7 @@ extract_specific_config <- function(config_list){
             Genome    = structure(list( Pattern_gene_columns            = config_list$Genome$Pattern_gene_columns,
                                         Pattern_genomic_table_columns   = config_list$Genome$Pattern_genomic_table_columns,
                                         Fix_multiple_genomes            = config_list$Genome$Fix_multiple_genomes,
+                                        Genome_ortholog_type            = config_list$Genome$Genome,
                                         Genome_type                     = config_list$Genome$Genome_type),class = "Genome_config")
     ),class = "Data_setup")
 }
@@ -338,7 +340,7 @@ exec_model<-function(Predictor,Response,model_config){
                       trControl=trainControl(method = model_config$train_CV_method))->model
                 log("Glmnet fitted")
                 model
-        },error = function(e){log("ERROR in Glmnet fit");print(e)},silent = T)->result
+        },error = function(e){log("ERROR in Glmnet fit");e},silent = T)->result
     }
 
 
@@ -352,7 +354,7 @@ exec_model<-function(Predictor,Response,model_config){
                         
                 log("Naive Bayes fitted")
                 model
-        },error = function(e){log("ERROR in Naive Bayes fit");print(e)},silent = T)->result
+        },error = function(e){log("ERROR in Naive Bayes fit");e},silent = T)->result
     
     }
     result
@@ -413,15 +415,16 @@ send2modelling <- function(model_data,model_config,data_config){
 evaluate_model <- function(model,model_config,data_config){
     individual_model <- function(themodel,theconfig,thedata){
     
+        if(class(themodel)[[1]] == "simpleError"){return(themodel)}
         if(any(class(theconfig) %in% c("glmnet","Naive_Bayes"))){
             predict(themodel,thedata)->theprediction
             #confusionMatrix(theprediction,as.factor(thedata[,data_config$Phenotype$Phenotypic_trait]))->CF
-               confusionMatrix(theprediction,as.factor(get_phenotype(thedata)))
+               list(CF = confusionMatrix(data = theprediction,reference = as.factor(get_phenotype(thedata)),mode = "everything")
+               ,AUROC = pROC::multiclass.roc(response = as.factor(get_phenotype(thedata)),predictor = as.numeric(theprediction)))
         }
     }
-
     if(class(model[[1]]) == "multiple_train"){
-        mapply(FUN = individual_model,model[[1]],model_config,MoreArgs = list(thedata = model[[2]]),SIMPLIFY = F)
+        structure(mapply(FUN = individual_model,model[[1]],model_config,MoreArgs = list(thedata = model[[2]]),SIMPLIFY = F),class = "multi_model_evaluation")
     
     }else{individual_model(model[[1]],model_config,model[[2]])}
 }
@@ -449,12 +452,52 @@ save_models <- function(config_file,folder_output,config_data,config_model,model
 
 }
 
+save_stats <- function(thedata,theevaluation,themodel,theconfig){
+    #NOTE: The function extract_metrics put together the model set up and the results
+        # This only work at the moment because glmnet and naive_Bayes have the same options
+        # When new models are included, it is quite possible that this function need to keep the "stats" as a list and not as a data.frame (see the do.call)
+    extract_metrics <- function(evaluation_data,model_config){
+        if(class(evaluation_data)[[1]] == "simpleError"){
+            thenames<-c("Accuracy", "Kappa", "AccuracyLower", "AccuracyUpper", "AccuracyNull",
+            "AccuracyPValue", "McnemarPValue", "Sensitivity", "Specificity",
+            "Pos Pred Value", "Neg Pred Value", "Precision", "Recall", "F1",
+            "Prevalence", "Detection Rate", "Detection Prevalence", "Balanced Accuracy"
+            )
+            c(unlist(model_config),array(dim = length(thenames),dimnames = list(thenames)))
+        }else{
+            data.frame( c(model_config,
+                        as.list(evaluation_data$CF$overall),
+                        unlist(apply(evaluation_data$CF$byClass,1,list))),
+                        AUROC = evaluation_data$AUROC[["auc"]][[1]])
+        }
+    }
+   
+    Phenotype_stats <- function(phenotype){
+        Density <- round(table(phenotype,useNA ="always")/length(phenotype)*100,digits =2)
+        Balance <- round(table(phenotype)/margin.table(table(phenotype))*100,digits = 2)
+        Density_agg = sum(Density[!is.na(names(Density))])
+        Balance_agg <- (range(Balance) %*% c(-1,1))/Density_agg * 100
+        list(Density = Density,Density_agg = Density_agg,Balance = Balance,Balance_agg = Balance_agg)
+    }
+    Phenotype_stats(get_phenotype(thedata)) -> Stats_1
+    ## The evaluation
+    if(class(theevaluation) == "multi_model_evaluation" & class(themodel)== "multi_model_setup"){
+        mapply(theevaluation,themodel,FUN = extract_metrics,SIMPLIFY = F)->evaluated
+        as.data.frame(do.call(rbind,evaluated)) -> evaluated
+    }else{extract_metrics(theevaluation,themodel)->evaluated}
+    ### HERE : It may be a problem with the many models - if it is save a file per model.
+    output <- cbind(evaluated,as.data.frame(as.list(unlist(Stats_1))),as.data.frame(as.list(unlist(theconfig,recursive=T))))
+    file_output <-gsub(x= config_file,pattern= "\\.dat",replacement = "\\.results.dat")
+    write.table(x = output,file =file.path(folder_output,file_output) ,sep = ";",dec = ",",row.names = F)
+    #cat(RJSONIO::toJSON(list(Stats_1,evaluated,themodel,theconfig),pretty = T))
+}
 ### Extras ###
 
 #Little logging
 log <- function(txt){
     print(paste("[",Sys.time(),":",txt,"]"))
 }
+# Some "getters"
 
 get_genome_columns_function <- function(pattern_gene){
     function(model_data){
@@ -470,13 +513,6 @@ get_phenotype_function <- function(phenotype){
     function(model_data){
         model_data[[phenotype]]
     }
-}
-Phenotype_stats <- function(phenotype){
-    Density <- round(table(phenotype,useNA ="always")/length(phenotype)*100,digits =2)
-    Balance <- round(table(phenotype)/margin.table(table(phenotype))*100,digits = 2)
-    Density_agg = sum(Density[!is.na(names(Density))])
-    Balance_agg <- (range(Balance) %*% c(-1,1))/Density_agg * 100
-    list(Denisty = Density,Density_agg = Density_agg,Balance = Balance,Balance_agg = Balance_agg)
 }
 
 ###################################################################
@@ -562,6 +598,7 @@ collect_data(Documents)->datos
 log("PHENOTYPE, TAXONOMY, METADATA AND GENOME DATABASES READ")
 ##### Tier 2a:  Process databases ####
 log("START OF DATA BASES PROCESSING")
+configuration$Phenotype$NA_substitution <- "NA2level";configuration$Phenotype$NA_substitution_value <- "U"
 datos <- process_PhenotypeDB(datos,configuration)
 log("PHENOTYPE DB PROCESSED")
 datos <- process_GenomeDB(datos,configuration)
@@ -585,13 +622,23 @@ log("START MODELLING")
 
 #datos[c(7,9:20)]->datos
 #datos[configuration$Phenotype$Phenotypic_trait]<- as.factor(sample(x = c("yes","no"),size = nrow(datos),replace = T))
-Phenotype_stats(get_phenotype(datos)) -> Stats_1
 send2modelling(model_data = datos,model_config = model_configuration,data_config = configuration)-> model
-evaluate_model(model,model_configuration,configuration)->model_evaluation
-save_models(config_file,folder_output,configuration,model_configuration,model)
-
 
 log("END OF MODELLING STEPS")
+
+# Evaluation of models
+log("EVALUATION OF MODELS")
+
+evaluate_model(model,model_configuration,configuration)->model_evaluation
+
+log("MODELS EVALUATED")
+## Recording results
+log("SAVING THE MODELS")
+
+save_models(config_file,folder_output,configuration,model_configuration,model)
+save_stats(thedata = datos, theevaluation = model_evaluation, themodel = model_configuration, theconfig = configuration) ->evaluated
+log("MODELS SAVED")
+
 log("END OF SCRIPT")
 
 stop("END OF SCRIPT")
