@@ -4,7 +4,8 @@
         "model" : "glmnet",
         "PCA" : "None",
         "train_CV_method": "CV",
-        "train_test_split": 0.8
+        "train_test_split": 0.8,
+        "train_n_repeat" : 10
             }
     },
     { "model" : {
@@ -12,7 +13,8 @@
         "model" : "Naive_Bayes",
         "PCA" : "None",
         "train_CV_method": "CV",
-        "train_test_split": 0.8
+        "train_test_split": 0.8,
+        "train_n_repeat" : 10
         }
     }
 ]}
