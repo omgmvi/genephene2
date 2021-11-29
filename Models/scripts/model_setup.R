@@ -139,7 +139,14 @@ check_model_config <- function(config){
             checker(config$model,"train_test_split",NULL)
             tryCatch(stopifnot(is.numeric(config$model$train_test_split)),error = function(e){stop(simpleError(paste("parameter train_test_split from glmnet model is not a number but",config$model$train_test_split)))})
             tryCatch(stopifnot(config$model$train_test_split>=0 && config$model$train_test_split<=1),error = function(e){stop(simpleError(paste("Value must be between 0 and 1 and is",config$model$train_test_split)))})
+
+            checker(config$model,"train_n_repeat",NULL)
+
+            tryCatch(stopifnot(is.integer(as.integer(config$model$train_n_repeat))),error = function(e){stop(simpleError(paste("parameter train_test_split from model is not an integer but",config$model$train_n_repeat)))})
+            tryCatch(stopifnot(config$model$train_n_repeat>=0 && config$model$train_n_repeat<=100),error = function(e){stop(simpleError(paste("Value must be between 0 and 100 and is",config$model$train_n_repeat)))})
             #it has pass all the checks -> granted the class
+
+
             class(config$model) <- c("model_setup", config$model$model) # Either glmnet or Naive_Bayes thinking of subclass and inheritance - to read about
             config$model
         }
@@ -337,7 +344,7 @@ exec_model<-function(Predictor,Response,model_config){
                 train(x = Predictor,
                       y = Response,
                       method = "glmnet",
-                      trControl=trainControl(method = model_config$train_CV_method))->model
+                      trControl=trainControl(method = model_config$train_CV_method,number = model_config$train_n_repeat))->model
                 log("Glmnet fitted")
                 model
         },error = function(e){log("ERROR in Glmnet fit");e},silent = T)->result
@@ -350,7 +357,7 @@ exec_model<-function(Predictor,Response,model_config){
                 train(  x = Predictor,
                         y = Response,
                         method = "nb",
-                        trControl=trainControl(method = model_config$train_CV_method))->model
+                        trControl=trainControl(method = model_config$train_CV_method,number=model_config$train_n_repeat))->model
                         
                 log("Naive Bayes fitted")
                 model
@@ -362,11 +369,6 @@ exec_model<-function(Predictor,Response,model_config){
 
 
 send2modelling <- function(model_data,model_config,data_config){
-    # Function to wrap the activities needed to perform the modelling according to the SOLID principles (sort of)
-    # This function will : a) Split data in validation and train sets; b) perform modelling on the validation set (through the function exec_model)
-    # c)Measure the performance of the model using the confusion matrix and associated metrics
-    # d)Quantify some quality metrics of the phenotypic data - Density and Balance
-    # e) Export the output values
 
     # Input: 
         #   model_data: data.frame (if an object would be a pheno-geno object) 8 columns for TaxID,GenomeID,Name, Genus, species, Strain, <Phenotype>, organism_name, <Gene 1>, <Gene 2>, ...,<Gene N>
@@ -374,48 +376,47 @@ send2modelling <- function(model_data,model_config,data_config){
         #   data_config:  a list of values for organizing the data - these are object-like structures (for future conversion into classes)
 
         # Split data in validation - training - using caret
-        log("DATA SPLIT")
 
     if(any(class(model_config) == "model_setup")){
-                
-            createDataPartition(model_data$TaxID,p=model_config$train_test_split,list = F)->trainData
-
-            validation_dataset <- model_data[-trainData,]
-            model_data <- model_data[trainData,] # Reusing the name (may) serve to do not keep memory busy, at least too long (data struct. like hashes and B-trees may be of help here)
-
             
             exec_model(Predictor = model_data[,Gene_names(names(model_data),data_config$Genome$Pattern_gene_columns)],
                         Response = model_data[,data_config$Phenotype$Phenotypic_trait],
-                        model_config = model_config)-> model
-
-            list( trainedModel = model,validation = validation_dataset)
+                        model_config = model_config)
 
     }else if(any(class(model_config) == "multi_model_setup")){
-                        #The data partition is the same for all the models (done on purpose for outcome comparison
                         
-        createDataPartition(model_data$TaxID,p=model_config[[1]]$train_test_split,list = F)->trainData
-
-        validation_dataset <- model_data[-trainData,]
-        model_data <- model_data[trainData,] # Reusing the name (may) serve to do not keep memory busy, at least too long (data struct. like hashes and B-trees may be of help here)
         lapply(model_config,
                 function(model_config,Predictor,Response){
                     exec_model(Predictor,Response,model_config)},
                             Predictor = model_data[,Gene_names(names(model_data),data_config$Genome$Pattern_gene_columns)],
                             Response = model_data[,data_config$Phenotype$Phenotypic_trait]) ->model
                             class(model) <- "multiple_train"
-                    list(trainedModels = model,validation = validation_dataset)
+                            model
     }
 }
 
+generate_train_validation_data <- function(model_data,model_config){
 
+        if(any(class(model_config) == "multi_model_setup")){
+            createDataPartition(model_data$TaxID,p=model_config[[1]]$train_test_split,list = F)->trainData
+        }else{
+            createDataPartition(model_data$TaxID,p=model_config$train_test_split,list = F)->trainData
+        }
+
+            list(validation_dataset = model_data[-trainData,],
+            train_dataset =  model_data[trainData,] )
+            
+}
 #####################################################
 # Tier 4: interpret and save the models - functions #
 #####################################################
 
-evaluate_model <- function(model,model_config,data_config){
+evaluate_model <- function(model,validation_data,model_config,data_config){
+
     individual_model <- function(themodel,theconfig,thedata){
-    
+ 
         if(class(themodel)[[1]] == "simpleError"){return(themodel)}
+
         if(any(class(theconfig) %in% c("glmnet","Naive_Bayes"))){
             predict(themodel,thedata)->theprediction
             #confusionMatrix(theprediction,as.factor(thedata[,data_config$Phenotype$Phenotypic_trait]))->CF
@@ -423,13 +424,15 @@ evaluate_model <- function(model,model_config,data_config){
                ,AUROC = pROC::multiclass.roc(response = as.factor(get_phenotype(thedata)),predictor = as.numeric(theprediction)))
         }
     }
-    if(class(model[[1]]) == "multiple_train"){
-        structure(mapply(FUN = individual_model,model[[1]],model_config,MoreArgs = list(thedata = model[[2]]),SIMPLIFY = F),class = "multi_model_evaluation")
+
+    if(any(class(model) == "multiple_train")){
+        structure(mapply(FUN = individual_model,model,model_config,MoreArgs = list(thedata = validation_data),SIMPLIFY = F),class = "multi_model_evaluation")
     
-    }else{individual_model(model[[1]],model_config,model[[2]])}
+    }else{individual_model(model,model_config,validation_data)}
 }
 
 save_models <- function(config_file,folder_output,config_data,config_model,model){
+
        individual_model_case <- function(config_model,model){         
             stopifnot(any(class(config_model) %in% c("glmnet","Naive_Bayes")))
             
@@ -444,10 +447,11 @@ save_models <- function(config_file,folder_output,config_data,config_model,model
                 #save(list = c("configuration","Documents","model_naiveBayes"),file = file.path(folder_output,file_output),ascii = F)
             }
         }
+
     if(any(class(config_model) %in% "model_setup")){
         individual_model_case(config_model,model)
     }else if(any(class(config_model)== "multi_model_setup")){
-        mapply(FUN=individual_model_case,config_model,model$trainedModels)
+        mapply(FUN=individual_model_case,config_model,model)
     }
 
 }
@@ -457,6 +461,7 @@ save_stats <- function(thedata,theevaluation,themodel,theconfig){
         # This only work at the moment because glmnet and naive_Bayes have the same options
         # When new models are included, it is quite possible that this function need to keep the "stats" as a list and not as a data.frame (see the do.call)
     extract_metrics <- function(evaluation_data,model_config){
+
         if(class(evaluation_data)[[1]] == "simpleError"){
             thenames<-c("Accuracy", "Kappa", "AccuracyLower", "AccuracyUpper", "AccuracyNull",
             "AccuracyPValue", "McnemarPValue", "Sensitivity", "Specificity",
@@ -464,10 +469,10 @@ save_stats <- function(thedata,theevaluation,themodel,theconfig){
             "Prevalence", "Detection Rate", "Detection Prevalence", "Balanced Accuracy"
             )
             c(unlist(model_config),array(dim = length(thenames),dimnames = list(thenames)))
-        }else{
+        }else{        
             data.frame( c(model_config,
                         as.list(evaluation_data$CF$overall),
-                        unlist(apply(evaluation_data$CF$byClass,1,list))),
+                        as.list(unlist(evaluation_data$CF$byClass))),
                         AUROC = evaluation_data$AUROC[["auc"]][[1]])
         }
     }
@@ -477,11 +482,12 @@ save_stats <- function(thedata,theevaluation,themodel,theconfig){
         Balance <- round(table(phenotype)/margin.table(table(phenotype))*100,digits = 2)
         Density_agg = sum(Density[!is.na(names(Density))])
         Balance_agg <- (range(Balance) %*% c(-1,1))/Density_agg * 100
-        list(Density = Density,Density_agg = Density_agg,Balance = Balance,Balance_agg = Balance_agg)
+        N = length(phenotype)
+        list(Nphenotype = N,Density = Density,Density_agg = Density_agg,Balance = Balance,Balance_agg = Balance_agg)
     }
     Phenotype_stats(get_phenotype(thedata)) -> Stats_1
     ## The evaluation
-    if(class(theevaluation) == "multi_model_evaluation" & class(themodel)== "multi_model_setup"){
+    if(any(class(theevaluation) == "multi_model_evaluation") & any(class(themodel)== "multi_model_setup")){
         mapply(theevaluation,themodel,FUN = extract_metrics,SIMPLIFY = F)->evaluated
         as.data.frame(do.call(rbind,evaluated)) -> evaluated
     }else{extract_metrics(theevaluation,themodel)->evaluated}
@@ -529,7 +535,7 @@ if(length(args)  != 5){
     folder_config_file          <-  "/home/ubuntu/Models/GenePhene2/test.files"
     config_file                 <-  "GenePhene2_Catalase_activity_KEGG_D2V50_pickone_genome.dat"
     folder_model_config_file    <-  "/home/ubuntu/GenePhene2/Models/config.files"
-    model_config_file           <-  "models.json"#
+    model_config_file           <-  "models.json"
                                     #"model.glmnet_elasticnet.json"
                                     #"model.Naive_Bayes.json"
     folder_output               <-  "/home/ubuntu/Models/GenePhene2/test.results"
@@ -581,47 +587,62 @@ get_metadata_columns <- get_metadata_columns_function(configuration$Genome$Patte
 get_phenotype <- get_phenotype_function(configuration$Phenotype$Phenotypic_trait)
 
 #### Tier 1b : Read all data
+
 log("QUICK CHECKS")
-##Check all exists
+##Check all exists; These checks are now more like class constructors!
 
 print(check_exist(Documents))
 stopifnot(all(check_exist(Documents)))
-
 model_configuration <- check_model_config(model_configuration)
-
 
 log("CHECKS PASSED")
 
 log("COLLECTING THE DATA")
 ## Collect the data
 collect_data(Documents)->datos
+
 log("PHENOTYPE, TAXONOMY, METADATA AND GENOME DATABASES READ")
+
+
 ##### Tier 2a:  Process databases ####
 log("START OF DATA BASES PROCESSING")
-configuration$Phenotype$NA_substitution <- "NA2level";configuration$Phenotype$NA_substitution_value <- "U"
+
+#bypass to make tests!
+#configuration$Phenotype$NA_substitution <- "NA2level";configuration$Phenotype$NA_substitution_value <- "U"
 datos <- process_PhenotypeDB(datos,configuration)
+
 log("PHENOTYPE DB PROCESSED")
+
 datos <- process_GenomeDB(datos,configuration)
+
 log("GENOME DB PROCESSED")
 
 ##### Tier 2b:  create the working database ####
 log("GENERATING THE PHENO-GENO TYPE DATABAES")
 datos <- Big_Join(datos)
+
 log("DATABASE GENERATED AFTER JOIN")
 
 #Now that I have joined the Taxonomy Indentifiers and the Genomes, I can trim down the number of genomes per bacteria
+
 log("FIXING MULTIPLE GENOMES")
 datos <-fix_multiple_Genomes(datos,configuration)
-log("MULTIPLE GENOMES FIXED")
+
 # NOTE: From here onwards, the variable datos does not contain a list but a data frame just with the bacterial name metadata, the column with the phenotype and all columns with genes
 
+log("MULTIPLE GENOMES FIXED")
+
+log("DATA SPLITTING")
+with(generate_train_validation_data(datos,model_configuration),{validation_dataset <<- get("validation_dataset");datos <<- get("train_dataset")})
+log("DATA SPLITTED")
 #### Tier 3. Modelling ###
+
 log("START MODELLING")
 
-#Few modifications to accelerate and to reduce errors
-
+#Bypass: Few modifications to accelerate and to reduce errors
 #datos[c(7,9:20)]->datos
 #datos[configuration$Phenotype$Phenotypic_trait]<- as.factor(sample(x = c("yes","no"),size = nrow(datos),replace = T))
+
 send2modelling(model_data = datos,model_config = model_configuration,data_config = configuration)-> model
 
 log("END OF MODELLING STEPS")
@@ -629,7 +650,7 @@ log("END OF MODELLING STEPS")
 # Evaluation of models
 log("EVALUATION OF MODELS")
 
-evaluate_model(model,model_configuration,configuration)->model_evaluation
+evaluate_model(model,validation_dataset,model_configuration,configuration)->model_evaluation
 
 log("MODELS EVALUATED")
 ## Recording results
