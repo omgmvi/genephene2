@@ -57,6 +57,9 @@ require(rjson)
 require(plyr) # use of dlply and ddply to summarize values
 require(caret) # For models, in particular partition of data
 
+find.package("pROC",quiet =F)
+find.package("ROSE",quiet =F)
+find.package("smotefamily",quiet =F)
 ##### FUNCTIONS ####
 
     ## Helper functions ##
@@ -252,9 +255,13 @@ fix_multiple_Genomes <-function(datos,config){
     pickone <-function(x,na.rm = F){
         #This function just take one of the repeated genomes - Aggregate is an efficient way to apply columnwise and group wise a function
         # but in this case it has an issue - it does not permit for a constant passing through the groups and columns - so how do I pick a random
-        #genome? - get the first
+        #genome? - get the first- (It does allow for passing a parameter, using ...)
         na.omit(x)[1]
     }
+    # Identity do not perform well with aggregate and I can't see why
+
+    if(config$Genome$Fix_multiple_genomes == "identity"){return(datos)}
+
     operation <- config$Genome$Fix_multiple_genomes
     operation <- match.arg(arg = operation,choices = c("median","mean","var","sum","identity","pickone"),several.ok=F)
     operation <- Filter(is.function,ifelse(sapply(c("median","mean","var","sum","identity","pickone"),function(x,y){x == y},y = operation),
@@ -395,6 +402,13 @@ send2modelling <- function(model_data,model_config,data_config){
     }
 }
 
+balance_data_classes <- function(model_data,data_config,model_config,theoption){
+    match.arg(theoption,choices = c("downSample","upSample"),several.ok = F)
+    switch(theoption,
+        downSample = downSample(x = cbind(get_genome_columns(model_data),get_metadata_columns(model_data)),y = get_phenotype(datos),yname=data_config$Phenotype$Phenotypic_trait),
+        upSample = upSample(x = cbind(get_genome_columns(model_data),get_metadata_columns(model_data)),y = get_phenotype(datos),yname=data_config$Phenotype$Phenotypic_trait))
+    }
+
 generate_train_validation_data <- function(model_data,model_config){
 
         if(any(class(model_config) == "multi_model_setup")){
@@ -420,8 +434,14 @@ evaluate_model <- function(model,validation_data,model_config,data_config){
         if(any(class(theconfig) %in% c("glmnet","Naive_Bayes"))){
             predict(themodel,thedata)->theprediction
             #confusionMatrix(theprediction,as.factor(thedata[,data_config$Phenotype$Phenotypic_trait]))->CF
+            if(nlevels(droplevels(get_phenotype(thedata)))>2){
+               AUROC<- pROC::multiclass.roc(response = as.factor(get_phenotype(thedata)),predictor = as.numeric(theprediction)) 
+            }else{
+                AUROC <- pROC::roc(response = as.factor(get_phenotype(thedata)),predictor = as.numeric(theprediction))
+            }
+
                list(CF = confusionMatrix(data = theprediction,reference = as.factor(get_phenotype(thedata)),mode = "everything")
-               ,AUROC = pROC::multiclass.roc(response = as.factor(get_phenotype(thedata)),predictor = as.numeric(theprediction)))
+               ,AUROC = AUROC)
         }
     }
 
@@ -533,7 +553,8 @@ if(length(args)  != 5){
     print("Not enough arguments provided, I carry on with presets")
 
     folder_config_file          <-  "/home/ubuntu/Models/GenePhene2/test.files"
-    config_file                 <-  "GenePhene2_Catalase_activity_KEGG_D2V50_pickone_genome.dat"
+    config_file                 <-  #"GenePhene2_Catalase_activity_KEGG_D2V50_pickone_genome.dat"
+                                     "GenePhene2_Catalase_activity_KEGG_D2V50_multiple_genomes.dat"
     folder_model_config_file    <-  "/home/ubuntu/GenePhene2/Models/config.files"
     model_config_file           <-  "models.json"
                                     #"model.glmnet_elasticnet.json"
@@ -629,8 +650,10 @@ log("FIXING MULTIPLE GENOMES")
 datos <-fix_multiple_Genomes(datos,configuration)
 
 # NOTE: From here onwards, the variable datos does not contain a list but a data frame just with the bacterial name metadata, the column with the phenotype and all columns with genes
-
 log("MULTIPLE GENOMES FIXED")
+log("CLASS BALANCING")
+datos <- balance_data_classes(datos,configuration,model_configuration,"upSample")
+log("CLASS BALANCING FINISHED")
 
 log("DATA SPLITTING")
 with(generate_train_validation_data(datos,model_configuration),{validation_dataset <<- get("validation_dataset");datos <<- get("train_dataset")})
