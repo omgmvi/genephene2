@@ -13,7 +13,7 @@
                             ]}
                         ],
         "Bacterial_metadata_columns" : ["Name","Genus","Species","Strain"],
-        "NA_substitution" : "None",
+        "NA_substitution" : "NA2level",
         "NA_substitution_value" : "no"
     },
     "Taxonomy" :
