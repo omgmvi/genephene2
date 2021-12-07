@@ -46,7 +46,7 @@
 
 
 # Class model_setup
-    #subclases (or 2nd classes) glmnet and Naive_Bayes
+    #subclases (or 2nd classes) glmnet, Naive_Bayes and XGBoost.
     # Both types are a list containing package,model, train_CV_method <CV|LOOCV>, train_test_split <positive numeric>
 ## Class multi_model_setup
     # A list of many model_setup objects
@@ -117,7 +117,7 @@ extract_specific_config <- function(config_list){
 
 check_model_config <- function(config){
   # An individual check of every type of model - here class would work perfectly - to assert that all the models for options are available and with correct values - 
-    #Check that the root of the list is called "model" and it contains an element called "model" (as well) with values glmnet or nb - then I can do the checkings according to the type of model
+    #Check that the root of the list is called "model" and it contains an element called "model" (as well) with values glmnet, nb and xgbTree - then I can do the checkings according to the type of model
     #helper function
     checker <- function(object,existance,available_options){
         if(!exists(x=existance,where=object)){stop(simpleError("existance"))}
@@ -133,19 +133,19 @@ check_model_config <- function(config){
         checker(config,"model",NULL)
 
         # It exist a node 'model' - I do not check if valid one - but help the user telling the options
-        checker(config$model,"model",c("glmnet","Naive_Bayes"))
+        checker(config$model,"model",c("glmnet","Naive_Bayes","XGBoost"))
 
-        if(config$model$model %in% c("glmnet","Naive_Bayes")){
+        if(config$model$model %in% c("glmnet","Naive_Bayes","XGBoost")){
             checker(config$model,'package',c("caret"))
             checker(config$model,'PCA',c("None"))
             checker(config$model,'train_CV_method',c("CV","LOOCV"))
             checker(config$model,"train_test_split",NULL)
-            tryCatch(stopifnot(is.numeric(config$model$train_test_split)),error = function(e){stop(simpleError(paste("parameter train_test_split from glmnet model is not a number but",config$model$train_test_split)))})
+            tryCatch(stopifnot(is.numeric(config$model$train_test_split)),error = function(e){stop(simpleError(paste("parameter train_test_split from  model configuration is not a number but",config$model$train_test_split)))})
             tryCatch(stopifnot(config$model$train_test_split>=0 && config$model$train_test_split<=1),error = function(e){stop(simpleError(paste("Value must be between 0 and 1 and is",config$model$train_test_split)))})
 
             checker(config$model,"train_n_repeat",NULL)
 
-            tryCatch(stopifnot(is.integer(as.integer(config$model$train_n_repeat))),error = function(e){stop(simpleError(paste("parameter train_test_split from model is not an integer but",config$model$train_n_repeat)))})
+            tryCatch(stopifnot(is.integer(as.integer(config$model$train_n_repeat))),error = function(e){stop(simpleError(paste("parameter train_test_split from model configuration is not an integer but",config$model$train_n_repeat)))})
             tryCatch(stopifnot(config$model$train_n_repeat>=0 && config$model$train_n_repeat<=100),error = function(e){stop(simpleError(paste("Value must be between 0 and 100 and is",config$model$train_n_repeat)))})
             #it has pass all the checks -> granted the class
 
@@ -342,7 +342,7 @@ exec_model<-function(Predictor,Response,model_config){
                           error = function(e){stop("The y columns of the model is empty",call. =F)})
 
 
-    stopifnot(any(class(model_config) %in% c("glmnet","Naive_Bayes")))
+    stopifnot(any(class(model_config) %in% c("glmnet","Naive_Bayes","XGBoost")))
     
     if(any(class(model_config) == "glmnet")){
         log(" Fitting a Glmnet Caret model")
@@ -356,8 +356,6 @@ exec_model<-function(Predictor,Response,model_config){
                 model
         },error = function(e){log("ERROR in Glmnet fit");e},silent = T)->result
     }
-
-
     if(any(class(model_config) == "Naive_Bayes")){
         log(" Fitting a Naive Bayes Caret model")
         tryCatch({ 
@@ -369,7 +367,18 @@ exec_model<-function(Predictor,Response,model_config){
                 log("Naive Bayes fitted")
                 model
         },error = function(e){log("ERROR in Naive Bayes fit");e},silent = T)->result
-    
+    } 
+    if(any(class(model_config) == "XGBoost")){
+        log(" Fitting a XGBoost model")
+        tryCatch({ 
+                train(  x = Predictor,
+                        y = Response,
+                        method = "xgbTree",
+                        trControl=trainControl(method = model_config$train_CV_method,number=model_config$train_n_repeat))->model
+                        
+                log("XGBoost model fitted")
+                model
+        },error = function(e){log("ERROR in XGBoost fit");e},silent = T)->result
     }
     result
 }
@@ -431,7 +440,7 @@ evaluate_model <- function(model,validation_data,model_config,data_config){
  
         if(class(themodel)[[1]] == "simpleError"){return(themodel)}
 
-        if(any(class(theconfig) %in% c("glmnet","Naive_Bayes"))){
+        if(any(class(theconfig) %in% c("glmnet","Naive_Bayes","XGBoost"))){
             predict(themodel,thedata)->theprediction
             #confusionMatrix(theprediction,as.factor(thedata[,data_config$Phenotype$Phenotypic_trait]))->CF
             if(nlevels(droplevels(get_phenotype(thedata)))>2){
@@ -454,7 +463,7 @@ evaluate_model <- function(model,validation_data,model_config,data_config){
 save_models <- function(config_file,folder_output,config_data,config_model,model){
 
        individual_model_case <- function(config_model,model){         
-            stopifnot(any(class(config_model) %in% c("glmnet","Naive_Bayes")))
+            stopifnot(any(class(config_model) %in% c("glmnet","Naive_Bayes","XGBoost")))
             
             if(config_model$model == "glmnet"){
                 file_output <-gsub(x= config_file,pattern= "\\.dat",replacement = "\\.model.elasticnet.dat")
@@ -462,7 +471,12 @@ save_models <- function(config_file,folder_output,config_data,config_model,model
                #save(list = c("configuration","Documents","model"),file = file.path(folder_output,file_output),ascii = F)
             }
             if(config_model$model == "Naive_Bayes"){
-                file_output <-gsub(x= config_file,pattern= "\\.dat",replacement = "\\.model.naiveBayes.dat")
+                file_output <-gsub(x= config_file,pattern= "\\.dat",replacement = "\\.model.NaiveBayes.dat")
+                log(paste("Saving results in ",file.path(folder_output,file_output)))
+                #save(list = c("configuration","Documents","model_naiveBayes"),file = file.path(folder_output,file_output),ascii = F)
+            }
+            if(config_model$model == "XGBoost"){
+                file_output <-gsub(x= config_file,pattern= "\\.dat",replacement = "\\.model.XGBoost.dat")
                 log(paste("Saving results in ",file.path(folder_output,file_output)))
                 #save(list = c("configuration","Documents","model_naiveBayes"),file = file.path(folder_output,file_output),ascii = F)
             }
@@ -478,7 +492,7 @@ save_models <- function(config_file,folder_output,config_data,config_model,model
 
 save_stats <- function(thedata,theevaluation,themodel,theconfig){
     #NOTE: The function extract_metrics put together the model set up and the results
-        # This only work at the moment because glmnet and naive_Bayes have the same options
+        # This only work at the moment because glmnet, Naive_Bayes and XGBoost have the same options at the moment - I meant on making a single data.framefor all the models.
         # When new models are included, it is quite possible that this function need to keep the "stats" as a list and not as a data.frame (see the do.call)
     extract_metrics <- function(evaluation_data,model_config){
 
@@ -554,11 +568,13 @@ if(length(args)  != 5){
 
     folder_config_file          <-  "/home/ubuntu/Models/GenePhene2/test.files"
     config_file                 <-  #"GenePhene2_Catalase_activity_KEGG_D2V50_pickone_genome.dat"
-                                     "GenePhene2_Catalase_activity_KEGG_D2V50_multiple_genomes.dat"
+                                    #"GenePhene2_Catalase_activity_KEGG_D2V50_multiple_genomes.dat"
+                                    "GenePhene2_Catalase_activity_KEGG_BoW_multiple_genomes.dat"
     folder_model_config_file    <-  "/home/ubuntu/GenePhene2/Models/config.files"
     model_config_file           <-  "models.json"
                                     #"model.glmnet_elasticnet.json"
                                     #"model.Naive_Bayes.json"
+                                    #"model.XGBoost.json"
     folder_output               <-  "/home/ubuntu/Models/GenePhene2/test.results"
 
 #    folder_config_file <- "/home/ubuntu/Models/GenePhene2/data.files"
@@ -647,16 +663,22 @@ log("DATABASE GENERATED AFTER JOIN")
 #Now that I have joined the Taxonomy Indentifiers and the Genomes, I can trim down the number of genomes per bacteria
 
 log("FIXING MULTIPLE GENOMES")
+
 datos <-fix_multiple_Genomes(datos,configuration)
 
 # NOTE: From here onwards, the variable datos does not contain a list but a data frame just with the bacterial name metadata, the column with the phenotype and all columns with genes
 log("MULTIPLE GENOMES FIXED")
+
 log("CLASS BALANCING")
-datos <- balance_data_classes(datos,configuration,model_configuration,"upSample")
+
+datos <- balance_data_classes(datos,configuration,model_configuration,"downSample")
+
 log("CLASS BALANCING FINISHED")
 
 log("DATA SPLITTING")
+#NOTE: It seems that generate the validation data from the artificially balanced dataset may modify its utility (I can't see why)
 with(generate_train_validation_data(datos,model_configuration),{validation_dataset <<- get("validation_dataset");datos <<- get("train_dataset")})
+
 log("DATA SPLITTED")
 #### Tier 3. Modelling ###
 
