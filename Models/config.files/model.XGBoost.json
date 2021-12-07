@@ -1,0 +1,9 @@
+{ "model" : {
+    "package" : "caret",
+    "model" : "XGBoost",
+    "PCA" : "None",
+    "train_CV_method": "CV",
+    "train_test_split": 0.8,
+    "train_n_repeat" : 10
+    }
+}
