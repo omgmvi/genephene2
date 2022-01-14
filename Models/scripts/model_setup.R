@@ -373,7 +373,7 @@ exec_model<-function(Predictor,Response,model_config){
         tryCatch({ 
                 train(  x = Predictor,
                         y = Response,
-                        method = "xgbTree",
+                        method = "xgbLinear",
                         trControl=trainControl(method = model_config$train_CV_method,number=model_config$train_n_repeat))->model
                         
                 log("XGBoost model fitted")
@@ -421,9 +421,9 @@ balance_data_classes <- function(model_data,data_config,model_config,theoption){
 generate_train_validation_data <- function(model_data,model_config){
 
         if(any(class(model_config) == "multi_model_setup")){
-            createDataPartition(model_data$TaxID,p=model_config[[1]]$train_test_split,list = F)->trainData
+            createDataPartition(get_phenotype(model_data),p=model_config[[1]]$train_test_split,list = F)->trainData
         }else{
-            createDataPartition(model_data$TaxID,p=model_config$train_test_split,list = F)->trainData
+            createDataPartition(get_phenotype(model_data),p=model_config$train_test_split,list = F)->trainData
         }
 
             list(validation_dataset = model_data[-trainData,],
@@ -569,7 +569,8 @@ if(length(args)  != 5){
     folder_config_file          <-  "/home/ubuntu/Models/GenePhene2/test.files"
     config_file                 <-  #"GenePhene2_Catalase_activity_KEGG_D2V50_pickone_genome.dat"
                                     #"GenePhene2_Catalase_activity_KEGG_D2V50_multiple_genomes.dat"
-                                    "GenePhene2_Catalase_activity_KEGG_BoW_multiple_genomes.dat"
+                                    #"GenePhene2_Catalase_activity_KEGG_BoW_multiple_genomes.dat"
+                                    "GenePhene2_Catalase_activity_KEGG_BoW_pickone_genomes.dat"
     folder_model_config_file    <-  "/home/ubuntu/GenePhene2/Models/config.files"
     model_config_file           <-  "models.json"
                                     #"model.glmnet_elasticnet.json"
@@ -676,7 +677,7 @@ datos <- balance_data_classes(datos,configuration,model_configuration,"downSampl
 log("CLASS BALANCING FINISHED")
 
 log("DATA SPLITTING")
-#NOTE: It seems that generate the validation data from the artificially balanced dataset may modify its utility (I can't see why)
+#NOTE: It seems that generating the validation data from the artificially balanced dataset may modify its utility (I can't see why, I can't find where I read it)
 with(generate_train_validation_data(datos,model_configuration),{validation_dataset <<- get("validation_dataset");datos <<- get("train_dataset")})
 
 log("DATA SPLITTED")
