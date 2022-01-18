@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # script to prepare a run of models
-folder_input="/home/ubuntu/Models/GenePhene2/data.files"
-folder_output="/home/ubuntu/Models/GenePhene2/model.results"
+folder_input="/home/ubuntu/Models/GenePhene2/test.files"
+folder_output="/home/ubuntu/Models/GenePhene2/test.results"
 
 folder_model="/home/ubuntu/GenePhene2/Models/config.files"
 file_model="model.glmnet_elasticnet.json"
