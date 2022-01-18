@@ -1,0 +1,3 @@
+split -b 50MB HIDING_D2V.tar.gz HIDING_D2V.tar.gz.part_
+cat HIDING_D2V.tar.gz.part_a*
+#the latter should work
