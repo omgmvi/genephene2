@@ -147,6 +147,10 @@ check_model_config <- function(config){
 
             tryCatch(stopifnot(is.integer(as.integer(config$model$train_n_repeat))),error = function(e){stop(simpleError(paste("parameter train_test_split from model configuration is not an integer but",config$model$train_n_repeat)))})
             tryCatch(stopifnot(config$model$train_n_repeat>=0 && config$model$train_n_repeat<=100),error = function(e){stop(simpleError(paste("Value must be between 0 and 100 and is",config$model$train_n_repeat)))})
+
+            
+            checker(config$model,"train_balance",NULL)
+            checker(config$model,"train_balance",c("downSample","upSample","none"))
             #it has pass all the checks -> granted the class
 
 
@@ -411,8 +415,9 @@ send2modelling <- function(model_data,model_config,data_config){
     }
 }
 
-balance_data_classes <- function(model_data,data_config,model_config,theoption){
-    match.arg(theoption,choices = c("downSample","upSample"),several.ok = F)
+balance_data_classes <- function(model_data,data_config,model_config){
+    theoption <- model_config$train_balance
+    match.arg(theoption,choices = c("downSample","upSample","none"),several.ok = F)
     switch(theoption,
         downSample = downSample(x = cbind(get_genome_columns(model_data),get_metadata_columns(model_data)),y = get_phenotype(datos),yname=data_config$Phenotype$Phenotypic_trait),
         upSample = upSample(x = cbind(get_genome_columns(model_data),get_metadata_columns(model_data)),y = get_phenotype(datos),yname=data_config$Phenotype$Phenotypic_trait))
@@ -572,8 +577,8 @@ if(length(args)  != 5){
                                     #"GenePhene2_Catalase_activity_KEGG_BoW_multiple_genomes.dat"
                                     "GenePhene2_Catalase_activity_KEGG_BoW_pickone_genomes.dat"
     folder_model_config_file    <-  "/home/ubuntu/GenePhene2/Models/config.files"
-    model_config_file           <-  "models.json"
-                                    #"model.glmnet_elasticnet.json"
+    model_config_file           <-  #"models.json"
+                                    "model.glmnet_elasticnet.json"
                                     #"model.Naive_Bayes.json"
                                     #"model.XGBoost.json"
     folder_output               <-  "/home/ubuntu/Models/GenePhene2/test.results"
@@ -672,7 +677,7 @@ log("MULTIPLE GENOMES FIXED")
 
 log("CLASS BALANCING")
 
-datos <- balance_data_classes(datos,configuration,model_configuration,"downSample")
+datos <- balance_data_classes(datos,configuration,model_configuration)
 
 log("CLASS BALANCING FINISHED")
 
