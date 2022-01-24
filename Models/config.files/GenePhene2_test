@@ -47,6 +47,26 @@
             "Fix_multiple_genomes" : "identity"
         },
         {
+            "Genome":"COG",
+            "Genome_type" :"BoW",
+            "file_ending" : "pickone_genomes",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
+            "GenomeDB" : "GenePhene2_BoW_COG.tsv",
+            "Pattern_gene_columns" : "COG\\d+",
+            "Pattern_genomic_table_columns" : "COG\\d+|GenomeID",
+            "Fix_multiple_genomes" : "pickone"
+        },
+        {
+            "Genome":"pFam",
+            "Genome_type" :"BoW",
+            "file_ending" : "multiple_genomes",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
+            "GenomeDB" : "GenePhene2_BoW_pFam.tsv",
+            "Pattern_gene_columns" : "PF\\d+",
+            "Pattern_genomic_table_columns" : "PF\\d+|GenomeID",
+            "Fix_multiple_genomes" : "identity"
+        },
+        {
             "Genome":"KEGG",
             "Genome_type" :"D2V50",
             "file_ending" : "pickone_genome",
