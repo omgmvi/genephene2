@@ -14,5 +14,5 @@ do
     echo  $folder_input $(basename "${file}") $folder_model $file_model  $folder_output
 
     ./model_setup.R $folder_input $(basename "${file}") $folder_model $file_model $folder_output
-    mv "${file}" "${file}.complete"
+#    mv "${file}" "${file}.complete"
 done
