@@ -27,12 +27,13 @@
 # At the moment I uses S3 classes to take advantage of the type system in R, that is, I am using class(object) <- "type" to tag wether a variables is of certain type or other (for example if it is a ssingle model or multiple models)
 
 #TODO: 
-    ## Make a model document
     ## Test the DB has the expected structure
     ## the fix_multiple_genomes needs inspection - also needs an argument for the column to use and/or check that it exists
-    ## Define the output
+    ## Define the output - almost
     ## Define what to do with the errors.
-
+    ## make the process Genome better for the case of pickone - it has to do it at random
+    ## make few checkpoints in the code -e.g validation data is not empty; search for unexpected errors
+    ## make an output code -1 if faulty 0 if OK
 ###################### SETUP ###################
 
 ## S3 classes definitions
@@ -102,6 +103,7 @@ extract_specific_config <- function(config_list){
 # This function serve the purpose of check that the configuration file conforms, at least by names, with the expected nested structure 
 # That is, the contents are to checked
     structure(list(
+            Database  = structure(list( Database                    = config_list$Database),class = "Database_config"),
             Phenotype = structure(list( Phenotypic_trait            = config_list$Phenotype$Phenotypic_trait,
                                         Bacterial_metadata_columns  = config_list$Phenotype$Bacterial_metadata_columns,
                                         NA_substitution             = config_list$Phenotype$NA_substitution,
@@ -150,7 +152,7 @@ check_model_config <- function(config){
 
             
             checker(config$model,"train_balance",NULL)
-            checker(config$model,"train_balance",c("downSample","upSample","none"))
+            checker(config$model,"train_balance",c("downSample","upSample","None"))
             #it has pass all the checks -> granted the class
 
 
@@ -415,14 +417,33 @@ send2modelling <- function(model_data,model_config,data_config){
     }
 }
 
-balance_data_classes <- function(model_data,data_config,model_config){
-    #theoption <- model_config$train_balance
-    ifelse(test= class(model_config) == "multi_model_setup",theoption <- model_config[[1]][["train_balance"]],theoption <- model_config[["train_balance"]])
-    match.arg(theoption,choices = c("downSample","upSample","none"),several.ok = F)
-    switch(theoption,
-        downSample = downSample(x = cbind(get_genome_columns(model_data),get_metadata_columns(model_data)),y = get_phenotype(datos),yname=data_config$Phenotype$Phenotypic_trait),
-        upSample = upSample(x = cbind(get_genome_columns(model_data),get_metadata_columns(model_data)),y = get_phenotype(datos),yname=data_config$Phenotype$Phenotypic_trait))
+fix_balance_data_classes <- function(model_config){
+    
+    if(any(class(model_config) == "multi_model_setup")){
+
+        theoption <- model_config[[1]][["train_balance"]]
+        warning("In a multi model experiment the balance is done according to the options set at the first model.\n
+                The configuration structure is changed to reflect that")
+        cl <- class(model_config)
+        lapply(model_config,function(model_struct){model_struct[["train_balance"]] <- theoption;model_struct})->model_config
+        class(model_config) <- cl
     }
+    model_config
+}
+
+balance_data_classes <- function(model_data,data_config,model_config){
+
+    ifelse(test= any(class(model_config) == "multi_model_setup"),
+                theoption <- model_config[[1]][["train_balance"]],
+                theoption <- model_config[["train_balance"]])
+
+    match.arg(theoption,choices = c("downSample","upSample","None"),several.ok = F)
+    switch(theoption,
+        downSample  = downSample(x = cbind(get_genome_columns(model_data),get_metadata_columns(model_data)),y = get_phenotype(datos),yname=data_config$Phenotype$Phenotypic_trait),
+        upSample    = upSample(x = cbind(get_genome_columns(model_data),get_metadata_columns(model_data)),y = get_phenotype(datos),yname=data_config$Phenotype$Phenotypic_trait),
+        None        = model_data)
+}
+
 
 generate_train_validation_data <- function(model_data,model_config){
 
@@ -500,6 +521,14 @@ save_stats <- function(thedata,theevaluation,themodel,theconfig){
     #NOTE: The function extract_metrics put together the model set up and the results
         # This only work at the moment because glmnet, Naive_Bayes and XGBoost have the same options at the moment - I meant on making a single data.framefor all the models.
         # When new models are included, it is quite possible that this function need to keep the "stats" as a list and not as a data.frame (see the do.call)
+
+        #Another tinkering step - what tod with the errors at modelling?
+        if(any(class(themodel) == "model_setup") & any(class(theevaluation) == "error")){return()}
+        if(any(class(theevaluation) == "multi_model_evaluation")){
+            lapply(theevaluation,function(x){if(any(class(x)=="error")){}else{x}})->theevaluation
+        }
+        if(all(unlist(lapply(theevaluation,is.null)))){return()}
+
     extract_metrics <- function(evaluation_data,model_config){
 
         if(class(evaluation_data)[[1]] == "simpleError"){
@@ -525,17 +554,44 @@ save_stats <- function(thedata,theevaluation,themodel,theconfig){
         N = length(phenotype)
         list(Nphenotype = N,Density = Density,Density_agg = Density_agg,Balance = Balance,Balance_agg = Balance_agg)
     }
+
+
     Phenotype_stats(get_phenotype(thedata)) -> Stats_1
+    
+    
     ## The evaluation
     if(any(class(theevaluation) == "multi_model_evaluation") & any(class(themodel)== "multi_model_setup")){
         mapply(theevaluation,themodel,FUN = extract_metrics,SIMPLIFY = F)->evaluated
         as.data.frame(do.call(rbind,evaluated)) -> evaluated
-    }else{extract_metrics(theevaluation,themodel)->evaluated}
-    ### HERE : It may be a problem with the many models - if it is save a file per model.
-    output <- cbind(evaluated,as.data.frame(as.list(unlist(Stats_1))),as.data.frame(as.list(unlist(theconfig,recursive=T))))
-    file_output <-gsub(x= config_file,pattern= "\\.dat",replacement = "\\.results.dat")
-    write.table(x = output,file =file.path(folder_output,file_output) ,sep = ";",dec = ",",row.names = F)
-    #cat(RJSONIO::toJSON(list(Stats_1,evaluated,themodel,theconfig),pretty = T))
+    }else{
+        extract_metrics(theevaluation,themodel)->evaluated
+    }
+        
+        ### HERE : It may be a problem with the many models - if it is save a file per model.
+        output <- cbind(evaluated,as.data.frame(as.list(unlist(Stats_1))),as.data.frame(as.list(unlist(theconfig,recursive=T))))
+
+
+        # Let's build the file name in a way that provide some information of what is inside and also a Date code  to avoid any ambiguity that may happen (repetition of the same model with the same data in two instances, for example)
+
+        if(any(class(themodel) == "model_setup")){
+            Model   <- themodel$model
+        }else if(any(class(themodel) == "multi_model_setup")){
+            Model   <- "multi_model_setup"
+        }
+        Database        <- theconfig$Database
+        Trait           <- theconfig$Phenotype$Phenotypic_trait
+        Trait           <- paste(strsplit(Trait,split=" ")[[1]],collapse = "-")
+
+        Genome_type     <- theconfig$Genome$Genome_type
+        Ortholog_type   <- theconfig$Genome$Genome_ortholog_type
+ 
+        Date            <- format(Sys.time(),"%b%d-%H:%M:%S")
+        file_output <- paste(paste(Database,Model,Trait,Genome_type,Ortholog_type,sep = "_"),Date,"results","dat",sep = ".")
+        
+        log(paste("Saving evaluation results in ",file.path(folder_output,file_output)))
+        #file_output <-gsub(x= config_file,pattern= "\\.dat",replacement = "\\.results.dat")
+        write.table(x = output,file =file.path(folder_output,file_output) ,sep = ";",dec = ",",row.names = F)
+        #cat(RJSONIO::toJSON(list(Stats_1,evaluated,themodel,theconfig),pretty = T))
 }
 ### Extras ###
 
@@ -576,9 +632,10 @@ if(length(args)  != 5){
     config_file                 <-  #"GenePhene2_Catalase_activity_KEGG_D2V50_pickone_genome.dat"
                                     #"GenePhene2_Catalase_activity_KEGG_D2V50_multiple_genomes.dat"
                                     #"GenePhene2_Catalase_activity_KEGG_BoW_multiple_genomes.dat"
-                                    "GenePhene2_Catalase_activity_KEGG_BoW_pickone_genomes.dat"
+                                    #"GenePhene2_Catalase_activity_KEGG_BoW_pickone_genomes.dat"
+                                    "GenePhene2_chemolitotrophic_COG_BoW_pickone_genomes.dat.complete"
     folder_model_config_file    <-  "/home/ubuntu/GenePhene2/Models/config.files"
-    model_config_file           <-  "models.json"
+    model_config_file           <-  "models_upSample.json"
                                     #"model.glmnet_elasticnet.json"
                                     #"model.Naive_Bayes.json"
                                     #"model.XGBoost.json"
@@ -677,7 +734,9 @@ datos <-fix_multiple_Genomes(datos,configuration)
 log("MULTIPLE GENOMES FIXED")
 
 log("CLASS BALANCING")
+#Fix the case for multi model experiments, I can't manage each balance separately (this script is supposed to be for testing the same dataset with several models
 
+model_configuration <- fix_balance_data_classes(model_configuration)
 datos <- balance_data_classes(datos,configuration,model_configuration)
 
 log("CLASS BALANCING FINISHED")
@@ -685,8 +744,9 @@ log("CLASS BALANCING FINISHED")
 log("DATA SPLITTING")
 #NOTE: It seems that generating the validation data from the artificially balanced dataset may modify its utility (I can't see why, I can't find where I read it)
 with(generate_train_validation_data(datos,model_configuration),{validation_dataset <<- get("validation_dataset");datos <<- get("train_dataset")})
-
 log("DATA SPLITTED")
+#tryCatch(stopifnot(nrow(validation_dataset) !=0),error = function(e){log("VALIDATION DATA EMPTY - LEAVING THE PROGRAM");stop()})
+log("CHECKPOINT - VALIDATION DATA NOT EMPTY - PASSED")
 #### Tier 3. Modelling ###
 
 log("START MODELLING")
@@ -707,14 +767,18 @@ evaluate_model(model,validation_dataset,model_configuration,configuration)->mode
 log("MODELS EVALUATED")
 ## Recording results
 log("SAVING THE MODELS")
-
+#The models are not really being saved to avoid space problme - actually I just want the parameters
 save_models(config_file,folder_output,configuration,model_configuration,model)
 save_stats(thedata = datos, theevaluation = model_evaluation, themodel = model_configuration, theconfig = configuration) ->evaluated
 log("MODELS SAVED")
 
+log("Tagging the input file")
+# I do not like this way doing this but at the moment for the sake of finishing this.
+# I need to know which tasks has been finished or not - due to some error and I do it by moving the files
+file.rename(file.path(folder_config_file,config_file),to = file.path(folder_config_file,paste(config_file,"complete",sep = ".")))
 log("END OF SCRIPT")
 
-stop("END OF SCRIPT")
+#stop("END OF SCRIPT")
     # To make the model possible - PCA on the predictors - I think caret can do the same.
         #prcomp(x = datos[,Gene_names(names(datos),pattern_gene_columns)],center = F,scale. = F)->PCA
         #datos<- data.frame(datos[,phenotypic_trait],data.frame(PCA$x))   
