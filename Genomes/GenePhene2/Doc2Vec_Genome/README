@@ -1,0 +1,11 @@
+To buid the Doc2Vec Genomes
+the GenePhene2_D2V.tar.gz genome (a table with a contig per line)
+has to be untar
+then the small contigs are filter out with 
+bash remove_contig_files.sh "GENEPHENE_D2V_*" 10 
+to remove those with less than 10 genes
+Then, the script in python Doc2Vec_Genomes.py
+(by the time this is written the options has to be manually written within)
+is run with options 100, 200 and 500 for the COG, KEGG and pFAM)
+The headers are missing, so I generate them again with the script
+Add_headers_D2V "GenePhene2_D2V_*_*.tsv"
