@@ -628,18 +628,15 @@ print(args)
 if(length(args)  != 5){
     print("Not enough arguments provided, I carry on with presets")
 
-    folder_config_file          <-  "/home/ubuntu/Models/GenePhene2/test.files"
+    folder_config_file          <-  "/home/ubuntu/Models/FAPROTAX/test.files"
     config_file                 <-  #"GenePhene2_Catalase_activity_KEGG_D2V50_pickone_genome.dat"
-                                    #"GenePhene2_Catalase_activity_KEGG_D2V50_multiple_genomes.dat"
-                                    #"GenePhene2_Catalase_activity_KEGG_BoW_multiple_genomes.dat"
-                                    #"GenePhene2_Catalase_activity_KEGG_BoW_pickone_genomes.dat"
-                                    "GenePhene2_chemolitotrophic_COG_BoW_pickone_genomes.dat.complete"
+                                    "FAPROTAX_xylanolysis_KEGG_D2V100_pickone_genomes.dat"
     folder_model_config_file    <-  "/home/ubuntu/GenePhene2/Models/config.files"
-    model_config_file           <-  "models_upSample.json"
-                                    #"model.glmnet_elasticnet.json"
+    model_config_file           <-  #"models_upSample.json"
+                                    "model.glmnet_elasticnet.json"
                                     #"model.Naive_Bayes.json"
                                     #"model.XGBoost.json"
-    folder_output               <-  "/home/ubuntu/Models/GenePhene2/test.results"
+    folder_output               <-  "/home/ubuntu/Models/FAPROTAX/test.results"
 
 #    folder_config_file <- "/home/ubuntu/Models/GenePhene2/data.files"
 #    config_file <- "GenePhene2_Output_1,2,4-trihydroxybenzene_D2V_COG.dat"
