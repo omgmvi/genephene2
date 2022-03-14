@@ -1,3 +1,36 @@
-split -b 50MB HIDING_D2V.tar.gz HIDING_D2V.tar.gz.part_
-cat HIDING_D2V.tar.gz.part_a*
-#the latter should work
+
+# Extract the contig files - first element in a row is the genome name - the rest are the ortholog genes (COG, KEGG or pFam) in order in a contig
+
+tar -zxvf FAPROTAX_D2V.tar.gz
+
+#These genomes need to be filtered out keeping those lines with more than N genes, e.g. 10 lines - since too small contigs may be a problem (actually don't since Doc2Vec pass a window)
+
+# To perform the filter just run the code at 
+~/GenePhene2/Genomes/scripts/remove_contig.sh <File> <Contig length>
+
+# To apply to all files run better
+
+~/GenePhene2/Genomes/scripts/remove_contig_files.sh <Expr> <Contig length>
+# as said in the script:
+# usage : bash ./remove_contig_files.sh "GENEPHENE2_*tsv" 10
+# NOTE: The expression (glob) must be quoted!!! e.g. "*.tsv"
+
+
+# Then you have to run your favourite genome summarizer - it could be a frequency table to make the bag of words 
+# To run the doc2vec just modify the parameters (sorry -they are still harcoded as a variable - my bad)
+
+# at  ~/GenePhene2/Genomes/scripts/D2V_scripts/Doc2Vec_Genomes.py change lines for the Absolute path 
+
+#and the lines : 
+## Handling file and folder names - rustic version
+Ndim =1000
+Ortho = "KEGG"
+Geno = "FAPROTAX"
+
+# To choose the type of phenotypic database <Genephene2|FAPROTAX|Hiding|MDB> and the type of ortholog <KEGG|COG|pFam> and the number of output columns (genome size)
+
+# To finish run a little script that will put the header to the Doc2Vec Genomes
+
+# ~/GenePhene2/Genomes/scripts/Add_D2V_header.sh <Expr> 
+# Where the expression is again a glob to apply to several files as said in the usage
+#usage : Add_D2V_header.sh "wildcard"

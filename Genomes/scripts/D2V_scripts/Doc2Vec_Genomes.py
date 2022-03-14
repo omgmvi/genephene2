@@ -92,6 +92,25 @@ if Geno == "FAPROTAX":
     else:
         print("No good option")
         exit()
+if Geno == "Hiding":  
+    Absolute_Folder = "/home/ubuntu/GenePhene2/Genomes/Hiding/Doc2Vec_Genome"
+    if Ortho == "KEGG":
+        File_Name = "Hiding_D2V_KEGG.tsv"
+        Model_Filename = "Hiding_Doc2Vec_"+ str(Ndim) +"_KEGG.dat"
+        Export_Filename = "Hiding_Doc2Vec_"+ str(Ndim) +"_KEGG.tsv"
+    elif Ortho == "COGS":
+        File_Name = "Hiding_D2V_COG.tsv"
+        Model_Filename = "Hiding_Doc2Vec_"+ str(Ndim) +"_COGS.dat"
+        Export_Filename = "Hiding_Doc2Vec_"+ str(Ndim) +"_COGS.tsv"
+
+    elif Ortho == "pFam":
+        File_Name = "Hiding_D2V_pFam.tsv"
+        Model_Filename = "Hiding_Doc2Vec_"+ str(Ndim) +"_pFam.dat"
+        Export_Filename = "Hiding_Doc2Vec_"+ str(Ndim) +"_pFam.tsv"
+    else:
+        print("No good option")
+        exit()
+
 
 Genome_File = join(Absolute_Folder,File_Name)
 Model_File = join(Absolute_Folder,Model_Filename)
