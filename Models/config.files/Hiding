@@ -1,0 +1,115 @@
+{
+    "Database" : "Hiding",
+
+    "Phenotype" :
+    {
+        "Folder_Phenotype" : "/home/ubuntu/GenePhene2/Databases/Hiding/",
+        "Phenotypes" : [
+                            {"PhenotypeDB":"Metabolic.tsv",
+                            "Phenotypes" :["acid phosphatase","aesculin hydrolysis","alkaline phosphatase",
+                            "alpha-galactosidase","arylsulfatase","catalase positive","gelatinase","H2S production",
+                            "indole production","methane production","nitrate reduction to nitrite","oxidase positive",
+                            "pyrazinamidase","tellurite reductase","urease positive"]},
+                            {"PhenotypeDB":"Substrates.tsv",
+                            "Phenotypes" :["2-aminethanol","2-ketogluconate","2;3-butanediol","3-hydroxybenzoate","3-hydroxybutyrate","4-hydroxbenzoate",
+                            "5-ketoguconate","acetate","adipate","adonitol","alaninamide","alanine","alpha-cyclodextrin","alpha-ketovaleric acid",
+                            "arabinose","arabitol","arginine","asparagine","aspartic acid (aspartate)","butanol","caprate","carnitine","cellobiose",
+                            "citric acide (citrate)","dextrin","ethanol","formic acid","fructose","fucose","galactonic acid","galactose","galcturonic acid",
+                            "gamma-aminobutyric acid","gelatin","gluconic acid","glucosamine","glucose","glucuronamide","glutamic acid","glycerol","glycine",
+                            "glycogen","histidine","hyroxl-proline","inosine","itaconate","lactate","lactose","leucine","malate","malonic acid (malonate)",
+                            "maltose","mannitol","mannose","melibiose","methyl beta-D-glucoside","methyl pyruvate","myo-inositol","N-acetylgulcosamine",
+                            "ornithine","phenethylamine","phenylacetate","phenylalanine","proline","propionic acid (propionate)","putrescine","pyruvic acid (pyruvate)",
+                            "pyruvic acid methyl ester","quinic acid","raffinose","rhamnose","ribose","salicin","serine","sorbitol","suberic acid",
+                            "succinic acid (succinate)","sucrose","threonine","thymidine","trehalose","trisodium citrate","tryptophan",
+                            "Tween 20","Tween 40","Tween 60","Tween 80","urea","uridine","urocanic acid","valerate","xylitol","xylose"]}
+
+                        ],
+        "Bacterial_metadata_columns" : ["Name","Genus","Species","Strain"],
+        "NA_substitution" : "NA2level",
+        "NA_substitution_value" : "no"
+    },
+    "Taxonomy" :
+    {
+        "Folder_Taxonomy": "/home/ubuntu/GenePhene2/Taxonomy/Hiding/",
+        "TaxonomyDB":"SpeciesTaxID.tsv"
+    },
+
+    "Metadata":{"Folder_Metadata" : "/home/ubuntu/GenePhene2/Metadata/Hiding",
+    "Taxa2assemblyDB" : "TaxID2Genome_metadata.tsv"},
+
+    "Genomes": [
+        {
+            "Genome":"KEGG",
+            "Genome_type" : "BoW",
+            "file_ending" : "pickone_genomes",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/Hiding/BagOfWords_Genome",
+            "GenomeDB" : "Hiding_BoW_KEGG.tsv",
+            "Pattern_gene_columns" : "K\\d+",
+            "Pattern_genomic_table_columns" : "K\\d+|GenomeID",
+            "Fix_multiple_genomes" : "pickone"
+        },
+        {
+            "Genome":"COG",
+            "Genome_type" : "BoW",
+            "file_ending" : "pickone_genomes",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/Hiding/BagOfWords_Genome",
+            "GenomeDB" : "Hiding_BoW_COG.tsv",
+            "Pattern_gene_columns" : "COG\\d+",
+            "Pattern_genomic_table_columns" : "COG\\d+|GenomeID",
+            "Fix_multiple_genomes" : "pickone"
+        },
+        {
+            "Genome":"pFam",
+            "Genome_type" : "BoW",
+            "file_ending" : "pickone_genomes",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/Hiding/BagOfWords_Genome",
+            "GenomeDB" : "Hiding_BoW_pFam.tsv",
+            "Pattern_gene_columns" : "PF\\d+",
+            "Pattern_genomic_table_columns" : "PF\\d+|GenomeID",
+            "Fix_multiple_genomes" : "pickone"
+        },
+        {
+            "Genome":"KEGG",
+            "Genome_type" : "D2V50",
+            "file_ending" : "pickone_genomes",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/Hiding/BagOfWords_Genome",
+            "GenomeDB" : "Hiding_Doc2Vec_50_KEGG.tsv",
+            "Pattern_gene_columns" : "D2V\\d+",
+            "Pattern_genomic_table_columns" : "D2V\\d+|GenomeID",
+            "Fix_multiple_genomes" : "pickone"
+        },
+        {
+            "Genome":"KEGG",
+            "Genome_type" : "D2V500",
+            "file_ending" : "pickone_genomes",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/Hiding/BagOfWords_Genome",
+            "GenomeDB" : "Hiding_Doc2Vec_500_KEGG.tsv",
+            "Pattern_gene_columns" : "D2V\\d+",
+            "Pattern_genomic_table_columns" : "D2V\\d+|GenomeID",
+            "Fix_multiple_genomes" : "pickone"
+        },
+        {
+            "Genome":"KEGG",
+            "Genome_type" : "D2V1000",
+            "file_ending" : "pickone_genomes",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/Hiding/BagOfWords_Genome",
+            "GenomeDB" : "Hiding_Doc2Vec_1000_KEGG.tsv",
+            "Pattern_gene_columns" : "D2V\\d+",
+            "Pattern_genomic_table_columns" : "D2V\\d+|GenomeID",
+            "Fix_multiple_genomes" : "pickone"
+        },
+        {
+            "Genome":"KEGG",
+            "Genome_type" : "D2V5000",
+            "file_ending" : "pickone_genomes",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/Hiding/BagOfWords_Genome",
+            "GenomeDB" : "Hiding_Doc2Vec_5000_KEGG.tsv",
+            "Pattern_gene_columns" : "D2V\\d+",
+            "Pattern_genomic_table_columns" : "D2V\\d+|GenomeID",
+            "Fix_multiple_genomes" : "pickone"
+        }
+
+
+
+    ]
+}

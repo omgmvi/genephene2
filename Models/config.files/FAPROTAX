@@ -3,7 +3,7 @@
 
     "Phenotype" :
     {
-        "Folder_Phenotype" : "/home/ubuntu/GenePhene2/Databases/FAPROTAX/FAPROTAX_1.2.4/",
+        "Folder_Phenotype" : "/home/ubuntu/GenePhene2/Databases/FAPROTAX/",
         "Phenotypes" : [
                             {"PhenotypeDB":"FAPROTAX.tsv",
                             "Phenotypes" :["methanotrophy","acetoclastic_methanogenesis","methanogenesis_using_formate","methanogenesis_by_CO2_reduction_with_H2",
@@ -21,11 +21,11 @@
                             "hydrocarbon_degradation","dark_iron_oxidation","iron_respiration","nitrate_respiration","nitrate_reduction","nitrogen_respiration",
                             "fumarate_respiration","chlorate_reducers","photosynthetic_cyanobacteria","anoxygenic_photoautotrophy_H2_oxidizing",
                             "anoxygenic_photoautotrophy_S_oxidizing","anoxygenic_photoautotrophy_Fe_oxidizing","anoxygenic_photoautotrophy","oxygenic_photoautotrophy",
-                            "photoautotrophy","aerobic_anoxygenic_phototrophy","photoheterotrophy","phototrophy","plastic_degradation","ureolysis","reductive_acetogenesis","chemoheterotrophy"]},
+                            "photoautotrophy","aerobic_anoxygenic_phototrophy","photoheterotrophy","phototrophy","plastic_degradation","ureolysis","reductive_acetogenesis","chemoheterotrophy"]}
                         ],
         "Bacterial_metadata_columns" : ["Name","Genus","Species","Strain"],
         "NA_substitution" : "NA2level",
-        "NA_substitution_value" : "Unknown"
+        "NA_substitution_value" : "no"
     },
     "Taxonomy" :
     {
@@ -39,9 +39,33 @@
     "Genomes": [
         {
             "Genome":"KEGG",
+            "Genome_type" : "BoW",
+            "file_ending" : "pickone_genomes",
             "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/FAPROTAX/BagOfWords_Genome",
-            "GenomeDB" : "KEGG_genome.tsv",
+            "GenomeDB" : "FAPROTAX_BoW_KEGG.tsv",
             "Pattern_gene_columns" : "K\\d+",
-            "Pattern_genomic_table_columns" : "K\\d+|GenomeID"},
+            "Pattern_genomic_table_columns" : "K\\d+|GenomeID",
+            "Fix_multiple_genomes" : "pickone"
+        },
+        {
+            "Genome":"COG",
+            "Genome_type" : "BoW",
+            "file_ending" : "pickone_genomes",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/FAPROTAX/BagOfWords_Genome",
+            "GenomeDB" : "FAPROTAX_BoW_COG.tsv",
+            "Pattern_gene_columns" : "COG\\d+",
+            "Pattern_genomic_table_columns" : "COG\\d+|GenomeID",
+            "Fix_multiple_genomes" : "pickone"
+        },
+        {
+            "Genome":"pFam",
+            "Genome_type" : "BoW",
+            "file_ending" : "pickone_genomes",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/FAPROTAX/BagOfWords_Genome",
+            "GenomeDB" : "FAPROTAX_BoW_pFam.tsv",
+            "Pattern_gene_columns" : "PF\\d+",
+            "Pattern_genomic_table_columns" : "PF\\d+|GenomeID",
+            "Fix_multiple_genomes" : "pickone"
+        }
     ]
 }
