@@ -36,7 +36,7 @@ At this stage, several phenotypic databases will be used for training the models
 
 # CODE ORGANIZATION
 
-The code, at the moment, revolt around a single script, model\_setup.R that perform all the next steps in the analysis. The script and associate 'sender' scripts are found at ~/Genephene2/Models/scripts/
+The code, at the moment, revolt around a single script, model\_setup.R that perform all the next steps in the analysis. The script and associate 'sender' scripts are found at ~/Genephene2/Models/scripts/. All this works as a homemade job queue where the model\_setup.R is called using a JSON file as input parameter(plus some others). The sender is tipically an script to apply the model\_setup.R to all the files in a folder or similar. In addition, an script to generate the JSONs has been prepared, it uses another JSON file with all the information required to generate the full set of final JSONfiles.
 
 1. Generate Input data structure - single table .
 2. Clean data according to rules
@@ -164,7 +164,7 @@ Scripts prompt to be reused are usually moved to a base folder named scripts and
         - /FAPROTAX
             -   */BagOfWords_Genome* : The folder containing the gene frequencies genome
                 - **/FAPROTAX_BoW.tar.gz** : The compressed file with gene frequencies for COG, KEGG and pFAM
-                - /extract_db.sh : Companion script that uncompress the tar file and add the missing headers
+                - /extract_db.sh : Companion script that uncompress the tar file and correct the name of the column Genome_ID <--> GenomeID
             -   */Doc2Vec_Genome* : The folder containing the required file for generating the Doc2Vec embeddings - note they are not the embedding themselves
                 -   **/FAPROTAX_D2V.tar.gz** : The files within contain the list of genes annotated as a list of contigs as genome_X geneA geneB ... ordered as found in the genome
                                                 These files have to be cleaned for too small contigs and also pass through the script that generate the embedding - plus adding the headers
@@ -199,21 +199,69 @@ Scripts prompt to be reused are usually moved to a base folder named scripts and
             - /SpeciesTaxID.tsv : The database for taxonomy
             - /SpeciesName2TaxID.R : a helper script to search for the taxid in the NCBI taxonomy database
         - /instructions : How to download and untar the NCBI database
-    - /Metadata : gIt contain  genomic information metadata, at the base level there are the TaxID2Genome.txt files that is metadata to connect the microorg. name to its genome
+    - /Metadata : It contain  genomic information metadata, at the base level there are the TaxID2Genome.txt files that is metadata to connect the microorg. name to its genome
         - /FAPROTAX : 
-            - /TaxID2Genome_metadata.tsv : 
+            - /TaxID2Genome_metadata.tsv : the table to connect the assembly accession to the taxid and species taxid
+            - /genome_metadata.tsv : Information to let Seb Raguidau to download and annotate the genomes
         - /Hiding
+            - /TaxID2Genome_metadata.tsv : the table to connect the assembly accession to the taxid and species taxid
+            - /genome_metadata.tsv : Information to let Seb Raguidau to download and annotate the genomes
         - /GenePhene2
+            - /TaxID2Genome_metadata.tsv : the table to connect the assembly accession to the taxid and species taxid
+            - /genome_metadata.tsv : Information to let Seb Raguidau to download and annotate the genomes
         - /MDB
-    - /Models : It contain the information to make the models particularly the scripts to generate the JSON config files
-        - /scripts
-        - /config.files
+            - /TaxID2Genome_metadata.tsv : the table to connect the assembly accession to the taxid and species taxid
+            - /genome_metadata.tsv : Information to let Seb Raguidau to download and annotate the genomes
+        - **/scripts**_: Here is the method to get the metadata from the taxonomy files and the refseq (from NCBI)
+            -   /TaxID2Refseq.R : The actual script to generate the metadata from the assembly_summary_refseq.txt and the corresponding SpeciesTaxID.tsv from Taxonomy folders
+    - **/Models** : It contain the information to make the models particularly the scripts to generate the JSON config files
+        -   /scripts
+            -   **/model_setup.R** : THE script/program that run the model [look at the how to section]
+            -   /expand_json_model_configuration.R : a companion script that helps to create a full list of JSON files each corresponding a run fo the model_setup.R
+            -   /templates
+                -   /expansion_GenePhene2_test.sh : an example of how to expand a configuration file using expand_jso_model (the script is useful when needed to repeat during the preparation)
+                -   /send_all_folder_model.sh : An example of how to send all jobs to the bash as if it where a job queue in a HPC (unfortunately they arent)
+        - **/config.files** :  Here are the configuration files used for generate the input data
+            -   /FAPROTAX : A config.file that includes all phenotypes from FAPROTAX database and several types of BagOfWords genomes to be expanded
+            -   /**GenePhene**  : A config.file with all phenotypes (in two separate tables) and several genomes of type  BagOfWords and Doc2Vec
+            -   / ... : several other examples for Hiding and MDB and test with less phenotypes
+            -   **/model.glmnet_elasticnet.json** : a configuration file with the options needed to run a logistic regression with elastic net regularization
+            _   /model.Naive_Bayes.json : a config. file to run a Naive Bayes
+            -   /model.XGBoost.json
+            -   **/models.json** : a multimodel example, here the example runs together (in one go of model_setup.R) the glmnet, Naive Bayes and XGBoost models in one phenotypic dataset.
 
 ## BUILD DATABASES
 ### PHENOTYPES
     The phenotype databases are not compressed and can be used as is. The scripts assciated to them were useful to reduce the lenght of commands during the developing phase.
 ### GENOMES
+#### Bag of Words genomes.
+These genomes are just tables with a GenomeID column that contain the 'name' of the genome to be used as primary key to execute the join with the other tables. The rest of columns are the frequency tables for each gene of every ortholog type. The ortholog genes has not been completed between dataset (FAPROTAX, HIDING,....) so, each one can contain a different number. Also, different contigs are in different rows so the GenomeIDs are not unique but Doc2Vec takes care of that.
 
+To build the BoW genomes just untar the compressed file and use awk to change the name of the column Genome_ID to GenomeID.
+> tar -zxvf dataset_BoW_ortholog-type.tar.gz
+> awk 'BEGIN {OFS = "\t"} NR == 1 {if ($1=="Genome_ID"){$1 = "GenomeID"}} 1' FAPROTAX_BoW_COG.tsv
+to simplify the process there's a joint script doing that for the three ortholog types of genomes
+> extract_db.sh
+
+#### Doc2Vec
+The files named _dataset_D2V_Ortholog-type.tsv are a row-based list of contigs whose first element is the GenomeID (notice there's no header since this is not a table but the lenght of the rows are very different) and the rest of the elements are the ortholog genes annotated in a contig, kept in order. These lines can be used for Doc2Vec as follows
+- Gensim Python library can execute a Doc2Vec neural network for embeding provided a "sentence" and a "tag". In this case the sentence would be the contig and the tag the genome.
+- Gensim D2V is not able to update the model in batches (that does not mean that it does not do batch gradient descent - I have no clue if it does) so all the genome has to be given in one go, although the library have a tool to map the files to the memory so big data are not a problem for fitting the model.
+- Gensim D2V needs a the number of dimensions of the embedding (I've been using 50, 100, 500, 1000, 5000) and the tag - I have modified the code so the tag is the first element of the row rather the name of the file like in the original one - also if the internal model is fitting as a skip-gram network or a Continuous BagOfWords (sorry for the misunderstanding but this is not the same as in our BagOfWords genomes, it is reusing the terminology for related but different behaviour of the internal model) that translate to two types of possible Doc2Vec, the Distributed Memory and the Distributed Bag of Words .
+- The number of epoch is kept as default in 40 and the default window size seems to be 5.
+
+
+The steps then are
+1. untar the tar files to get the 3 orthologs genomes positionally ordered as described before.
+2. Filter out small contigs using, for example for FAPROTAX
+> ~/GenePhene2/Genomes/scripts/remove_contig_files.sh "../FAPROTAX/Doc2Vec_Genome/FAPROTAX_SINGLE_D2V\_\*.tsv" 10
+3. run Doc2Vec_Genomes.py after modifying the hard-code parameters (just Ndim = 100, Ortho = "KEGG", Geno = "FAPROTAX") - This must change to accept the parameters in the CLI and should take a minute
+>python3  /GenePhene2/Genomes/scripts/D2V_scripts/Doc2Vec_Genomes.py
+4. Add headers to the new files in the folder
+>bash  ~/GenePhene2/Genomes/scripts/Add_D2V_header.sh "../FAPROTAX/Doc2Vec_Genome/Faprotax_Doc2Vec_*_KEGG.tsv"
+
+### THE JSON FILE
+### BIG JOIN
 # LEFTOVERS (TO REMOVE)
 ## Pipeline
 Shortly, the pipeline has to start with the phenotype database and 'join' the microorganism name with the name2taxid and this one with the taxid2genome and lastly with the KEGG_summary.tsv or cogs_summary.tsv or pfamA_summary.tsv. Graphically,
