@@ -1,5 +1,28 @@
 # **Genephene2** : *A set of models to predict microbe metabolic phenotypes from their annotated genomes*
 
+**TL;DR**
+
+>At the moment this is an script to fit machine learning models for classification of phenotypic traits according to presence/abscense of genes but flexibly build to accept more types of genomic information. At the moment, the script fit the models and return files with their performance in classification. 
+
+>For genomic information based on gene frequency, the accuracy range around 0.80-0.90 (roughly) but for genomes transformed in continuous embedding (Doc2Vec) the results drop dramatically
+
+**TODO:** 
+- [ ] Find new ways to do genomic embeddings.
+    - [ ] Try Kohonen self-organizative networks and 
+    - [ ] Try Dictionary learning
+    - [ ] Try Scatter Search and GA based logistic regression 
+- [ ] Describe the reason for low performance in the current models
+- [x] Check if Doc2Vec is failing due to coding mistakes
+- [ ] Add more machine learning models
+- [ ] Find an OOP solution to reduce coding and flexibilize user input of functions
+- [ ] Move the prototype to python as separated scripts
+- [ ]  Use a CMake kind of script to unroll the databases - as it is now sounds super complicated and easy to forget
+
+**QUICK LINKS**
+- A description of how data has been and need to be input
+- The Doc2Vec genome embedding
+- How to run a model
+- How to elaborate a larger number of models 'as in a HPC' or SnakeMake
 
 ## Introduction
 GenePhene2 is a continuation of the GenePhene project from Prof. Christopher Quince and his collaborators.
@@ -81,76 +104,117 @@ The output of the machine learning models from the caret package has not been ma
 
 The evaluation and the models are saved  (well, at the moment the models are not being saved to avoid hard drive space clutter) at the output folders. A modification required though is to save only the coefficients as a matrix or any recoverable structure that can be used in other packages. Using serialization off-the-shelve solutions in R,  like pickle package in python, are possible but undesired for sharing with other software and also they are bigger than they are desired, since the object output from caret's _train_ funcion contain unnecesary and massive information for its own internal work.
 
-# Data base organization
+# Database organization
 
 As explained above, the database are organize around four tables. Albeit being a case of 'technological debt' the tables are not encoded in a relational (SQ)  database manager which would help and accelerate the whole system. Thus, they text files, tab separated (tsv) and with \n as EOL and UTF-8 encoding, were decide to be saved in separated folders per type, e.g. Genome, Metadata, ... and per original phenotype database. Names and folder can be easily changed and rearranged since the information is passed to the programs through JSON files (see below). Yet a short description follows with the files and scripts elaborated for each type.
 
 ## Description of folders / databases
+This is a short description of the folder and file structure used in this project. The most relevant files are explained shortly
+The databases are organized so each type of table is in a different folder, and within those a folder for every dataset, e.g. FAPROTAX, Hiding ...
+Small scripts to perform small tasks, sort of untar files, add headers, etc and that was worthless to make it complex to check assumptions or add parameters are left in the same folder where they are used.
+Scripts prompt to be reused are usually moved to a base folder named scripts and accept parameters.
 
-../GenePhene2/
-    /Databases : _The name would be better **Phenotypes** since it contains each metabolic phenotype databases._
+- ../GenePhene2/
+   -  /Databases : _The name would be better **Phenotypes** since it contains each metabolic phenotype databases._
                  Each subfolder refer to the phenotypic database, corresponding to a published one.
-        /FAPROTAX
-            /FAPROTAX_1.2.4_zip : The original FAPROTAX database. contain the files FAPROTAX.txt with the whole phenotypes in a unstructure format
-            /FAPROTAX.tsv : The phenotypic database
-            /see.tsv.sh : script to visualize the database in the bash command line
-            /get_list_of_phenotype.sh : script to extract the phenotypes
-            /get_list_of_speces.sh : script to extract the names of the species
-            /parse_faprotax.R : script to parse the original files from FAPROTAX
-            /summarize.R : script to calculate the balance of phenotype columns
-            /graphicalsummary.R : script to make an ASCII plot for the balance of phenotypic columns
-        /Hiding : database from the paper Hiding in plain sight - one of the databases backing BacDive
-            /instructions : description of steps to convert from the original database IJSEM_pheno_db_v1.0.txt to ijsem.txt
-            /Substrates.tsv : Database of Substrates (Consume X)
-            /Metabolic.tsv : Database of several metabolic activities
-            /extract_phenotypes.R : script to pass from a manually corrected DB (see instructions) wiht UNICHAR and \n EOL to ijsem.tsv with ranges split as columns and others
-            /get_phenotypes.R: Split ijsem.tsv onto two tables one for Substrates and the other for Metabolic activities.
-            /extract_species.R : scripts to see the list of species
-            /extract_phenotypes.sh : (avoid it) calls extract_phenotypes and summarize.R
-            /get_list_phenotypes.sh :script to see the full list of phenotypes as list_of_phenotypes.txt
-            /get_list_species.sh : script to see the full list of species calling extract_species.R
-            /see_tsv.sh : visualize the tsvs' in command line
-            /see_Metabolic_tsv.sh
-            /see_Substrates_tsv.sh
-            /summarize.R : calculate balance of every column
-            /graphicalsummary.R : calculate balance and make an ASCII plot
-        /GenePhene2: A manually compiled set of 41 acidogenic bacterias and hundreds of phenotypes for testing purposes. The 'behind the scenes' for making it is off this folder
-            /Metabolic_features.tsv : Database of metabolic activities such as consume X, produce Y
-            /Metabolic_traits : Database of metabolic traits such as acidogenics, catalase positive, anaerobic ...
-            /get_list_phenotypes.R : script to extract the list of phenotypes
-            /get_list_phenotypes.sh : run the R script and keep the outut in a file list_of_phenotypes.txt
-            /get_list_species.R : script to extract the full list of species
-            /get_list_species.sh : run the R script and keep the output in a file list_of_species.txt
-            /summarize.R : script to calculate the balance and coverage (yes/no) of every phenotype
-            /graphicalsummary.R : script to get an ASCII plot for balance and coverage
-            /see_Metabolic_traits.sh : visulize the database in the command line
-        /MDB: Metanogen DataBase : The Phy2Met2 database at http://phymet2.biotech.uni.wroc.pl
-            /MDB.csv : the original database
-            /MDBcsv2tsv.R : small script to pass it to tab file and compute all the rest of files
-            /instructions : some description of how the database was clean.
-            /Substrates.tsv : list of phenotypes as input substrates
-            /list_of_phenotypes.txt
-            /summary_phenotypes_coverage.txt
-            /summary_phenotypes_balance.txt
-            /graphicalSummary.R : makes an ascii plot
-    /Genomes : It contain  genomic information metadata, at the base level there are the TaxID2Genome.txt files that is metadata to connect the microorg. name to its genome
-        /FAPROTAX
-        /Hiding
-        /GenePhene2
-        /MDB
-    /Taxonomy : it contains the taxonomic metadata, it really only is a translation between microorganism name in the phenotype database and the Taxon ID in NCBI to find its Reference Genome
-        /FAPROTAX
-        /Hiding
-        /GenePhene2
-        /MDB
-        /scripts
-    /Models : It contain the information to make the models particularly the scripts to generate the JSON config files
-        /scripts
-        /config.files
-        /GenePhene2/
-            data.files
-            model.results/
+        - /FAPROTAX
+            - /FAPROTAX_1.2.4_zip : The original FAPROTAX database. contain the files FAPROTAX.txt with the whole phenotypes in a unstructure format
+            - /FAPROTAX.tsv : The phenotypic database
+            - /see.tsv.sh : script to visualize the database in the bash command line
+            - /get_list_of_phenotype.sh : script to extract the phenotypes
+            - /get_list_of_speces.sh : script to extract the names of the species
+            - /parse_faprotax.R : script to parse the original files from FAPROTAX
+            - /summarize.R : script to calculate the balance of phenotype columns
+            - /graphicalsummary.R : script to make an ASCII plot for the balance of phenotypic columns
+        - /Hiding : database from the paper Hiding in plain sight - one of the databases backing BacDive
+            - /instructions : description of steps to convert from the original database IJSEM_pheno_db_v1.0.txt to ijsem.txt
+            - /Substrates.tsv : Database of Substrates (Consume X)
+            - /Metabolic.tsv : Database of several metabolic activities
+            - /extract_phenotypes.R : script to pass from a manually corrected DB (see instructions) wiht UNICHAR and \n EOL to ijsem.tsv with ranges split as columns and others
+            - /get_phenotypes.R: Split ijsem.tsv onto two tables one for Substrates and the other for Metabolic activities.
+            - /extract_species.R : scripts to see the list of species
+            - /extract_phenotypes.sh : (avoid it) calls extract_phenotypes and summarize.R
+            - /get_list_phenotypes.sh :script to see the full list of phenotypes as list_of_phenotypes.txt
+            - /get_list_species.sh : script to see the full list of species calling extract_species.R
+            - /see_tsv.sh : visualize the tsvs' in command line
+            - /see_Metabolic_tsv.sh
+            - /see_Substrates_tsv.sh
+            - /summarize.R : calculate balance of every column
+            - /graphicalsummary.R : calculate balance and make an ASCII plot
+        - /GenePhene2: A manually compiled set of 41 acidogenic bacterias and hundreds of phenotypes for testing purposes. The 'behind the scenes' for making it is off this folder
+            - /Metabolic_features.tsv : Database of metabolic activities such as consume X, produce Y
+            - /Metabolic_traits : Database of metabolic traits such as acidogenics, catalase positive, anaerobic ...
+            - /get_list_phenotypes.R : script to extract the list of phenotypes
+            - /get_list_phenotypes.sh : run the R script and keep the outut in a file list_of_phenotypes.txt
+            - /get_list_species.R : script to extract the full list of species
+            - /get_list_species.sh : run the R script and keep the output in a file list_of_species.txt
+            - /summarize.R : script to calculate the balance and coverage (yes/no) of every phenotype
+            - /graphicalsummary.R : script to get an ASCII plot for balance and coverage
+            - /see_Metabolic_traits.sh : visulize the database in the command line
+        - /MDB: Metanogen DataBase : The Phy2Met2 database at http://phymet2.biotech.uni.wroc.pl
+            - /MDB.csv : the original database
+            - /MDBcsv2tsv.R : small script to pass it to tab file and compute all the rest of files
+            - /instructions : some description of how the database was clean.
+            - /Substrates.tsv : list of phenotypes as input substrates
+            - /list_of_phenotypes.txt
+            - /summary_phenotypes_coverage.txt
+            - /summary_phenotypes_balance.txt
+            - /graphicalSummary.R : makes an ascii plot
+    - */Genomes* : 
+        - /FAPROTAX
+            -   */BagOfWords_Genome* : The folder containing the gene frequencies genome
+                - **/FAPROTAX_BoW.tar.gz** : The compressed file with gene frequencies for COG, KEGG and pFAM
+                - /extract_db.sh : Companion script that uncompress the tar file and add the missing headers
+            -   */Doc2Vec_Genome* : The folder containing the required file for generating the Doc2Vec embeddings - note they are not the embedding themselves
+                -   **/FAPROTAX_D2V.tar.gz** : The files within contain the list of genes annotated as a list of contigs as genome_X geneA geneB ... ordered as found in the genome
+                                                These files have to be cleaned for too small contigs and also pass through the script that generate the embedding - plus adding the headers
+        - /Hiding
+            - */BagOfWords_Genome*: Similar to the FAPROTAX one
+            - */Doc2Vec_Genome* :  Like the one in the FAPROTAX folder but in this case the file had to be split to small sized (due to github) and have to be reconstructed
+                - HIDING_D2V.tar.gz.part_* : These files ending in part_aa part_ab and part_ac are recomposed by cat HIDING_D2V.tar.gz.part_a* > HIDING_D2V.tar.gz 
+                                                then the same process as described in the FAPROTAX 
+        - /GenePhene2: Same as FAPROTAX
+        - /MDB: Same as FAPROTAX
+        - **/scripts**: several helper scripts - including the one to build the Doc2Vec embeddings
+            -   Add_D2V_header.sh : Just add the header to the final D2V file (so the last script to run) - work in a list of files when using globs (within "")
+            -   remove_contig.sh : take a filename and a contig lenght and filter out those rows that have less than the length
+            -   remove_contig_files.sh : Apply remove_contig.sh to a list of files using a wildcard (within " ") - needed to solve the glob expansion
+            -   /D2V_scripts : The script in python to build the D2V embeddings - originally several, they have been grouped into a single one that need to be modified to select the database
+                    - **/Doc2Vec_Genomes.py**: This is the script that convert contigs in embeddings - It requires to be told the number of dimensions desired plus the folders and files
+                                                At the moment, the parameters are hardcoded and need to be changed to accept parameters as inpput
+    - /Taxonomy : it contains the taxonomic metadata, it really only is a translation between microorganism name in the phenotype database and the Taxon ID in NCBI to find its Reference Genome
+        - /FAPROTAX
+            - /SpeciesTaxID.tsv : The database for taxonomy
+            - /SpeciesName2TaxID.R : a helper script to search for the taxid in the NCBI taxonomy database
+            - /known_mistakes_or_variants.txt : list of wrong names and their corrections
+        - /Hiding:
+            - /SpeciesTaxID.tsv : The database for taxonomy
+            - /SpeciesName2TaxID.R : a helper script to search for the taxid in the NCBI taxonomy database
+            - /known_mistakes_or_variants.txt : list of wrong names and their corrections
+            - /missingSp.txt : another list of wrong names and corrections
+        - /GenePhene2
+            - /SpeciesTaxID.tsv : The database for taxonomy
+            - /SpeciesName2TaxID.R : a helper script to search for the taxid in the NCBI taxonomy database
+        - /MDB
+            - /SpeciesTaxID.tsv : The database for taxonomy
+            - /SpeciesName2TaxID.R : a helper script to search for the taxid in the NCBI taxonomy database
+        - /instructions : How to download and untar the NCBI database
+    - /Metadata : gIt contain  genomic information metadata, at the base level there are the TaxID2Genome.txt files that is metadata to connect the microorg. name to its genome
+        - /FAPROTAX : 
+            - /TaxID2Genome_metadata.tsv : 
+        - /Hiding
+        - /GenePhene2
+        - /MDB
+    - /Models : It contain the information to make the models particularly the scripts to generate the JSON config files
+        - /scripts
+        - /config.files
 
+## BUILD DATABASES
+### PHENOTYPES
+    The phenotype databases are not compressed and can be used as is. The scripts assciated to them were useful to reduce the lenght of commands during the developing phase.
+### GENOMES
+
+# LEFTOVERS (TO REMOVE)
 ## Pipeline
 Shortly, the pipeline has to start with the phenotype database and 'join' the microorganism name with the name2taxid and this one with the taxid2genome and lastly with the KEGG_summary.tsv or cogs_summary.tsv or pfamA_summary.tsv. Graphically,
 
