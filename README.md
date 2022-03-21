@@ -39,12 +39,12 @@ In addition, for each phenotypic data base there are 3 other corresponding table
     - Connects NCBI taxid (notice that there are two columns with TaxIDs at NCBI DB one for species and other for other taxa levels).
 - Genome, which come in two flavors, at the moment: 
     - **BagOfWords** genomes. A different file for each ortholog annotation, COG,KEGG and PFam, then the header is:
-    - **|_GenomeID_|COG0001|...|COGN|**  OR **|_GenomeID_|K0001|...|KN|** OR **|_GenomeID_|PF0001|...|PFN|** acording to the ortholog database type.
-    - NOTE 1: In _a posteriori_ thought, make sense unify all these on GeneN independently the  type of ortholog.
-    - NOTE 2: The column GenomeID cannot be re-named in any other way since some part of the code are hardwired to it and this need to be changed soon.
-    - Bag of Words genomes  contain each ortholog gene as column and each 'cell' contain the frequency of each ortholog in the genome. Usually there are 0,1 or 2 but there might be up to 22 copies of  the same ortholog).
+        - **|_GenomeID_|COG0001|...|COGN|**  OR **|_GenomeID_|K0001|...|KN|** OR **|_GenomeID_|PF0001|...|PFN|** acording to the ortholog database type.
+        - NOTE 1: In _a posteriori_ thought, make sense unify all these on GeneN independently the  type of ortholog.
+        - NOTE 2: The column GenomeID cannot be re-named in any other way since some part of the code are hardwired to it and this need to be changed soon.
+        - Bag of Words genomes  contain each ortholog gene as column and each 'cell' contain the frequency of each ortholog in the genome. Usually there are 0,1 or 2 but there might be up to 22 copies of  the same ortholog).
     - **Doc2Vec** genomes. Again one file  per ortholog type. See the details to compute them below.
-    - **|_GenomeID_|D2V0001|...|D2VN|** (independently of which ortholog genome is).
+        - **|_GenomeID_|D2V0001|...|D2VN|** (independently of which ortholog genome is).
     
     Given this table structure (schema in relational DB terminology) an script can merge (inner join or other joins in SQL terminology) all of them to get a single table with the phenotypes and genomes removing the need for the intermediate databases. Yet, in our script model_setup.R do perform each time this join unnecesarily (due to the history of how this development was done by tinkering rather than proper planning). This join operation was usually not very problematic in performance, since the overhead time was seconds for the databases we were using, with the big exception of a clean operation for multiple genomes.
     In principle, uncoupling the join from the rest of the code is not a problem but it is worthy to notice few advantages of keeping the database as separate tables. On one side, many genome type will be tried, and more may come in the future, so we need to keep the original tables for future joins. In addition, manipulation the current tables provide advantages, for example, the phenotypic databases can be split by phenotype and subset randomly or given any heuristic to have different dataset to perform repetitions or subsets. That is not very relevant as we will see in the next section. Yet, we can subset the taxonomy database to perform the models in subgroups, like just in Gram + bacteria, or just archaea or just using a number of representatives of every group and avoid phylogenetic bioas. Similarly, there are some genome repetition, meaning some microbes have several references genomes or multiple strains, that also bias the database. That repetition can be manipulated using the metadata table (since we will mention later than the data clean is part of the most problematic and slow part of the script).
@@ -123,7 +123,16 @@ As explained above, the database are organize around four tables. Albeit being a
             /get_list_species.sh : run the R script and keep the output in a file list_of_species.txt
             /summarize.R : script to calculate the balance and coverage (yes/no) of every phenotype
             /graphicalsummary.R : script to get an ASCII plot for balance and coverage
-        /MDB
+            /see_Metabolic_traits.sh : visulize the database in the command line
+        /MDB: Metanogen DataBase : The Phy2Met2 database at http://phymet2.biotech.uni.wroc.pl
+            /MDB.csv : the original database
+            /MDBcsv2tsv.R : small script to pass it to tab file and compute all the rest of files
+            /instructions : some description of how the database was clean.
+            /Substrates.tsv : list of phenotypes as input substrates
+            /list_of_phenotypes.txt
+            /summary_phenotypes_coverage.txt
+            /summary_phenotypes_balance.txt
+            /graphicalSummary.R : makes an ascii plot
     /Genomes : It contain  genomic information metadata, at the base level there are the TaxID2Genome.txt files that is metadata to connect the microorg. name to its genome
         /FAPROTAX
         /Hiding
