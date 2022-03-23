@@ -12,11 +12,14 @@
     - [ ] Try Dictionary learning
     - [ ] Try Scatter Search and GA based logistic regression 
 - [ ] Describe the reason for low performance in the current models
+- [ ] Implement a K-NN kind of model to guess the origin of bad classification - causal?
+- [ ] Implement a 0-1 genome for process genomes
 - [x] Check if Doc2Vec is failing due to coding mistakes
 - [ ] Add more machine learning models
 - [ ] Find an OOP solution to reduce coding and flexibilize user input of functions
 - [ ] Move the prototype to python as separated scripts
-- [ ]  Use a CMake kind of script to unroll the databases - as it is now sounds super complicated and easy to forget
+- [ ] Use a CMake kind of script to unroll the databases - as it is now sounds super complicated and easy to forget
+- [ ] Fix, for good, the Genome ID being hard-coded and searched with REGEXP
 
 **QUICK LINKS**
 - A description of how data has been and need to be input
@@ -261,12 +264,300 @@ The steps then are
 >bash  ~/GenePhene2/Genomes/scripts/Add_D2V_header.sh "../FAPROTAX/Doc2Vec_Genome/Faprotax_Doc2Vec_*_KEGG.tsv"
 
 ### THE JSON FILE
+Time to talk about THE JSON FILE. This was originally a way to keep the input information, particularly about the many options like type of ortholog or the number of D2V columns or the proportion validation/train dataset,..., so that keeping the JSON input and the output one can track easily what options yield what type of results. In the model\_setup.R script, the output ends up being a table and the JSON files is not needed after the model is fit.
+
+An template for the JSON file would be:
+Example: GenePhene2_acidogenic_KEGG_D2V50_pickone_genome.dat
+
+{
+    "Database":"GenePhene2",
+    "Phenotype":{
+        "Folder_Phenotype":"/home/ubuntu/GenePhene2/Databases/GenePhene2/",
+        "Bacterial_metadata_columns":["Name","Genus","Species","Strain"],
+        "NA_substitution":"NA2level",
+        "NA_substitution_value":"no",
+        "PhenotypeDB":"Metabolic_traits.tsv",
+        "Phenotypic_trait":"acidogenic"
+        },
+    "Taxonomy":{
+        "Folder_Taxonomy":"/home/ubuntu/GenePhene2/Taxonomy/GenePhene2/",
+        "TaxonomyDB":"SpeciesTaxID.tsv"
+    },
+    "Metadata":{
+        "Folder_Metadata":"/home/ubuntu/GenePhene2/Metadata/GenePhene2/",
+        "Taxa2assemblyDB":"TaxID2Genome_metadata.tsv"
+    },
+    "Genome":{
+        "Genome":"KEGG",
+        "Genome_type":"D2V50",
+        "file_ending":"pickone_genome",
+        "Folder_Genome":"/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
+        "GenomeDB":"GenePhene2_Doc2Vec_KEGG.tsv",
+        "Pattern_gene_columns":"D2V\\d+",
+         "Pattern_genomic_table_columns":"D2V\\d+|GenomeID",
+        "Fix_multiple_genomes":"pickone"
+    }
+}
+Trying to make a description:
+
+{
+    **"Database"**:<TEXT>,
+    **"Phenotype"**:{
+        *"Folder_Phenotype"*:<TEXT:Phenotype DB folder address>,
+        *"Bacterial_metadata_columns"*:<LIST []:Name of the columns to identify a single record- must include all columns even if one is the primary key>,
+        "NA_substitution":<None|NA2level: Substiution of NA values for another text string>,
+        "NA_substitution_value":<TEXT: in case NA2level was the option before, choose the string NA -> string, usually "no">,
+        "PhenotypeDB":<TEXT:database filename>"Metabolic_traits.tsv",
+        "Phenotypic_trait":<TEXT: a colum in the PhenotypeDB corresponding to a phenotype>
+        },
+    **"Taxonomy"**:{
+        "Folder_Taxonomy":<TEXT: Taxonomy DB folder address>,
+        "TaxonomyDB":<TEXT: database filename>
+    },
+    **"Metadata"**:{
+        "Folder_Metadata":"<TEXT: Taxonomy DB folder address>,
+        "Taxa2assemblyDB":<TEXT: database filename>
+    },
+    "Genome":{
+        "Genome":<NAME>,
+        "Genome_type":<TEXT: normally BoW or D2V plus number of columns>,
+        "file_ending":<TEXT: any aclaration to avoid duplicated filenames - example "pickone_genome" when testing the option on the number of genomes>,
+        "Folder_Genome":<TEXT: Genome DB address>,
+        "GenomeDB":<Genome database filename>,
+        "Pattern_gene_columns":<REGEXP: Regular expression to obtain the gene columns - e.g. "K\\d+" to pick all KEGG genes as K00001>,
+         "Pattern_genomic_table_columns":<REGEXP: Reg. expression to get the gene columns and the GenomeID (see Note1)>"D2V\\d+|GenomeID",
+        "Fix_multiple_genomes":<median|mean|var|sum|identity|pickone: choose what to do when more than one genome per bacteria is present>
+    }
+}
+Note1: it is clear that there are some issues with the use of GenomeID in the code that I have to fix. In this case, it would have been easier to put a second regular expression only to find GenomeID or whatever primary key the user wants, and then avoid the parts that are  hard-coded.(this may only have  sense to me - sorry reader)
+
+
 ### BIG JOIN
-# LEFTOVERS (TO REMOVE)
-## Pipeline
-Shortly, the pipeline has to start with the phenotype database and 'join' the microorganism name with the name2taxid and this one with the taxid2genome and lastly with the KEGG_summary.tsv or cogs_summary.tsv or pfamA_summary.tsv. Graphically,
+As it has been mentioned many times already, our script starts by merging 4 tables (we have been calling them databases all this time) to obtain the only one we need a table with structure **|<Phenotypic Trait>|Gene\_1|Gene\_2|...|Gene\_n** where Phenotypic Trait can be the actual name of the phenotype, e.g. Catalase activity. As it has also been mentioned, this structure allows for controlling subsets of data such like reduce to certain taxonomical group, reduce the number of genomes per microbe,  (both by controlling the smaller tables for Taxonomy and Metadata). 
 
-Databases/FAPROTAX/FAPROTAX_1.2.4/FAPROTAX.tsv <--> Taxonomy/FAPROTAX/SpeciesTaxID.tsv <--> Genomes/FAPROTAX/TaxID2Genome_metadata.tsv <--> (GENOME FILE STILL NOT CREATED)
-Databases/GenePhene2/Metabolic_features.tsv <--> Taxonomy/GenePhene2/SpeciesTaxID.tsv <--> Genomes/GenePhene2/TaxID2Genome_metadata.tsv <--> Databases/GenePhene2/Odin_data/cogs_summary.tsv (Still not Structured)
+The JOIN, to follow relational databases (a.k.a SQL) terminology, is the mergin between tables and the INNER JOIN operation is the one that filters out those rows whose _primary key_ are not in both table (let me the loose use of Primary Key here). Then, we choose an order to merge, INNER JOIN, the tables as PhenoDB<-Inner Join-> TaxonomyDB using the Genus and Species name as composite PK so we simply add the TaxID and Species TaxID to the columns. This table is then JOINED to the Metadata DB so we get now to every TaxID its corresponding genomes, at this step, the table is likely to have grown as some TaxID has more than one chromosome. Is this step that can be used to control the number of chromosomes, so the script do not have to do it later (yet, we have not used this approach, using all the time the script filtering). The last step is INNER JOIN again with the GenomeDB, which contain all columns corresponding the 'genes' _sensu lato_ either KEGG,COG or pFam IDs or Doc2Vec ones. This last step is the one to control if any operation on the genomes is to be done before the script, for example summarizing the genomes from the same species on the mean frequency of each gene, the maximum, 0-1.
+
+Usually, to make those operations are less computationally costly if done once and in a database manager than using R/Python scripts, yet we kept this _technical debt_ in order to proceed quicker on the project.
 
 
+### JSON for models
+The same idea of input the model configuration through a JSON file has been used for the models. An example to use as a template:
+
+model.glmnet_elasticnet.json 
+
+{ "model" : {
+    "package" : "caret",
+    "model" : "glmnet",
+    "PCA" : "None",
+    "train_CV_method": "CV",
+    "train_test_split": 0.8,
+    "train_n_repeat" : 10,
+    "train_balance" : "downSample"
+    }
+}
+
+
+{ "model" : {
+    "package":<TEXT: the name of the package to run the model>,
+    "model":<glmnet|NaiveBayes|XGBoost>,
+    "PCA":<None: PCA non-yet implemented>,
+    "train_CV_method":<CV|LOOCV|repeatedCV: the type of crossvalidation So far this is handled by the caret package accepting any of their default options>,
+    "train_test_split":<NUMBER:0-1 How to divide the number of rows in train and validation datasets>,
+    "train_n_repeat" :<NUMBER INTEGER: in case of Cross validation, the fold number>,
+    "train_balance":<downSample,upSample,None: if the dataset is to be stratified and what of the types of stratification> 
+    }
+}
+
+#### The multimodel JSON
+
+Yet, one of the things that this code allow for (and still not sure if it has been worthy) has been to add the ability to apply more than one model to the same train and validation dataset.
+The thing is that several models can be added in a JSON and once the script detect it, it will swap all the code to run multi-evaluation and save the multiple models separately.
+An example to use as a template is here:
+NOTE : There's some parameters that can be conflicting between models, basically the train_test_split and the train_balance since they are done once for all the models. The solution to that was to get just the first model and ignore the others, so in our example the dataset would be upSample-d before being splited, ignoring the downsample and None at the second and third model
+
+{ "models" :[
+    { "model" : {
+            "package" : "caret",
+            "model" : "glmnet",
+            "PCA" : "None",
+            "train_CV_method": "CV",
+            "train_test_split": 0.8,
+            "train_n_repeat" : 10,
+            "train_balance" : "upSample"
+        }
+    },
+    { "model" : {
+            "package" : "caret",
+            "model" : "Naive_Bayes",
+            "PCA" : "None",
+            "train_CV_method": "CV",
+            "train_test_split": 0.8,
+            "train_n_repeat" : 10,
+            "train_balance" : "downSample"
+        }
+    },
+        { "model" : {
+        "package" : "caret",
+        "model" : "XGBoost",
+        "PCA" : "None",
+        "train_CV_method": "CV",
+        "train_test_split": 0.8,
+        "train_n_repeat" : 10,
+        "train_balance" : "None"
+        }
+    }
+]}
+
+## Running an instance of the model_setup.R script
+
+Finally we are in situation to understand how the script works. Let'suppose we want to fit a Naive Bayes model on the Catalase Activity phenotype for the FAPROTAX database using the KEGG genomes, the type Bag of Words. In addition, we want to make the average of the gene frequency if there are more than one genome. Then, we just need  to elaborate two JSON files as described before (and we will see an automatic way to produce then in a minute)
+
+I save the following as FAPROTAX_BoW_KEGG_cellulolysis.test and the multimodel setup in the previous section as multimodel.json
+{
+    "Database":"FAPROTAX",
+    "Phenotype":{
+        "Folder_Phenotype":"/home/ubuntu/GenePhene2/Databases/FAPROTAX/",
+        "Bacterial_metadata_columns":["Name","Genus","Species","Strain"],
+        "NA_substitution":"NA2level",
+        "NA_substitution_value":"no",
+        "PhenotypeDB":"FAPROTAX.tsv",
+        "Phenotypic_trait":"cellulolysis"
+        },
+    "Taxonomy":{
+        "Folder_Taxonomy":"/home/ubuntu/GenePhene2/Taxonomy/FAPROTAX/",
+        "TaxonomyDB":"SpeciesTaxID.tsv"
+    },
+    "Metadata":{
+        "Folder_Metadata":"/home/ubuntu/GenePhene2/Metadata/FAPROTAX/",
+        "Taxa2assemblyDB":"TaxID2Genome_metadata.tsv"
+    },
+    "Genome":{
+        "Genome":"KEGG",
+        "Genome_type":"BoW",
+        "file_ending":"pickone_genome",
+        "Folder_Genome":"/home/ubuntu/GenePhene2/Genomes/FAPROTAX/BagOfWords_Genome/",
+        "GenomeDB":"FAPROTAX_BoW_KEGG.tsv",
+        "Pattern_gene_columns":"K\\d+",
+         "Pattern_genomic_table_columns":"K\\d+|GenomeID",
+        "Fix_multiple_genomes":"mean"
+    }
+}
+
+
+Then I just can do:
+>  
+
+
+Then I just can do:
+>  ./model_setup.R ./ FAPROTAX_BoW_KEGG_cellulolysis.test ./ multimodel.json ./results/ &> screen_output
+with a format like
+
+> ./model_setup.R  \<Folder with DBs specification\> \<File with DBs especification\> \<Folder  with model specification\> \<File with  model especification\> \<Folder to save the output\>
+
+This will rename the input file FAPROTAX_BoW_KEGG_cellulolysis.test to FAPROTAX_BoW_KEGG_cellulolysis.test.complete and create a file in the ./results/ folder named
+
+The stdout and sterror redirected to screen_output in our example show just the checks performed and if any error has happened, particulary reading any of the files (notice how particularly the step on FIXING MULTIPLE GENOMES is the most costly operation).
+
+The output would looks like 
+
+## Generating a number of JSON files for an experiment - a.k.a an improvised queue system
+In the following example, I have generated a JSON file that contain phenotypes from two different phenotypic tables (Metabolic_traits.tsv and Metabolic_features.tsv) and tested using several genome tables. Especifically, this examples test the Bag of Words genomes using the pFam, KEGG and COG tables, and the KEGG is used either with many genomes or just picking one. Also it perform the models on the Doc2Vec genomes for the orthologs at KEGG using 50 dimensions.
+
+It can be seen that this way, we can generate a large amount of inputs and then combine with a little scripts with many models making then easily a "cartesian product" of phenotypes, genomes and machine learning models.
+
+{
+    "Database" : "GenePhene2",
+
+    "Phenotype" :{
+        "Folder_Phenotype" : "/home/ubuntu/GenePhene2/Databases/GenePhene2/",
+        "Phenotypes" : [
+            {"PhenotypeDB":"Metabolic_traits.tsv","Phenotypes" :[
+                "acidogenic","aerobe","anaerobic", "Catalase activity","chemolitotrophic","fermentative"
+            ]},
+            {"PhenotypeDB":"Metabolic_features.tsv","Phenotypes":[
+                "Input_glucose","Input_sugar","Output_butyric acid","Output_ethanol","Output_VFA"
+            ]}
+        ],
+        "Bacterial_metadata_columns" : ["Name","Genus","Species","Strain"],
+        "NA_substitution" : "NA2level",
+        "NA_substitution_value" : "no"
+    },
+    "Taxonomy" :{
+        "Folder_Taxonomy": "/home/ubuntu/GenePhene2/Taxonomy/GenePhene2/",
+        "TaxonomyDB":"SpeciesTaxID.tsv"
+    },
+
+    "Metadata":{
+        "Folder_Metadata" : "/home/ubuntu/GenePhene2/Metadata/GenePhene2/",
+        "Taxa2assemblyDB" : "TaxID2Genome_metadata.tsv"},
+
+    "Genomes": [
+    {
+        "Genome":"KEGG",
+        "Genome_type" :"BoW",
+        "file_ending" : "pickone_genomes",
+        "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
+        "GenomeDB" : "GenePhene2_BoW_KEGG.tsv",
+        "Pattern_gene_columns" : "K\\d+",
+        "Pattern_genomic_table_columns" : "K\\d+|GenomeID",
+        "Fix_multiple_genomes" : "pickone"
+    },
+    {
+        "Genome":"KEGG",
+        "Genome_type" :"BoW",
+        "file_ending" : "multiple_genomes",
+        "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
+        "GenomeDB" : "GenePhene2_BoW_KEGG.tsv",
+        "Pattern_gene_columns" : "K\\d+",
+        "Pattern_genomic_table_columns" : "K\\d+|GenomeID",
+        "Fix_multiple_genomes" : "identity"
+    },
+    {
+        "Genome":"COG",
+        "Genome_type" :"BoW",
+        "file_ending" : "pickone_genomes",
+        "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
+        "GenomeDB" : "GenePhene2_BoW_COG.tsv",
+        "Pattern_gene_columns" : "COG\\d+",
+        "Pattern_genomic_table_columns" : "COG\\d+|GenomeID",
+        "Fix_multiple_genomes" : "pickone"
+    },
+    {
+        "Genome":"pFam",
+        "Genome_type" :"BoW",
+        "file_ending" : "multiple_genomes",
+        "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/BagOfWords_Genome/",
+        "GenomeDB" : "GenePhene2_BoW_pFam.tsv",
+        "Pattern_gene_columns" : "PF\\d+",
+        "Pattern_genomic_table_columns" : "PF\\d+|GenomeID",
+        "Fix_multiple_genomes" : "identity"
+    },
+    {
+        "Genome":"KEGG",
+        "Genome_type" :"D2V50",
+        "file_ending" : "pickone_genome",
+        "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
+        "GenomeDB" : "GenePhene2_Doc2Vec_KEGG.tsv",
+        "Pattern_gene_columns" : "D2V\\d+",
+        "Pattern_genomic_table_columns" : "D2V\\d+|GenomeID",
+        "Fix_multiple_genomes" : "pickone"
+    },
+    {
+        "Genome":"KEGG",
+        "Genome_type" :"D2V50",
+        "file_ending" : "multiple_genomes",
+        "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/GenePhene2/Doc2Vec_Genome/",
+        "GenomeDB" : "GenePhene2_Doc2Vec_KEGG.tsv",
+        "Pattern_gene_columns" : "D2V\\d+",
+        "Pattern_genomic_table_columns" : "D2V\\d+|GenomeID",
+        "Fix_multiple_genomes" : "identity"
+    }]
+}
+
+
+But how to make the JSON files out of this one?
+There's an script at the folder ~/Genephene2/Models/scripts/ called expand_json_model_configuration.R that only require an input like the shown and a folder to save all the JSON files.
+Example : 
+
+> ./expand_json_model_configuration.R ../config.files/ GenePhene2_test ~/Models/GenePhene2/test.files/
+> ./expand_json_model_configuration.R \<Folder to find configuration file\> \<Configuration file filename\> \<Output Folder\>
