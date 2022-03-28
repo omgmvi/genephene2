@@ -1,0 +1,12 @@
+Experiment - 1 
+Database : FAPROTAX
+Genome : Bag of Words
+Models : {glmnet,XGBoost}
+Orthologs : {COG, KEGG,pFam}
+
+Notes : This experiment contain only the BoW genomes for all the three orthologs databases and all the phenotypes at the FAPROTAX database
+it was done separately (different folders) wich means that the Validation - Training dataset is made separately for every instance.
+More clear, every row in the database is tested with a (potentially) different validation dataset, rather than sharing the dataset between models)
+The results are in the files FAPROTAX_glmnet_BoW.csv (for the glmnet models) and FAPROTAX_XGBoost_BoW.csv, yet both files seem to be concatenated together 
+to produce FAPROTAX_BoW.csv with all the rows together. However, there are some strange repetitions making me thing that it was some mistake when putting it together
+(probably a error in tail -q -n +2 )

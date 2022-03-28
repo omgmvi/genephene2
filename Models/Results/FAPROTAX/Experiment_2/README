@@ -1,0 +1,12 @@
+Experiment - 2-3
+Database : FAPROTAX
+Genome : Doc2Vec
+Models : {glmnet,XGBoost}
+Orthologs : {KEGG}
+Ngenomes : {100,200,500,1000,5000}
+
+Notes : This experiment contain only the Doc2Vect genomes but only for the KEGG orthologs database and all the phenotypes at the FAPROTAX database
+it was done separately (different folders) wich means that the Validation - Training dataset is made separately for every instance.
+In addition FAPROTAX_D2V_5000_KEGG.csv was a later run for the D2V 5000 genomes but the two files are really the same experiment.
+
+Unfortunately the D2V genomes have been deleted, so  I am not sure if I can replicate the data.
