@@ -444,9 +444,6 @@ I save the following as FAPROTAX_BoW_KEGG_cellulolysis.test and the multimodel s
 }
 
 
-Then I just can do:
->  
-
 
 Then I just can do:
 >  ./model_setup.R ./ FAPROTAX_BoW_KEGG_cellulolysis.test ./ multimodel.json ./results/ &> screen_output
@@ -459,7 +456,84 @@ This will rename the input file FAPROTAX_BoW_KEGG_cellulolysis.test to FAPROTAX_
 The stdout and sterror redirected to screen_output in our example show just the checks performed and if any error has happened, particulary reading any of the files (notice how particularly the step on FIXING MULTIPLE GENOMES is the most costly operation).
 
 The output would looks like 
+"package"  "model"        "PCA"   "train_CV_method"  "train_test_split"  "train_n_repeat"  "train_balance"  "Accuracy"         "Kappa"            "AccuracyLower"    "AccuracyUpper"    "AccuracyNull"  "AccuracyPValue"       "McnemarPValue"       "Sensitivity"  "Specificity"      "Pos.Pred.Value"   "Neg.Pred.Value"  "Precision"        "Recall"  "F1"               "Prevalence"  "Detection.Rate"  "Detection.Prevalence"  "Balanced.Accuracy"  "AUROC"            "Nphenotype"  "Density.yes"  "Density.no"  "Density.NA"  "Density_agg"  "Balance.yes"  "Balance.no"  "Balance_agg"  "Database.Database"  "Phenotype.Phenotypic_trait"  "Phenotype.Bacterial_metadata_columns1"  "Phenotype.Bacterial_metadata_columns2"  "Phenotype.Bacterial_metadata_columns3"  "Phenotype.Bacterial_metadata_columns4"  "Phenotype.NA_substitution"  "Phenotype.NA_substitution_value"  "Genome.Pattern_gene_columns"  "Genome.Pattern_genomic_table_columns"  "Genome.Fix_multiple_genomes"  "Genome.Genome_ortholog_type"  "Genome.Genome_type"
+"caret"    "glmnet"       "None"  "CV"               0,8                 10                "upSample"       0,984              0,968              0,972218152237859  0,991705945598878  0,5             1,03893108091227e-200  0,00149616428974555   1              0,968              0,968992248062015  1                 0,968992248062015  1         0,984251968503937  0,5           0,5               0,516                   0,984                0,984              3000          50             50            0             100            50             50            0              "FAPROTAX"           "cellulolysis"                "Name"                                   "Genus"                                  "Species"                                "Strain"                                 "NA2level"                   "no"                               "K\d+"                         "K\d+|GenomeID"                         "mean"                         "KEGG"                         "BoW"
+"caret"    "Naive_Bayes"  "None"  "CV"               0,8                 10                "upSample"       0,5                0                  0,463609706571632  0,536390293428368  0,5             0,514562457447735      4,15362745332641e-83  0              1                  NA                 0,5               NA                 0         NA                 0,5           0                 0                       0,5                  0,5                3000          50             50            0             100            50             50            0              "FAPROTAX"           "cellulolysis"                "Name"                                   "Genus"                                  "Species"                                "Strain"                                 "NA2level"                   "no"                               "K\d+"                         "K\d+|GenomeID"                         "mean"                         "KEGG"                         "BoW"
+"caret"    "XGBoost"      "None"  "CV"               0,8                 10                "upSample"       0,990666666666667  0,981333333333333  0,980864814661031  0,99623951585655   0,5             4,3894070161109e-210   0,0233422020128909    1              0,981333333333333  0,981675392670157  1                 0,981675392670157  1         0,990752972258917  0,5           0,5               0,509333333333333       0,990666666666667    0,990666666666667  3000          50             50            0             100            50             50            0              "FAPROTAX"           "cellulolysis"                "Name"                                   "Genus"                                  "Species"                                "Strain"                                 "NA2level"                   "no"                               "K\d+"                         "K\d+|GenomeID"                         "mean"                         "KEGG"                         "BoW"
 
+and the stdout output would be (Some part of it)
+Loading required package: rjson
+Loading required package: plyr
+Loading required package: caret
+Loading required package: lattice
+Loading required package: ggplot2
+[1] "/home/ubuntu/R/x86_64-pc-linux-gnu-library/3.6/pROC"
+[1] "/home/ubuntu/R/x86_64-pc-linux-gnu-library/3.6/ROSE"
+[1] "/home/ubuntu/R/x86_64-pc-linux-gnu-library/3.6/smotefamily"
+[1] "./"                                  "FAPROTAX_BoW_KEGG_cellulolysis.test"
+[3] "./"                                  "multimodel.json"                    
+[5] "./results/"                         
+[1] "./"                                  "FAPROTAX_BoW_KEGG_cellulolysis.test"
+[3] "./"                                  "multimodel.json"                    
+[5] "./results/"                         
+[1] "[ 2022-03-23 14:41:04 : Starting the Script ]"
+[1] "[ 2022-03-23 14:41:04 : READING CONFIGURATION FILES ... ]"
+[1] "[ 2022-03-23 14:41:04 : CONFIG FILES READ ]"
+[1] "[ 2022-03-23 14:41:04 : Preparing some helper functions ]"
+[1] "[ 2022-03-23 14:41:04 : QUICK CHECKS ]"
+Phenotype.folder   Phenotype.file  Taxonomy.folder    Taxonomy.file 
+TRUE             TRUE             TRUE             TRUE 
+Metadata.folder    Metadata.file    Genome.folder      Genome.file 
+TRUE             TRUE             TRUE             TRUE 
+[1] "[ 2022-03-23 14:41:04 : CHECKS PASSED ]"
+[1] "[ 2022-03-23 14:41:04 : COLLECTING THE DATA ]"
+[1] "[ 2022-03-23 14:41:15 : PHENOTYPE, TAXONOMY, METADATA AND GENOME DATABASES READ ]"
+[1] "[ 2022-03-23 14:41:15 : START OF DATA BASES PROCESSING ]"
+[1] "[ 2022-03-23 14:41:15 : PHENOTYPE DB PROCESSED ]"
+[1] "[ 2022-03-23 14:41:15 : GENOME DB PROCESSED ]"
+[1] "[ 2022-03-23 14:41:15 : GENERATING THE PHENO-GENO TYPE DATABAES ]"
+[1] "[ 2022-03-23 14:41:23 : DATABASE GENERATED AFTER JOIN ]"
+[1] "[ 2022-03-23 14:41:23 : FIXING MULTIPLE GENOMES ]"
+[1] "[ 2022-03-23 14:44:40 : MULTIPLE GENOMES FIXED ]"
+[1] "[ 2022-03-23 14:44:40 : CLASS BALANCING ]"
+Warning message:
+In fix_balance_data_classes(model_configuration) :
+In a multi model experiment the balance is done according to the options set at the first model.
+
+The configuration structure is changed to reflect that
+[1] "[ 2022-03-23 14:44:45 : CLASS BALANCING FINISHED ]"
+[1] "[ 2022-03-23 14:44:45 : DATA SPLITTING ]"
+[1] "[ 2022-03-23 14:44:46 : DATA SPLITTED ]"
+[1] "[ 2022-03-23 14:44:46 : CHECKPOINT - VALIDATION DATA NOT EMPTY - PASSED ]"
+[1] "[ 2022-03-23 14:44:46 : START MODELLING ]"
+[1] "[ 2022-03-23 14:44:46 :  Fitting a Glmnet Caret model ]"
+[1] "[ 2022-03-23 14:49:40 : Glmnet fitted ]"
+[1] "[ 2022-03-23 14:49:40 :  Fitting a Naive Bayes Caret model ]"
+[1] "[ 2022-03-23 16:03:52 : Naive Bayes fitted ]"
+[1] "[ 2022-03-23 16:03:52 :  Fitting a XGBoost model ]"
+[1] "[ 2022-03-23 17:06:34 : XGBoost model fitted ]"
+There were 12 warnings (use warnings() to see them)
+[1] "[ 2022-03-23 17:06:34 : END OF MODELLING STEPS ]"
+[1] "[ 2022-03-23 17:06:34 : EVALUATION OF MODELS ]"
+Setting levels: control = yes, case = no
+Setting direction: controls < cases
+Setting levels: control = yes, case = no
+Setting direction: controls < cases
+Setting levels: control = yes, case = no
+Setting direction: controls < cases
+[1] "[ 2022-03-23 17:32:08 : MODELS EVALUATED ]"
+[1] "[ 2022-03-23 17:32:08 : SAVING THE MODELS ]"
+[1] "[ 2022-03-23 17:32:08 : Saving results in  ./results//FAPROTAX_BoW_KEGG_cellulolysis.test ]"
+[1] "[ 2022-03-23 17:32:08 : Saving results in  ./results//FAPROTAX_BoW_KEGG_cellulolysis.test ]"
+[1] "[ 2022-03-23 17:32:08 : Saving results in  ./results//FAPROTAX_BoW_KEGG_cellulolysis.test ]"
+[1] "[ 2022-03-23 17:32:08 : Saving results in  ./results//FAPROTAX_BoW_KEGG_cellulolysis.test ]"
+[1] "[ 2022-03-23 17:32:09 : Saving evaluation results in  ./results//FAPROTAX_multi_model_setup_cellulolysis_BoW_KEGG.Mar23-17:32:09.results.dat ]"
+[1] "[ 2022-03-23 17:32:09 : MODELS SAVED ]"
+[1] "[ 2022-03-23 17:32:09 : Tagging the input file ]"
+[1] "[ 2022-03-23 17:32:09 : END OF SCRIPT ]"
+
+As output we can find the file FAPROTAX_multi_model_setup_cellulolysis_BoW_KEGG.Mar23-17:32:09.results.dat showed before and the input file tagged as .completed 
+NOTE: The part of the code that save the FAPROTAX_BoW_KEGG_cellulolysis.test has been commented out since we do not need at the moment the output and it would be much better if we export only the part of the model corresponding to the parameters rather than the whole (huge) object
 ## Generating a number of JSON files for an experiment - a.k.a an improvised queue system
 In the following example, I have generated a JSON file that contain phenotypes from two different phenotypic tables (Metabolic_traits.tsv and Metabolic_features.tsv) and tested using several genome tables. Especifically, this examples test the Bag of Words genomes using the pFam, KEGG and COG tables, and the KEGG is used either with many genomes or just picking one. Also it perform the models on the Doc2Vec genomes for the orthologs at KEGG using 50 dimensions.
 
