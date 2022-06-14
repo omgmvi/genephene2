@@ -1,0 +1,114 @@
+The goal of this folder is to make an little study on the information contained in the variables - if they suffice to perform the study we want.
+
+The reason is that I have been arguing that our databases are not enough to perform the application we want but I may be completely wrong. 
+
+Yet, it is not a bad idea for the last few mothn to use HIDING IN PLAIN SIGHT and the original genephene github repository hosting FAPROTAX copy to check few algorithms for feature engineering / feature learning
+
+
+Plan : 
+
+Generate the complete data source for HIDING IN PLAIN SIGHT  with the phenonypes 
+.Catalase positive
+.Oxidase positive
+.Urease positive
+
+These 3 phenotypes are possibly due to a single enzyme (Catalase, Oxidase and Urease) so I must be able to see which COG or KEGG or pFam ortholog is involved in the activity.
+
+
+-------------------------------
+9th May 2022.
+-------------------------------
+
+Elaborate the database 
+
+A short script in R is made to inner join the (((PhenoDB -><- Taxonomy)-><- Metadata) -><- Genome)
+The first two joins are done just once, but caring that in the Metadata DB there's two colums whose values may coincide with the taxon one. Those are the TAXID (that is the species/strain/... ID and the species_taxid that collect the common species name one)
+
+
+As always it took a bit longer than expected since I wanted to test that no genome is duplicated.
+However, there's many genomes repeated and unsure on the differences among them
+
+-------------------------------
+10th May 2022
+-------------------------------
+Today I would like to collapse the genomes from a single species onto a single genome
+I did that already using the mean, min, max ... but really it would have been better to use just 0/1. That is what I will try to do faster today.
+
+Once I got that, I will look to plot the genome as an bi-adjacency graph to explore the modularity of the genetic configuration. The point would be to summarize genes in a community-clique as a single one to use as a single feature -sort of guild or functional group. Same result should pop from correlation analysis or PCA / PCoA
+
+-------------------------------
+11th May 2022
+-------------------------------
+I've corrected few things were incomplete from yesterday. So now the code remove_duplicated_genomes do two things (well by name is should only remove duplicated genomes)
+first it make every line (that is a genome) as a presence/absence matrix and then remove (by finding the max) duplicated bacterial names. That is said to clarify there were not checked wether two genomes were identical but checking each bacterial name had only one genomes so phenotypes are not artificially increased (although is that a bad thing?)
+
+I've sent a mail to Lorcan to know his thoughs about Doc2Vec in highly diverse phylogenetic trees. Also during the journal club we were talking about this Tiara software to classify MAGs as eukaryote or prokaryote and if the former as nuclear, plastidial or mitochondrial. We were discussing the concept of tf-idf (term frequency - inverse document frequency) as a metric to assist in information retrieval. It takes into account the number of times a word appears in a document and the number of times it appears in all documents.
+
+Some more info:
+https://academic.oup.com/bioinformatics/article/38/2/344/6375939?login=true
+https://monkeylearn.com/blog/what-is-tf-idf/
+https://monkeylearn.com/keyword-extraction/
+https://stats.stackexchange.com/questions/390350/natural-language-processing-basic-dimension-reduction-with-svd-of-a-co-occurenc
+https://en.wikipedia.org/wiki/Document-term_matrix
+
+In that stackoverflow question the author ask for using the co-ocurrence matrix for analysis using SVD algorithm.
+One of the helpers speaks about Document-term matrix and it use for latent semantinc analysis and Latent Dirichlet allocation
+The later, LDA, seems to search for groups that explain similarity in "the data" which I suppose it means the rows.
+
+These ideas can be used for order-less word embeddings? That is the question to answer now ...
+
+Other ideas read yesterday and today was about using network theory to search the bipartite graph made by either genomes and genes or phenotypes and genes (or even tripartite ones)
+If there were genes linked only to a phenotypic state they could be count as possible gene related. If not, at least a weighed measure (here the imbalance dataset will be a problem I believe)
+That is, it may be that some genes are often linked to a phenotypic state, e.g. Catalase positive vs Catalase negative, than to (the) other.
+
+I won't have much more time today to program, so tomorrow I want to do the word-occurrence matrix and the Document-term matrix - as I can't visualized them I may need to move to the ScyVerse HPC
+
+-------------------------------
+12th May 2022
+-------------------------------
+Check of the files, since there were no output yesterday for the presence/absence files.
+I wanted to do the code for the co-ocurrence matrix but it is 3.00 already!! (I've been writting the updated Jan to March report for Eva, meeting, dentist, insomnia ...)
+
+Notes: There's something to take care when making the word co-ocurrence matrix - there are 4000-8000-11000 orthologs classes refering to words. When looking at pair-wise coocurrence the matrix will be N^2 meaning 1.21E8 entries
+
+
+-------------------------------
+18th May 2022
+-------------------------------
+This is horrible, I do not even know what I have been doing the last week but I haven't advance even a single line! Not even write any code or anython
+
+Today, I had a chat with Lorcan and he confirmed my expectancy, using the Doc2Vec with the name of the bacteria is wrong - accordding to him, that would mess the vector. The reason is not clear to me. Yet, during the conversation he seemed to agree that the idea of putting tags for phenotypes may be sensible (he still had some confusion about how I was explained, so I can't say for sure).
+
+He told me something very useful that we will carry on talking later. He uses convolution on K-mers as  in the local information is on the K-mer itsel (if I understood well, it would be like as co-occurrence in computer vision just n and n+1) and perform a dot product on a weight vector. In fact it seems that he uses a single weight vector (I mean all 0's except a single number) so that the signal comes from a single K-mer. I could use that using an idea like the K-mers but with cco-ocurrence of COGS.
+
+I have to get a clear idea with that but let's enunciate the concept.
+Word2Vec uses the contiguity of words to associate them under the logic/intuition that words that pop in the same position in the sentences, between the same words mean the same.
+
+So : Dogs eat poo. Cats eat tuna;Dogs eat meat. Cats eat meat. Dogs eat leftovers. Cats eat rats.Should associate the words poo,meat,leftovers through their link to the word Dog
+and the same to rats, meat, tuna. I suppose that Dog and Cat as well, since the are linked to meat,eat and other words.
+In W2V the method to train the embedding is using a task (an objective function) to predict words as in predictive text.
+In the case of our genomes, the genes may not be in any particular order or distance but it has been observed that operons and other structural patterns are conserved. Now, we can argue how muchit is the operon structure along the phylogenetic tree. That would break the assumption in Word2Vec. However, it would still be possible to use NLP in this case.
+
+Our problem is to create a classification method to link phenotypes to genes and due to the small nature of our phenotype DBs' and large number of genes we will have always a two fold problem.
+On one side we have a n<<p problem, with much more features than instances and in our case quite biased dependent variables to predict.
+
+
+Before writting more on the problem, I need to clarify myself what is possible to do with co-ocurrence matrices -
+1) How to efficiently calculate and store them
+2) Any statistical property
+3) How to train a representation learning with them
+
+Somehow I can't see what would be the difference with a correlation matrix and if SVD or PCA would be useful.
+I could be interseted in doing a row-based inference like in case-based reasoning, or in that paper about GWAS.
+
+Today, I want to write some code to run a linear regresion model on a single feature and a single phenotype to have a look to the R^2 and the overfitting (Interested in doing a cross-validation, permutation test and bootstrapping)
+
+Goals: 
+Fit a linear model (linear regression at the moment) and make a list with R^2,p-value)
+Extend the model to do a bootstrapping version to validate the model at different sizes
+Extend the model to do a permutation test on the p-value (this may be surprising!)
+
+-------------------------------
+19th May 2022
+-------------------------------
+Let's try to make the first set of models ....

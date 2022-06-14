@@ -1,0 +1,4 @@
+0. Data source: make joins to put together the pheno and the geno
+1. remove duplicated genomes: 1st remove the frequency from the genes so become a 0/1 and later remove duplicated genomes (attending to their names only, still could be identical genomes with different names
+2. one way models : make a gene-wise linear regresion to calculate r2 and p-val of the slope
+
