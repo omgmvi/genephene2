@@ -1,0 +1,39 @@
+{
+    "Database" : "Hiding",
+
+    "Phenotype" :
+    {
+        "Folder_Phenotype" : "/home/ubuntu/GenePhene2/Databases/Hiding/",
+        "Phenotypes" : [
+                            {"PhenotypeDB":"Metabolic.tsv",
+                            "Phenotypes" :["acid phosphatase","aesculin hydrolysis","alkaline phosphatase",
+                            "alpha-galactosidase","arylsulfatase","catalase positive","gelatinase","H2S production",
+                            "indole production","methane production","nitrate reduction to nitrite","oxidase positive",
+                            "pyrazinamidase","tellurite reductase","urease positive"]}
+                        ],
+        "Bacterial_metadata_columns" : ["Name","Genus","Species","Strain"],
+        "NA_substitution" : "NA2level",
+        "NA_substitution_value" : "no"
+    },
+    "Taxonomy" :
+    {
+        "Folder_Taxonomy": "/home/ubuntu/GenePhene2/Taxonomy/Hiding/",
+        "TaxonomyDB":"SpeciesTaxID.tsv"
+    },
+
+    "Metadata":{"Folder_Metadata" : "/home/ubuntu/GenePhene2/Metadata/Hiding",
+    "Taxa2assemblyDB" : "TaxID2Genome_metadata.tsv"},
+
+    "Genomes": [
+        {
+            "Genome":"COG",
+            "Genome_type" : "BoW",
+            "file_ending" : "pickone_genomes",
+            "Folder_Genome" : "/home/ubuntu/GenePhene2/Genomes/Hiding/BagOfWords_Genome",
+            "GenomeDB" : "Hiding_BoW_COG.tsv",
+            "Pattern_gene_columns" : "COG\\d+",
+            "Pattern_genomic_table_columns" : "COG\\d+|GenomeID",
+            "Fix_multiple_genomes" : "pickone"
+        }
+    ]
+}
